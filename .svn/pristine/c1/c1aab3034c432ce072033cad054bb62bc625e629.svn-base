@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.ArchiveStoresBoxBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.ArchiveStoresBoxBean"
+               extends="com.model.mapper.ArchiveStoresBoxMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.ArchiveStoresBoxMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_ARCHIVE_STORES_BOX
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.id, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.archiveStoresId != null and entity.archiveStoresId != ''">
+            AND sa.ARCHIVESTORESID LIKE CONCAT('%', CONCAT(#{entity.archiveStoresId, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.code != null and entity.code != ''">
+            AND sa.CODE LIKE CONCAT('%', CONCAT(#{entity.code, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.userId != null and entity.userId != ''">
+            AND sa.USERID LIKE CONCAT('%', CONCAT(#{entity.userId, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_ARCHIVE_STORES_BOX sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_ARCHIVE_STORES_BOX sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <select id="selectByBoxUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from EA_ARCHIVE_STORES_BOX
+        where BOXUSER = #{boxUser,jdbcType=VARCHAR}
+    </select>
+</mapper>

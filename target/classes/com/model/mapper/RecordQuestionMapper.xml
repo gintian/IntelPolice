@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.RecordQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.model.RecordQuestion" >
+    <id column="QUESTIONID" property="id" jdbcType="VARCHAR" />
+    <result column="QUESTIONCODE" property="questionCode" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="CASETYPE" property="caseType" jdbcType="VARCHAR" />
+    <result column="ADDTIME" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="ADDUSER" property="addUser" jdbcType="VARCHAR" />
+    <result column="MODIFYTIME" property="modifyTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+   QUESTIONID, QUESTIONCODE, CONTENT, TYPE, CASETYPE, ADDTIME, ADDUSER, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_RECORD_QUESTION
+    where QUESTIONID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_RECORD_QUESTION
+    where QUESTIONID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.model.RecordQuestion" >
+    insert into EA_RECORD_QUESTION (QUESTIONID, QUESTIONCODE, CONTENT, TYPE, CASETYPE, ADDTIME, ADDUSER, MODIFYTIME
+      )
+    values ( #{questionCode,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{caseType,jdbcType=VARCHAR},
+              #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+    where QUESTIONID = #{id,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.RecordQuestion" >
+    insert into EA_RECORD_QUESTION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        QUESTIONID,
+      </if>
+      <if test="questionCode != null" >
+        QUESTIONCODE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="caseType != null" >
+        CASETYPE,
+      </if>
+      <if test="addTime != null" >
+        ADDTIME,
+      </if>
+      <if test="addUser != null" >
+        ADDUSER,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="questionCode != null" >
+        #{questionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+        #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.RecordQuestion" >
+    update EA_RECORD_QUESTION
+    <set >
+      <if test="questionCode != null" >
+        QUESTIONCODE = #{questionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+       TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="caseType != null" >
+       CASETYPE =  #{caseType,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+       ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+       ADDUSER = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+       MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where QUESTIONID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.RecordQuestion" >
+    update EA_RECORD_QUESTION
+    set
+        QUESTIONCODE = #{questionCode,jdbcType=VARCHAR},
+        CONTENT = #{content,jdbcType=VARCHAR},
+        TYPE = #{type,jdbcType=VARCHAR},
+        CASETYPE =  #{caseType,jdbcType=VARCHAR},
+        ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+        ADDUSER = #{addUser,jdbcType=VARCHAR},
+        MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+    where QUESTIONID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvolvedTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvolvedTask" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TASKCONTENT" property="taskContent" jdbcType="VARCHAR" />
+    <result column="PROC_INST_ID" property="procInstId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TASKDATE" property="taskDate" jdbcType="TIMESTAMP" />
+    <result column="TASKSTATE" property="taskState" jdbcType="VARCHAR" />
+    <result column="IDENTITYCARD" property="identityCard" jdbcType="VARCHAR" />
+    <result column="INVOLVEDID" property="involvedId" jdbcType="VARCHAR" />
+    <result column="TASKENDDATE" property="taskEndDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TASKCONTENT, PROC_INST_ID, REMARK, TASKDATE, TASKSTATE, IDENTITYCARD, INVOLVEDID, TASKENDDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVOLVED_TASK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByProcessDefinitionId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_INVOLVED_TASK
+    where PROC_INST_ID = #{procInstId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVOLVED_TASK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvolvedTask" >
+    insert into EA_INVOLVED_TASK (ID, TASKCONTENT, REMARK,PROC_INST_ID, TASKDATE, TASKSTATE, IDENTITYCARD,INVOLVEDID,TASKENDDATE)
+    values (#{id,jdbcType=VARCHAR}, #{taskContent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}
+      #{taskDate,jdbcType=TIMESTAMP}, #{taskState,jdbcType=VARCHAR}, #{identityCard,jdbcType=VARCHAR},
+      #{involvedId,jdbcType=TIMESTAMP}, #{taskEndDate,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvolvedTask" >
+    insert into EA_INVOLVED_TASK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="taskContent != null" >
+        TASKCONTENT,
+      </if>
+      <if test="procInstId != null" >
+        PROC_INST_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="procInstId != null" >
+        PROC_INST_ID,
+      </if>
+      <if test="taskDate != null" >
+        TASKDATE,
+      </if>
+      <if test="taskState != null" >
+        TASKSTATE,
+      </if>
+      <if test="identityCard != null" >
+        IDENTITYCARD,
+      </if>
+      <if test="involvedId != null" >
+        INVOLVEDID,
+      </if>
+      <if test="taskEndDate != null" >
+        TASKENDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="taskContent != null" >
+        #{taskContent,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null" >
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null" >
+        #{taskDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskState != null" >
+        #{taskState,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="involvedId != null" >
+        #{involvedId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskEndDate != null" >
+        #{taskEndDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvolvedTask" >
+    update EA_INVOLVED_TASK
+    <set >
+      <if test="taskContent != null" >
+        TASKCONTENT = #{taskContent,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null" >
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null" >
+        TASKDATE = #{taskDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskState != null" >
+        TASKSTATE = #{taskState,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        IDENTITYCARD = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="involvedId != null" >
+        INVOLVEDID = #{involvedId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskEndDate != null" >
+        TASKENDDATE = #{taskEndDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvolvedTask" >
+    update EA_INVOLVED_TASK
+    set TASKCONTENT = #{taskContent,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      TASKDATE = #{taskDate,jdbcType=TIMESTAMP},
+      TASKSTATE = #{taskState,jdbcType=VARCHAR},
+      IDENTITYCARD = #{identityCard,jdbcType=VARCHAR},
+      INVOLVEDID = #{involvedId,jdbcType=VARCHAR},
+      TASKENDDATE = #{taskEndDate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

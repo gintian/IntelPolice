@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvestigationExpAlarmMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvestigationExpAlarm" >
+    <id column="EXCEPTIONID" property="exceptionId" jdbcType="VARCHAR" />
+    <result column="JJDBH" property="jjdbh" jdbcType="VARCHAR" />
+    <result column="CJDBH" property="cjdbh" jdbcType="VARCHAR" />
+    <result column="FKDBH" property="fkdbh" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseId" jdbcType="VARCHAR" />
+    <result column="STATEID" property="stateId" jdbcType="VARCHAR" />
+    <result column="CITYID" property="cityId" jdbcType="VARCHAR" />
+    <result column="COUNTYID" property="countyId" jdbcType="VARCHAR" />
+    <result column="JGDM" property="jgdm" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptId" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="KEYWORDS" property="keywords" jdbcType="VARCHAR" />
+    <result column="EXCEPTIONTYPE" property="exceptionType" jdbcType="VARCHAR" />
+    <result column="EXCEPTIONNAME" property="exceptionName" jdbcType="VARCHAR" />
+    <result column="EXCEPTIONCHILDTYPE" property="exceptionChildType" jdbcType="VARCHAR" />
+    <result column="EXCEPTIONCHILDNAME" property="exceptionChildName" jdbcType="VARCHAR" />
+    <result column="TYPEREMARK" property="typeRemark" jdbcType="VARCHAR" />
+    <result column="REGISTERTIME" property="registerTime" jdbcType="DATE" />
+    <result column="SOURCEID" property="sourceId" jdbcType="VARCHAR" />
+    <result column="INFORMTIME" property="informTime" jdbcType="DATE" />
+    <result column="INFORMOPERATEID" property="informOperateId" jdbcType="VARCHAR" />
+    <result column="PROCESSTIME" property="processTime" jdbcType="DATE" />
+    <result column="PROCESSTIMES" property="processTimes" jdbcType="VARCHAR" />
+    <result column="UPPERID" property="upperId" jdbcType="VARCHAR" />
+    <result column="UPPERPROCESSTIME" property="upperProcessTime" jdbcType="DATE" />
+    <result column="UPPERPROCESSTIMES" property="upperProcessTimes" jdbcType="VARCHAR" />
+    <result column="PROCESSSTATUS" property="processStatus" jdbcType="VARCHAR" />
+    <result column="CASECLASS" property="caseClass" jdbcType="VARCHAR" />
+    <result column="ISPATROL" property="isPatrol" jdbcType="VARCHAR" />
+    <result column="ALARMTYPE" property="alarmType" jdbcType="VARCHAR" />
+    <result column="ZWZCJQLY" property="zwzcjqly" jdbcType="VARCHAR" />
+    <result column="FHRY" property="fhry" jdbcType="VARCHAR" />
+    <result column="FHSJ" property="fhsj" jdbcType="DATE" />
+    <result column="QRCLYXLY" property="qrclyxly" jdbcType="VARCHAR" />
+    <result column="SHRY" property="shry" jdbcType="VARCHAR" />
+    <result column="SHSJ" property="shsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EXCEPTIONID, JJDBH, CJDBH, FKDBH, CASEID, STATEID, CITYID, COUNTYID, JGDM, DEPTID, 
+    DEPTNAME, USERNAME, USERID, KEYWORDS, EXCEPTIONTYPE, EXCEPTIONNAME, EXCEPTIONCHILDTYPE, 
+    EXCEPTIONCHILDNAME, TYPEREMARK, REGISTERTIME, SOURCEID, INFORMTIME, INFORMOPERATEID, 
+    PROCESSTIME, PROCESSTIMES, UPPERID, UPPERPROCESSTIME, UPPERPROCESSTIMES, PROCESSSTATUS, 
+    CASECLASS, ISPATROL, ALARMTYPE, ZWZCJQLY, FHRY, FHSJ, QRCLYXLY, SHRY, SHSJ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVESTIGATION_EXP_ALARM
+    where EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVESTIGATION_EXP_ALARM
+    where EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvestigationExpAlarm" >
+    insert into EA_INVESTIGATION_EXP_ALARM (EXCEPTIONID, JJDBH, CJDBH, 
+      FKDBH, CASEID, STATEID, 
+      CITYID, COUNTYID, JGDM, 
+      DEPTID, DEPTNAME, USERNAME, 
+      USERID, KEYWORDS, EXCEPTIONTYPE, 
+      EXCEPTIONNAME, EXCEPTIONCHILDTYPE, EXCEPTIONCHILDNAME, 
+      TYPEREMARK, REGISTERTIME, SOURCEID, 
+      INFORMTIME, INFORMOPERATEID, PROCESSTIME, 
+      PROCESSTIMES, UPPERID, UPPERPROCESSTIME, 
+      UPPERPROCESSTIMES, PROCESSSTATUS, CASECLASS, 
+      ISPATROL, ALARMTYPE, ZWZCJQLY, 
+      FHRY, FHSJ, QRCLYXLY, 
+      SHRY, SHSJ)
+    values (#{exceptionId,jdbcType=VARCHAR}, #{jjdbh,jdbcType=VARCHAR}, #{cjdbh,jdbcType=VARCHAR},
+      #{fkdbh,jdbcType=VARCHAR}, #{caseId,jdbcType=VARCHAR}, #{stateId,jdbcType=VARCHAR},
+      #{cityId,jdbcType=VARCHAR}, #{countyId,jdbcType=VARCHAR}, #{jgdm,jdbcType=VARCHAR},
+      #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{userId,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{exceptionType,jdbcType=VARCHAR},
+      #{exceptionName,jdbcType=VARCHAR}, #{exceptionChildType,jdbcType=VARCHAR}, #{exceptionChildName,jdbcType=VARCHAR},
+      #{typeRemark,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}, #{sourceId,jdbcType=VARCHAR},
+      #{informTime,jdbcType=DATE}, #{informOperateId,jdbcType=VARCHAR}, #{processTime,jdbcType=DATE},
+      #{processTimes,jdbcType=VARCHAR}, #{upperId,jdbcType=VARCHAR}, #{upperProcessTime,jdbcType=DATE},
+      #{upperProcessTimes,jdbcType=VARCHAR}, #{processStatus,jdbcType=VARCHAR}, #{caseClass,jdbcType=VARCHAR},
+      #{isPatrol,jdbcType=VARCHAR}, #{alarmType,jdbcType=VARCHAR}, #{zwzcjqly,jdbcType=VARCHAR},
+      #{fhry,jdbcType=VARCHAR}, #{fhsj,jdbcType=DATE}, #{qrclyxly,jdbcType=VARCHAR}, 
+      #{shry,jdbcType=VARCHAR}, #{shsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvestigationExpAlarm" >
+    insert into EA_INVESTIGATION_EXP_ALARM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="exceptionId != null" >
+        EXCEPTIONID,
+      </if>
+      <if test="jjdbh != null" >
+        JJDBH,
+      </if>
+      <if test="cjdbh != null" >
+        CJDBH,
+      </if>
+      <if test="fkdbh != null" >
+        FKDBH,
+      </if>
+      <if test="caseId != null" >
+        CASEID,
+      </if>
+      <if test="stateId != null" >
+        STATEID,
+      </if>
+      <if test="cityId != null" >
+        CITYID,
+      </if>
+      <if test="countyId != null" >
+        COUNTYID,
+      </if>
+      <if test="jgdm != null" >
+        JGDM,
+      </if>
+      <if test="deptId != null" >
+        DEPTID,
+      </if>
+      <if test="deptName != null" >
+        DEPTNAME,
+      </if>
+      <if test="userName != null" >
+        USERNAME,
+      </if>
+      <if test="userId != null" >
+        USERID,
+      </if>
+      <if test="keywords != null" >
+        KEYWORDS,
+      </if>
+      <if test="exceptionType != null" >
+        EXCEPTIONTYPE,
+      </if>
+      <if test="exceptionName != null" >
+        EXCEPTIONNAME,
+      </if>
+      <if test="exceptionChildType != null" >
+        EXCEPTIONCHILDTYPE,
+      </if>
+      <if test="exceptionChildName != null" >
+        EXCEPTIONCHILDNAME,
+      </if>
+      <if test="typeRemark != null" >
+        TYPEREMARK,
+      </if>
+      <if test="registerTime != null" >
+        REGISTERTIME,
+      </if>
+      <if test="sourceId != null" >
+        SOURCEID,
+      </if>
+      <if test="informTime != null" >
+        INFORMTIME,
+      </if>
+      <if test="informOperateId != null" >
+        INFORMOPERATEID,
+      </if>
+      <if test="processTime != null" >
+        PROCESSTIME,
+      </if>
+      <if test="processTimes != null" >
+        PROCESSTIMES,
+      </if>
+      <if test="upperId != null" >
+        UPPERID,
+      </if>
+      <if test="upperProcessTime != null" >
+        UPPERPROCESSTIME,
+      </if>
+      <if test="upperProcessTimes != null" >
+        UPPERPROCESSTIMES,
+      </if>
+      <if test="processStatus != null" >
+        PROCESSSTATUS,
+      </if>
+      <if test="caseClass != null" >
+        CASECLASS,
+      </if>
+      <if test="isPatrol != null" >
+        ISPATROL,
+      </if>
+      <if test="alarmType != null" >
+        ALARMTYPE,
+      </if>
+      <if test="zwzcjqly != null" >
+        ZWZCJQLY,
+      </if>
+      <if test="fhry != null" >
+        FHRY,
+      </if>
+      <if test="fhsj != null" >
+        FHSJ,
+      </if>
+      <if test="qrclyxly != null" >
+        QRCLYXLY,
+      </if>
+      <if test="shry != null" >
+        SHRY,
+      </if>
+      <if test="shsj != null" >
+        SHSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="exceptionId != null" >
+        #{exceptionId,jdbcType=VARCHAR},
+      </if>
+      <if test="jjdbh != null" >
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdbh != null" >
+        #{cjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="fkdbh != null" >
+        #{fkdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="stateId != null" >
+        #{stateId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=VARCHAR},
+      </if>
+      <if test="jgdm != null" >
+        #{jgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionType != null" >
+        #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionName != null" >
+        #{exceptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionChildType != null" >
+        #{exceptionChildType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionChildName != null" >
+        #{exceptionChildName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeRemark != null" >
+        #{typeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=DATE},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        #{informTime,jdbcType=DATE},
+      </if>
+      <if test="informOperateId != null" >
+        #{informOperateId,jdbcType=VARCHAR},
+      </if>
+      <if test="processTime != null" >
+        #{processTime,jdbcType=DATE},
+      </if>
+      <if test="processTimes != null" >
+        #{processTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="upperId != null" >
+        #{upperId,jdbcType=VARCHAR},
+      </if>
+      <if test="upperProcessTime != null" >
+        #{upperProcessTime,jdbcType=DATE},
+      </if>
+      <if test="upperProcessTimes != null" >
+        #{upperProcessTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null" >
+        #{processStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="caseClass != null" >
+        #{caseClass,jdbcType=VARCHAR},
+      </if>
+      <if test="isPatrol != null" >
+        #{isPatrol,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmType != null" >
+        #{alarmType,jdbcType=VARCHAR},
+      </if>
+      <if test="zwzcjqly != null" >
+        #{zwzcjqly,jdbcType=VARCHAR},
+      </if>
+      <if test="fhry != null" >
+        #{fhry,jdbcType=VARCHAR},
+      </if>
+      <if test="fhsj != null" >
+        #{fhsj,jdbcType=DATE},
+      </if>
+      <if test="qrclyxly != null" >
+        #{qrclyxly,jdbcType=VARCHAR},
+      </if>
+      <if test="shry != null" >
+        #{shry,jdbcType=VARCHAR},
+      </if>
+      <if test="shsj != null" >
+        #{shsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvestigationExpAlarm" >
+    update EA_INVESTIGATION_EXP_ALARM
+    <set >
+      <if test="jjdbh != null" >
+        JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdbh != null" >
+        CJDBH = #{cjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="fkdbh != null" >
+        FKDBH = #{fkdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        CASEID = #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="stateId != null" >
+        STATEID = #{stateId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        CITYID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        COUNTYID = #{countyId,jdbcType=VARCHAR},
+      </if>
+      <if test="jgdm != null" >
+        JGDM = #{jgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPTID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPTNAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USERNAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        KEYWORDS = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionType != null" >
+        EXCEPTIONTYPE = #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionName != null" >
+        EXCEPTIONNAME = #{exceptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionChildType != null" >
+        EXCEPTIONCHILDTYPE = #{exceptionChildType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionChildName != null" >
+        EXCEPTIONCHILDNAME = #{exceptionChildName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeRemark != null" >
+        TYPEREMARK = #{typeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        REGISTERTIME = #{registerTime,jdbcType=DATE},
+      </if>
+      <if test="sourceId != null" >
+        SOURCEID = #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        INFORMTIME = #{informTime,jdbcType=DATE},
+      </if>
+      <if test="informOperateId != null" >
+        INFORMOPERATEID = #{informOperateId,jdbcType=VARCHAR},
+      </if>
+      <if test="processTime != null" >
+        PROCESSTIME = #{processTime,jdbcType=DATE},
+      </if>
+      <if test="processTimes != null" >
+        PROCESSTIMES = #{processTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="upperId != null" >
+        UPPERID = #{upperId,jdbcType=VARCHAR},
+      </if>
+      <if test="upperProcessTime != null" >
+        UPPERPROCESSTIME = #{upperProcessTime,jdbcType=DATE},
+      </if>
+      <if test="upperProcessTimes != null" >
+        UPPERPROCESSTIMES = #{upperProcessTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null" >
+        PROCESSSTATUS = #{processStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="caseClass != null" >
+        CASECLASS = #{caseClass,jdbcType=VARCHAR},
+      </if>
+      <if test="isPatrol != null" >
+        ISPATROL = #{isPatrol,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmType != null" >
+        ALARMTYPE = #{alarmType,jdbcType=VARCHAR},
+      </if>
+      <if test="zwzcjqly != null" >
+        ZWZCJQLY = #{zwzcjqly,jdbcType=VARCHAR},
+      </if>
+      <if test="fhry != null" >
+        FHRY = #{fhry,jdbcType=VARCHAR},
+      </if>
+      <if test="fhsj != null" >
+        FHSJ = #{fhsj,jdbcType=DATE},
+      </if>
+      <if test="qrclyxly != null" >
+        QRCLYXLY = #{qrclyxly,jdbcType=VARCHAR},
+      </if>
+      <if test="shry != null" >
+        SHRY = #{shry,jdbcType=VARCHAR},
+      </if>
+      <if test="shsj != null" >
+        SHSJ = #{shsj,jdbcType=DATE},
+      </if>
+    </set>
+    where EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvestigationExpAlarm" >
+    update EA_INVESTIGATION_EXP_ALARM
+    set JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      CJDBH = #{cjdbh,jdbcType=VARCHAR},
+      FKDBH = #{fkdbh,jdbcType=VARCHAR},
+      CASEID = #{caseId,jdbcType=VARCHAR},
+      STATEID = #{stateId,jdbcType=VARCHAR},
+      CITYID = #{cityId,jdbcType=VARCHAR},
+      COUNTYID = #{countyId,jdbcType=VARCHAR},
+      JGDM = #{jgdm,jdbcType=VARCHAR},
+      DEPTID = #{deptId,jdbcType=VARCHAR},
+      DEPTNAME = #{deptName,jdbcType=VARCHAR},
+      USERNAME = #{userName,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      KEYWORDS = #{keywords,jdbcType=VARCHAR},
+      EXCEPTIONTYPE = #{exceptionType,jdbcType=VARCHAR},
+      EXCEPTIONNAME = #{exceptionName,jdbcType=VARCHAR},
+      EXCEPTIONCHILDTYPE = #{exceptionChildType,jdbcType=VARCHAR},
+      EXCEPTIONCHILDNAME = #{exceptionChildName,jdbcType=VARCHAR},
+      TYPEREMARK = #{typeRemark,jdbcType=VARCHAR},
+      REGISTERTIME = #{registerTime,jdbcType=DATE},
+      SOURCEID = #{sourceId,jdbcType=VARCHAR},
+      INFORMTIME = #{informTime,jdbcType=DATE},
+      INFORMOPERATEID = #{informOperateId,jdbcType=VARCHAR},
+      PROCESSTIME = #{processTime,jdbcType=DATE},
+      PROCESSTIMES = #{processTimes,jdbcType=VARCHAR},
+      UPPERID = #{upperId,jdbcType=VARCHAR},
+      UPPERPROCESSTIME = #{upperProcessTime,jdbcType=DATE},
+      UPPERPROCESSTIMES = #{upperProcessTimes,jdbcType=VARCHAR},
+      PROCESSSTATUS = #{processStatus,jdbcType=VARCHAR},
+      CASECLASS = #{caseClass,jdbcType=VARCHAR},
+      ISPATROL = #{isPatrol,jdbcType=VARCHAR},
+      ALARMTYPE = #{alarmType,jdbcType=VARCHAR},
+      ZWZCJQLY = #{zwzcjqly,jdbcType=VARCHAR},
+      FHRY = #{fhry,jdbcType=VARCHAR},
+      FHSJ = #{fhsj,jdbcType=DATE},
+      QRCLYXLY = #{qrclyxly,jdbcType=VARCHAR},
+      SHRY = #{shry,jdbcType=VARCHAR},
+      SHSJ = #{shsj,jdbcType=DATE}
+    where EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.ArchiveStoresLockersBeanMapper">
+	<resultMap id="BaseResultMap" type="com.model.bean.ArchiveStoresLockersBean"
+               extends="com.model.mapper.ArchiveStoresLockersMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.ArchiveStoresLockersMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM EA_ARCHIVE_STORES_LOCKERS
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.lockersId != null and entity.lockersId != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.lockersId, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.lockersName != null and entity.lockersName != ''">
+            AND sa.LOCKERNAME LIKE CONCAT('%', CONCAT(#{entity.lockersName, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.deptId != null and entity.deptId != ''">
+            AND sa.DEPTID LIKE CONCAT('%', CONCAT(#{entity.deptId, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.storeId != null and entity.storeId != ''">
+            AND sa.STOREID LIKE CONCAT('%', CONCAT(#{entity.storeId, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+    <sql id="storeSql">
+        <if test="entity.storeId != null and entity.storeId != ''">sa.STOREID = #{entity.storeId, jdbcType=VARCHAR}</if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_ARCHIVE_STORES_LOCKERS sa
+        <where>
+            <include refid="storeSql"/>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_ARCHIVE_STORES_LOCKERS sa
+        <where>
+            <include refid="storeSql"/>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+</mapper>

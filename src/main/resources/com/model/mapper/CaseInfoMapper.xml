@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.CaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.model.CaseInfo" >
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+    <result column="ACCEPTTIME" property="accepttime" jdbcType="DATE" />
+    <result column="ACCEPTUNIT" property="acceptunit" jdbcType="VARCHAR" />
+    <result column="ACCEPTMODE" property="acceptmode" jdbcType="VARCHAR" />
+    <result column="ACCEPTPERSON1" property="acceptperson1" jdbcType="VARCHAR" />
+    <result column="ACCEPTPERSON2" property="acceptperson2" jdbcType="VARCHAR" />
+    <result column="ACCEPTIDEA" property="acceptidea" jdbcType="VARCHAR" />
+    <result column="LEADERINSTRACTION" property="leaderinstraction" jdbcType="VARCHAR" />
+    <result column="RESULTS" property="results" jdbcType="VARCHAR" />
+    <result column="CASESOURCE" property="casesource" jdbcType="VARCHAR" />
+    <result column="TRANSFERUNIT" property="transferunit" jdbcType="VARCHAR" />
+    <result column="INVESTIGATEUNIT" property="investigateunit" jdbcType="VARCHAR" />
+    <result column="CASEMODE" property="casemode" jdbcType="VARCHAR" />
+    <result column="INVESTIGATETIME" property="investigatetime" jdbcType="DATE" />
+    <result column="CRIMINALPERSON" property="criminalperson" jdbcType="VARCHAR" />
+    <result column="SECURITYCHARGER" property="securitycharger" jdbcType="VARCHAR" />
+    <result column="FUZZPSN1" property="fuzzpsn1" jdbcType="VARCHAR" />
+    <result column="FUZZPSN2" property="fuzzpsn2" jdbcType="VARCHAR" />
+    <result column="DETECTMEASURES" property="detectmeasures" jdbcType="VARCHAR" />
+    <result column="NOINVESREASON" property="noinvesreason" jdbcType="VARCHAR" />
+    <result column="RENEWREASON" property="renewreason" jdbcType="VARCHAR" />
+    <result column="SOLVETAG" property="solvetag" jdbcType="VARCHAR" />
+    <result column="SOLVETIME" property="solvetime" jdbcType="DATE" />
+    <result column="REMOVEREASON" property="removereason" jdbcType="VARCHAR" />
+    <result column="ENDCASEREASON" property="endcasereason" jdbcType="VARCHAR" />
+    <result column="INPUTPSN" property="inputpsn" jdbcType="VARCHAR" />
+    <result column="INPUTTIME" property="inputtime" jdbcType="DATE" />
+    <result column="MODIFIEDPSN" property="modifiedpsn" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTIME" property="modifiedtime" jdbcType="DATE" />
+    <result column="DISTRICTTIME" property="districttime" jdbcType="DATE" />
+    <result column="PROVINCETIME" property="provincetime" jdbcType="DATE" />
+    <result column="TAG" property="tag" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTAG" property="modifiedtag" jdbcType="VARCHAR" />
+    <result column="DELETAG" property="deletag" jdbcType="VARCHAR" />
+    <result column="TRANSFERPSN" property="transferpsn" jdbcType="VARCHAR" />
+    <result column="TRANSFERCALL" property="transfercall" jdbcType="VARCHAR" />
+    <result column="AUDITINGUNIT" property="auditingunit" jdbcType="VARCHAR" />
+    <result column="AUDITINGPERSON" property="auditingperson" jdbcType="VARCHAR" />
+    <result column="SOLVESEGMENT" property="solvesegment" jdbcType="VARCHAR" />
+    <result column="SOLVEUNIT" property="solveunit" jdbcType="VARCHAR" />
+    <result column="SOLVEDEPARTMENT" property="solvedepartment" jdbcType="VARCHAR" />
+    <result column="ADIDANCEUNIT" property="adidanceunit" jdbcType="VARCHAR" />
+    <result column="ADIDANCEDEPART" property="adidancedepart" jdbcType="VARCHAR" />
+    <result column="DETECTIONTIME" property="detectiontime" jdbcType="DATE" />
+    <result column="REVOCATIONTIME" property="revocationtime" jdbcType="DATE" />
+    <result column="CLOSEDTIME" property="closedtime" jdbcType="DATE" />
+    <result column="DETECTIONTAG" property="detectiontag" jdbcType="VARCHAR" />
+    <result column="REVOCATIONTAG" property="revocationtag" jdbcType="VARCHAR" />
+    <result column="CLOSEDTAG" property="closedtag" jdbcType="VARCHAR" />
+    <result column="MAKUPREASON" property="makupreason" jdbcType="VARCHAR" />
+    <result column="MAKEUPCODE" property="makeupcode" jdbcType="VARCHAR" />
+    <result column="IFRELATED" property="ifrelated" jdbcType="VARCHAR" />
+    <result column="IFPROCESSEND" property="ifprocessend" jdbcType="VARCHAR" />
+    <result column="PROCESSENDTIME" property="processendtime" jdbcType="DATE" />
+    <result column="IFTERMINATION" property="iftermination" jdbcType="VARCHAR" />
+    <result column="TERMINATIONTIME" property="terminationtime" jdbcType="DATE" />
+    <result column="INVADUPERSON" property="invaduperson" jdbcType="VARCHAR" />
+    <result column="ISRENEW" property="isrenew" jdbcType="VARCHAR" />
+    <result column="ACCEPTINPUTTIME" property="acceptinputtime" jdbcType="DATE" />
+    <result column="INVESTINPUTTIME" property="investinputtime" jdbcType="DATE" />
+    <result column="DETECINPUTTIME" property="detecinputtime" jdbcType="DATE" />
+    <result column="REVOINPUTTIME" property="revoinputtime" jdbcType="DATE" />
+    <result column="CLOSEINPUTTIME" property="closeinputtime" jdbcType="DATE" />
+    <result column="PROENDINPUTTIME" property="proendinputtime" jdbcType="DATE" />
+    <result column="TERMINPUTTIME" property="terminputtime" jdbcType="DATE" />
+    <result column="SFTYPA" property="sftypa" jdbcType="VARCHAR" />
+    <result column="DETENTIONPERSON" property="detentionperson" jdbcType="VARCHAR" />
+    <result column="DETENTIONAPPTIME" property="detentionapptime" jdbcType="DATE" />
+    <result column="DQBLDW" property="dqbldw" jdbcType="VARCHAR" />
+    <result column="OTHERPROVINCESUNIT" property="otherprovincesunit" jdbcType="VARCHAR" />
+    <result column="DRUGSOLVEBRANCH" property="drugsolvebranch" jdbcType="VARCHAR" />
+    <result column="MATJSJ" property="matjsj" jdbcType="DATE" />
+    <result column="APSTATUS" property="apstatus" jdbcType="VARCHAR" />
+    <result column="BKREASON" property="bkreason" jdbcType="VARCHAR" />
+    <result column="FDETECTIONTIME" property="fdetectiontime" jdbcType="DATE" />
+    <result column="LYDS" property="lyds" jdbcType="VARCHAR" />
+    <result column="HCK_RKSJ" property="hckRksj" jdbcType="DATE" />
+    <result column="HCK_GXSJ" property="hckGxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CASEID, ACCEPTTIME, ACCEPTUNIT,
+      ACCEPTMODE, ACCEPTPERSON1, ACCEPTPERSON2,
+      ACCEPTIDEA, LEADERINSTRACTION, RESULTS,
+      CASESOURCE, TRANSFERUNIT, INVESTIGATEUNIT,
+      CASEMODE, INVESTIGATETIME, CRIMINALPERSON,
+      SECURITYCHARGER, FUZZPSN1, FUZZPSN2,
+      DETECTMEASURES, NOINVESREASON, RENEWREASON,
+      SOLVETAG, SOLVETIME, REMOVEREASON,
+      ENDCASEREASON, INPUTPSN, INPUTTIME,
+      MODIFIEDPSN, MODIFIEDTIME, DISTRICTTIME,
+      PROVINCETIME, TAG, MODIFIEDTAG,
+      DELETAG, TRANSFERPSN, TRANSFERCALL,
+      AUDITINGUNIT, AUDITINGPERSON, SOLVESEGMENT,
+      SOLVEUNIT, SOLVEDEPARTMENT, ADIDANCEUNIT,
+      ADIDANCEDEPART, DETECTIONTIME, REVOCATIONTIME,
+      CLOSEDTIME, DETECTIONTAG, REVOCATIONTAG,
+      CLOSEDTAG, MAKUPREASON, MAKEUPCODE,
+      IFRELATED, IFPROCESSEND, PROCESSENDTIME,
+      IFTERMINATION, TERMINATIONTIME, INVADUPERSON,
+      ISRENEW, ACCEPTINPUTTIME, INVESTINPUTTIME,
+      DETECINPUTTIME, REVOINPUTTIME, CLOSEINPUTTIME,
+      PROENDINPUTTIME, TERMINPUTTIME, SFTYPA,
+      DETENTIONPERSON, DETENTIONAPPTIME, DQBLDW,
+      OTHERPROVINCESUNIT, DRUGSOLVEBRANCH, MATJSJ,
+      APSTATUS, BKREASON, FDETECTIONTIME,
+      LYDS, HCK_RKSJ, HCK_GXSJ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from CASE_S_CASEINFO
+    where CASEID = #{caseid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CASE_S_CASEINFO
+    where CASEID = #{caseid,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.CaseInfo" >
+    update CASE_S_CASEINFO
+    <set >
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+      <if test="accepttime != null" >
+        ACCEPTTIME,
+      </if>
+      <if test="acceptunit != null" >
+        ACCEPTUNIT,
+      </if>
+      <if test="acceptmode != null" >
+        ACCEPTMODE,
+      </if>
+      <if test="acceptperson1 != null" >
+        ACCEPTPERSON1,
+      </if>
+      <if test="acceptperson2 != null" >
+        ACCEPTPERSON2,
+      </if>
+      <if test="acceptidea != null" >
+        ACCEPTIDEA,
+      </if>
+      <if test="leaderinstraction != null" >
+        LEADERINSTRACTION,
+      </if>
+      <if test="results != null" >
+        RESULTS,
+      </if>
+      <if test="casesource != null" >
+        CASESOURCE,
+      </if>
+      <if test="transferunit != null" >
+        TRANSFERUNIT,
+      </if>
+      <if test="investigateunit != null" >
+        INVESTIGATEUNIT,
+      </if>
+      <if test="casemode != null" >
+        CASEMODE,
+      </if>
+      <if test="investigatetime != null" >
+        INVESTIGATETIME,
+      </if>
+      <if test="criminalperson != null" >
+        CRIMINALPERSON,
+      </if>
+      <if test="securitycharger != null" >
+        SECURITYCHARGER,
+      </if>
+      <if test="fuzzpsn1 != null" >
+        FUZZPSN1,
+      </if>
+      <if test="fuzzpsn2 != null" >
+        FUZZPSN2,
+      </if>
+      <if test="detectmeasures != null" >
+        DETECTMEASURES,
+      </if>
+      <if test="noinvesreason != null" >
+        NOINVESREASON,
+      </if>
+      <if test="renewreason != null" >
+        RENEWREASON,
+      </if>
+      <if test="solvetag != null" >
+        SOLVETAG,
+      </if>
+      <if test="solvetime != null" >
+        SOLVETIME,
+      </if>
+      <if test="removereason != null" >
+        REMOVEREASON,
+      </if>
+      <if test="endcasereason != null" >
+        ENDCASEREASON,
+      </if>
+      <if test="inputpsn != null" >
+        INPUTPSN,
+      </if>
+      <if test="inputtime != null" >
+        INPUTTIME,
+      </if>
+      <if test="modifiedpsn != null" >
+        MODIFIEDPSN,
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME,
+      </if>
+      <if test="districttime != null" >
+        DISTRICTTIME,
+      </if>
+      <if test="provincetime != null" >
+        PROVINCETIME,
+      </if>
+      <if test="tag != null" >
+        TAG,
+      </if>
+      <if test="modifiedtag != null" >
+        MODIFIEDTAG,
+      </if>
+      <if test="deletag != null" >
+        DELETAG,
+      </if>
+      <if test="transferpsn != null" >
+        TRANSFERPSN,
+      </if>
+      <if test="transfercall != null" >
+        TRANSFERCALL,
+      </if>
+      <if test="auditingunit != null" >
+        AUDITINGUNIT,
+      </if>
+      <if test="auditingperson != null" >
+        AUDITINGPERSON,
+      </if>
+      <if test="solvesegment != null" >
+        SOLVESEGMENT,
+      </if>
+      <if test="solveunit != null" >
+        SOLVEUNIT,
+      </if>
+      <if test="solvedepartment != null" >
+        SOLVEDEPARTMENT,
+      </if>
+      <if test="adidanceunit != null" >
+        ADIDANCEUNIT,
+      </if>
+      <if test="adidancedepart != null" >
+        ADIDANCEDEPART,
+      </if>
+      <if test="detectiontime != null" >
+        DETECTIONTIME,
+      </if>
+      <if test="revocationtime != null" >
+        REVOCATIONTIME,
+      </if>
+      <if test="closedtime != null" >
+        CLOSEDTIME,
+      </if>
+      <if test="detectiontag != null" >
+        DETECTIONTAG,
+      </if>
+      <if test="revocationtag != null" >
+        REVOCATIONTAG,
+      </if>
+      <if test="closedtag != null" >
+        CLOSEDTAG,
+      </if>
+      <if test="makupreason != null" >
+        MAKUPREASON,
+      </if>
+      <if test="makeupcode != null" >
+        MAKEUPCODE,
+      </if>
+      <if test="ifrelated != null" >
+        IFRELATED,
+      </if>
+      <if test="ifprocessend != null" >
+        IFPROCESSEND,
+      </if>
+      <if test="processendtime != null" >
+        PROCESSENDTIME,
+      </if>
+      <if test="iftermination != null" >
+        IFTERMINATION,
+      </if>
+      <if test="terminationtime != null" >
+        TERMINATIONTIME,
+      </if>
+      <if test="invaduperson != null" >
+        INVADUPERSON,
+      </if>
+      <if test="isrenew != null" >
+        ISRENEW,
+      </if>
+      <if test="acceptinputtime != null" >
+        ACCEPTINPUTTIME,
+      </if>
+      <if test="investinputtime != null" >
+        INVESTINPUTTIME,
+      </if>
+      <if test="detecinputtime != null" >
+        DETECINPUTTIME,
+      </if>
+      <if test="revoinputtime != null" >
+        REVOINPUTTIME,
+      </if>
+      <if test="closeinputtime != null" >
+        CLOSEINPUTTIME,
+      </if>
+      <if test="proendinputtime != null" >
+        PROENDINPUTTIME,
+      </if>
+      <if test="terminputtime != null" >
+        TERMINPUTTIME,
+      </if>
+      <if test="sftypa != null" >
+        SFTYPA,
+      </if>
+      <if test="detentionperson != null" >
+        DETENTIONPERSON,
+      </if>
+      <if test="detentionapptime != null" >
+        DETENTIONAPPTIME,
+      </if>
+      <if test="dqbldw != null" >
+        DQBLDW,
+      </if>
+      <if test="otherprovincesunit != null" >
+        OTHERPROVINCESUNIT,
+      </if>
+      <if test="drugsolvebranch != null" >
+        DRUGSOLVEBRANCH,
+      </if>
+      <if test="matjsj != null" >
+        MATJSJ,
+      </if>
+      <if test="apstatus != null" >
+        APSTATUS,
+      </if>
+      <if test="bkreason != null" >
+        BKREASON,
+      </if>
+      <if test="fdetectiontime != null" >
+        FDETECTIONTIME,
+      </if>
+      <if test="lyds != null" >
+        LYDS,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+    </set>
+    where CASEID = #{caseid,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.model.CaseInfo" >
+    insert into CASE_S_CASEINFO (CASEID, ACCEPTTIME, ACCEPTUNIT, 
+      ACCEPTMODE, ACCEPTPERSON1, ACCEPTPERSON2, 
+      ACCEPTIDEA, LEADERINSTRACTION, RESULTS, 
+      CASESOURCE, TRANSFERUNIT, INVESTIGATEUNIT, 
+      CASEMODE, INVESTIGATETIME, CRIMINALPERSON, 
+      SECURITYCHARGER, FUZZPSN1, FUZZPSN2, 
+      DETECTMEASURES, NOINVESREASON, RENEWREASON, 
+      SOLVETAG, SOLVETIME, REMOVEREASON, 
+      ENDCASEREASON, INPUTPSN, INPUTTIME, 
+      MODIFIEDPSN, MODIFIEDTIME, DISTRICTTIME, 
+      PROVINCETIME, TAG, MODIFIEDTAG, 
+      DELETAG, TRANSFERPSN, TRANSFERCALL, 
+      AUDITINGUNIT, AUDITINGPERSON, SOLVESEGMENT, 
+      SOLVEUNIT, SOLVEDEPARTMENT, ADIDANCEUNIT, 
+      ADIDANCEDEPART, DETECTIONTIME, REVOCATIONTIME, 
+      CLOSEDTIME, DETECTIONTAG, REVOCATIONTAG, 
+      CLOSEDTAG, MAKUPREASON, MAKEUPCODE, 
+      IFRELATED, IFPROCESSEND, PROCESSENDTIME, 
+      IFTERMINATION, TERMINATIONTIME, INVADUPERSON, 
+      ISRENEW, ACCEPTINPUTTIME, INVESTINPUTTIME, 
+      DETECINPUTTIME, REVOINPUTTIME, CLOSEINPUTTIME, 
+      PROENDINPUTTIME, TERMINPUTTIME, SFTYPA, 
+      DETENTIONPERSON, DETENTIONAPPTIME, DQBLDW, 
+      OTHERPROVINCESUNIT, DRUGSOLVEBRANCH, MATJSJ, 
+      APSTATUS, BKREASON, FDETECTIONTIME, 
+      LYDS, HCK_RKSJ, HCK_GXSJ)
+    values (#{caseid,jdbcType=VARCHAR}, #{accepttime,jdbcType=DATE}, #{acceptunit,jdbcType=VARCHAR}, 
+      #{acceptmode,jdbcType=VARCHAR}, #{acceptperson1,jdbcType=VARCHAR}, #{acceptperson2,jdbcType=VARCHAR}, 
+      #{acceptidea,jdbcType=VARCHAR}, #{leaderinstraction,jdbcType=VARCHAR}, #{results,jdbcType=VARCHAR}, 
+      #{casesource,jdbcType=VARCHAR}, #{transferunit,jdbcType=VARCHAR}, #{investigateunit,jdbcType=VARCHAR}, 
+      #{casemode,jdbcType=VARCHAR}, #{investigatetime,jdbcType=DATE}, #{criminalperson,jdbcType=VARCHAR}, 
+      #{securitycharger,jdbcType=VARCHAR}, #{fuzzpsn1,jdbcType=VARCHAR}, #{fuzzpsn2,jdbcType=VARCHAR}, 
+      #{detectmeasures,jdbcType=VARCHAR}, #{noinvesreason,jdbcType=VARCHAR}, #{renewreason,jdbcType=VARCHAR}, 
+      #{solvetag,jdbcType=VARCHAR}, #{solvetime,jdbcType=DATE}, #{removereason,jdbcType=VARCHAR}, 
+      #{endcasereason,jdbcType=VARCHAR}, #{inputpsn,jdbcType=VARCHAR}, #{inputtime,jdbcType=DATE}, 
+      #{modifiedpsn,jdbcType=VARCHAR}, #{modifiedtime,jdbcType=DATE}, #{districttime,jdbcType=DATE}, 
+      #{provincetime,jdbcType=DATE}, #{tag,jdbcType=VARCHAR}, #{modifiedtag,jdbcType=VARCHAR}, 
+      #{deletag,jdbcType=VARCHAR}, #{transferpsn,jdbcType=VARCHAR}, #{transfercall,jdbcType=VARCHAR}, 
+      #{auditingunit,jdbcType=VARCHAR}, #{auditingperson,jdbcType=VARCHAR}, #{solvesegment,jdbcType=VARCHAR}, 
+      #{solveunit,jdbcType=VARCHAR}, #{solvedepartment,jdbcType=VARCHAR}, #{adidanceunit,jdbcType=VARCHAR}, 
+      #{adidancedepart,jdbcType=VARCHAR}, #{detectiontime,jdbcType=DATE}, #{revocationtime,jdbcType=DATE}, 
+      #{closedtime,jdbcType=DATE}, #{detectiontag,jdbcType=VARCHAR}, #{revocationtag,jdbcType=VARCHAR}, 
+      #{closedtag,jdbcType=VARCHAR}, #{makupreason,jdbcType=VARCHAR}, #{makeupcode,jdbcType=VARCHAR}, 
+      #{ifrelated,jdbcType=VARCHAR}, #{ifprocessend,jdbcType=VARCHAR}, #{processendtime,jdbcType=DATE}, 
+      #{iftermination,jdbcType=VARCHAR}, #{terminationtime,jdbcType=DATE}, #{invaduperson,jdbcType=VARCHAR}, 
+      #{isrenew,jdbcType=VARCHAR}, #{acceptinputtime,jdbcType=DATE}, #{investinputtime,jdbcType=DATE}, 
+      #{detecinputtime,jdbcType=DATE}, #{revoinputtime,jdbcType=DATE}, #{closeinputtime,jdbcType=DATE}, 
+      #{proendinputtime,jdbcType=DATE}, #{terminputtime,jdbcType=DATE}, #{sftypa,jdbcType=VARCHAR}, 
+      #{detentionperson,jdbcType=VARCHAR}, #{detentionapptime,jdbcType=DATE}, #{dqbldw,jdbcType=VARCHAR}, 
+      #{otherprovincesunit,jdbcType=VARCHAR}, #{drugsolvebranch,jdbcType=VARCHAR}, #{matjsj,jdbcType=DATE}, 
+      #{apstatus,jdbcType=VARCHAR}, #{bkreason,jdbcType=VARCHAR}, #{fdetectiontime,jdbcType=DATE}, 
+      #{lyds,jdbcType=VARCHAR}, #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.CaseInfo" >
+    insert into CASE_S_CASEINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+      <if test="accepttime != null" >
+        ACCEPTTIME,
+      </if>
+      <if test="acceptunit != null" >
+        ACCEPTUNIT,
+      </if>
+      <if test="acceptmode != null" >
+        ACCEPTMODE,
+      </if>
+      <if test="acceptperson1 != null" >
+        ACCEPTPERSON1,
+      </if>
+      <if test="acceptperson2 != null" >
+        ACCEPTPERSON2,
+      </if>
+      <if test="acceptidea != null" >
+        ACCEPTIDEA,
+      </if>
+      <if test="leaderinstraction != null" >
+        LEADERINSTRACTION,
+      </if>
+      <if test="results != null" >
+        RESULTS,
+      </if>
+      <if test="casesource != null" >
+        CASESOURCE,
+      </if>
+      <if test="transferunit != null" >
+        TRANSFERUNIT,
+      </if>
+      <if test="investigateunit != null" >
+        INVESTIGATEUNIT,
+      </if>
+      <if test="casemode != null" >
+        CASEMODE,
+      </if>
+      <if test="investigatetime != null" >
+        INVESTIGATETIME,
+      </if>
+      <if test="criminalperson != null" >
+        CRIMINALPERSON,
+      </if>
+      <if test="securitycharger != null" >
+        SECURITYCHARGER,
+      </if>
+      <if test="fuzzpsn1 != null" >
+        FUZZPSN1,
+      </if>
+      <if test="fuzzpsn2 != null" >
+        FUZZPSN2,
+      </if>
+      <if test="detectmeasures != null" >
+        DETECTMEASURES,
+      </if>
+      <if test="noinvesreason != null" >
+        NOINVESREASON,
+      </if>
+      <if test="renewreason != null" >
+        RENEWREASON,
+      </if>
+      <if test="solvetag != null" >
+        SOLVETAG,
+      </if>
+      <if test="solvetime != null" >
+        SOLVETIME,
+      </if>
+      <if test="removereason != null" >
+        REMOVEREASON,
+      </if>
+      <if test="endcasereason != null" >
+        ENDCASEREASON,
+      </if>
+      <if test="inputpsn != null" >
+        INPUTPSN,
+      </if>
+      <if test="inputtime != null" >
+        INPUTTIME,
+      </if>
+      <if test="modifiedpsn != null" >
+        MODIFIEDPSN,
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME,
+      </if>
+      <if test="districttime != null" >
+        DISTRICTTIME,
+      </if>
+      <if test="provincetime != null" >
+        PROVINCETIME,
+      </if>
+      <if test="tag != null" >
+        TAG,
+      </if>
+      <if test="modifiedtag != null" >
+        MODIFIEDTAG,
+      </if>
+      <if test="deletag != null" >
+        DELETAG,
+      </if>
+      <if test="transferpsn != null" >
+        TRANSFERPSN,
+      </if>
+      <if test="transfercall != null" >
+        TRANSFERCALL,
+      </if>
+      <if test="auditingunit != null" >
+        AUDITINGUNIT,
+      </if>
+      <if test="auditingperson != null" >
+        AUDITINGPERSON,
+      </if>
+      <if test="solvesegment != null" >
+        SOLVESEGMENT,
+      </if>
+      <if test="solveunit != null" >
+        SOLVEUNIT,
+      </if>
+      <if test="solvedepartment != null" >
+        SOLVEDEPARTMENT,
+      </if>
+      <if test="adidanceunit != null" >
+        ADIDANCEUNIT,
+      </if>
+      <if test="adidancedepart != null" >
+        ADIDANCEDEPART,
+      </if>
+      <if test="detectiontime != null" >
+        DETECTIONTIME,
+      </if>
+      <if test="revocationtime != null" >
+        REVOCATIONTIME,
+      </if>
+      <if test="closedtime != null" >
+        CLOSEDTIME,
+      </if>
+      <if test="detectiontag != null" >
+        DETECTIONTAG,
+      </if>
+      <if test="revocationtag != null" >
+        REVOCATIONTAG,
+      </if>
+      <if test="closedtag != null" >
+        CLOSEDTAG,
+      </if>
+      <if test="makupreason != null" >
+        MAKUPREASON,
+      </if>
+      <if test="makeupcode != null" >
+        MAKEUPCODE,
+      </if>
+      <if test="ifrelated != null" >
+        IFRELATED,
+      </if>
+      <if test="ifprocessend != null" >
+        IFPROCESSEND,
+      </if>
+      <if test="processendtime != null" >
+        PROCESSENDTIME,
+      </if>
+      <if test="iftermination != null" >
+        IFTERMINATION,
+      </if>
+      <if test="terminationtime != null" >
+        TERMINATIONTIME,
+      </if>
+      <if test="invaduperson != null" >
+        INVADUPERSON,
+      </if>
+      <if test="isrenew != null" >
+        ISRENEW,
+      </if>
+      <if test="acceptinputtime != null" >
+        ACCEPTINPUTTIME,
+      </if>
+      <if test="investinputtime != null" >
+        INVESTINPUTTIME,
+      </if>
+      <if test="detecinputtime != null" >
+        DETECINPUTTIME,
+      </if>
+      <if test="revoinputtime != null" >
+        REVOINPUTTIME,
+      </if>
+      <if test="closeinputtime != null" >
+        CLOSEINPUTTIME,
+      </if>
+      <if test="proendinputtime != null" >
+        PROENDINPUTTIME,
+      </if>
+      <if test="terminputtime != null" >
+        TERMINPUTTIME,
+      </if>
+      <if test="sftypa != null" >
+        SFTYPA,
+      </if>
+      <if test="detentionperson != null" >
+        DETENTIONPERSON,
+      </if>
+      <if test="detentionapptime != null" >
+        DETENTIONAPPTIME,
+      </if>
+      <if test="dqbldw != null" >
+        DQBLDW,
+      </if>
+      <if test="otherprovincesunit != null" >
+        OTHERPROVINCESUNIT,
+      </if>
+      <if test="drugsolvebranch != null" >
+        DRUGSOLVEBRANCH,
+      </if>
+      <if test="matjsj != null" >
+        MATJSJ,
+      </if>
+      <if test="apstatus != null" >
+        APSTATUS,
+      </if>
+      <if test="bkreason != null" >
+        BKREASON,
+      </if>
+      <if test="fdetectiontime != null" >
+        FDETECTIONTIME,
+      </if>
+      <if test="lyds != null" >
+        LYDS,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="accepttime != null" >
+        #{accepttime,jdbcType=DATE},
+      </if>
+      <if test="acceptunit != null" >
+        #{acceptunit,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptmode != null" >
+        #{acceptmode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptperson1 != null" >
+        #{acceptperson1,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptperson2 != null" >
+        #{acceptperson2,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptidea != null" >
+        #{acceptidea,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderinstraction != null" >
+        #{leaderinstraction,jdbcType=VARCHAR},
+      </if>
+      <if test="results != null" >
+        #{results,jdbcType=VARCHAR},
+      </if>
+      <if test="casesource != null" >
+        #{casesource,jdbcType=VARCHAR},
+      </if>
+      <if test="transferunit != null" >
+        #{transferunit,jdbcType=VARCHAR},
+      </if>
+      <if test="investigateunit != null" >
+        #{investigateunit,jdbcType=VARCHAR},
+      </if>
+      <if test="casemode != null" >
+        #{casemode,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatetime != null" >
+        #{investigatetime,jdbcType=DATE},
+      </if>
+      <if test="criminalperson != null" >
+        #{criminalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="securitycharger != null" >
+        #{securitycharger,jdbcType=VARCHAR},
+      </if>
+      <if test="fuzzpsn1 != null" >
+        #{fuzzpsn1,jdbcType=VARCHAR},
+      </if>
+      <if test="fuzzpsn2 != null" >
+        #{fuzzpsn2,jdbcType=VARCHAR},
+      </if>
+      <if test="detectmeasures != null" >
+        #{detectmeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="noinvesreason != null" >
+        #{noinvesreason,jdbcType=VARCHAR},
+      </if>
+      <if test="renewreason != null" >
+        #{renewreason,jdbcType=VARCHAR},
+      </if>
+      <if test="solvetag != null" >
+        #{solvetag,jdbcType=VARCHAR},
+      </if>
+      <if test="solvetime != null" >
+        #{solvetime,jdbcType=DATE},
+      </if>
+      <if test="removereason != null" >
+        #{removereason,jdbcType=VARCHAR},
+      </if>
+      <if test="endcasereason != null" >
+        #{endcasereason,jdbcType=VARCHAR},
+      </if>
+      <if test="inputpsn != null" >
+        #{inputpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtime != null" >
+        #{inputtime,jdbcType=DATE},
+      </if>
+      <if test="modifiedpsn != null" >
+        #{modifiedpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null" >
+        #{modifiedtime,jdbcType=DATE},
+      </if>
+      <if test="districttime != null" >
+        #{districttime,jdbcType=DATE},
+      </if>
+      <if test="provincetime != null" >
+        #{provincetime,jdbcType=DATE},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtag != null" >
+        #{modifiedtag,jdbcType=VARCHAR},
+      </if>
+      <if test="deletag != null" >
+        #{deletag,jdbcType=VARCHAR},
+      </if>
+      <if test="transferpsn != null" >
+        #{transferpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="transfercall != null" >
+        #{transfercall,jdbcType=VARCHAR},
+      </if>
+      <if test="auditingunit != null" >
+        #{auditingunit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditingperson != null" >
+        #{auditingperson,jdbcType=VARCHAR},
+      </if>
+      <if test="solvesegment != null" >
+        #{solvesegment,jdbcType=VARCHAR},
+      </if>
+      <if test="solveunit != null" >
+        #{solveunit,jdbcType=VARCHAR},
+      </if>
+      <if test="solvedepartment != null" >
+        #{solvedepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="adidanceunit != null" >
+        #{adidanceunit,jdbcType=VARCHAR},
+      </if>
+      <if test="adidancedepart != null" >
+        #{adidancedepart,jdbcType=VARCHAR},
+      </if>
+      <if test="detectiontime != null" >
+        #{detectiontime,jdbcType=DATE},
+      </if>
+      <if test="revocationtime != null" >
+        #{revocationtime,jdbcType=DATE},
+      </if>
+      <if test="closedtime != null" >
+        #{closedtime,jdbcType=DATE},
+      </if>
+      <if test="detectiontag != null" >
+        #{detectiontag,jdbcType=VARCHAR},
+      </if>
+      <if test="revocationtag != null" >
+        #{revocationtag,jdbcType=VARCHAR},
+      </if>
+      <if test="closedtag != null" >
+        #{closedtag,jdbcType=VARCHAR},
+      </if>
+      <if test="makupreason != null" >
+        #{makupreason,jdbcType=VARCHAR},
+      </if>
+      <if test="makeupcode != null" >
+        #{makeupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifrelated != null" >
+        #{ifrelated,jdbcType=VARCHAR},
+      </if>
+      <if test="ifprocessend != null" >
+        #{ifprocessend,jdbcType=VARCHAR},
+      </if>
+      <if test="processendtime != null" >
+        #{processendtime,jdbcType=DATE},
+      </if>
+      <if test="iftermination != null" >
+        #{iftermination,jdbcType=VARCHAR},
+      </if>
+      <if test="terminationtime != null" >
+        #{terminationtime,jdbcType=DATE},
+      </if>
+      <if test="invaduperson != null" >
+        #{invaduperson,jdbcType=VARCHAR},
+      </if>
+      <if test="isrenew != null" >
+        #{isrenew,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptinputtime != null" >
+        #{acceptinputtime,jdbcType=DATE},
+      </if>
+      <if test="investinputtime != null" >
+        #{investinputtime,jdbcType=DATE},
+      </if>
+      <if test="detecinputtime != null" >
+        #{detecinputtime,jdbcType=DATE},
+      </if>
+      <if test="revoinputtime != null" >
+        #{revoinputtime,jdbcType=DATE},
+      </if>
+      <if test="closeinputtime != null" >
+        #{closeinputtime,jdbcType=DATE},
+      </if>
+      <if test="proendinputtime != null" >
+        #{proendinputtime,jdbcType=DATE},
+      </if>
+      <if test="terminputtime != null" >
+        #{terminputtime,jdbcType=DATE},
+      </if>
+      <if test="sftypa != null" >
+        #{sftypa,jdbcType=VARCHAR},
+      </if>
+      <if test="detentionperson != null" >
+        #{detentionperson,jdbcType=VARCHAR},
+      </if>
+      <if test="detentionapptime != null" >
+        #{detentionapptime,jdbcType=DATE},
+      </if>
+      <if test="dqbldw != null" >
+        #{dqbldw,jdbcType=VARCHAR},
+      </if>
+      <if test="otherprovincesunit != null" >
+        #{otherprovincesunit,jdbcType=VARCHAR},
+      </if>
+      <if test="drugsolvebranch != null" >
+        #{drugsolvebranch,jdbcType=VARCHAR},
+      </if>
+      <if test="matjsj != null" >
+        #{matjsj,jdbcType=DATE},
+      </if>
+      <if test="apstatus != null" >
+        #{apstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bkreason != null" >
+        #{bkreason,jdbcType=VARCHAR},
+      </if>
+      <if test="fdetectiontime != null" >
+        #{fdetectiontime,jdbcType=DATE},
+      </if>
+      <if test="lyds != null" >
+        #{lyds,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null" >
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null" >
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

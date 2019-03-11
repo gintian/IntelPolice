@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.FeedbackBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.FeedbackBean"
+               extends="com.model.mapper.FeedbackMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.FeedbackMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_PLATFORM_FEEDBACK sa
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.id, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.title != null and entity.title != ''">
+            AND sa.TITLE LIKE CONCAT('%', CONCAT(#{entity.title, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.createUserId != null and entity.createUserId != ''">
+            AND sa.CREATEUSERID LIKE CONCAT('%', CONCAT(#{entity.createUserId, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.createUserName != null and entity.createUserName != ''">
+            AND sa.CREATEUSERNAME LIKE CONCAT('%', CONCAT(#{entity.createUserName, jdbcType=VARCHAR}, '%'))
+        </if>
+        <choose>
+            <when test="entity.status == 3">
+                AND sa.STATUS LIKE '1' or sa.STATUS LIKE '2'
+            </when>
+            <otherwise>
+                AND sa.STATUS LIKE CONCAT('%', CONCAT(#{entity.status, jdbcType=VARCHAR}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_PLATFORM_FEEDBACK sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.STATUS DESC
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_PLATFORM_FEEDBACK sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+
+</mapper>

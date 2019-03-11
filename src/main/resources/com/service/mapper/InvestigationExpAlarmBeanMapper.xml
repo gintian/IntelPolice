@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.InvestigationExpAlarmBeanMapper">
+  <resultMap id="BaseResultMap" type="com.model.bean.InvestigationExpAlarmBean"
+             extends="com.model.mapper.InvestigationExpAlarmMapper.BaseResultMap">
+    <association property="jj" javaType="com.model.JJ" resultMap="com.model.mapper.JJMapper.BaseResultMap"/>
+    <association property="cj" javaType="com.model.CJ" resultMap="com.model.mapper.CJMapper.BaseResultMap"/>
+    <association property="fk" javaType="com.model.FK" resultMap="com.model.mapper.FKMapper.BaseResultMap"/>
+    <association property="criminal" javaType="com.model.Criminal" resultMap="com.model.mapper.CriminalMapper.BaseResultMap"/>
+    <association property="caseInfo" javaType="com.model.CaseInfo" resultMap="com.model.mapper.CaseInfoMapper.BaseResultMap"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <include refid="com.model.mapper.InvestigationExpAlarmMapper.Base_Column_List"/>
+  </sql>
+
+  <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EA_INVESTIGATION_EXP_ALARM sa
+    </sql>
+
+  <!--分页相关 start-->
+  <select id="selectBeanPage" resultMap="BaseResultMap">
+    SELECT a.*,(SELECT LONGNAME FROM EADEPT WHERE ID = b.jjdwdm) as jjdwmc,
+    b.*,(SELECT LONGNAME FROM EADEPT WHERE ID = b.gxdwdm) as gxdwmc,
+    c.*,(SELECT LONGNAME FROM EADEPT WHERE ID = c.cjdwdm) as cjdwmc,
+    (SELECT LONGNAME FROM EADEPT WHERE ID = c.cddwdm) as cddwmc,
+    d.*,(SELECT LONGNAME FROM EADEPT WHERE ID = d.fkdwdm) as fkdwmc,
+    e.*,(SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = e.dqbldw) as dqbldwmc,
+    (SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = e.receiveunit) as receiveunitname,
+    (SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = e.disposeunit) as disposeunitname,
+    f.*,(SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = f.acceptunit) as acceptunitname,
+    (SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = f.auditingunit) as auditingunitname,
+    (SELECT LONGNAME FROM BPIP_UNIT WHERE UNITID = f.investigateunit) as investigateunitname
+    FROM
+    (SELECT * FROM
+    (SELECT ROWNUM AS rowno, sa.* FROM EA_INVESTIGATION_EXP_ALARM sa
+    <where>
+      <include refid="queryPageSql"/>
+      AND ROWNUM &lt;= #{pageBean.pageCount}
+    </where>
+    ORDER BY sa.INFORMTIME ASC)
+    xa WHERE xa.rowno > #{pageBean.pageNum}) a
+    left join JJDB b on b.JJDBH=a.JJDBH
+    left join CJDB c on c.CJDBH=a.CJDBH
+    left join FKDB d on d.FKDBH=a.FKDBH
+    left join CASE_M_CRIMINAL e on e.CASEID=a.CASEID
+    left join CASE_S_CASEINFO f on f.CASEID=a.CASEID
+  </select>
+  <!--查询总条数-->
+  <select id="countTotal" resultType="java.lang.Integer">
+    select COUNT(1) FROM EA_INVESTIGATION_EXP_ALARM sa
+    left join JJDB b on b.JJDBH=sa.JJDBH
+    left join CJDB c on c.CJDBH=sa.CJDBH
+    left join FKDB d on d.FKDBH=sa.FKDBH
+    left join CASE_M_CRIMINAL e on e.CASEID=sa.CASEID
+    left join CASE_S_CASEINFO f on f.CASEID=sa.CASEID
+    <where>
+      <include refid="queryPageSql"/>
+    </where>
+  </select>
+  <!--分页条件-->
+  <sql id="queryPageSql">
+    <if test="entity.caseId != null and entity.caseId != ''">
+      AND a.CASEID LIKE CONCAT('%' , CONCAT(#{entity.caseId, jdbcType=VARCHAR}, '%'))
+    </if>
+    <if test="entity.alarmType != null and entity.alarmType != ''">
+      AND sa.ALARMTYPE = #{entity.alarmType, jdbcType=VARCHAR}
+    </if>
+    <if test="entity.exceptionType != null and entity.exceptionType != ''">
+      AND sa.EXCEPTIONTYPE = #{entity.exceptionType, jdbcType=VARCHAR}
+    </if>
+  </sql>
+  <!--分页相关 end-->
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.InvestigationKeywordsBeanMapper">
+  <resultMap id="BaseResultMap" type="com.model.bean.InvestigationKeywordsBean"
+             extends="com.model.mapper.InvestigationKeywordsMapper.BaseResultMap">
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <include refid="com.model.mapper.InvestigationKeywordsMapper.Base_Column_List"/>
+  </sql>
+
+  <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EA_INVESTIGATION_KEYWORDS sa
+    </sql>
+
+  <!--分页相关 start-->
+  <select id="selectBeanPage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    (SELECT ROWNUM AS rowno, sa.* FROM EA_INVESTIGATION_KEYWORDS sa
+    <where>
+      <include refid="queryPageSql"/>
+      AND ROWNUM &lt;= #{pageBean.pageCount}
+    </where>
+    ORDER BY sa.ADDTIME ASC
+    ) table_alias WHERE table_alias.rowno > #{pageBean.pageNum}
+  </select>
+  <!--查询总条数-->
+  <select id="countTotal" resultType="java.lang.Integer">
+    select COUNT(1) FROM EA_INVESTIGATION_KEYWORDS sa
+    <where>
+      <include refid="queryPageSql"/>
+    </where>
+  </select>
+  <!--分页条件-->
+  <sql id="queryPageSql">
+    <if test="entity.caseId != null and entity.caseId != ''">
+      AND sa.CASEID LIKE CONCAT('%' , CONCAT(#{entity.caseId, jdbcType=VARCHAR}, '%'))
+    </if>
+  </sql>
+  <!--分页相关 end-->
+
+</mapper>

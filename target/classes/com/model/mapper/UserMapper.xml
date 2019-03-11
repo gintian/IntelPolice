@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptId" jdbcType="VARCHAR" />
+    <result column="LOCKED" property="locked" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="USERTYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="POLICENUMBER" property="policeNumber" jdbcType="VARCHAR" />
+    <result column="SHORTPHONE" property="shortPhone" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="IDENTITYCARD" property="identityCard" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATEDATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, ACCOUNT, PASSWORD, SEX, DEPTID, LOCKED, REMARK, USERTYPE, POLICENUMBER, 
+    SHORTPHONE, PHONE, STATUS, IDENTITYCARD, SORT, CREATEDATE, UPDATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EAUSER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EAUSER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.User" >
+    insert into EAUSER (ID, NAME, ACCOUNT, 
+      PASSWORD, SEX, DEPTID, 
+      LOCKED, REMARK, USERTYPE, 
+      POLICENUMBER, SHORTPHONE, PHONE, 
+      STATUS, IDENTITYCARD, SORT, 
+      CREATEDATE, UPDATEDATE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, 
+      #{locked,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{policeNumber,jdbcType=VARCHAR}, #{shortPhone,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{identityCard,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.User" >
+    insert into EAUSER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="deptId != null" >
+        DEPTID,
+      </if>
+      <if test="locked != null" >
+        LOCKED,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="userType != null" >
+        USERTYPE,
+      </if>
+      <if test="policeNumber != null" >
+        POLICENUMBER,
+      </if>
+      <if test="shortPhone != null" >
+        SHORTPHONE,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="identityCard != null" >
+        IDENTITYCARD,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="createDate != null" >
+        CREATEDATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="policeNumber != null" >
+        #{policeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shortPhone != null" >
+        #{shortPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.User" >
+    update EAUSER
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPTID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null" >
+        LOCKED = #{locked,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USERTYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="policeNumber != null" >
+        POLICENUMBER = #{policeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="shortPhone != null" >
+        SHORTPHONE = #{shortPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        IDENTITYCARD = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATEDATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.User" >
+    update EAUSER
+    set NAME = #{name,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      DEPTID = #{deptId,jdbcType=VARCHAR},
+      LOCKED = #{locked,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      USERTYPE = #{userType,jdbcType=VARCHAR},
+      POLICENUMBER = #{policeNumber,jdbcType=VARCHAR},
+      SHORTPHONE = #{shortPhone,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      IDENTITYCARD = #{identityCard,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=VARCHAR},
+      CREATEDATE = #{createDate,jdbcType=TIMESTAMP}
+      UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

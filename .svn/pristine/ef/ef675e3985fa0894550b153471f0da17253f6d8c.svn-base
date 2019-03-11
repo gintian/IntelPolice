@@ -1,0 +1,42 @@
+
+jjdb.selectSql=xzqhdm,jjdwdm,jjdbh,jjlx,bjfs,cfjqbh,lhlx,gljqbh,jjlyh,tfhm,jjybh,jjyxm,seatno,bjsj,jjsj,hzsj,sjsj,bjrsfzh,bjdh,bjdhyhxm,bjdhyhdz,bjrxm,bjrxbdm,lxdh,sfdsr,sfzddw,zddwmc,jqdz,bjnr,gxdwdm,jqlbdm,ldgbh,bjzbh,ywwxwz,ywbzxl,bjchpzldm,bjcph,clys,sfsw,sfswybj,zddwxzb,zddwyzb,sgdwxzb,sgdwyzb,bcjjnr,rksjc,xgsj,jqztdm,zagjdm,gxsjc,jqdjdm,hzdjdm,qhjzjgdm,hzcsdm,qhjzqkms,plqk,qhwdm,ywty,sfswhcl,ssxt,hck_rksj,hck_gxsj
+jjdb.insertSql=xzqhdm,jjdwdm,jjdbh,jjlx,bjfs,cfjqbh,lhlx,gljqbh,jjlyh,tfhm,jjybh,jjyxm,seatno,bjsj,jjsj,hzsj,sjsj,bjrsfzh,bjdh,bjdhyhxm,bjdhyhdz,bjrxm,bjrxbdm,lxdh,sfdsr,sfzddw,zddwmc,jqdz,bjnr,gxdwdm,jqlbdm,ldgbh,bjzbh,ywwxwz,ywbzxl,bjchpzldm,bjcph,clys,sfsw,sfswybj,zddwxzb,zddwyzb,sgdwxzb,sgdwyzb,bcjjnr,rksjc,xgsj,jqztdm,zagjdm,gxsjc,jqdjdm,hzdjdm,qhjzjgdm,hzcsdm,qhjzqkms,plqk,qhwdm,ywty,sfswhcl,ssxt,hck_rksj,hck_gxsj
+jjdb.principalFileName=jjdbh
+jjdb.tableName=jjdb
+jjdb.areaId= xzqhdm = '${areaId}'
+
+cjdb.selectSql=xzqhdm,cjdbh,jjdbh,cjdwdm,cjybh,cjyxm,cjlyh,cjyj,cddwdm,cdjybh,cdjyxm,rksjc,cjsj,pdddsj,pdjssj,tdbz,qscsbz,cdry,cdcl,jqztdm,gxsjc,sfzddw,zddwmc,ssxt,hck_rksj,hck_gxsj
+cjdb.insertSql=xzqhdm,cjdbh,jjdbh,cjdwdm,cjybh,cjyxm,cjlyh,cjyj,cddwdm,cdjybh,cdjyxm,rksjc,cjsj,pdddsj,pdjssj,tdbz,qscsbz,cdry,cdcl,jqztdm,gxsjc,sfzddw,zddwmc,ssxt,hck_rksj,hck_gxsj
+cjdb.principalFileName=cjdbh
+cjdb.tableName=cjdb
+cjdb.areaId= xzqhdm = '${areaId}'
+
+fkdb.selectSql=xzqhdm,fkdbh,jjdbh,cjdbh,ddxcsj,fklyh,fkdwdm,fkybh,fkyxm,jqlbdm,fkcsbz,jqfssj,jqjssj,jqdjdm,hzdjdm,clwbsj,cjqk,cljgdm,cljg,cdclqk,cdryqk,zhrs,sars,jzrs,jzrssm,jjrs,jjrssm,jjrf,ssrs,ssrssm,swrs,swrssm,djyrs,cjryssrs,cjryswrs,jjssqk,whjjssqk,sfphxsaj,sfcczaaj,sfjjjf,lzscrs,jqcljg,tqqkdm,ssqkms,fksj,rksjc,gxsjc,hzyydm,zhsglxdm,qhwdm,qhjzjgdm,hzcsdm,dycdsj,dydcsj,hcpmsj,clsj,xczzh,cdsqs,xlbmrs,jtsgxtdm,sfwhp,sgccyydm,njddm,lmzkdm,shjdcs,shfjdcs,dllxdm,jqztdm,ssxt,hck_rksj,hck_gxsj
+fkdb.insertSql=xzqhdm,fkdbh,jjdbh,cjdbh,ddxcsj,fklyh,fkdwdm,fkybh,fkyxm,jqlbdm,fkcsbz,jqfssj,jqjssj,jqdjdm,hzdjdm,clwbsj,cjqk,cljgdm,cljg,cdclqk,cdryqk,zhrs,sars,jzrs,jzrssm,jjrs,jjrssm,jjrf,ssrs,ssrssm,swrs,swrssm,djyrs,cjryssrs,cjryswrs,jjssqk,whjjssqk,sfphxsaj,sfcczaaj,sfjjjf,lzscrs,jqcljg,tqqkdm,ssqkms,fksj,rksjc,gxsjc,hzyydm,zhsglxdm,qhwdm,qhjzjgdm,hzcsdm,dycdsj,dydcsj,hcpmsj,clsj,xczzh,cdsqs,xlbmrs,jtsgxtdm,sfwhp,sgccyydm,njddm,lmzkdm,shjdcs,shfjdcs,dllxdm,jqztdm,ssxt,hck_rksj,hck_gxsj
+fkdb.principalFileName=fkdbh
+fkdb.tableName=fkdb
+fkdb.areaId= xzqhdm = '${areaId}'
+
+lydb.selectSql=lybh,dhlx,dhhm,zxh,czybh,lykssj,lyjssj,jjdbh,bcdhhm,bjhm,xzqhdm,rksjc,gxsjc,lyfw,ssxt,hck_rksj,hck_gxsj
+lydb.insertSql=lybh,dhlx,dhhm,zxh,czybh,lykssj,lyjssj,jjdbh,bcdhhm,bjhm,xzqhdm,rksjc,gxsjc,lyfw,ssxt,hck_rksj,hck_gxsj
+lydb.principalFileName=lybh
+lydb.tableName=lydb
+lydb.areaId= lybh like '${areaId}%'
+
+jqryb.selectSql=xzqhdm,jqdrybh,jjdbh,cjdbh,fkdbh,rylx,rybh,ryxm,ryjh,ryxbdm,sfzhm,lxdh,bz,zzxxdz,hck_rksj,hck_gxsj
+jqryb.insertSql=xzqhdm,jqdrybh,jjdbh,cjdbh,fkdbh,rylx,rybh,ryxm,ryjh,ryxbdm,sfzhm,lxdh,bz,zzxxdz,hck_rksj,hck_gxsj
+jqryb.principalFileName=jqdrybh
+jqryb.tableName=jqryb
+jqryb.areaId= jqdrybh like '${areaId}%'
+
+hfdb.selectSql=hfhsdbh,jjdbh,hfhslyh,hfsj,hfryxm,hfdhhm,bhfrxm,bhfrdhhm,hfhsqk,cjsd,cjmjtd,cjmjjrfj,cljg,cjdwdm,ajlbdm,jqlbdm,cjry,xzqhdm,hfdwdm,rksjc,gxsjc,ssxt,hck_rksj,hck_gxsj
+hfdb.insertSql=hfhsdbh,jjdbh,hfhslyh,hfsj,hfryxm,hfdhhm,bhfrxm,bhfrdhhm,hfhsqk,cjsd,cjmjtd,cjmjjrfj,cljg,cjdwdm,ajlbdm,jqlbdm,cjry,xzqhdm,hfdwdm,rksjc,gxsjc,ssxt,hck_rksj,hck_gxsj
+hfdb.principalFileName=hfhsdbh
+hfdb.tableName=hfdb
+hfdb.areaId= hfhsdbh like '${areaId}%'
+
+sjglb.selectSql=zflxbh,zfjybh,zfjyxm,zfdz,zfsjczybh,zflxkssj,zflxjssj,zflxfw,zfsjrksjc,zfsjgxsjc,jjdbh,xzqhdm,yl1,yl2,yl3,yl4,yl5,ssxt,hck_rksj,hck_gxsj
+sjglb.insertSql=zflxbh,zfjybh,zfjyxm,zfdz,zfsjczybh,zflxkssj,zflxjssj,zflxfw,zfsjrksjc,zfsjgxsjc,jjdbh,xzqhdm,yl1,yl2,yl3,yl4,yl5,ssxt,hck_rksj,hck_gxsj
+sjglb.principalFileName=zflxbh
+sjglb.tableName=sjglb
+sjglb.areaId= xzqhdm = '${areaId}'

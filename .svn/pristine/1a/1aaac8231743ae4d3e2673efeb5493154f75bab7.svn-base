@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.RecordTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.model.RecordType" >
+    <id column="TYPEID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="VARCHAR" />
+    <result column="SORTNO" property="sortNo" jdbcType="VARCHAR" />
+    <result column="LEAF" property="order" jdbcType="VARCHAR" />
+      <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+      <result column="MODEL" property="model" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TYPEID, NAME, PARENTID, SORTNO, LEAF, REMARK, MODEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_RECORD_TYPE
+    where TYPEID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_RECORD_TYPE
+    where TYPEID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.RecordType" >
+    insert into EA_RECORD_TYPE (TYPEID, NAME, PARENTID, SORTNO, LEAF, REMARK, MODEL)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR},
+      #{sortNo,jdbcType=VARCHAR}, #{order,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.RecordType" >
+    insert into EA_RECORD_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        TYPEID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="sortNo != null" >
+        SORTNO,
+      </if>
+      <if test="order != null" >
+        LEAF,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="model != null" >
+        MODEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.RecordType" >
+    update EA_RECORD_TYPE
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORTNO = #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        LEAF = #{order,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        MODEL = #{model,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TYPEID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.RecordType" >
+    update EA_RECORD_TYPE
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      SORTNO = #{sortNo,jdbcType=VARCHAR},
+      LEAF = #{order,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      MODEL = #{model,jdbcType=VARCHAR},
+    where TYPEID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

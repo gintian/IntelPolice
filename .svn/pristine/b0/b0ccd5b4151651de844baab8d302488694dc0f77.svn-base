@@ -1,0 +1,9 @@
+package com.model.bean;
+
+import com.model.InvestigationExpAlarm;
+
+import java.util.Date;
+
+public class InvestigationExpAlarmBean extends InvestigationExpAlarm {
+
+}

@@ -1,0 +1,20 @@
+package com.utils;
+
+import com.utils.ws.Exception_Exception;
+import com.utils.ws.WebServiceAnalysis;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+
+public class WebServiceUtils {
+
+    public static WebServiceAnalysis webServiceAnalysis;
+
+    public static WebServiceAnalysis getWebServiceAnalysis(){
+        if (webServiceAnalysis==null) {
+            JaxWsProxyFactoryBean factoryBean = new JaxWsProxyFactoryBean();
+            factoryBean.setAddress("http://localhost:8081/ws/syncAnalysis?wsdl");
+            factoryBean.setServiceClass(WebServiceAnalysis.class);
+            webServiceAnalysis = (WebServiceAnalysis) (factoryBean.create());
+        }
+        return webServiceAnalysis;
+    }
+}

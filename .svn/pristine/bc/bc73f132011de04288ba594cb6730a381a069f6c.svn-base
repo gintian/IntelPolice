@@ -1,0 +1,9 @@
+package com.model.mapper;
+
+import com.model.CJ;
+
+public interface CJMapper {
+    int insert(CJ record);
+
+    int insertSelective(CJ record);
+}

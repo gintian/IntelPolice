@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+
+   <!--
+    private String id;
+    private String caseid;
+    private String objid;
+    private String infosid;
+    private String objectname;
+    private String amounts;
+    private String amountunit;
+    private String spec;
+    private String characteristic;
+    private String annex;
+    private Date createtime;
+    private String description;
+    private String personname;
+    private String personinfo;
+    private String sourceid;
+    private String sourcename;
+    private String isdelete;
+    private String issave;
+    private String issync;
+   -->
+
+    <!--
+    规则一:A1-A5(编号),A6-A7(名称),...,A21-A25(备注)
+    规则二:A1_1(编号),A1_1(名称),...,A1_5(备注)
+        ` A2_1(编号),A2_2(名称),...,A2_5(备注)
+    规则三:A1(编号),A2(名称),...,A5(备注)
+          A6(编号),A7(名称),...,A10(备注)
+    规则四:与规则一相似每段会跳过一个数字,不连续
+    -->
+
+    <doc table="DOC_JSJQD_NEW" rule="one" objNums="15" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Description,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_JSJQD_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="接受证据清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_KYJDS_NEW" rule="two" objNums="5" prefix="B" prefixStartNums="16" suffixStartNums="1" attrNums="4" involvedcols="Objectname,Amounts,Description">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="B7" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="B10" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_KYJDS_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="扣押决定书" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XZ003_NEW" rule="three" objNums="6" prefix="A" startNum="13" attrNums="6" involvedcols="Objectname,Amounts,Description,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A4" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="B10" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_KYJDS_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="扣押决定书" type="java.lang.String"/>
+    </doc>
+
+</docs>

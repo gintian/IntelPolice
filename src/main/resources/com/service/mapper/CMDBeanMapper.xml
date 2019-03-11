@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CMDBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CMDBean"
+               extends="com.model.mapper.CMDMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CMDMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM CASE_M_110CMD cmd
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cmd.* FROM CASE_M_110CMD cmd
+        <where>
+            <if test="entity.id != null and entity.id != ''">
+                AND cmd.ID LIKE CONCAT(CONCAT('%', #{entity.id, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.sjbh != null and entity.sjbh != ''">
+                AND cmd.SJBH LIKE CONCAT(CONCAT('%', #{entity.sjbh, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cmd.sjbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CASE_M_110CMD cmd
+        <where>
+            <if test="entity.id != null and entity.id != ''">
+                AND cmd.ID LIKE CONCAT(CONCAT('%', #{entity.id, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.sjbh != null and entity.sjbh != ''">
+                AND cmd.SJBH LIKE CONCAT(CONCAT('%', #{entity.sjbh, jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBeanEqSjbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="sjbh != null and sjbh != ''">
+                AND SJBH = #{sjbh}
+            </if>
+        </where>
+        ORDER BY SJBH ASC
+    </select>
+
+    <select id="selectBeanEqId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="id != null and id != ''">
+                AND ID = #{id}
+            </if>
+        </where>
+        ORDER BY ID ASC
+    </select>
+
+
+</mapper>

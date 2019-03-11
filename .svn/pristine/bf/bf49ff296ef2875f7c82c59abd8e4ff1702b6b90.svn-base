@@ -1,0 +1,17 @@
+package com.analysis.mapper;
+
+import com.analysis.model.InvolvedTemp;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+public interface InvolvedTempMapper {
+    int insert(InvolvedTemp record);
+
+    int insertSelective(InvolvedTemp record);
+
+    List<InvolvedTemp> selectByObjid(@Param("objid") String objid);
+    int selectCountByObjid(@Param("objid") String objid);
+    void deleteByObjid(@Param("objid") String objid);
+    void deleteByObjids(@Param("objids") List<String> objids);
+}

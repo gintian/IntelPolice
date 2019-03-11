@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.LYBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.LYBean"
+               extends="com.model.mapper.LYMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.LYMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM LYDB
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.lybh != null and entity.lybh != ''">
+            AND ly.LYBH LIKE CONCAT(CONCAT('%', #{entity.lybh, jdbcType=VARCHAR}), '%')
+        </if>
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,ly.* FROM LYDB ly
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY ly.lybh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM LYDB ly
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <select id="selectLYEqXzqhdm" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="xzqhdm != null and xzqhdm != ''">
+                AND XZQHDM = #{xzqhdm}
+            </if>
+        </where>
+        ORDER BY XZQHDM ASC
+    </select>
+    <select id="selectLYEqLybh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="lybh != null and lybh != ''">
+                AND LYDBH = #{lybh}
+            </if>
+        </where>
+        ORDER BY LYDBH ASC
+    </select>
+
+</mapper>

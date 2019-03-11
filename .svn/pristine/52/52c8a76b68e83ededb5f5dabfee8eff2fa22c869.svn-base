@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.RecordTypeBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.RecordTypeBean"
+               extends="com.model.mapper.RecordTypeMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.RecordTypeMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sa.TYPEID, sa.NAME, sa.PARENTID, sa.SORTNO, sa.LEAF, sa.REMARK
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List_1"/>
+        FROM EA_RECORD_TYPE sa
+    </sql>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List_1"/>
+        FROM EA_RECORD_TYPE sa
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+    
+    <select id="findAllJilian" resultMap="BaseResultMap">
+        SELECT
+        sa.*
+        FROM EA_RECORD_TYPE sa LEFT JOIN EA_RECORD_TYPE sa2.PARENTID = sa.TYPEID
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+
+    <select id="findMenuByParentId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.PARENTID LIKE CONCAT(#{parentid, jdbcType=VARCHAR}, '%')
+        </where>
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+
+    <select id="findOneLevelMenuByParentId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.PARENTID = #{parentid, jdbcType=VARCHAR}
+        </where>
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+    <select id="findAllByLevel" resultMap="BaseResultMap">
+        select * from (select TYPEID,  NAME, PARENTID, SORTNO, LEAF, REMARK,level, MODEL
+          from EA_RECORD_TYPE start wITh PARENTID is null connect by  prior  TYPEID=PARENTID)  where 1=1
+    </select>
+</mapper>

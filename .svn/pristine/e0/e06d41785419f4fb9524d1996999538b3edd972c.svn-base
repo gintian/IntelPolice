@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.MediaFileBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.MediaFilesBean"
+               extends="com.model.mapper.MediaFilesMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.MediaFilesMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sd.ID, sd.MEDIAID, sd.FILESIZE, sd.FILETYPE, sd.FILEPATH
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EA_MEDIA_FILES sa
+    </sql>
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno, sa.* FROM EA_MEDIA_FILES sa
+        <where>
+             ROWNUM &lt; #{pageBean.page * pageBean.pageSize}
+        </where>
+      ) table_alias WHERE table_alias.rowno >= #{(pageBean.page-1) * pageSize}
+    </select>
+    <select id="countTotal" resultType="java.lang.Integer">
+      select COUNT(*) FROM EA_MEDIA sa
+      <where>
+          <if test="entity.name != null and entity.name != ''">
+              AND sa.NAME LIKE CONCAT CONCAT('%', #{entity.name, jdbcType=VARCHAR}, '%')
+          </if>
+      </where>
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+    </select>
+</mapper>

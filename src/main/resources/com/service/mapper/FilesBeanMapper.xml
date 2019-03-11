@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.FilesBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.FilesBean"
+               extends="com.model.mapper.FilesMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.FilesMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_PLATFORM_FILES
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.id, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.name != null and entity.name != ''">
+            AND sa.NAME LIKE CONCAT('%', CONCAT(#{entity.name, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+    <sql id="moduleFunction">
+        <!--扣押清单模板-->
+        <if test="moduleFunction != null and moduleFunction == 'file_list_detain'">
+            AND TYPE = '11'
+        </if>
+        <!--入库清单模板-->
+        <if test="moduleFunction != null and moduleFunction == 'file_list_in'">
+            AND TYPE = '12'
+        </if>
+        <!--提取清单模板-->
+        <if test="moduleFunction != null and moduleFunction == 'file_list_extract'">
+            AND TYPE = '13'
+        </if>
+        <!--移交清单模板-->
+        <if test="moduleFunction != null and moduleFunction == 'file_list_transfer'">
+            AND TYPE = '14'
+        </if>
+        <!--出库清单模板-->
+        <if test="moduleFunction != null and moduleFunction == 'file_list_out'">
+            AND TYPE = '15'
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_PLATFORM_FILES sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.SORTCODE
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_PLATFORM_FILES sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+
+    <!--查询相关条件的的案件信息-->
+    <select id="findBeanPageForModule" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_PLATFORM_FILES sa
+        <where>
+            <include refid="queryPageSql"/>
+            <include refid="moduleFunction"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY SORTCODE DESC
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <!--查询相关条件的的案件信息的总条数-->
+    <select id="findBeanPageForModuleTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM EA_PLATFORM_FILES
+        <where>
+            <include refid="queryPageSql"/>
+            <include refid="moduleFunction"/>
+        </where>
+    </select>
+
+</mapper>

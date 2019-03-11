@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.CodeMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Code" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="FIELD" property="field" jdbcType="VARCHAR" />
+    <result column="FIELDNAME" property="fieldname" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="CODEDESC" property="codedesc" jdbcType="VARCHAR" />
+    <result column="ENABLED" property="enabled" jdbcType="VARCHAR" />
+    <result column="EDITMODE" property="editmode" jdbcType="VARCHAR" />
+    <result column="SORTNO" property="sortno" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FIELD, FIELDNAME, CODE, CODEDESC, ENABLED, EDITMODE, SORTNO, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EACODE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EACODE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Code" >
+    insert into EACODE (ID, FIELD, FIELDNAME, 
+      CODE, CODEDESC, ENABLED, 
+      EDITMODE, SORTNO, REMARK
+      )
+    values (#{id,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR}, #{fieldname,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{codedesc,jdbcType=VARCHAR}, #{enabled,jdbcType=VARCHAR}, 
+      #{editmode,jdbcType=VARCHAR}, #{sortno,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Code" >
+    insert into EACODE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="field != null" >
+        FIELD,
+      </if>
+      <if test="fieldname != null" >
+        FIELDNAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="codedesc != null" >
+        CODEDESC,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
+      </if>
+      <if test="editmode != null" >
+        EDITMODE,
+      </if>
+      <if test="sortno != null" >
+        SORTNO,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null" >
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldname != null" >
+        #{fieldname,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codedesc != null" >
+        #{codedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="editmode != null" >
+        #{editmode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Code" >
+    update EACODE
+    <set >
+      <if test="field != null" >
+        FIELD = #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldname != null" >
+        FIELDNAME = #{fieldname,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codedesc != null" >
+        CODEDESC = #{codedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        ENABLED = #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="editmode != null" >
+        EDITMODE = #{editmode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        SORTNO = #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Code" >
+    update EACODE
+    set FIELD = #{field,jdbcType=VARCHAR},
+      FIELDNAME = #{fieldname,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      CODEDESC = #{codedesc,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=VARCHAR},
+      EDITMODE = #{editmode,jdbcType=VARCHAR},
+      SORTNO = #{sortno,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

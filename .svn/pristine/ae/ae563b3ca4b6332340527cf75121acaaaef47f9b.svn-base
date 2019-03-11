@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.analysis.mapper.InvolvedTempMapper" >
+  <resultMap id="BaseResultMap" type="com.analysis.model.InvolvedTemp" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+    <result column="OBJID" property="objid" jdbcType="VARCHAR" />
+    <result column="INFOSID" property="infosid" jdbcType="VARCHAR" />
+    <result column="OBJECTNAME" property="objectname" jdbcType="VARCHAR" />
+    <result column="AMOUNTS" property="amounts" jdbcType="VARCHAR" />
+    <result column="AMOUNTUNIT" property="amountunit" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+    <result column="CHARACTERISTIC" property="characteristic" jdbcType="VARCHAR" />
+    <result column="ANNEX" property="annex" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="PERSONNAME" property="personname" jdbcType="VARCHAR" />
+    <result column="PERSONINFO" property="personinfo" jdbcType="VARCHAR" />
+    <result column="SOURCEID" property="sourceid" jdbcType="VARCHAR" />
+    <result column="SOURCENAME" property="sourcename" jdbcType="VARCHAR" />
+    <result column="ISDELETE" property="isdelete" jdbcType="VARCHAR" />
+    <result column="ISSAVE" property="issave" jdbcType="VARCHAR" />
+    <result column="ISSYNC" property="issync" jdbcType="VARCHAR" />
+  </resultMap>
+<sql id="Base_Column_List">
+    id,caseid,objid,infosid,
+    objectname,amounts,amountunit,spec,characteristic,
+    annex,createtime,description,personname,personinfo,
+    sourceid,sourcename,
+    isdelete,issave,issync
+</sql>
+
+
+  <insert id="insert" parameterType="com.analysis.model.InvolvedTemp" >
+    insert into EA_INVOLVED_TEMP (ID, CASEID, OBJID, 
+      INFOSID, OBJECTNAME, AMOUNTS, 
+      AMOUNTUNIT, SPEC, CHARACTERISTIC, 
+      ANNEX, CREATETIME, DESCRIPTION, 
+      PERSONNAME, PERSONINFO, SOURCEID, 
+      SOURCENAME, ISDELETE, ISSAVE, 
+      ISSYNC)
+    values (#{id,jdbcType=VARCHAR}, #{caseid,jdbcType=VARCHAR}, #{objid,jdbcType=VARCHAR}, 
+      #{infosid,jdbcType=VARCHAR}, #{objectname,jdbcType=VARCHAR}, #{amounts,jdbcType=VARCHAR}, 
+      #{amountunit,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, 
+      #{annex,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{personname,jdbcType=VARCHAR}, #{personinfo,jdbcType=VARCHAR}, #{sourceid,jdbcType=VARCHAR}, 
+      #{sourcename,jdbcType=VARCHAR}, #{isdelete,jdbcType=VARCHAR}, #{issave,jdbcType=VARCHAR}, 
+      #{issync,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.analysis.model.InvolvedTemp" >
+    insert into EA_INVOLVED_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id != ''" >
+        ID,
+      </if>
+      <if test="caseid != null and caseid != ''" >
+        CASEID,
+      </if>
+      <if test="objid != null and objid != ''" >
+        OBJID,
+      </if>
+      <if test="infosid != null and infosid != ''" >
+        INFOSID,
+      </if>
+      <if test="objectname != null and objectname != ''" >
+        OBJECTNAME,
+      </if>
+      <if test="amounts != null and amounts != ''" >
+        AMOUNTS,
+      </if>
+      <if test="amountunit != null and amountunit != ''" >
+        AMOUNTUNIT,
+      </if>
+      <if test="spec != null and spec != ''" >
+        SPEC,
+      </if>
+      <if test="characteristic != null and characteristic != ''" >
+        CHARACTERISTIC,
+      </if>
+      <if test="annex != null and annex != ''" >
+        ANNEX,
+      </if>
+      <if test="createtime != null and createtime != ''" >
+        CREATETIME,
+      </if>
+      <if test="description != null and description != ''" >
+        DESCRIPTION,
+      </if>
+      <if test="personname != null and personname != ''" >
+        PERSONNAME,
+      </if>
+      <if test="personinfo != null and personinfo != ''" >
+        PERSONINFO,
+      </if>
+      <if test="sourceid != null and sourceid != ''" >
+        SOURCEID,
+      </if>
+      <if test="sourcename != null and sourcename != ''" >
+        SOURCENAME,
+      </if>
+      <if test="isdelete != null and isdelete != ''" >
+        ISDELETE,
+      </if>
+      <if test="issave != null and issave != ''" >
+        ISSAVE,
+      </if>
+      <if test="issync != null and issync != ''" >
+        ISSYNC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id != ''" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="caseid != null  and caseid != ''">
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="objid != null  and objid != ''" >
+        #{objid,jdbcType=VARCHAR},
+      </if>
+      <if test="infosid != null  and infosid != ''" >
+        #{infosid,jdbcType=VARCHAR},
+      </if>
+      <if test="objectname != null  and objectname != ''" >
+        #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="amounts != null  and amounts != ''" >
+        #{amounts,jdbcType=VARCHAR},
+      </if>
+      <if test="amountunit != null  and amountunit != ''" >
+        #{amountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null  and spec != ''" >
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="characteristic != null  and characteristic != ''" >
+        #{characteristic,jdbcType=VARCHAR},
+      </if>
+      <if test="annex != null  and annex != ''" >
+        #{annex,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null  and createtime != ''" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null  and description != ''" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="personname != null  and personname != ''" >
+        #{personname,jdbcType=VARCHAR},
+      </if>
+      <if test="personinfo != null  and personinfo != ''" >
+        #{personinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceid != null  and sourceid != ''" >
+        #{sourceid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcename != null  and sourcename != ''" >
+        #{sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null  and isdelete != ''" >
+        #{isdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="issave != null  and issave != ''" >
+        #{issave,jdbcType=VARCHAR},
+      </if>
+      <if test="issync != null  and issync != ''" >
+        #{issync,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <select id="selectByObjid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from EA_INVOLVED_TEMP
+        WHERE OBJID = #{objid}
+    </select>
+
+    <select id="selectCountByObjid" resultType="java.lang.Integer">
+        select
+        COUNT(OBJID)
+        from EA_INVOLVED_TEMP
+        WHERE OBJID = #{objid}
+    </select>
+
+    <delete id="deleteByObjid">
+        DELETE FROM EA_INVOLVED_TEMP WHERE OBJID = #{objid}
+    </delete>
+
+    <delete id="deleteByObjids">
+        DELETE FROM EA_INVOLVED_TEMP WHERE OBJID in
+        <foreach collection="objids" item="objid"
+                 index="index" open="(" close=")" separator=",">
+            #{objid}
+        </foreach>
+
+    </delete>
+  <sql id="queryPageSql">
+    <if test="entity.id != null and entity.id != ''" >
+       AND ID LIKE CONCAT('%', CONCAT(#{entity.id}, '%')),
+    </if>
+
+    <if test="entity.objid != null and entity.objid != ''" >
+       AND OBJID LIKE CONCAT('%', CONCAT(#{entity.objid}, '%')),
+    </if>
+    <if test="entity.infosid != null and entity.infosid != ''" >
+       AND INFOSID LIKE CONCAT('%', CONCAT(#{entity.infosid}, '%')),
+    </if>
+    <if test="entity.objectname != null and entity.objectname != ''" >
+      OBJECTNAME AND  LIKE CONCAT('%', CONCAT(#{entity.}, '%')),
+    </if>
+    <if test="entity.amounts != null and entity.amounts != ''" >
+       AND AMOUNTS LIKE CONCAT('%', CONCAT(#{entity.amounts}, '%')),
+    </if>
+    <if test="entity.amountunit != null and entity.amountunit != ''" >
+       AND AMOUNTUNIT LIKE CONCAT('%', CONCAT(#{entity.amountunit}, '%')),
+    </if>
+    <if test="entity.spec != null and entity.spec != ''" >
+       AND SPEC LIKE CONCAT('%', CONCAT(#{entity.spec}, '%')),
+    </if>
+    <if test="entity.characteristic != null and entity.characteristic != ''" >
+       AND CHARACTERISTIC LIKE CONCAT('%', CONCAT(#{entity.characteristic}, '%')),
+    </if>
+    <if test="entity.annex != null and entity.annex != ''" >
+       AND ANNEX LIKE CONCAT('%', CONCAT(#{entity.annex}, '%')),
+    </if>
+    <if test="entity.description != null and entity.description != ''" >
+       AND DESCRIPTION LIKE CONCAT('%', CONCAT(#{entity.description}, '%')),
+    </if>
+    <if test="entity.personname != null and entity.personname != ''" >
+       AND PERSONNAME LIKE CONCAT('%', CONCAT(#{entity.personname}, '%')),
+    </if>
+    <if test="entity.personinfo != null and entity.personinfo != ''" >
+       AND PERSONINFO LIKE CONCAT('%', CONCAT(#{entity.personinfo}, '%')),
+    </if>
+    <if test="entity.sourceid != null and entity.sourceid != ''" >
+       AND SOURCEID LIKE CONCAT('%', CONCAT(#{entity.sourceid}, '%')),
+    </if>
+    <if test="entity.sourcename != null and entity.sourcename != ''" >
+       AND SOURCENAME LIKE CONCAT('%', CONCAT(#{entity.sourcename}, '%')),
+    </if>
+    <if test="entity.isdelete != null and entity.isdelete != ''" >
+       AND ISDELETE  LIKE CONCAT('%', CONCAT(#{entity.isdelete}, '%')),
+    </if>
+    <if test="entity.issave != null and entity.issave != ''" >
+       AND ISSAVE LIKE CONCAT('%', CONCAT(#{entity.issave}, '%')),
+    </if>
+    <if test="entity.issync != null and entity.issync != ''" >
+       AND ISSYNC  LIKE CONCAT('%', CONCAT(#{entity.issync}, '%')),
+    </if>
+  </sql>
+  <!--分页查询-->
+  <select id="selectDataByCaseId" resultMap="BaseResultMap">
+    SELECT * FROM
+    (SELECT ROWNUM AS rowno,sa.* FROM EA_INVOLVED_TEMP
+    <where>
+      ISSYNC = '0'
+      <include refid="queryPageSql"/>
+      AND ROWNUM &lt;= #{pageBean.pageCount}
+      <if test="entity.caseid != null and entity.caseid != ''" >
+        AND CASEID = #{entity.caseid}
+      </if>
+    </where>
+    ORDER BY sa.ID
+    ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+  </select>
+
+  <select id="selectTotalByCaseId" resultType="java.lang.Integer">
+    select COUNT(*) FROM EA_INVOLVED_TEMP
+    <where>
+       ISSYNC = '0'
+      <include refid="queryPageSql"/>
+      <if test="entity.caseid != null and entity.caseid != ''" >
+        AND CASEID = #{entity.caseid}
+      </if>
+    </where>
+  </select>
+  <!--分页SQL  end-->
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_INVOLVED_TEMP
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

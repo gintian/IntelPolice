@@ -1,0 +1,11 @@
+#selectSql:\u9700\u8981\u67E5\u8BE2\u7684\u5B57\u6BB5
+#insertSql:\u9700\u8981\u63D2\u5165\u7684\u5B57\u6BB5
+#principalFileName:\u4E3B\u952E
+#tableName:\u8868\u540D
+#domain:\u65F6\u95F4\u6761\u4EF6\u7684\u5B57\u6BB5,\u82E5\u6CA1\u6709\u5219\u6B64\u5B57\u6BB5\u4E3Ahck_gxsj;\u82E5\u4E3A0,\u5219\u5219\u8868\u793A\u4E0D\u9700\u8981\u65F6\u95F4\u6761\u4EF6
+#areaId:\u884C\u653F\u533A\u5339\u914D\u89C4\u5219,\u82E5\u6CA1\u6709\u5219\u8868\u793A\u65E0\u9700\u5339\u914D\u884C\u653F\u533A,\u5168\u90E8\u540C\u6B65
+
+doc_aq_001.selectSql=a1,caseid,reportime,reportmode,a2,a3,receivepsn,arrivetime,reportdetails,disposedetails,disposepsn,a4,dienumnumber,lnjurenumnumber,lossvaluenumber,disposeidea,a5,a6,a8,a9,a10,a11,a12,a13,a14,a15,a16,remark,a17,disposepsn1,a18,cssfont,personnid,personid,unitid,multiid,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+doc_aq_001.insertSql=a1,caseid,reportime,reportmode,a2,a3,receivepsn,arrivetime,reportdetails,disposedetails,disposepsn,a4,dienumnumber,lnjurenumnumber,lossvaluenumber,disposeidea,a5,a6,a8,a9,a10,a11,a12,a13,a14,a15,a16,remark,a17,disposepsn1,a18,cssfont,personnid,personid,unitid,multiid,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+doc_aq_001.principalFileName=caseid
+doc_aq_001.tableName=doc_aq_001

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.analysis.mapper.BpipUnitZJMapper" >
+  <resultMap id="BaseResultMap" type="com.analysis.model.BpipUnitZJ" >
+    <result column="UNITID" property="unitid" jdbcType="VARCHAR" />
+    <result column="UNITNAME" property="unitname" jdbcType="VARCHAR" />
+    <result column="ZJID" property="zjid" jdbcType="VARCHAR" />
+    <result column="ZHID" property="zhid" jdbcType="VARCHAR" />
+    <result column="ZJNAME" property="zjname" jdbcType="VARCHAR" />
+    <result column="LYDS" property="lyds" jdbcType="VARCHAR" />
+    <result column="HCK_RKSJ" property="hckRksj" jdbcType="DATE" />
+    <result column="HCK_GXSJ" property="hckGxsj" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.analysis.model.BpipUnitZJ" >
+    insert into BPIP_UNIT_ZJ (UNITID, UNITNAME, ZJID, 
+      ZHID, ZJNAME, LYDS, 
+      HCK_RKSJ, HCK_GXSJ)
+    values (#{unitid,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, #{zjid,jdbcType=VARCHAR}, 
+      #{zhid,jdbcType=VARCHAR}, #{zjname,jdbcType=VARCHAR}, #{lyds,jdbcType=VARCHAR}, 
+      #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+    <sql id="Base_Column_List" >
+        UNITID, UNITNAME, ZJID,
+        ZHID, ZJNAME, LYDS,
+        HCK_RKSJ, HCK_GXSJ
+    </sql>
+  <insert id="insertSelective" parameterType="com.analysis.model.BpipUnitZJ" >
+    insert into BPIP_UNIT_ZJ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="unitname != null" >
+        UNITNAME,
+      </if>
+      <if test="zjid != null" >
+        ZJID,
+      </if>
+      <if test="zhid != null" >
+        ZHID,
+      </if>
+      <if test="zjname != null" >
+        ZJNAME,
+      </if>
+      <if test="lyds != null" >
+        LYDS,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unitid != null" >
+        #{unitid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="zjid != null" >
+        #{zjid,jdbcType=VARCHAR},
+      </if>
+      <if test="zhid != null" >
+        #{zhid,jdbcType=VARCHAR},
+      </if>
+      <if test="zjname != null" >
+        #{zjname,jdbcType=VARCHAR},
+      </if>
+      <if test="lyds != null" >
+        #{lyds,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null" >
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null" >
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

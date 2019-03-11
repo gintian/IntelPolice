@@ -1,0 +1,15 @@
+package com.model.bean;
+
+import com.model.RecordPerson;
+
+public class RecordPersonBean extends RecordPerson {
+    private FileBean fileBean;
+
+    public FileBean getFileBean() {
+        return fileBean;
+    }
+
+    public void setFileBean(FileBean fileBean) {
+        this.fileBean = fileBean;
+    }
+}

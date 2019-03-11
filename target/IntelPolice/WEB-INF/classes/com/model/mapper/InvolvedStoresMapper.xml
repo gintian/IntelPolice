@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvolvedStoresMapper">
+    <resultMap id="BaseResultMap" type="com.model.InvolvedStores">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="LOCATION" property="location" jdbcType="VARCHAR"/>
+        <result column="DEPTID" property="deptId" jdbcType="VARCHAR"/>
+        <result column="USERID" property="userId" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="EDITTIME" property="editTime" jdbcType="TIMESTAMP"/>
+        <result column="SORTCODE" property="sortCode" jdbcType="DECIMAL"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, NAME, LOCATION, DEPTID, USERID, CREATEUSERID, REMARK, CREATETIME, EDITTIME, SORTCODE
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from EA_INVOLVED_STORES
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EA_INVOLVED_STORES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.model.InvolvedStores">
+    insert into EA_INVOLVED_STORES (ID, NAME, LOCATION, 
+      DEPTID, USERID, REMARK, 
+      CREATETIME, EDITTIME, SORTCODE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP},
+      #{sortCode,jdbcType=DECIMAL})
+  </insert>
+    <insert id="insertSelective" parameterType="com.model.InvolvedStores">
+        insert into EA_INVOLVED_STORES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="location != null">
+                LOCATION,
+            </if>
+            <if test="deptId != null">
+                DEPTID,
+            </if>
+            <if test="userId != null">
+                USERID,
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            <if test="createTime != null">
+                CREATETIME,
+            </if>
+            <if test="editTime != null">
+                EDITTIME,
+            </if>
+            <if test="sortCode != null">
+                SORTCODE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="editTime != null">
+                #{editTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortCode != null">
+                #{sortCode,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.model.InvolvedStores">
+        update EA_INVOLVED_STORES
+        <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                LOCATION = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                DEPTID = #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USERID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                USERID = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sortCode != null">
+                SORTCODE = #{sortCode,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.model.InvolvedStores">
+    update EA_INVOLVED_STORES
+    set NAME = #{name,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      DEPTID = #{deptId,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+      SORTCODE = #{sortCode,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

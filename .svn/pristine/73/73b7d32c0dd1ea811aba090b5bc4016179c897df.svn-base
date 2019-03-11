@@ -1,0 +1,6 @@
+
+sms_log.selectSql=caseid,personid,telephone,seqid,reqtime,content,reqifcg,dxfszt,lyds,hck_rksj,hck_gxsj
+sms_log.insertSql=caseid,personid,telephone,seqid,reqtime,content,reqifcg,dxfszt,lyds,hck_rksj,hck_gxsj
+sms_log.principalFileName=caseid
+sms_log.tableName=sms_log
+

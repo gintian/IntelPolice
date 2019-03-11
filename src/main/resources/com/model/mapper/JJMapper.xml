@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.JJMapper" >
+  <resultMap id="BaseResultMap" type="com.model.JJ" >
+    <result column="XZQHDM" property="xzqhdm" jdbcType="VARCHAR" />
+    <result column="JJDWDM" property="jjdwdm" jdbcType="VARCHAR" />
+    <result column="JJDBH" property="jjdbh" jdbcType="VARCHAR" />
+    <result column="JJLX" property="jjlx" jdbcType="VARCHAR" />
+    <result column="BJFS" property="bjfs" jdbcType="VARCHAR" />
+    <result column="CFJQBH" property="cfjqbh" jdbcType="VARCHAR" />
+    <result column="LHLX" property="lhlx" jdbcType="VARCHAR" />
+    <result column="GLJQBH" property="gljqbh" jdbcType="VARCHAR" />
+    <result column="JJLYH" property="jjlyh" jdbcType="VARCHAR" />
+    <result column="TFHM" property="tfhm" jdbcType="VARCHAR" />
+    <result column="JJYBH" property="jjybh" jdbcType="VARCHAR" />
+    <result column="JJYXM" property="jjyxm" jdbcType="VARCHAR" />
+    <result column="SEATNO" property="seatno" jdbcType="VARCHAR" />
+    <result column="BJSJ" property="bjsj" jdbcType="TIMESTAMP" />
+    <result column="JJSJ" property="jjsj" jdbcType="TIMESTAMP" />
+    <result column="HZSJ" property="hzsj" jdbcType="TIMESTAMP" />
+    <result column="SJSJ" property="sjsj" jdbcType="TIMESTAMP" />
+    <result column="JRSFZH" property="jrsfzh" jdbcType="VARCHAR" />
+    <result column="BJDH" property="bjdh" jdbcType="VARCHAR" />
+    <result column="BJDHYHXM" property="bjdhyhxm" jdbcType="VARCHAR" />
+    <result column="BJDHYHDZ" property="bjdhyhdz" jdbcType="VARCHAR" />
+    <result column="BJRXM" property="bjrxm" jdbcType="VARCHAR" />
+    <result column="BJRXBDM" property="bjrxbdm" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+    <result column="SFDSR" property="sfdsr" jdbcType="FLOAT" />
+    <result column="SFZDDW" property="sfzddw" jdbcType="FLOAT" />
+    <result column="ZDDWMC" property="zddwmc" jdbcType="VARCHAR" />
+    <result column="JQDZ" property="jqdz" jdbcType="VARCHAR" />
+    <result column="BJNR" property="bjnr" jdbcType="VARCHAR" />
+    <result column="GXDWDM" property="gxdwdm" jdbcType="VARCHAR" />
+    <result column="JQLBDM" property="jqlbdm" jdbcType="VARCHAR" />
+    <result column="DGBH" property="dgbh" jdbcType="VARCHAR" />
+    <result column="BJZBH" property="bjzbh" jdbcType="VARCHAR" />
+    <result column="YWWXWZ" property="ywwxwz" jdbcType="FLOAT" />
+    <result column="YWBZXL" property="ywbzxl" jdbcType="FLOAT" />
+    <result column="BJCHPZLDM" property="bjchpzldm" jdbcType="VARCHAR" />
+    <result column="BJCPH" property="bjcph" jdbcType="VARCHAR" />
+    <result column="CLYS" property="clys" jdbcType="VARCHAR" />
+    <result column="SFSW" property="sfsw" jdbcType="FLOAT" />
+    <result column="SFSWYBJ" property="sfswybj" jdbcType="FLOAT" />
+    <result column="ZDDWXZB" property="zddwxzb" jdbcType="VARCHAR" />
+    <result column="ZDDWYZB" property="zddwyzb" jdbcType="VARCHAR" />
+    <result column="SGDWXZB" property="sgdwxzb" jdbcType="VARCHAR" />
+    <result column="SGDWYZB" property="sgdwyzb" jdbcType="VARCHAR" />
+    <result column="BCJJNR" property="bcjjnr" jdbcType="VARCHAR" />
+    <result column="RKSJC" property="rksjc" jdbcType="TIMESTAMP" />
+    <result column="XGSJ" property="xgsj" jdbcType="TIMESTAMP" />
+    <result column="JQZTDM" property="jqztdm" jdbcType="VARCHAR" />
+    <result column="ZAGJDM" property="zagjdm" jdbcType="VARCHAR" />
+    <result column="GXSJC" property="gxsjc" jdbcType="TIMESTAMP" />
+    <result column="JQDJDM" property="jqdjdm" jdbcType="VARCHAR" />
+    <result column="HZDJDM" property="hzdjdm" jdbcType="VARCHAR" />
+    <result column="QHJZJGDM" property="qhjzjgdm" jdbcType="VARCHAR" />
+    <result column="HZCSDM" property="hzcsdm" jdbcType="VARCHAR" />
+    <result column="QHJZQKMS" property="qhjzqkms" jdbcType="VARCHAR" />
+    <result column="PLQK" property="plqk" jdbcType="VARCHAR" />
+    <result column="QHWDM" property="qhwdm" jdbcType="VARCHAR" />
+    <result column="YWTY" property="ywty" jdbcType="FLOAT" />
+    <result column="SFSWHCL" property="sfswhcl" jdbcType="FLOAT" />
+    <result column="SSXT" property="ssxt" jdbcType="VARCHAR" />
+    <result column="HCK_RKSJ" property="hckRksj" jdbcType="TIMESTAMP" />
+    <result column="HCK_GXSJ" property="hckGxsj" jdbcType="TIMESTAMP" />
+    <result column="ISSCANFORNOTINPUT" property="isscanfornotinput" jdbcType="VARCHAR" />
+    <result column="BJRSFZH" property="bjrsfzh" jdbcType="VARCHAR" />
+    <result column="LDGBH" property="ldgbh" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.model.JJ" >
+    insert into JJDB (XZQHDM, JJDWDM, JJDBH, 
+      JJLX, BJFS, CFJQBH, 
+      LHLX, GLJQBH, JJLYH, 
+      TFHM, JJYBH, JJYXM, 
+      SEATNO, BJSJ, JJSJ, 
+      HZSJ, SJSJ, JRSFZH, 
+      BJDH, BJDHYHXM, BJDHYHDZ, 
+      BJRXM, BJRXBDM, LXDH, 
+      SFDSR, SFZDDW, ZDDWMC, 
+      JQDZ, BJNR, GXDWDM, 
+      JQLBDM, DGBH, BJZBH, 
+      YWWXWZ, YWBZXL, BJCHPZLDM, 
+      BJCPH, CLYS, SFSW, SFSWYBJ, 
+      ZDDWXZB, ZDDWYZB, SGDWXZB, 
+      SGDWYZB, BCJJNR, RKSJC, 
+      XGSJ, JQZTDM, ZAGJDM, 
+      GXSJC, JQDJDM, HZDJDM, 
+      QHJZJGDM, HZCSDM, QHJZQKMS, 
+      PLQK, QHWDM, YWTY, SFSWHCL, 
+      SSXT, HCK_RKSJ, HCK_GXSJ, 
+      ISSCANFORNOTINPUT, BJRSFZH, LDGBH
+      )
+    values (#{xzqhdm,jdbcType=VARCHAR}, #{jjdwdm,jdbcType=VARCHAR}, #{jjdbh,jdbcType=VARCHAR}, 
+      #{jjlx,jdbcType=VARCHAR}, #{bjfs,jdbcType=VARCHAR}, #{cfjqbh,jdbcType=VARCHAR}, 
+      #{lhlx,jdbcType=VARCHAR}, #{gljqbh,jdbcType=VARCHAR}, #{jjlyh,jdbcType=VARCHAR}, 
+      #{tfhm,jdbcType=VARCHAR}, #{jjybh,jdbcType=VARCHAR}, #{jjyxm,jdbcType=VARCHAR}, 
+      #{seatno,jdbcType=VARCHAR}, #{bjsj,jdbcType=TIMESTAMP}, #{jjsj,jdbcType=TIMESTAMP}, 
+      #{hzsj,jdbcType=TIMESTAMP}, #{sjsj,jdbcType=TIMESTAMP}, #{jrsfzh,jdbcType=VARCHAR}, 
+      #{bjdh,jdbcType=VARCHAR}, #{bjdhyhxm,jdbcType=VARCHAR}, #{bjdhyhdz,jdbcType=VARCHAR}, 
+      #{bjrxm,jdbcType=VARCHAR}, #{bjrxbdm,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, 
+      #{sfdsr,jdbcType=FLOAT}, #{sfzddw,jdbcType=FLOAT}, #{zddwmc,jdbcType=VARCHAR}, 
+      #{jqdz,jdbcType=VARCHAR}, #{bjnr,jdbcType=VARCHAR}, #{gxdwdm,jdbcType=VARCHAR}, 
+      #{jqlbdm,jdbcType=VARCHAR}, #{dgbh,jdbcType=VARCHAR}, #{bjzbh,jdbcType=VARCHAR}, 
+      #{ywwxwz,jdbcType=FLOAT}, #{ywbzxl,jdbcType=FLOAT}, #{bjchpzldm,jdbcType=VARCHAR}, 
+      #{bjcph,jdbcType=VARCHAR}, #{clys,jdbcType=VARCHAR}, #{sfsw,jdbcType=FLOAT}, #{sfswybj,jdbcType=FLOAT}, 
+      #{zddwxzb,jdbcType=VARCHAR}, #{zddwyzb,jdbcType=VARCHAR}, #{sgdwxzb,jdbcType=VARCHAR}, 
+      #{sgdwyzb,jdbcType=VARCHAR}, #{bcjjnr,jdbcType=VARCHAR}, #{rksjc,jdbcType=TIMESTAMP}, 
+      #{xgsj,jdbcType=TIMESTAMP}, #{jqztdm,jdbcType=VARCHAR}, #{zagjdm,jdbcType=VARCHAR}, 
+      #{gxsjc,jdbcType=TIMESTAMP}, #{jqdjdm,jdbcType=VARCHAR}, #{hzdjdm,jdbcType=VARCHAR}, 
+      #{qhjzjgdm,jdbcType=VARCHAR}, #{hzcsdm,jdbcType=VARCHAR}, #{qhjzqkms,jdbcType=VARCHAR}, 
+      #{plqk,jdbcType=VARCHAR}, #{qhwdm,jdbcType=VARCHAR}, #{ywty,jdbcType=FLOAT}, #{sfswhcl,jdbcType=FLOAT}, 
+      #{ssxt,jdbcType=VARCHAR}, #{hckRksj,jdbcType=TIMESTAMP}, #{hckGxsj,jdbcType=TIMESTAMP}, 
+      #{isscanfornotinput,jdbcType=VARCHAR}, #{bjrsfzh,jdbcType=VARCHAR}, #{ldgbh,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.JJ" >
+    insert into JJDB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xzqhdm != null" >
+        XZQHDM,
+      </if>
+      <if test="jjdwdm != null" >
+        JJDWDM,
+      </if>
+      <if test="jjdbh != null" >
+        JJDBH,
+      </if>
+      <if test="jjlx != null" >
+        JJLX,
+      </if>
+      <if test="bjfs != null" >
+        BJFS,
+      </if>
+      <if test="cfjqbh != null" >
+        CFJQBH,
+      </if>
+      <if test="lhlx != null" >
+        LHLX,
+      </if>
+      <if test="gljqbh != null" >
+        GLJQBH,
+      </if>
+      <if test="jjlyh != null" >
+        JJLYH,
+      </if>
+      <if test="tfhm != null" >
+        TFHM,
+      </if>
+      <if test="jjybh != null" >
+        JJYBH,
+      </if>
+      <if test="jjyxm != null" >
+        JJYXM,
+      </if>
+      <if test="seatno != null" >
+        SEATNO,
+      </if>
+      <if test="bjsj != null" >
+        BJSJ,
+      </if>
+      <if test="jjsj != null" >
+        JJSJ,
+      </if>
+      <if test="hzsj != null" >
+        HZSJ,
+      </if>
+      <if test="sjsj != null" >
+        SJSJ,
+      </if>
+      <if test="jrsfzh != null" >
+        JRSFZH,
+      </if>
+      <if test="bjdh != null" >
+        BJDH,
+      </if>
+      <if test="bjdhyhxm != null" >
+        BJDHYHXM,
+      </if>
+      <if test="bjdhyhdz != null" >
+        BJDHYHDZ,
+      </if>
+      <if test="bjrxm != null" >
+        BJRXM,
+      </if>
+      <if test="bjrxbdm != null" >
+        BJRXBDM,
+      </if>
+      <if test="lxdh != null" >
+        LXDH,
+      </if>
+      <if test="sfdsr != null" >
+        SFDSR,
+      </if>
+      <if test="sfzddw != null" >
+        SFZDDW,
+      </if>
+      <if test="zddwmc != null" >
+        ZDDWMC,
+      </if>
+      <if test="jqdz != null" >
+        JQDZ,
+      </if>
+      <if test="bjnr != null" >
+        BJNR,
+      </if>
+      <if test="gxdwdm != null" >
+        GXDWDM,
+      </if>
+      <if test="jqlbdm != null" >
+        JQLBDM,
+      </if>
+      <if test="dgbh != null" >
+        DGBH,
+      </if>
+      <if test="bjzbh != null" >
+        BJZBH,
+      </if>
+      <if test="ywwxwz != null" >
+        YWWXWZ,
+      </if>
+      <if test="ywbzxl != null" >
+        YWBZXL,
+      </if>
+      <if test="bjchpzldm != null" >
+        BJCHPZLDM,
+      </if>
+      <if test="bjcph != null" >
+        BJCPH,
+      </if>
+      <if test="clys != null" >
+        CLYS,
+      </if>
+      <if test="sfsw != null" >
+        SFSW,
+      </if>
+      <if test="sfswybj != null" >
+        SFSWYBJ,
+      </if>
+      <if test="zddwxzb != null" >
+        ZDDWXZB,
+      </if>
+      <if test="zddwyzb != null" >
+        ZDDWYZB,
+      </if>
+      <if test="sgdwxzb != null" >
+        SGDWXZB,
+      </if>
+      <if test="sgdwyzb != null" >
+        SGDWYZB,
+      </if>
+      <if test="bcjjnr != null" >
+        BCJJNR,
+      </if>
+      <if test="rksjc != null" >
+        RKSJC,
+      </if>
+      <if test="xgsj != null" >
+        XGSJ,
+      </if>
+      <if test="jqztdm != null" >
+        JQZTDM,
+      </if>
+      <if test="zagjdm != null" >
+        ZAGJDM,
+      </if>
+      <if test="gxsjc != null" >
+        GXSJC,
+      </if>
+      <if test="jqdjdm != null" >
+        JQDJDM,
+      </if>
+      <if test="hzdjdm != null" >
+        HZDJDM,
+      </if>
+      <if test="qhjzjgdm != null" >
+        QHJZJGDM,
+      </if>
+      <if test="hzcsdm != null" >
+        HZCSDM,
+      </if>
+      <if test="qhjzqkms != null" >
+        QHJZQKMS,
+      </if>
+      <if test="plqk != null" >
+        PLQK,
+      </if>
+      <if test="qhwdm != null" >
+        QHWDM,
+      </if>
+      <if test="ywty != null" >
+        YWTY,
+      </if>
+      <if test="sfswhcl != null" >
+        SFSWHCL,
+      </if>
+      <if test="ssxt != null" >
+        SSXT,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+      <if test="isscanfornotinput != null" >
+        ISSCANFORNOTINPUT,
+      </if>
+      <if test="bjrsfzh != null" >
+        BJRSFZH,
+      </if>
+      <if test="ldgbh != null" >
+        LDGBH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xzqhdm != null" >
+        #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jjdwdm != null" >
+        #{jjdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jjdbh != null" >
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlx != null" >
+        #{jjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="bjfs != null" >
+        #{bjfs,jdbcType=VARCHAR},
+      </if>
+      <if test="cfjqbh != null" >
+        #{cfjqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="lhlx != null" >
+        #{lhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gljqbh != null" >
+        #{gljqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjlyh != null" >
+        #{jjlyh,jdbcType=VARCHAR},
+      </if>
+      <if test="tfhm != null" >
+        #{tfhm,jdbcType=VARCHAR},
+      </if>
+      <if test="jjybh != null" >
+        #{jjybh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjyxm != null" >
+        #{jjyxm,jdbcType=VARCHAR},
+      </if>
+      <if test="seatno != null" >
+        #{seatno,jdbcType=VARCHAR},
+      </if>
+      <if test="bjsj != null" >
+        #{bjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jjsj != null" >
+        #{jjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hzsj != null" >
+        #{hzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sjsj != null" >
+        #{sjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jrsfzh != null" >
+        #{jrsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="bjdh != null" >
+        #{bjdh,jdbcType=VARCHAR},
+      </if>
+      <if test="bjdhyhxm != null" >
+        #{bjdhyhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjdhyhdz != null" >
+        #{bjdhyhdz,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrxm != null" >
+        #{bjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrxbdm != null" >
+        #{bjrxbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfdsr != null" >
+        #{sfdsr,jdbcType=FLOAT},
+      </if>
+      <if test="sfzddw != null" >
+        #{sfzddw,jdbcType=FLOAT},
+      </if>
+      <if test="zddwmc != null" >
+        #{zddwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jqdz != null" >
+        #{jqdz,jdbcType=VARCHAR},
+      </if>
+      <if test="bjnr != null" >
+        #{bjnr,jdbcType=VARCHAR},
+      </if>
+      <if test="gxdwdm != null" >
+        #{gxdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jqlbdm != null" >
+        #{jqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="dgbh != null" >
+        #{dgbh,jdbcType=VARCHAR},
+      </if>
+      <if test="bjzbh != null" >
+        #{bjzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ywwxwz != null" >
+        #{ywwxwz,jdbcType=FLOAT},
+      </if>
+      <if test="ywbzxl != null" >
+        #{ywbzxl,jdbcType=FLOAT},
+      </if>
+      <if test="bjchpzldm != null" >
+        #{bjchpzldm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjcph != null" >
+        #{bjcph,jdbcType=VARCHAR},
+      </if>
+      <if test="clys != null" >
+        #{clys,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsw != null" >
+        #{sfsw,jdbcType=FLOAT},
+      </if>
+      <if test="sfswybj != null" >
+        #{sfswybj,jdbcType=FLOAT},
+      </if>
+      <if test="zddwxzb != null" >
+        #{zddwxzb,jdbcType=VARCHAR},
+      </if>
+      <if test="zddwyzb != null" >
+        #{zddwyzb,jdbcType=VARCHAR},
+      </if>
+      <if test="sgdwxzb != null" >
+        #{sgdwxzb,jdbcType=VARCHAR},
+      </if>
+      <if test="sgdwyzb != null" >
+        #{sgdwyzb,jdbcType=VARCHAR},
+      </if>
+      <if test="bcjjnr != null" >
+        #{bcjjnr,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null" >
+        #{rksjc,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xgsj != null" >
+        #{xgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jqztdm != null" >
+        #{jqztdm,jdbcType=VARCHAR},
+      </if>
+      <if test="zagjdm != null" >
+        #{zagjdm,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsjc != null" >
+        #{gxsjc,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jqdjdm != null" >
+        #{jqdjdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzdjdm != null" >
+        #{hzdjdm,jdbcType=VARCHAR},
+      </if>
+      <if test="qhjzjgdm != null" >
+        #{qhjzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzcsdm != null" >
+        #{hzcsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="qhjzqkms != null" >
+        #{qhjzqkms,jdbcType=VARCHAR},
+      </if>
+      <if test="plqk != null" >
+        #{plqk,jdbcType=VARCHAR},
+      </if>
+      <if test="qhwdm != null" >
+        #{qhwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywty != null" >
+        #{ywty,jdbcType=FLOAT},
+      </if>
+      <if test="sfswhcl != null" >
+        #{sfswhcl,jdbcType=FLOAT},
+      </if>
+      <if test="ssxt != null" >
+        #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null" >
+        #{hckRksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hckGxsj != null" >
+        #{hckGxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isscanfornotinput != null" >
+        #{isscanfornotinput,jdbcType=VARCHAR},
+      </if>
+      <if test="bjrsfzh != null" >
+        #{bjrsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ldgbh != null" >
+        #{ldgbh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

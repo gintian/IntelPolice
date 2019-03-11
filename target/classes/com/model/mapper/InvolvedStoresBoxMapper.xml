@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvolvedStoresBoxMapper">
+    <resultMap id="BaseResultMap" type="com.model.InvolvedStoresBox">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="BOXNO" property="boxNo" jdbcType="VARCHAR"/>
+        <result column="BOXCODE" property="boxCode" jdbcType="VARCHAR"/>
+        <result column="STOREID" property="storeId" jdbcType="VARCHAR"/>
+        <result column="LOCKERID" property="lockerId" jdbcType="VARCHAR"/>
+        <result column="LENGTH" property="length" jdbcType="VARCHAR"/>
+        <result column="WIDTH" property="width" jdbcType="VARCHAR"/>
+        <result column="HEIGHT" property="height" jdbcType="VARCHAR"/>
+        <result column="USERID" property="userId" jdbcType="VARCHAR"/>
+        <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CREATEUSERID" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="EDITTIME" property="editTime" jdbcType="TIMESTAMP"/>
+        <result column="STATE" property="state" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, BOXNO, BOXCODE, STOREID, LOCKERID, LENGTH, WIDTH, HEIGHT, USERID, CREATETIME,
+    CREATEUSERID, EDITTIME, STATE
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from EA_INVOLVED_STORES_BOX
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EA_INVOLVED_STORES_BOX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.model.InvolvedStoresBox">
+    insert into EA_INVOLVED_STORES_BOX (ID, BOXNO,BOXCODE
+      STOREID, LOCKERID, LENGTH,
+      WIDTH, HEIGHT, USERID,
+      CREATEUSERID, EDITTIME,
+      CREATETIME, STATE)
+    values (#{id,jdbcType=VARCHAR}, #{boxNo,jdbcType=VARCHAR},  #{boxCode,jdbcType=VARCHAR},
+      #{storeId,jdbcType=VARCHAR}, #{lockerId,jdbcType=VARCHAR}, #{length,jdbcType=VARCHAR},
+      #{width,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR},
+      #{editTime,jdbcType=TIMESTAMP},#{state,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.model.InvolvedStoresBox">
+        insert into EA_INVOLVED_STORES_BOX
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="boxNo != null">
+                BOXNO,
+            </if>
+            <if test="boxCode != null">
+                BOXCODE,
+            </if>
+            <if test="storeId != null">
+                STOREID,
+            </if>
+            <if test="lockerId != null">
+                LOCKERID,
+            </if>
+            <if test="length != null">
+                LENGTH,
+            </if>
+            <if test="width != null">
+                WIDTH,
+            </if>
+            <if test="height != null">
+                HEIGHT,
+            </if>
+            <if test="userId != null">
+                USERID,
+            </if>
+            <if test="createTime != null">
+                CREATETIME,
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID,
+            </if>
+            <if test="editTime != null">
+                EDITTIME,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="boxNo != null">
+                #{boxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="boxCode != null">
+                #{boxCode,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerId != null">
+                #{lockerId,jdbcType=VARCHAR},
+            </if>
+            <if test="length != null">
+                #{length,jdbcType=VARCHAR},
+            </if>
+            <if test="width != null">
+                #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null">
+                #{height,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="editTime != null">
+                #{editTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.model.InvolvedStoresBox">
+        update EA_INVOLVED_STORES_BOX
+        <set>
+            <if test="boxNo != null">
+                BOXNO = #{boxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="boxCode != null">
+                BOXCODE = #{boxCode,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                STOREID = #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerId != null">
+                LOCKERID = #{lockerId,jdbcType=VARCHAR},
+            </if>
+            <if test="length != null">
+                LENGTH = #{length,jdbcType=VARCHAR},
+            </if>
+            <if test="width != null">
+                WIDTH = #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null">
+                HEIGHT = #{height,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                USERID = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="editTime != null">
+                EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.model.InvolvedStoresBox">
+    update EA_INVOLVED_STORES_BOX
+    set BOXNO = #{boxNo,jdbcType=VARCHAR},
+    BOXCODE = #{boxCode,jdbcType=VARCHAR},
+      STOREID = #{storeId,jdbcType=VARCHAR},
+      LOCKERID = #{lockerId,jdbcType=VARCHAR},
+      LENGTH = #{length,jdbcType=VARCHAR},
+      WIDTH = #{width,jdbcType=VARCHAR},
+      HEIGHT = #{height,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

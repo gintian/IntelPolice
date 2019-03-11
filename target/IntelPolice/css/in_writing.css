@@ -1,0 +1,19 @@
+/* 中间笔录信息 start */
+#mid{height: 600px;}
+#editor{border: 1px #c5c4c4 solid;height: 50px;}
+#info{border: 1px #c5c4c4 solid;height: 550px;overflow: auto;}
+td{word-wrap:break-word;word-break:break-all;}
+.question{color: red;}
+.answer{color: #8e7dff;}
+#editor>div{background-color: #c3bec5;height: 50px;}
+#editor h1{text-align: center;margin: 0 auto;}
+/* 中间笔录信息 end */
+
+/* 右边笔录信息 start */
+#right{height: 600px;padding-left: 0;padding-right: 0;}
+#menu_right_info{border: 1px #c5c4c4 solid;height: 600px;overflow: auto;}
+#menu_right_info ul{padding-left: 0;padding-right: 0;}
+#menu_right_info li{list-style: none;border: 1px seagreen solid;height: 40px;line-height: 40px;}
+/* 右边笔录信息 end */
+
+

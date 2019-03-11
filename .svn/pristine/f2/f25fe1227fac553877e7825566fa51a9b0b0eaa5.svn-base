@@ -1,0 +1,9 @@
+package com.model.bean;
+
+import com.model.InvestigationRelated;
+
+import java.util.Date;
+
+public class InvestigationRelatedBean extends InvestigationRelated {
+
+}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.mapper.ViewDocBeanMapper">
+
+    <sql id="Base_Column_List">
+        d.DOC_ID DOCID,
+        d.DOC_NAME DOCNAME,
+        d.DOC_SIZE DOCSIZE,
+        d.DOC_URL DOCURL,
+        d.CATE CATE,
+        d.EXPLRY_TIME EXPLRYTIME,
+        d.IMP_LEVL IMPLEVL,
+        d.REMARK REMARK,
+        d.SITE_NO SITENO,
+        d.HTTP HTTP,
+        d.UPLOAD_TIME UPLOADTIME,
+        d.CREATE_TIME CREATETIME,
+        d.POLICE_ID POLICE_ID,
+        p.ID ID,
+        p.NAME NAME,
+        p.IDNUM IDNUM,
+        p.workNumber workNumber,
+        p.organizationId organizationId,
+        p.mobile mobile,
+        o.orgCode orgCode,
+        o.orgName orgName,
+        o.parentId parentId
+    </sql>
+
+    <sql id="View_list">
+        JSDZ_VIEW_DOC  d,
+        JSDZ_VIEW_ORG o,
+        JSDZ_VIEW_POLICE  p
+    </sql>
+
+
+    <select id="showAllView" resultType="com.model.bean.ViewDocBean">
+        select
+        <include refid="Base_Column_List"></include>
+        FROM
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        ORDER BY DOC_ID
+    </select>
+
+    <select id="countTotal" resultType="java.lang.Integer">
+        select
+        count (1)
+        FROM
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+    </select>
+
+    <select id="selectBeanPage" resultType="com.model.bean.ViewDocBean">
+        select *
+        from
+        (select rownum rn,
+        <include refid="Base_Column_List"></include>
+        FROM
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        <include refid="selectForLike"></include>
+        ORDER BY DOC_ID)
+        where rn between #{pageBean.pageNum} AND #{pageBean.pageCount}
+    </select>
+
+    <sql id="selectForLike">
+        <if test="entity.docName != null and entity.docName != ''">
+            AND DOCNAME LIKE COUNT ('%',count(#{entity.name, jdbcType=VARCHAR},'%') )
+        </if>
+    </sql>
+
+    <select id="findViewByDocid" resultType="com.model.bean.ViewDocBean" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"></include>
+        FROM
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        AND DOC_ID=#{docId}
+    </select>
+
+    <select id="selectCorrelateViewTotal" resultType="java.lang.Integer">
+        select count(1)
+        from EA_MEDIA_CASE e
+    </select>
+
+    <!--    <select id="selectViewTotal" resultType="java.lang.Integer">
+            select count(1)
+            from JSDZ_VIEW_DOC
+        </select>-->
+
+    <select id="selectNoCorrelateView" resultType="com.model.bean.ViewDocBean">
+        select
+        <include refid="Base_Column_List"></include>
+        from
+        <include refid="View_list"></include>
+        where
+        d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        and DOC_ID NOT IN
+        (SELECT MEDIAID
+        FROM EA_MEDIA_CASE)
+    </select>
+
+    <select id="maxPrimaryKey" resultType="java.lang.Integer">
+        select max(ID)
+        FROM EA_MEDIA_CASE
+    </select>
+
+    <!--
+        <insert id="viewCorrelateJJ">
+            insert  into EA_MEDIA_CASE(ID,MEDIAID,JJDBH)
+            values (#{id},#{viewDocBean.docId},#{jjdbh},#{cjdbh},#{caseid})
+        </insert>
+    -->
+
+    <insert id="viewCorrelate">
+        insert into EA_MEDIA_CASE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="viewDocBean.docId != null">
+                MEDIAID,
+            </if>
+            <if test="jjdbh != null">
+                JJDBH,
+            </if>
+            <if test="cjdbh != null">
+                CJDBH,
+            </if>
+            <if test="caseid != null">
+                CASEID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="viewDocBean.docId!= null">
+                #{viewDocBean.docId,jdbcType=VARCHAR},
+            </if>
+            <if test="jjdbh != null">
+                #{jjdbh,jdbcType=VARCHAR},
+            </if>
+            <if test="cjdbh != null">
+                #{cjdbh,jdbcType=VARCHAR},
+            </if>
+            <if test="caseid != null">
+                #{caseid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="selectViewByOther" resultType="com.model.bean.ViewDocBean">
+        select *
+        from
+        (select rownum rn,
+        <include refid="Base_Column_List"></include>
+        from
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        and d.DOC_ID in
+        (SELECT MEDIAID
+        FROM EA_MEDIA_CASE
+        <where>
+            <if test="jjdbh!=null">
+                JJDBH=#{jjdbh,jdbcType=VARCHAR}
+            </if>
+            <if test="cjdbh!=null">
+                and CJDBH=#{cjdbh,jdbcType=VARCHAR}
+            </if>
+            <if test="caseid!=null">
+                and CASEID=#{caseid,jdbcType=VARCHAR}
+            </if>)
+        </where>
+        )
+        where rn between #{pageBean.pageNum} AND #{pageBean.pageCount}
+    </select>
+
+    <select id="selectViewTotalByOther" resultType="java.lang.Integer">
+        select count(1)
+        from
+        <include refid="View_list"></include>
+        where d.POLICE_ID=p.ID AND p.organizationId=o.Id
+        and d.DOC_ID in
+        (SELECT MEDIAID
+        FROM EA_MEDIA_CASE
+        <where>
+            <if test="jjdbh  !=null">
+                JJDBH=#{jjdbh,jdbcType=VARCHAR}
+            </if>
+            <if test="cjdbh  !=null">
+                and CJDBH=#{cjdbh,jdbcType=VARCHAR}
+            </if>
+            <if test="caseid !=null">
+                and CASEID=#{caseid,jdbcType=VARCHAR}
+            </if>
+            )
+        </where>
+    </select>
+
+
+</mapper>

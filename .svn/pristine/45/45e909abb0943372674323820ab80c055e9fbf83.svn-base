@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.model.mapper.HFMapper">
+  <resultMap id="BaseResultMap" type="com.model.HF">
+    <id column="HFHSDBH" jdbcType="VARCHAR" property="hfhsdbh" />
+    <result column="JJDBH" jdbcType="VARCHAR" property="jjdbh" />
+    <result column="HFHSLYH" jdbcType="VARCHAR" property="hfhslyh" />
+    <result column="HFSJ" jdbcType="DATE" property="hfsj" />
+    <result column="HFRYXM" jdbcType="VARCHAR" property="hfryxm" />
+    <result column="HFDHHM" jdbcType="VARCHAR" property="hfdhhm" />
+    <result column="BHFRXM" jdbcType="VARCHAR" property="bhfrxm" />
+    <result column="BHFRDHHM" jdbcType="VARCHAR" property="bhfrdhhm" />
+    <result column="HFHSQK" jdbcType="VARCHAR" property="hfhsqk" />
+    <result column="CJSD" jdbcType="VARCHAR" property="cjsd" />
+    <result column="CJMJTD" jdbcType="VARCHAR" property="cjmjtd" />
+    <result column="CJMJJRFJ" jdbcType="VARCHAR" property="cjmjjrfj" />
+    <result column="CLJG" jdbcType="VARCHAR" property="cljg" />
+    <result column="CJDWDM" jdbcType="VARCHAR" property="cjdwdm" />
+    <result column="AJLBDM" jdbcType="VARCHAR" property="ajlbdm" />
+    <result column="JQLBDM" jdbcType="VARCHAR" property="jqlbdm" />
+    <result column="CJRY" jdbcType="VARCHAR" property="cjry" />
+    <result column="XZQHDM" jdbcType="VARCHAR" property="xzqhdm" />
+    <result column="HFDWDM" jdbcType="VARCHAR" property="hfdwdm" />
+    <result column="RKSJC" jdbcType="DATE" property="rksjc" />
+    <result column="GXSJC" jdbcType="DATE" property="gxsjc" />
+    <result column="SSXT" jdbcType="VARCHAR" property="ssxt" />
+    <result column="HCK_RKSJ" jdbcType="DATE" property="hckRksj" />
+    <result column="HCK_GXSJ" jdbcType="DATE" property="hckGxsj" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HFHSDBH, JJDBH, HFHSLYH, HFSJ, HFRYXM, HFDHHM, BHFRXM, BHFRDHHM, HFHSQK, CJSD, CJMJTD, 
+    CJMJJRFJ, CLJG, CJDWDM, AJLBDM, JQLBDM, CJRY, XZQHDM, HFDWDM, RKSJC, GXSJC, SSXT, 
+    HCK_RKSJ, HCK_GXSJ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HFDB
+    where HFHSDBH = #{hfhsdbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HFDB
+    where HFHSDBH = #{hfhsdbh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.HF">
+    insert into HFDB (HFHSDBH, JJDBH, HFHSLYH, 
+      HFSJ, HFRYXM, HFDHHM, 
+      BHFRXM, BHFRDHHM, HFHSQK, 
+      CJSD, CJMJTD, CJMJJRFJ, 
+      CLJG, CJDWDM, AJLBDM, 
+      JQLBDM, CJRY, XZQHDM, 
+      HFDWDM, RKSJC, GXSJC, SSXT, 
+      HCK_RKSJ, HCK_GXSJ)
+    values (#{hfhsdbh,jdbcType=VARCHAR}, #{jjdbh,jdbcType=VARCHAR}, #{hfhslyh,jdbcType=VARCHAR}, 
+      #{hfsj,jdbcType=DATE}, #{hfryxm,jdbcType=VARCHAR}, #{hfdhhm,jdbcType=VARCHAR}, 
+      #{bhfrxm,jdbcType=VARCHAR}, #{bhfrdhhm,jdbcType=VARCHAR}, #{hfhsqk,jdbcType=VARCHAR}, 
+      #{cjsd,jdbcType=VARCHAR}, #{cjmjtd,jdbcType=VARCHAR}, #{cjmjjrfj,jdbcType=VARCHAR}, 
+      #{cljg,jdbcType=VARCHAR}, #{cjdwdm,jdbcType=VARCHAR}, #{ajlbdm,jdbcType=VARCHAR}, 
+      #{jqlbdm,jdbcType=VARCHAR}, #{cjry,jdbcType=VARCHAR}, #{xzqhdm,jdbcType=VARCHAR}, 
+      #{hfdwdm,jdbcType=VARCHAR}, #{rksjc,jdbcType=DATE}, #{gxsjc,jdbcType=DATE}, #{ssxt,jdbcType=VARCHAR}, 
+      #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.HF">
+    insert into HFDB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hfhsdbh != null">
+        HFHSDBH,
+      </if>
+      <if test="jjdbh != null">
+        JJDBH,
+      </if>
+      <if test="hfhslyh != null">
+        HFHSLYH,
+      </if>
+      <if test="hfsj != null">
+        HFSJ,
+      </if>
+      <if test="hfryxm != null">
+        HFRYXM,
+      </if>
+      <if test="hfdhhm != null">
+        HFDHHM,
+      </if>
+      <if test="bhfrxm != null">
+        BHFRXM,
+      </if>
+      <if test="bhfrdhhm != null">
+        BHFRDHHM,
+      </if>
+      <if test="hfhsqk != null">
+        HFHSQK,
+      </if>
+      <if test="cjsd != null">
+        CJSD,
+      </if>
+      <if test="cjmjtd != null">
+        CJMJTD,
+      </if>
+      <if test="cjmjjrfj != null">
+        CJMJJRFJ,
+      </if>
+      <if test="cljg != null">
+        CLJG,
+      </if>
+      <if test="cjdwdm != null">
+        CJDWDM,
+      </if>
+      <if test="ajlbdm != null">
+        AJLBDM,
+      </if>
+      <if test="jqlbdm != null">
+        JQLBDM,
+      </if>
+      <if test="cjry != null">
+        CJRY,
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM,
+      </if>
+      <if test="hfdwdm != null">
+        HFDWDM,
+      </if>
+      <if test="rksjc != null">
+        RKSJC,
+      </if>
+      <if test="gxsjc != null">
+        GXSJC,
+      </if>
+      <if test="ssxt != null">
+        SSXT,
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hfhsdbh != null">
+        #{hfhsdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjdbh != null">
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhslyh != null">
+        #{hfhslyh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfsj != null">
+        #{hfsj,jdbcType=DATE},
+      </if>
+      <if test="hfryxm != null">
+        #{hfryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdhhm != null">
+        #{hfdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrxm != null">
+        #{bhfrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrdhhm != null">
+        #{bhfrdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhsqk != null">
+        #{hfhsqk,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsd != null">
+        #{cjsd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjtd != null">
+        #{cjmjtd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjjrfj != null">
+        #{cjmjjrfj,jdbcType=VARCHAR},
+      </if>
+      <if test="cljg != null">
+        #{cljg,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwdm != null">
+        #{cjdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="ajlbdm != null">
+        #{ajlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jqlbdm != null">
+        #{jqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjry != null">
+        #{cjry,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdwdm != null">
+        #{hfdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="ssxt != null">
+        #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.HF">
+    update HFDB
+    <set>
+      <if test="jjdbh != null">
+        JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhslyh != null">
+        HFHSLYH = #{hfhslyh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfsj != null">
+        HFSJ = #{hfsj,jdbcType=DATE},
+      </if>
+      <if test="hfryxm != null">
+        HFRYXM = #{hfryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdhhm != null">
+        HFDHHM = #{hfdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrxm != null">
+        BHFRXM = #{bhfrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrdhhm != null">
+        BHFRDHHM = #{bhfrdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhsqk != null">
+        HFHSQK = #{hfhsqk,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsd != null">
+        CJSD = #{cjsd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjtd != null">
+        CJMJTD = #{cjmjtd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjjrfj != null">
+        CJMJJRFJ = #{cjmjjrfj,jdbcType=VARCHAR},
+      </if>
+      <if test="cljg != null">
+        CLJG = #{cljg,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwdm != null">
+        CJDWDM = #{cjdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="ajlbdm != null">
+        AJLBDM = #{ajlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jqlbdm != null">
+        JQLBDM = #{jqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjry != null">
+        CJRY = #{cjry,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM = #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdwdm != null">
+        HFDWDM = #{hfdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        RKSJC = #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        GXSJC = #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="ssxt != null">
+        SSXT = #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ = #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ = #{hckGxsj,jdbcType=DATE},
+      </if>
+    </set>
+    where HFHSDBH = #{hfhsdbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.HF">
+    update HFDB
+    set JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      HFHSLYH = #{hfhslyh,jdbcType=VARCHAR},
+      HFSJ = #{hfsj,jdbcType=DATE},
+      HFRYXM = #{hfryxm,jdbcType=VARCHAR},
+      HFDHHM = #{hfdhhm,jdbcType=VARCHAR},
+      BHFRXM = #{bhfrxm,jdbcType=VARCHAR},
+      BHFRDHHM = #{bhfrdhhm,jdbcType=VARCHAR},
+      HFHSQK = #{hfhsqk,jdbcType=VARCHAR},
+      CJSD = #{cjsd,jdbcType=VARCHAR},
+      CJMJTD = #{cjmjtd,jdbcType=VARCHAR},
+      CJMJJRFJ = #{cjmjjrfj,jdbcType=VARCHAR},
+      CLJG = #{cljg,jdbcType=VARCHAR},
+      CJDWDM = #{cjdwdm,jdbcType=VARCHAR},
+      AJLBDM = #{ajlbdm,jdbcType=VARCHAR},
+      JQLBDM = #{jqlbdm,jdbcType=VARCHAR},
+      CJRY = #{cjry,jdbcType=VARCHAR},
+      XZQHDM = #{xzqhdm,jdbcType=VARCHAR},
+      HFDWDM = #{hfdwdm,jdbcType=VARCHAR},
+      RKSJC = #{rksjc,jdbcType=DATE},
+      GXSJC = #{gxsjc,jdbcType=DATE},
+      SSXT = #{ssxt,jdbcType=VARCHAR},
+      HCK_RKSJ = #{hckRksj,jdbcType=DATE},
+      HCK_GXSJ = #{hckGxsj,jdbcType=DATE}
+    where HFHSDBH = #{hfhsdbh,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.HF">
+    <result column="HFHSDBH" jdbcType="VARCHAR" property="hfhsdbh" />
+    <result column="JJDBH" jdbcType="VARCHAR" property="jjdbh" />
+    <result column="HFHSLYH" jdbcType="VARCHAR" property="hfhslyh" />
+    <result column="HFSJ" jdbcType="DATE" property="hfsj" />
+    <result column="HFRYXM" jdbcType="VARCHAR" property="hfryxm" />
+    <result column="HFDHHM" jdbcType="VARCHAR" property="hfdhhm" />
+    <result column="BHFRXM" jdbcType="VARCHAR" property="bhfrxm" />
+    <result column="BHFRDHHM" jdbcType="VARCHAR" property="bhfrdhhm" />
+    <result column="HFHSQK" jdbcType="VARCHAR" property="hfhsqk" />
+    <result column="CJSD" jdbcType="VARCHAR" property="cjsd" />
+    <result column="CJMJTD" jdbcType="VARCHAR" property="cjmjtd" />
+    <result column="CJMJJRFJ" jdbcType="VARCHAR" property="cjmjjrfj" />
+    <result column="CLJG" jdbcType="VARCHAR" property="cljg" />
+    <result column="CJDWDM" jdbcType="VARCHAR" property="cjdwdm" />
+    <result column="AJLBDM" jdbcType="VARCHAR" property="ajlbdm" />
+    <result column="JQLBDM" jdbcType="VARCHAR" property="jqlbdm" />
+    <result column="CJRY" jdbcType="VARCHAR" property="cjry" />
+    <result column="XZQHDM" jdbcType="VARCHAR" property="xzqhdm" />
+    <result column="HFDWDM" jdbcType="VARCHAR" property="hfdwdm" />
+    <result column="RKSJC" jdbcType="DATE" property="rksjc" />
+    <result column="GXSJC" jdbcType="DATE" property="gxsjc" />
+    <result column="SSXT" jdbcType="VARCHAR" property="ssxt" />
+    <result column="HCK_RKSJ" jdbcType="DATE" property="hckRksj" />
+    <result column="HCK_GXSJ" jdbcType="DATE" property="hckGxsj" />
+  </resultMap>
+  <insert id="insert" parameterType="com.model.HF">
+    insert into HFDB (HFHSDBH, JJDBH, HFHSLYH, 
+      HFSJ, HFRYXM, HFDHHM, 
+      BHFRXM, BHFRDHHM, HFHSQK, 
+      CJSD, CJMJTD, CJMJJRFJ, 
+      CLJG, CJDWDM, AJLBDM, 
+      JQLBDM, CJRY, XZQHDM, 
+      HFDWDM, RKSJC, GXSJC, SSXT, 
+      HCK_RKSJ, HCK_GXSJ)
+    values (#{hfhsdbh,jdbcType=VARCHAR}, #{jjdbh,jdbcType=VARCHAR}, #{hfhslyh,jdbcType=VARCHAR}, 
+      #{hfsj,jdbcType=DATE}, #{hfryxm,jdbcType=VARCHAR}, #{hfdhhm,jdbcType=VARCHAR}, 
+      #{bhfrxm,jdbcType=VARCHAR}, #{bhfrdhhm,jdbcType=VARCHAR}, #{hfhsqk,jdbcType=VARCHAR}, 
+      #{cjsd,jdbcType=VARCHAR}, #{cjmjtd,jdbcType=VARCHAR}, #{cjmjjrfj,jdbcType=VARCHAR}, 
+      #{cljg,jdbcType=VARCHAR}, #{cjdwdm,jdbcType=VARCHAR}, #{ajlbdm,jdbcType=VARCHAR}, 
+      #{jqlbdm,jdbcType=VARCHAR}, #{cjry,jdbcType=VARCHAR}, #{xzqhdm,jdbcType=VARCHAR}, 
+      #{hfdwdm,jdbcType=VARCHAR}, #{rksjc,jdbcType=DATE}, #{gxsjc,jdbcType=DATE}, #{ssxt,jdbcType=VARCHAR}, 
+      #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.HF">
+    insert into HFDB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hfhsdbh != null">
+        HFHSDBH,
+      </if>
+      <if test="jjdbh != null">
+        JJDBH,
+      </if>
+      <if test="hfhslyh != null">
+        HFHSLYH,
+      </if>
+      <if test="hfsj != null">
+        HFSJ,
+      </if>
+      <if test="hfryxm != null">
+        HFRYXM,
+      </if>
+      <if test="hfdhhm != null">
+        HFDHHM,
+      </if>
+      <if test="bhfrxm != null">
+        BHFRXM,
+      </if>
+      <if test="bhfrdhhm != null">
+        BHFRDHHM,
+      </if>
+      <if test="hfhsqk != null">
+        HFHSQK,
+      </if>
+      <if test="cjsd != null">
+        CJSD,
+      </if>
+      <if test="cjmjtd != null">
+        CJMJTD,
+      </if>
+      <if test="cjmjjrfj != null">
+        CJMJJRFJ,
+      </if>
+      <if test="cljg != null">
+        CLJG,
+      </if>
+      <if test="cjdwdm != null">
+        CJDWDM,
+      </if>
+      <if test="ajlbdm != null">
+        AJLBDM,
+      </if>
+      <if test="jqlbdm != null">
+        JQLBDM,
+      </if>
+      <if test="cjry != null">
+        CJRY,
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM,
+      </if>
+      <if test="hfdwdm != null">
+        HFDWDM,
+      </if>
+      <if test="rksjc != null">
+        RKSJC,
+      </if>
+      <if test="gxsjc != null">
+        GXSJC,
+      </if>
+      <if test="ssxt != null">
+        SSXT,
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hfhsdbh != null">
+        #{hfhsdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjdbh != null">
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhslyh != null">
+        #{hfhslyh,jdbcType=VARCHAR},
+      </if>
+      <if test="hfsj != null">
+        #{hfsj,jdbcType=DATE},
+      </if>
+      <if test="hfryxm != null">
+        #{hfryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdhhm != null">
+        #{hfdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrxm != null">
+        #{bhfrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="bhfrdhhm != null">
+        #{bhfrdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfhsqk != null">
+        #{hfhsqk,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsd != null">
+        #{cjsd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjtd != null">
+        #{cjmjtd,jdbcType=VARCHAR},
+      </if>
+      <if test="cjmjjrfj != null">
+        #{cjmjjrfj,jdbcType=VARCHAR},
+      </if>
+      <if test="cljg != null">
+        #{cljg,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwdm != null">
+        #{cjdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="ajlbdm != null">
+        #{ajlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="jqlbdm != null">
+        #{jqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjry != null">
+        #{cjry,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hfdwdm != null">
+        #{hfdwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="ssxt != null">
+        #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

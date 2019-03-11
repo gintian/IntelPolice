@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.HFBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.HFBean"
+               extends="com.model.mapper.HFMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.HFMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM HFDB
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.hfhsdbh != null and entity.hfhsdbh != ''">
+            AND hf.HFHSDBH LIKE CONCAT(CONCAT('%', #{entity.hfhsdbh, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.jjdbh != null and entity.jjdbh != ''">
+            AND hf.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,hf.* FROM HFDB hf
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY hf.hfhsdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM HFDB hf
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <select id="selectHFEqXzqhdm" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="xzqhdm != null and xzqhdm != ''">
+                AND XZQHDM = #{xzqhdm}
+            </if>
+        </where>
+        ORDER BY XZQHDM ASC
+    </select>
+    <select id="selectHFEqHfhsdbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="hfhsdbh != null and hfhsdbh != ''">
+                AND HFDBH = #{hfhsdbh}
+            </if>
+        </where>
+        ORDER BY HFDBH ASC
+    </select>
+
+</mapper>

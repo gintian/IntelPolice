@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Notice" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+    <result column="UNITNAME" property="unitName" jdbcType="VARCHAR" />
+    <result column="UNITCODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="BUSINESSTYPE" property="businessType" jdbcType="VARCHAR" />
+    <result column="GXFW" property="gxfw" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TITLE, CONTENT, STATUS, USERNAME, UNITNAME, UNITCODE, CREATETIME, 
+    USERID, BUSINESSTYPE, GXFW
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_PLATFORM_NOTICE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_PLATFORM_NOTICE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Notice" >
+    insert into EA_PLATFORM_NOTICE (ID, TITLE, CONTENT,
+      STATUS, USERNAME, UNITNAME,
+      UNITCODE, CREATETIME, USERID,
+      BUSINESSTYPE, GXFW)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, 
+      #{unitCode,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{gxfw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Notice" >
+    insert into EA_PLATFORM_NOTICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="userName != null" >
+        USERNAME,
+      </if>
+      <if test="unitName != null" >
+        UNITNAME,
+      </if>
+      <if test="unitCode != null" >
+        UNITCODE,
+      </if>
+      <if test="createTime != null" >
+        CREATETIME,
+      </if>
+      <if test="userId != null" >
+        USERID,
+      </if>
+      <if test="businessType != null" >
+        BUSINESSTYPE,
+      </if>
+      <if test="gxfw != null" >
+        GXFW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="gxfw != null" >
+        #{gxfw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Notice" >
+    update EA_PLATFORM_NOTICE
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USERNAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        UNITNAME = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        UNITCODE = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATETIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        BUSINESSTYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="gxfw != null" >
+        GXFW = #{gxfw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Notice" >
+    update EA_PLATFORM_NOTICE
+    set TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      USERNAME = #{userName,jdbcType=VARCHAR},
+      UNITNAME = #{unitName,jdbcType=VARCHAR},
+      UNITCODE = #{unitCode,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      BUSINESSTYPE = #{businessType,jdbcType=VARCHAR},
+      GXFW = #{gxfw,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

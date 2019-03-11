@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CaseStatusBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CaseStatusBean"
+               extends="com.model.mapper.CaseStatusMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CaseStatusMapper.Base_Column_List"/>
+    </sql>
+
+	<sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+         FROM EA_CASE_STATUS a
+    </sql>
+    <select id="findBeanByCaseId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="caseId != null || caseId !=''">
+                a.CASEID = #{caseId, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

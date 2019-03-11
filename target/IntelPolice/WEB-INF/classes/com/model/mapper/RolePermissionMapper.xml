@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.model.RolePermission" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PERMISSIONID" property="permissionId" jdbcType="VARCHAR" />
+    <result column="ROLEID" property="roleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PERMISSIONID, ROLEID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EAPERMISSION_ROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EAPERMISSION_ROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.RolePermission" >
+    insert into EAPERMISSION_ROLE (ID, PERMISSIONID, ROLEID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.RolePermission" >
+    insert into EAPERMISSION_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="permissionId != null" >
+        PERMISSIONID,
+      </if>
+      <if test="roleId != null" >
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.RolePermission" >
+    update EAPERMISSION_ROLE
+    <set >
+      <if test="permissionId != null" >
+        PERMISSIONID = #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLEID = #{roleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.RolePermission" >
+    update EAPERMISSION_ROLE
+    set PERMISSIONID = #{permissionId,jdbcType=VARCHAR},
+      ROLEID = #{roleId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,151 @@
+package com.utils;
+
+import com.constant.CommonConstant;
+import com.model.DataSyncTask;
+import org.apache.log4j.Logger;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Created by tl on 2018/5/21 0021.
+ *  记录 备份数据详情
+ */
+public class LogUtils {
+    private static Logger logger = Logger.getLogger(LogUtils.class);
+    /**
+     * 根据备份数据详情
+     * @param id                                      [必填]               主键
+     * @param executiondate                         [必填]               执行完成时间
+     * @param syncnum                                [必填]               执行数量
+     * @param syncstatus                             [必填]              同步状态
+     * @param executionvalue                        [必填]               执行详情值
+     * @param startDate                              [必填]               开始执行时间
+     * @throws Exception
+     */
+    public static void updateDataSyncLog(String id, Date executiondate, int syncnum, String syncstatus, String executionvalue, Date startDate) throws Exception{
+        Connection connection = DbUtils.getConnection("dbDataSync");
+        String updateSql = "update ea_data_synctask set executiondate = ? ,syncnum = ?, syncstatus = ?, executionvalue = ?, executionstartdate = ? where id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(updateSql);
+        preparedStatement.setTimestamp(1, new Timestamp(executiondate.getTime()));
+        preparedStatement.setString(2, syncnum+"");
+        preparedStatement.setString(3, syncstatus);
+        preparedStatement.setString(4, executionvalue);
+        preparedStatement.setTimestamp(5, new Timestamp(startDate.getTime()));
+        preparedStatement.setString(6, id);
+        logger.info("updatesql : "+updateSql);
+        preparedStatement.executeUpdate();
+        DbUtils.close(preparedStatement);
+        DbUtils.close(connection);
+    }
+
+    /**
+     * 插入下次备份时间信息
+     * @param id                                   主键
+     * @param nextDate                            下次任务执行时间
+     * @param dateStart                            数据库查询开始时间
+     * @param synctype                            是否自动同步
+     * @param synclable                           标签
+     * @param syncvalue                            所属类型
+     * @throws Exception
+     */
+    public static void insertDateSyncLog(String id, Date nextDate, Date dateStart, String synctype, String synclable, String syncvalue) throws Exception{
+        Connection connection = DbUtils.getConnection("dbDataSync");
+        String insertSql = "insert into ea_data_synctask (id,syncdate,synctype,synclable,syncvalue,datestarttime) VALUES (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
+        preparedStatement.setString(1, id);
+        preparedStatement.setTimestamp(2, new Timestamp(nextDate.getTime()));
+        preparedStatement.setString(3, synctype);
+        preparedStatement.setString(4, synclable);
+        preparedStatement.setString(5, syncvalue);
+        preparedStatement.setTimestamp(6, new Timestamp(dateStart.getTime()));
+
+        logger.info("生成下次备份时间  insertsql : "+insertSql);
+        preparedStatement.executeUpdate();
+        DbUtils.close(preparedStatement);
+        DbUtils.close(connection);
+    }
+
+    /**
+     * 查询执行时间
+     * @param syncvalue             [必填]        syncvalue 类型
+     * @return
+     * @throws Exception
+     */
+    public static DataSyncTask findDataSyncTaskBySyncvalue(String syncvalue, String dataend_time) throws Exception{
+       //取得数据备份连接
+        Connection logConn = DbUtils.getConnection("dbDataSync");
+        List<DataSyncTask> list = null;
+        // sql
+        String selectDateStr = "select id,to_char(syncdate,'yyyy-MM-dd HH24:mi:ss') syncdate,synctype,to_char(executiondate,'yyyy-MM-dd HH24:mi:ss') executiondate,syncnum,syncstatus," +
+                "synclable,syncvalue,executionvalue,to_char(datestarttime,'yyyy-MM-dd HH24:mi:ss') datestarttime,to_char(dataendtime,'yyyy-MM-dd HH24:mi:ss') dataendtime from ea_data_synctask where" +
+                " executiondate is null and syncstatus is null and synctype = '0' and syncvalue = '" + syncvalue + "'";
+
+        //执行sql
+        list = DbUtils.selectData(selectDateStr, logConn, DataSyncTask.class);
+
+        //判断结果
+        if (list.size() == 0) {
+            throw new RuntimeException(syncvalue+"没有需要备份的时间" + list.size());
+        }else if (list.size() != 1) {
+            throw new RuntimeException(syncvalue+"备份时间出错:" + list.size());
+        }
+
+        //取得当前的任务，并添加同步数据结束时间，，同一个模块的数据备份只能同时存在一个待执行的数据行
+        DataSyncTask dataSyncTaskModel = list.get(0);
+
+        //开始时间
+        String dateStrat = dataSyncTaskModel.getDatestarttime();
+
+        //判断查询开始时间是否小于当前时间，判断结束时间是否小于当前时间
+        if (DateUtils.isAfterNow(new Timestamp(DateUtils.stringToDate(dateStrat, DateUtils.DEFAULT_DATE_PATTERN).getTime()))){
+            logger.info(dateStrat + "不做查询");
+            throw new RuntimeException(syncvalue+"备份时间出错:" + list.size());
+        }
+
+        //计算  同步数据结束时间
+        Date datestarttime = DateUtils.stringToDate(dataSyncTaskModel.getDatestarttime(), DateUtils.DEFAULT_DATE_PATTERN);
+        String endtime = PropertiesUtils.getConfigForPropertiesNameAndKey(dataend_time, "System");
+        Date dataendtime = null;
+
+        if (endtime==null || endtime.equals("") || Integer.parseInt(endtime)==0){
+            dataendtime = DateUtils.getCurrentDate();
+        }else {
+            dataendtime = DateUtils.add(datestarttime, Calendar.SECOND, Integer.parseInt(endtime));
+        }
+        //判断结束时间，不能超出当前时间
+        if (DateUtils.isAfterNow(new Timestamp(dataendtime.getTime()))){
+            dataendtime = DateUtils.getCurrentDate();
+        }
+        //更新  同步数据结束时间  sql
+        String  updateDateEndTimeSql = "update ea_data_synctask set dataendtime = ? where id = ? and dataendtime is null";
+
+        PreparedStatement updateDateEndTimePreparedStatement = logConn.prepareStatement(updateDateEndTimeSql);
+        updateDateEndTimePreparedStatement.setTimestamp(1, new Timestamp(dataendtime.getTime()));
+        updateDateEndTimePreparedStatement.setString(2, dataSyncTaskModel.getId());
+        updateDateEndTimePreparedStatement.executeUpdate();
+
+        //重新查询，同步时间任务，必须从数据库重新查询，防止直接从数据库修改数据
+
+        String selectIdById = "select id,to_char(syncdate,'yyyy-MM-dd HH24:mi:ss') syncdate,synctype,to_char(executiondate,'yyyy-MM-dd HH24:mi:ss') executiondate," +
+                "syncnum,syncstatus,synclable,syncvalue,executionvalue,to_char(datestarttime,'yyyy-MM-dd HH24:mi:ss') datestarttime,to_char(dataendtime,'yyyy-MM-dd HH24:mi:ss') dataendtime from ea_data_synctask where id = '"+dataSyncTaskModel.getId()+"'";
+
+        List<DataSyncTask> resultList = DbUtils.selectData(selectIdById, logConn, DataSyncTask.class);
+        DbUtils.close(logConn);
+        return resultList.get(0);
+    }
+
+    public static Date addDate(Date execDate) throws Exception{
+       return DateUtils.add(execDate, Calendar.SECOND, Integer.parseInt(PropertiesUtils.getConfigForPropertiesNameAndKey(CommonConstant.SYNCHDATE, "System")));
+    }
+
+    public static void dd(String startDate, String endDate){
+
+    }
+}

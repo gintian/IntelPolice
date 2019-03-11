@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.RecordPersonMapper" >
+  <resultMap id="BaseResultMap" type="com.model.RecordPerson" >
+    <id column="PERSONID" property="personId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="PIC" property="pic" jdbcType="VARCHAR" />
+    <result column="ISRDDB" property="isrddb" jdbcType="VARCHAR" />
+    <result column="BXWRADDR" property="bxwrAddr" jdbcType="VARCHAR" />
+    <result column="BXWRPHONE" property="bxwrPhone" jdbcType="VARCHAR" />
+    <result column="ADDTIME" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="ADDUSER" property="addUser" jdbcType="VARCHAR" />
+    <result column="MODIFYTIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFYUSER" property="modifyUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PERSONID, NAME, IDCARD, PIC, ISRDDB, BXWRADDR, BXWRPHONE, ADDTIME, ADDUSER, MODIFYTIME, 
+    MODIFYUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_RECORD_PERSON
+    where PERSONID = #{personId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_RECORD_PERSON
+    where PERSONID = #{personId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.RecordPerson" >
+    insert into EA_RECORD_PERSON (PERSONID, NAME, IDCARD, 
+      PIC, ISRDDB, BXWRADDR, 
+      BXWRPHONE, ADDTIME, ADDUSER, 
+      MODIFYTIME, MODIFYUSER)
+    values (#{personId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR},
+      #{pic,jdbcType=VARCHAR}, #{isrddb,jdbcType=VARCHAR}, #{bxwrAddr,jdbcType=VARCHAR},
+      #{bxwrPhone,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR},
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.RecordPerson" >
+    insert into EA_RECORD_PERSON
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        PERSONID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="idcard != null" >
+        IDCARD,
+      </if>
+      <if test="pic != null" >
+        PIC,
+      </if>
+      <if test="isrddb != null" >
+        ISRDDB,
+      </if>
+      <if test="bxwrAddr != null" >
+        BXWRADDR,
+      </if>
+      <if test="bxwrPhone != null" >
+        BXWRPHONE,
+      </if>
+      <if test="addTime != null" >
+        ADDTIME,
+      </if>
+      <if test="addUser != null" >
+        ADDUSER,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFYTIME,
+      </if>
+      <if test="modifyUser != null" >
+        MODIFYUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="isrddb != null" >
+        #{isrddb,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwrAddr != null" >
+        #{bxwrAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwrPhone != null" >
+        #{bxwrPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.RecordPerson" >
+    update EA_RECORD_PERSON
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        PIC = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="isrddb != null" >
+        ISRDDB = #{isrddb,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwrAddr != null" >
+        BXWRADDR = #{bxwrAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwrPhone != null" >
+        BXWRPHONE = #{bxwrPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        ADDUSER = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        MODIFYUSER = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERSONID = #{personId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.RecordPerson" >
+    update EA_RECORD_PERSON
+    set NAME = #{name,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      PIC = #{pic,jdbcType=VARCHAR},
+      ISRDDB = #{isrddb,jdbcType=VARCHAR},
+      BXWRADDR = #{bxwrAddr,jdbcType=VARCHAR},
+      BXWRPHONE = #{bxwrPhone,jdbcType=VARCHAR},
+      ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+      ADDUSER = #{addUser,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyUser,jdbcType=VARCHAR}
+    where PERSONID = #{personId,jdbcType=VARCHAR}
+  </update>
+</mapper>

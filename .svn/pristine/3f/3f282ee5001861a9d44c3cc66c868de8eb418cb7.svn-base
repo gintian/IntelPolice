@@ -1,0 +1,5 @@
+
+user.selectSql=userid,loginid,loginpw,userstate,usertype,userlevel,name,policenumber,unitid,sex,birthday,phone,mobile,smstype,email,sfzh,logintime,lastloginip,lastlogindate,createtime,createpsn,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,remarkpw,ispki,changepkitime,ifblink,msgrlsh,lyds,hck_rksj,hck_gxsj
+user.insertSql=userid,loginid,loginpw,userstate,usertype,userlevel,name,policenumber,unitid,sex,birthday,phone,mobile,smstype,email,sfzh,logintime,lastloginip,lastlogindate,createtime,createpsn,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,remarkpw,ispki,changepkitime,ifblink,msgrlsh,lyds,hck_rksj,hck_gxsj
+user.principalFileName=userid
+user.tableName=bpip_user

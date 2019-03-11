@@ -1,0 +1,130 @@
+
+#\u6848\u4EF6\u57FA\u672C\u4FE1\u606F
+case_m_110cmd.selectSql=id,sjbh,bjsj,zlxfsj,bjrxm,bjrdh,fadd,bjnr,jjyxm,zdcjdw,jcjxtbh,zlddsj,status,cjr,caseid,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,iffk,ifjjcl,lyds,hck_rksj,hck_gxsj
+case_m_110cmd.insertSql=id,sjbh,bjsj,zlxfsj,bjrxm,bjrdh,fadd,bjnr,jjyxm,zdcjdw,jcjxtbh,zlddsj,status,cjr,caseid,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,iffk,ifjjcl,lyds,hck_rksj,hck_gxsj
+case_m_110cmd.principalFileName=sjbh
+case_m_110cmd.tableName=case_m_110cmd
+#case_m_110cmd.areaId=jcjxtbh
+case_m_110cmd.areaId=sjbh like '${areaId}%'
+
+#\u6848\u4EF6\u57FA\u672C\u4FE1\u606F
+case_m_criminal.selectSql=caseid,casename,casewhid,caseclass,casesort,superintendlevel,secrecylevel,casestate,discovertimestart,discovertimeend,casetimestart,casetimeend,countries,districtcode,community,caseaddress,longitude,latitude,dienum,lnjurenum,lossvalue,iffremdness,details,ifarchive,unionflag,maincaseid,inputunit,isagainst,ismurder,isgun,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,casekeyword,markedrate,casereason,ifdetention,businesstype,ifuptraffick,ifupgun,ifupblackmail,ifupmurder,makupreason,makeupcode,disposeunit,reportime,reportmode,receivepsn,receiveunit,alarmtype,arrivetime,policenum,policeassnum,voiturenum,boatnum,salvationpeo,salvationwou,rescuehnum,rescuewnum,rescueynum,censornum,disposepsn,disposepsn2,disposedetails,disposeresult,disposeopinion,ifspotfine,ifspotreconcile,reportdetails,ifappdel,ifclassified,casekind,rvcallno,xq,crossregionno,dqbldw,is_xk_xx,is_xk_scxt,is_bsws_pack,isupdurg,updurgtime,totalvalue,kno,lyds,hck_rksj,hck_gxsj,canhf_pdbz,csjjyy,sfzc_pdbz,zjsl_pdbz
+case_m_criminal.insertSql=caseid,casename,casewhid,caseclass,casesort,superintendlevel,secrecylevel,casestate,discovertimestart,discovertimeend,casetimestart,casetimeend,countries,districtcode,community,caseaddress,longitude,latitude,dienum,lnjurenum,lossvalue,iffremdness,details,ifarchive,unionflag,maincaseid,inputunit,isagainst,ismurder,isgun,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,casekeyword,markedrate,casereason,ifdetention,businesstype,ifuptraffick,ifupgun,ifupblackmail,ifupmurder,makupreason,makeupcode,disposeunit,reportime,reportmode,receivepsn,receiveunit,alarmtype,arrivetime,policenum,policeassnum,voiturenum,boatnum,salvationpeo,salvationwou,rescuehnum,rescuewnum,rescueynum,censornum,disposepsn,disposepsn2,disposedetails,disposeresult,disposeopinion,ifspotfine,ifspotreconcile,reportdetails,ifappdel,ifclassified,casekind,rvcallno,xq,crossregionno,dqbldw,is_xk_xx,is_xk_scxt,is_bsws_pack,isupdurg,updurgtime,totalvalue,kno,lyds,hck_rksj,hck_gxsj,canhf_pdbz,csjjyy,sfzc_pdbz,zjsl_pdbz
+case_m_criminal.principalFileName=caseid
+case_m_criminal.tableName=case_m_criminal
+#case_m_criminal.areaId=districtcode
+case_m_criminal.areaId=caseid like 'A${areaId}%'
+
+
+#\u6848\u4EF6\u4E1A\u52A1\u4FE1\u606F
+case_s_caseinfo.selectSql=caseid,accepttime,acceptunit,acceptmode,acceptperson1,acceptperson2,acceptidea,leaderinstraction,results,casesource,transferunit,investigateunit,casemode,investigatetime,criminalperson,securitycharger,fuzzpsn1,fuzzpsn2,detectmeasures,noinvesreason,renewreason,solvetag,solvetime,removereason,endcasereason,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,transferpsn,transfercall,auditingunit,auditingperson,solvesegment,solveunit,solvedepartment,adidanceunit,adidancedepart,detectiontime,revocationtime,closedtime,detectiontag,revocationtag,closedtag,makupreason,makeupcode,ifrelated,ifprocessend,processendtime,iftermination,terminationtime,invaduperson,isrenew,acceptinputtime,investinputtime,detecinputtime,revoinputtime,closeinputtime,proendinputtime,terminputtime,sftypa,detentionperson,detentionapptime,dqbldw,otherprovincesunit,drugsolvebranch,matjsj,apstatus,bkreason,fdetectiontime,lyds,hck_rksj,hck_gxsj
+case_s_caseinfo.insertSql=caseid,accepttime,acceptunit,acceptmode,acceptperson1,acceptperson2,acceptidea,leaderinstraction,results,casesource,transferunit,investigateunit,casemode,investigatetime,criminalperson,securitycharger,fuzzpsn1,fuzzpsn2,detectmeasures,noinvesreason,renewreason,solvetag,solvetime,removereason,endcasereason,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,transferpsn,transfercall,auditingunit,auditingperson,solvesegment,solveunit,solvedepartment,adidanceunit,adidancedepart,detectiontime,revocationtime,closedtime,detectiontag,revocationtag,closedtag,makupreason,makeupcode,ifrelated,ifprocessend,processendtime,iftermination,terminationtime,invaduperson,isrenew,acceptinputtime,investinputtime,detecinputtime,revoinputtime,closeinputtime,proendinputtime,terminputtime,sftypa,detentionperson,detentionapptime,dqbldw,otherprovincesunit,drugsolvebranch,matjsj,apstatus,bkreason,fdetectiontime,lyds,hck_rksj,hck_gxsj
+case_s_caseinfo.principalFileName=caseid
+case_s_caseinfo.tableName=case_s_caseinfo
+case_s_caseinfo.areaId= caseid like 'A${areaId}%'
+
+
+#\u6848\u4EF6\u9636\u6BB5\u60C5\u51B5\u8868
+case_s_progress.selectSql=id,caseid,progressid,unitid,organizerid,cowereid,starttime,endtime,currentstage,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_progress.insertSql=id,caseid,progressid,unitid,organizerid,cowereid,starttime,endtime,currentstage,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_progress.principalFileName=id
+case_s_progress.tableName=case_s_progress
+case_s_progress.areaId= id like '${areaId}%'
+
+#\u6848\u4EF6\u79FB\u9001\u4FE1\u606F\u8868
+case_s_move.selectSql=id,caseid,olddep,olduser1,olduser2,newdep,newuser1,newuser2,movetype,movetime,movereason,approver,approvalstatus,approvalview,receivestatus,approvaltime,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,orecieveunit,ispackage,pacjagetime,isreceivemove,isnewrecord,lyds,hck_rksj,hck_gxsj
+case_s_move.insertSql=id,caseid,olddep,olduser1,olduser2,newdep,newuser1,newuser2,movetype,movetime,movereason,approver,approvalstatus,approvalview,receivestatus,approvaltime,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,orecieveunit,ispackage,pacjagetime,isreceivemove,isnewrecord,lyds,hck_rksj,hck_gxsj
+case_s_move.principalFileName=id
+case_s_move.tableName=case_s_move
+case_s_move.areaId= id like '${areaId}%'
+
+#\u62A5\u6848\u4EBA/\u53D7\u5BB3\u4EBA\u4EBA\u5458\u6848\u4EF6\u5173\u8054\u8868
+case_r_sufferpsn.selectSql=id,caseid,personid,repnexusdis,relation,reportmode,receivepsn,aggrievedtimelimit,aggrievedtimelower,injurycause,injurytools,cropsesituation,infringement,damagefeature,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,clothessituation,ifup,ifupmurder,is_xk_scxt,reportmode2,lyds,hck_rksj,hck_gxsj
+case_r_sufferpsn.insertSql=id,caseid,personid,repnexusdis,relation,reportmode,receivepsn,aggrievedtimelimit,aggrievedtimelower,injurycause,injurytools,cropsesituation,infringement,damagefeature,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,clothessituation,ifup,ifupmurder,is_xk_scxt,reportmode2,lyds,hck_rksj,hck_gxsj
+case_r_sufferpsn.principalFileName=id
+case_r_sufferpsn.tableName=case_r_sufferpsn
+case_r_sufferpsn.areaId= id like 'G${areaId}%'
+
+#\u6848\u4EF6\u5220\u9664\u65E5\u5FD7\u8868
+case_s_dellog.selectSql=id,caseid,casename,reporttime,receiveunit,accepttime,acceptunit,datanum,reason,userid,unitid,ip,deletetime,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,caseinfo,lyds,hck_rksj,hck_gxsj
+case_s_dellog.insertSql=id,caseid,casename,reporttime,receiveunit,accepttime,acceptunit,datanum,reason,userid,unitid,ip,deletetime,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,caseinfo,lyds,hck_rksj,hck_gxsj
+case_s_dellog.principalFileName=id
+case_s_dellog.tableName=case_s_dellog
+case_s_dellog.areaId= caseid like 'A${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u6D89\u6848\u5ACC\u7591\u4EBA\u4EBA\u5458\u6848\u4EF6\u5173\u8054\u8868
+case_r_suspicionpsn.selectSql=id,caseid,personid,suspecttype,crimerole,crirecord,suspiciongist,approach,personestate,dateofcapture,captureprocess,xjapprovaltime,xjapprovaer,isxjapproval,detentiontime,detentionlength,detentionadd,ycjlapprovaltime,ycjlapprovaer,isycjlapproval,ycdetentiontime,qbhsapprovaltime,qbhsapprovaer,isqbhsapproval,bailtime,jsjzapprovaltime,jsjzapprovaer,isjsjzapproval,surveillancetime,requestarresttime,arrestapprovaltime,isarrestapproval,arresttime,arrestrefuse,drewreviewtime,drewreviewer,isfyapproval,arrestviewertime,arrestreviewtime,arrestreviewer,isfhapproval,isysqsapproval,prosecutedtime,prosecutedcharge,notprosecutereason,continueinvereason,continueinvetime,completeinvetimea,completeinvetimeb,prosecutionapptime,prosecutionapper,ispzqsapproval,prosecutereviewtime,qstqreviewapptime,qstqreviewapproval,isaqsfhpproval,prosecutionreviewtime,otherapprovaltime,otherapprovaer,isotherapproval,otherdeal,detentionlimit,detentionplace,casetreatmenttype,adminpenaltyapptime,adminpenaltyapper,isxzcfapproval,iswarningpunish,finesno,admindetentiontime,isconfiscation,isorderedcease,iswithheldlicenses,other,adminpenaltytime,pursuitapptime,pursuitapprovaer,pursuitapprovaltime,ispursuit,pursuitno,trackapptime,trackapper,isjkapproval,excludetime,excludereason,isexclude,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,disputeinterval,footholdadd,ifuptraffick,ifupgun,ifupblackmail,tqarrestreviewtime,isfypzapproval,ifupmurder,xjreviewed,ycjlreviewed,qbhsreviewed,jsjzreviewed,arrestreviewed,arrestrefreviewed,prosecutreviewed,continuereviewed,otherreviewed,adminpenalreviewed,qzgljdshr,ldjyshr,detoxifretime,detentionretime,detoxifreviewed,detentionreviewed,arrestapprovaer,arrestrefapprovaer,prosecutapprovaer,continueapprovaer,detoxifapprovaer,detentionapprovaer,xjtransactor,ycjltransactor,qbhstransactor,jsjztransactor,arresttransactor,arrestreftransactor,drewtransactor,arrvtransactor,arreviewtransactor,prosecuttransactor,conttransactor,prostransactor,prosectransactor,othertransactor,detoxiftransactor,dettransactor,admintransactor,requesttransactor,requestapprovaer,requestreviewed,isrequestapproval,isarrestref,isconttran,prosereviewed,qstqreviewed,isdetoxif,isdetention,trackactor,trackreviewed,pursuitactor,pursuitreviewed,arrestrevieweder,isedit,isconttran2,isfhpzapproval,isfines,isadmindetention,isfinesdetention,sqjdransactor,sqjdreviewer,sqjdapproved,sqjdapprovaltime,ifsqjd,sqkfactor,sqkfreviewer,sqkfapproval,sqkfapprovaltime,issqkf,srjyactor,srjyreviewer,srjyapproved,srjyapprovaltime,issrjy,sjepeople,sjaudit,sjapproved,sjapprovedtime,issj,continueinvetimeb,isonrun,issrjys,iszydetoxif,srjysactor,srjysapprovaltime,srjysapproved,srjysreviewer,iszaiya,toarresttime,istoarrest,arrestmanner,islimitexport,limitreason,limitdate,specialgroup,lyds,hck_rksj,hck_gxsj
+case_r_suspicionpsn.insertSql=id,caseid,personid,suspecttype,crimerole,crirecord,suspiciongist,approach,personestate,dateofcapture,captureprocess,xjapprovaltime,xjapprovaer,isxjapproval,detentiontime,detentionlength,detentionadd,ycjlapprovaltime,ycjlapprovaer,isycjlapproval,ycdetentiontime,qbhsapprovaltime,qbhsapprovaer,isqbhsapproval,bailtime,jsjzapprovaltime,jsjzapprovaer,isjsjzapproval,surveillancetime,requestarresttime,arrestapprovaltime,isarrestapproval,arresttime,arrestrefuse,drewreviewtime,drewreviewer,isfyapproval,arrestviewertime,arrestreviewtime,arrestreviewer,isfhapproval,isysqsapproval,prosecutedtime,prosecutedcharge,notprosecutereason,continueinvereason,continueinvetime,completeinvetimea,completeinvetimeb,prosecutionapptime,prosecutionapper,ispzqsapproval,prosecutereviewtime,qstqreviewapptime,qstqreviewapproval,isaqsfhpproval,prosecutionreviewtime,otherapprovaltime,otherapprovaer,isotherapproval,otherdeal,detentionlimit,detentionplace,casetreatmenttype,adminpenaltyapptime,adminpenaltyapper,isxzcfapproval,iswarningpunish,finesno,admindetentiontime,isconfiscation,isorderedcease,iswithheldlicenses,other,adminpenaltytime,pursuitapptime,pursuitapprovaer,pursuitapprovaltime,ispursuit,pursuitno,trackapptime,trackapper,isjkapproval,excludetime,excludereason,isexclude,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,disputeinterval,footholdadd,ifuptraffick,ifupgun,ifupblackmail,tqarrestreviewtime,isfypzapproval,ifupmurder,xjreviewed,ycjlreviewed,qbhsreviewed,jsjzreviewed,arrestreviewed,arrestrefreviewed,prosecutreviewed,continuereviewed,otherreviewed,adminpenalreviewed,qzgljdshr,ldjyshr,detoxifretime,detentionretime,detoxifreviewed,detentionreviewed,arrestapprovaer,arrestrefapprovaer,prosecutapprovaer,continueapprovaer,detoxifapprovaer,detentionapprovaer,xjtransactor,ycjltransactor,qbhstransactor,jsjztransactor,arresttransactor,arrestreftransactor,drewtransactor,arrvtransactor,arreviewtransactor,prosecuttransactor,conttransactor,prostransactor,prosectransactor,othertransactor,detoxiftransactor,dettransactor,admintransactor,requesttransactor,requestapprovaer,requestreviewed,isrequestapproval,isarrestref,isconttran,prosereviewed,qstqreviewed,isdetoxif,isdetention,trackactor,trackreviewed,pursuitactor,pursuitreviewed,arrestrevieweder,isedit,isconttran2,isfhpzapproval,isfines,isadmindetention,isfinesdetention,sqjdransactor,sqjdreviewer,sqjdapproved,sqjdapprovaltime,ifsqjd,sqkfactor,sqkfreviewer,sqkfapproval,sqkfapprovaltime,issqkf,srjyactor,srjyreviewer,srjyapproved,srjyapprovaltime,issrjy,sjepeople,sjaudit,sjapproved,sjapprovedtime,issj,continueinvetimeb,isonrun,issrjys,iszydetoxif,srjysactor,srjysapprovaltime,srjysapproved,srjysreviewer,iszaiya,toarresttime,istoarrest,arrestmanner,islimitexport,limitreason,limitdate,specialgroup,lyds,hck_rksj,hck_gxsj
+case_r_suspicionpsn.principalFileName=id
+case_r_suspicionpsn.tableName=case_r_suspicionpsn
+case_r_suspicionpsn.areaId= id like 'G${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u4F5C\u6848\u7279\u70B9\u8868
+case_s_peculiarity.selectSql=id,caseid,peculiarity,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_peculiarity.insertSql=id,caseid,peculiarity,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_peculiarity.principalFileName=id
+case_s_peculiarity.tableName=case_s_peculiarity
+case_s_peculiarity.areaId= id like 'AZ${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u6848\u4EF6\u8FDB\u5C55\u60C5\u51B5\u8868
+case_s_progresschange.selectSql=caseid,ifalarm,ifarrive,ifalarmstandcri,ifalarmstandadm,ifalarmdifpute,ifalarmrescue,ifalarmtransfer,ifalarmnosituation,ifacceptadm,ifdirectacceptadm,ifrevoadm,ifendadm,ifacceptcri,ifdirectacceptcri,ifinvestigate,ifmakeup,ifarchive,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_progresschange.insertSql=caseid,ifalarm,ifarrive,ifalarmstandcri,ifalarmstandadm,ifalarmdifpute,ifalarmrescue,ifalarmtransfer,ifalarmnosituation,ifacceptadm,ifdirectacceptadm,ifrevoadm,ifendadm,ifacceptcri,ifdirectacceptcri,ifinvestigate,ifmakeup,ifarchive,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_progresschange.principalFileName=caseid
+case_s_progresschange.tableName=case_s_progresschange
+case_s_progresschange.areaId= caseid like 'A${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u6848\u60C5\u5206\u6790\u8868
+case_s_resolve.selectSql=caseid,weather,special_day,times,chance,othertime,casezone,caselocation,casepart,ag_object,ag_target,invasivemethod,exporsure,camouflage,waytoescape,evidence,crime_stno,crime_edno,motive,crime_factors,availability,analysis,detail,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,crimeline,lineescape,ag_age,ag_identity,ag_preparation,ag_stress,ag_steal,ag_fraud,ag_prejudice,organization,crime_analysis,crime_type,crime_brand,crime_model,crime_platetypes,crime_platenumber,crime_color,ifdeck,ifrobbery,iflease,crime_toolname,crime_toolfeature,crime_featurea,crime_featureb,crime_featurec,crime_accord,ag_other,caseobject,casetarget,useway,sourcearea,transportway,involvedarea,publicway,involvedtrade,involvedinsure,monoline,source,saleway,salemethod,contractskind,involvednum,involvedvalue,pyramidway,falselysitu,lyds,hck_rksj,hck_gxsj
+case_s_resolve.insertSql=caseid,weather,special_day,times,chance,othertime,casezone,caselocation,casepart,ag_object,ag_target,invasivemethod,exporsure,camouflage,waytoescape,evidence,crime_stno,crime_edno,motive,crime_factors,availability,analysis,detail,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,crimeline,lineescape,ag_age,ag_identity,ag_preparation,ag_stress,ag_steal,ag_fraud,ag_prejudice,organization,crime_analysis,crime_type,crime_brand,crime_model,crime_platetypes,crime_platenumber,crime_color,ifdeck,ifrobbery,iflease,crime_toolname,crime_toolfeature,crime_featurea,crime_featureb,crime_featurec,crime_accord,ag_other,caseobject,casetarget,useway,sourcearea,transportway,involvedarea,publicway,involvedtrade,involvedinsure,monoline,source,saleway,salemethod,contractskind,involvednum,involvedvalue,pyramidway,falselysitu,lyds,hck_rksj,hck_gxsj
+case_s_resolve.principalFileName=caseid
+case_s_resolve.tableName=case_s_resolve
+case_s_resolve.areaId= caseid like 'A${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u4F5C\u6848\u624B\u6BB5\u8868
+case_s_resort.selectSql=id,caseid,resort,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_resort.insertSql=id,caseid,resort,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_s_resort.principalFileName=id
+case_s_resort.tableName=case_s_resort
+case_s_resort.areaId= id like 'AZ${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u7834\u9500\u6848\u8868
+case_s_solve.selectSql=caseid,solvemode1,solvemode2,solvemode3,commitnumber,commitmodality,commitreason,grouptype,groupname,ifgangdom,ifterrorist,storagemode,trafifickpattern,disposalmay,disposalmethod,disposalarea,disposalplace,rescuehnum,rescuewnum,rescueynum,crimefeature,crimeprocess,standardfirearmno,imitaionfirearmno,otherfirearmno,restoreloss,solvedetails,authorizepsn,authorizetime,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,iscollusion,collusion,ifarmtafifick,seizeno,collectiontotal,contacts,enterprisenum,enterprisename,ifsurvery,iflaunder,lyds,hck_rksj,hck_gxsj
+case_s_solve.insertSql=caseid,solvemode1,solvemode2,solvemode3,commitnumber,commitmodality,commitreason,grouptype,groupname,ifgangdom,ifterrorist,storagemode,trafifickpattern,disposalmay,disposalmethod,disposalarea,disposalplace,rescuehnum,rescuewnum,rescueynum,crimefeature,crimeprocess,standardfirearmno,imitaionfirearmno,otherfirearmno,restoreloss,solvedetails,authorizepsn,authorizetime,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,iscollusion,collusion,ifarmtafifick,seizeno,collectiontotal,contacts,enterprisenum,enterprisename,ifsurvery,iflaunder,lyds,hck_rksj,hck_gxsj
+case_s_solve.principalFileName=caseid
+case_s_solve.tableName=case_s_solve
+case_s_solve.areaId= caseid like 'A${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u5E76\u6848\u8BB0\u5F55\u8868
+case_union_record.selectSql=id,caseid,vicecaseid,precasestate,remark,unionstate,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_union_record.insertSql=id,caseid,vicecaseid,precasestate,remark,unionstate,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,lyds,hck_rksj,hck_gxsj
+case_union_record.principalFileName=id
+case_union_record.tableName=case_union_record
+case_union_record.areaId= caseid like 'A${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u7269\u54C1\u4FE1\u606F\u8868
+object_m_criminal.selectSql=objid,objecttype,objectname,producingarea,trademark,serialnumber,models,quality,weight,weightunit,amountunit,color1,color2,color3,otherfeature,annex,itemstats,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,amounts,model,purchasedate,purchaseadd,value,lyds,hck_rksj,hck_gxsj,is_xk_scxt,valuew,valueb,valuee
+object_m_criminal.insertSql=objid,objecttype,objectname,producingarea,trademark,serialnumber,models,quality,weight,weightunit,amountunit,color1,color2,color3,otherfeature,annex,itemstats,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,amounts,model,purchasedate,purchaseadd,value,lyds,hck_rksj,hck_gxsj,is_xk_scxt,valuew,valueb,valuee
+object_m_criminal.principalFileName=objid
+object_m_criminal.tableName=object_m_criminal
+object_m_criminal.areaId= objid like 'AZ${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u7269\u54C1\u6765\u6E90\u5173\u8054\u8868
+object_r_objectresource.selectSql=id,caseid,objid,personid,objsource,collectionunit,collectiondate,isevidence,relation,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,is_xk_scxt,lyds,hck_rksj,hck_gxsj
+object_r_objectresource.insertSql=id,caseid,objid,personid,objsource,collectionunit,collectiondate,isevidence,relation,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,is_xk_scxt,lyds,hck_rksj,hck_gxsj
+object_r_objectresource.principalFileName=id
+object_r_objectresource.tableName=object_r_objectresource
+object_r_objectresource.areaId= id like 'OZ${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u7269\u54C1\u56FE\u8C61\u8868
+object_s_photo.selectSql=id,objid,photo,photodescribe,sort,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,inputunit,lyds,hck_rksj,hck_gxsj
+object_s_photo.insertSql=id,objid,photo,photodescribe,sort,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,inputunit,lyds,hck_rksj,hck_gxsj
+object_s_photo.principalFileName=id
+object_s_photo.tableName=object_s_photo
+object_s_photo.areaId= objid like 'WP${areaId}%'
+
+#\u6848\u4E8B\u4EF6\u4EBA\u5458\u4FE1\u606F\u4E3B\u8868
+psn_m_criminal.selectSql=personid,name,spellname,usedname,usedspell,aliasname,aliasspell,nickname,nickspell,sex,ifmarry,idcardno,birthdayst,birthdayed,birthcode,birthdetail,nativeplace,tone,nation,politics,door,doordetail,address,addressdetail,culture,faith,thingexplain,telephone,qqno,email,job,otherspecialty,specialidentity,staturest,bodilyform,faceform,avoirdupois,footsize,shoesize,bloodtype,personestate,ifdrive,ifoftennet,addiction,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,headship,employunit,employaddress,haveseparation,ismigrantworker,istransientpop,istempregist,isservice,havepermit,haveresidence,haveemployment,sourceincome,nameofschool,istraining,havecertificate,activityarea,personstatus,reliability,classify,colltype,inputtype,ifdnainfo,markedrate,isedit,iscriminalpenalty,isdetentionsj,isadmindetention,isohterillegal,cjlb,tszwxtbz,cjrylx,cjdwbh,zwcqsjsj,bcpersonid,bccollecttype,lyds,hck_rksj,hck_gxsj
+psn_m_criminal.insertSql=personid,name,spellname,usedname,usedspell,aliasname,aliasspell,nickname,nickspell,sex,ifmarry,idcardno,birthdayst,birthdayed,birthcode,birthdetail,nativeplace,tone,nation,politics,door,doordetail,address,addressdetail,culture,faith,thingexplain,telephone,qqno,email,job,otherspecialty,specialidentity,staturest,bodilyform,faceform,avoirdupois,footsize,shoesize,bloodtype,personestate,ifdrive,ifoftennet,addiction,annex,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,headship,employunit,employaddress,haveseparation,ismigrantworker,istransientpop,istempregist,isservice,havepermit,haveresidence,haveemployment,sourceincome,nameofschool,istraining,havecertificate,activityarea,personstatus,reliability,classify,colltype,inputtype,ifdnainfo,markedrate,isedit,iscriminalpenalty,isdetentionsj,isadmindetention,isohterillegal,cjlb,tszwxtbz,cjrylx,cjdwbh,zwcqsjsj,bcpersonid,bccollecttype,lyds,hck_rksj,hck_gxsj
+psn_m_criminal.principalFileName=personid
+psn_m_criminal.tableName=psn_m_criminal
+psn_m_criminal.areaId= personid like 'R${areaId}%'

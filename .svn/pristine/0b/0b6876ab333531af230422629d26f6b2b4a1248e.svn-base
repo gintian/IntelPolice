@@ -1,0 +1,15 @@
+package com.service.mapper;
+
+import com.model.bean.CodeBean;
+import com.model.mapper.CodeMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * Created by tl on 2018/5/19 0019.
+ */
+public interface CodeBeanMapper extends CodeMapper {
+
+    List<CodeBean> findBeanListByField(@Param("field") String field);
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.service.mapper.UserBeanMapper">
+	<resultMap id="BaseResultMap" type="com.model.bean.UserBean"
+		extends="com.model.mapper.UserMapper.BaseResultMap">
+	</resultMap>
+	<sql id="Base_Column_List">
+		<include refid="com.model.mapper.UserMapper.Base_Column_List" />
+	</sql>
+	<sql id="selectFromUser">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		EAUSER
+	</sql>
+
+	<!-- 登录 -->
+	<select id="selectUserEqAccountAndPassword" resultMap="BaseResultMap" >
+		<include refid="selectFromUser" />
+		WHERE
+		ACCOUNT = #{account, jdbcType=VARCHAR}
+		AND
+		PASSWORD = #{password, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 通过account查询用户 -->
+	<select id="selectUserEqAccount" resultMap="BaseResultMap">
+		<include refid="selectFromUser" />
+		WHERE
+	    ACCOUNT = #{account}
+	</select>
+	
+	<!-- 通过名字查询用户 -->
+	<select id="selectUserEqName" resultMap="BaseResultMap">
+		<include refid="selectFromUser" />
+		<where>
+			<if test="entity,name!=null and entity.name!=''">
+				AND NAME = #{name}
+			</if>
+		</where>
+	</select>
+
+	<!-- 通过身份证号查询用户 -->
+	<select id="selectByIdentityCard" resultMap="BaseResultMap">
+		<include refid="selectFromUser" />
+		WHERE
+		IDENTITYCARD = #{identityCard}
+	</select>
+
+	<!--分页  start-->
+	<!-- 查询有多少条 -->
+	<select id="selectTotal" resultType="int">
+		 SELECT COUNT(*) FROM EAUSER sa
+        <where>
+			<include refid="queryPageSql"/>
+        </where>
+	</select>
+
+	<!-- 查询数据 -->
+	<select id="selectBeanPage" resultMap="BaseResultMap">
+		SELECT * FROM
+		 (SELECT ROWNUM AS rowno,sa.* FROM EAUSER sa
+        <where>
+			<include refid="queryPageSql"/>
+            	AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+       		ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+	</select>
+
+	<sql id="queryPageSql">
+		<choose>
+			<when test="entity.deptId != null and entity.deptId != ''">
+				AND sa.DEPTID = #{entity.deptId, jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				<if test="user.eqUserDeptId != null and user.eqUserDeptId != ''">
+					AND sa.DEPTID = #{user.eqUserDeptId, jdbcType=VARCHAR}
+				</if>
+				<if test="user.likeUserDeptId != null and user.likeUserDeptId != ''">
+					AND sa.DEPTID LIKE CONCAT(#{user.likeUserDeptId, jdbcType=VARCHAR}, '%')
+				</if>
+			</otherwise>
+		</choose>
+		<if test="entity.name != null and entity.name != ''">
+			AND sa.NAME LIKE '%'|| #{entity.name, jdbcType=VARCHAR}|| '%'
+		</if>
+		<if test="entity.userType != null and entity.userType != ''">
+			AND sa.USERTYPE = #{entity.userType, jdbcType=VARCHAR}
+		</if>
+		AND sa.STATUS = '1'
+	</sql>
+
+	<!--分页  end-->
+
+	<!--重置密码-->
+	<update id="resetPasswordByUserId">
+		UPDATE EAUSER
+		<set>
+			PASSWORD = #{password}
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper> 

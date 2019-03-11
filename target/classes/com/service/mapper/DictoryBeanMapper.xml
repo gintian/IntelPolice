@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.DictoryBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.DictoryBean"
+               extends="com.model.mapper.DictoryMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.DictoryMapper.Base_Column_List"/>
+    </sql>
+
+    <!--谨慎修改  公用-->
+    <sql id="Base_Column_List_1">
+      sa.ID, sa.LABEL, sa.VALUE, sa.DESCP, sa.TYPE, sa.PARENTID, sa.CHANGEIND, sa.SORT
+    </sql>
+    <!--谨慎修改  公用-->
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List_1"/>
+        FROM EADICTORY sa
+    </sql>
+
+    <!--分页相关 start-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,
+        sa.*
+        FROM EADICTORY sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.PARENTID ASC
+        ) table_alias WHERE table_alias.rowno > #{pageBean.pageNum}
+    </select>
+    <!--查询总条数-->
+    <select id="countTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EADICTORY sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页查询条件-->
+    <sql id="queryPageSql">
+        <if test="entity.label != null and entity.label != ''">
+            AND sa.LABEL LIKE CONCAT('%' , CONCAT(#{entity.label, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.parentId != null and entity.parentId != ''">
+            AND sa.PARENTID = #{entity.parentId, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID = #{entity.id, jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <!--分页相关 end-->
+
+    <!--根据类型查询-->
+    <select id="findBeanByType" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.TYPE = #{type}
+        </where>
+        ORDER BY sa.SORT
+    </select>
+
+    <!--根据父类id 查询总条数-->
+    <select id="selectCountByParentId" resultType="java.lang.Integer">
+        SELECT count(sa.ID) FROM EADICTORY sa
+        <where>
+            sa.PARENTID = #{parentId}
+        </where>
+    </select>
+</mapper>

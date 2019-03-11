@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.model.mapper.LYMapper">
+  <resultMap id="BaseResultMap" type="com.model.LY">
+    <id column="LYBH" jdbcType="VARCHAR" property="lybh" />
+    <result column="DHLX" jdbcType="VARCHAR" property="dhlx" />
+    <result column="DHHM" jdbcType="VARCHAR" property="dhhm" />
+    <result column="ZXH" jdbcType="VARCHAR" property="zxh" />
+    <result column="CZYBH" jdbcType="VARCHAR" property="czybh" />
+    <result column="LYKSSJ" jdbcType="DATE" property="lykssj" />
+    <result column="LYJSSJ" jdbcType="DATE" property="lyjssj" />
+    <result column="JJDBH" jdbcType="VARCHAR" property="jjdbh" />
+    <result column="BCDHHM" jdbcType="VARCHAR" property="bcdhhm" />
+    <result column="BJHM" jdbcType="VARCHAR" property="bjhm" />
+    <result column="XZQHDM" jdbcType="VARCHAR" property="xzqhdm" />
+    <result column="RKSJC" jdbcType="DATE" property="rksjc" />
+    <result column="GXSJC" jdbcType="DATE" property="gxsjc" />
+    <result column="LYFW" jdbcType="VARCHAR" property="lyfw" />
+    <result column="SSXT" jdbcType="VARCHAR" property="ssxt" />
+    <result column="HCK_RKSJ" jdbcType="DATE" property="hckRksj" />
+    <result column="HCK_GXSJ" jdbcType="DATE" property="hckGxsj" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LYBH, DHLX, DHHM, ZXH, CZYBH, LYKSSJ, LYJSSJ, JJDBH, BCDHHM, BJHM, XZQHDM, RKSJC, 
+    GXSJC, LYFW, SSXT, HCK_RKSJ, HCK_GXSJ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LYDB
+    where LYBH = #{lybh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from LYDB
+    where LYBH = #{lybh,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.LY">
+    insert into LYDB (LYBH, DHLX, DHHM, 
+      ZXH, CZYBH, LYKSSJ, LYJSSJ, 
+      JJDBH, BCDHHM, BJHM, 
+      XZQHDM, RKSJC, GXSJC, LYFW, 
+      SSXT, HCK_RKSJ, HCK_GXSJ)
+    values (#{lybh,jdbcType=VARCHAR}, #{dhlx,jdbcType=VARCHAR}, #{dhhm,jdbcType=VARCHAR}, 
+      #{zxh,jdbcType=VARCHAR}, #{czybh,jdbcType=VARCHAR}, #{lykssj,jdbcType=DATE}, #{lyjssj,jdbcType=DATE}, 
+      #{jjdbh,jdbcType=VARCHAR}, #{bcdhhm,jdbcType=VARCHAR}, #{bjhm,jdbcType=VARCHAR}, 
+      #{xzqhdm,jdbcType=VARCHAR}, #{rksjc,jdbcType=DATE}, #{gxsjc,jdbcType=DATE}, #{lyfw,jdbcType=VARCHAR}, 
+      #{ssxt,jdbcType=VARCHAR}, #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.LY">
+    insert into LYDB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lybh != null">
+        LYBH,
+      </if>
+      <if test="dhlx != null">
+        DHLX,
+      </if>
+      <if test="dhhm != null">
+        DHHM,
+      </if>
+      <if test="zxh != null">
+        ZXH,
+      </if>
+      <if test="czybh != null">
+        CZYBH,
+      </if>
+      <if test="lykssj != null">
+        LYKSSJ,
+      </if>
+      <if test="lyjssj != null">
+        LYJSSJ,
+      </if>
+      <if test="jjdbh != null">
+        JJDBH,
+      </if>
+      <if test="bcdhhm != null">
+        BCDHHM,
+      </if>
+      <if test="bjhm != null">
+        BJHM,
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM,
+      </if>
+      <if test="rksjc != null">
+        RKSJC,
+      </if>
+      <if test="gxsjc != null">
+        GXSJC,
+      </if>
+      <if test="lyfw != null">
+        LYFW,
+      </if>
+      <if test="ssxt != null">
+        SSXT,
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lybh != null">
+        #{lybh,jdbcType=VARCHAR},
+      </if>
+      <if test="dhlx != null">
+        #{dhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="dhhm != null">
+        #{dhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zxh != null">
+        #{zxh,jdbcType=VARCHAR},
+      </if>
+      <if test="czybh != null">
+        #{czybh,jdbcType=VARCHAR},
+      </if>
+      <if test="lykssj != null">
+        #{lykssj,jdbcType=DATE},
+      </if>
+      <if test="lyjssj != null">
+        #{lyjssj,jdbcType=DATE},
+      </if>
+      <if test="jjdbh != null">
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="bcdhhm != null">
+        #{bcdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjhm != null">
+        #{bjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="lyfw != null">
+        #{lyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="ssxt != null">
+        #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.LY">
+    update LYDB
+    <set>
+      <if test="dhlx != null">
+        DHLX = #{dhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="dhhm != null">
+        DHHM = #{dhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zxh != null">
+        ZXH = #{zxh,jdbcType=VARCHAR},
+      </if>
+      <if test="czybh != null">
+        CZYBH = #{czybh,jdbcType=VARCHAR},
+      </if>
+      <if test="lykssj != null">
+        LYKSSJ = #{lykssj,jdbcType=DATE},
+      </if>
+      <if test="lyjssj != null">
+        LYJSSJ = #{lyjssj,jdbcType=DATE},
+      </if>
+      <if test="jjdbh != null">
+        JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="bcdhhm != null">
+        BCDHHM = #{bcdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjhm != null">
+        BJHM = #{bjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM = #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        RKSJC = #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        GXSJC = #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="lyfw != null">
+        LYFW = #{lyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="ssxt != null">
+        SSXT = #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ = #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ = #{hckGxsj,jdbcType=DATE},
+      </if>
+    </set>
+    where LYBH = #{lybh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.LY">
+    update LYDB
+    set DHLX = #{dhlx,jdbcType=VARCHAR},
+      DHHM = #{dhhm,jdbcType=VARCHAR},
+      ZXH = #{zxh,jdbcType=VARCHAR},
+      CZYBH = #{czybh,jdbcType=VARCHAR},
+      LYKSSJ = #{lykssj,jdbcType=DATE},
+      LYJSSJ = #{lyjssj,jdbcType=DATE},
+      JJDBH = #{jjdbh,jdbcType=VARCHAR},
+      BCDHHM = #{bcdhhm,jdbcType=VARCHAR},
+      BJHM = #{bjhm,jdbcType=VARCHAR},
+      XZQHDM = #{xzqhdm,jdbcType=VARCHAR},
+      RKSJC = #{rksjc,jdbcType=DATE},
+      GXSJC = #{gxsjc,jdbcType=DATE},
+      LYFW = #{lyfw,jdbcType=VARCHAR},
+      SSXT = #{ssxt,jdbcType=VARCHAR},
+      HCK_RKSJ = #{hckRksj,jdbcType=DATE},
+      HCK_GXSJ = #{hckGxsj,jdbcType=DATE}
+    where LYBH = #{lybh,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.LY">
+    <result column="LYBH" jdbcType="VARCHAR" property="lybh" />
+    <result column="DHLX" jdbcType="VARCHAR" property="dhlx" />
+    <result column="DHHM" jdbcType="VARCHAR" property="dhhm" />
+    <result column="ZXH" jdbcType="VARCHAR" property="zxh" />
+    <result column="CZYBH" jdbcType="VARCHAR" property="czybh" />
+    <result column="LYKSSJ" jdbcType="DATE" property="lykssj" />
+    <result column="LYJSSJ" jdbcType="DATE" property="lyjssj" />
+    <result column="JJDBH" jdbcType="VARCHAR" property="jjdbh" />
+    <result column="BCDHHM" jdbcType="VARCHAR" property="bcdhhm" />
+    <result column="BJHM" jdbcType="VARCHAR" property="bjhm" />
+    <result column="XZQHDM" jdbcType="VARCHAR" property="xzqhdm" />
+    <result column="RKSJC" jdbcType="DATE" property="rksjc" />
+    <result column="GXSJC" jdbcType="DATE" property="gxsjc" />
+    <result column="LYFW" jdbcType="VARCHAR" property="lyfw" />
+    <result column="SSXT" jdbcType="VARCHAR" property="ssxt" />
+    <result column="HCK_RKSJ" jdbcType="DATE" property="hckRksj" />
+    <result column="HCK_GXSJ" jdbcType="DATE" property="hckGxsj" />
+  </resultMap>
+  <insert id="insert" parameterType="com.model.LY">
+    insert into LYDB (LYBH, DHLX, DHHM, 
+      ZXH, CZYBH, LYKSSJ, LYJSSJ, 
+      JJDBH, BCDHHM, BJHM, 
+      XZQHDM, RKSJC, GXSJC, LYFW, 
+      SSXT, HCK_RKSJ, HCK_GXSJ)
+    values (#{lybh,jdbcType=VARCHAR}, #{dhlx,jdbcType=VARCHAR}, #{dhhm,jdbcType=VARCHAR}, 
+      #{zxh,jdbcType=VARCHAR}, #{czybh,jdbcType=VARCHAR}, #{lykssj,jdbcType=DATE}, #{lyjssj,jdbcType=DATE}, 
+      #{jjdbh,jdbcType=VARCHAR}, #{bcdhhm,jdbcType=VARCHAR}, #{bjhm,jdbcType=VARCHAR}, 
+      #{xzqhdm,jdbcType=VARCHAR}, #{rksjc,jdbcType=DATE}, #{gxsjc,jdbcType=DATE}, #{lyfw,jdbcType=VARCHAR}, 
+      #{ssxt,jdbcType=VARCHAR}, #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.LY">
+    insert into LYDB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lybh != null">
+        LYBH,
+      </if>
+      <if test="dhlx != null">
+        DHLX,
+      </if>
+      <if test="dhhm != null">
+        DHHM,
+      </if>
+      <if test="zxh != null">
+        ZXH,
+      </if>
+      <if test="czybh != null">
+        CZYBH,
+      </if>
+      <if test="lykssj != null">
+        LYKSSJ,
+      </if>
+      <if test="lyjssj != null">
+        LYJSSJ,
+      </if>
+      <if test="jjdbh != null">
+        JJDBH,
+      </if>
+      <if test="bcdhhm != null">
+        BCDHHM,
+      </if>
+      <if test="bjhm != null">
+        BJHM,
+      </if>
+      <if test="xzqhdm != null">
+        XZQHDM,
+      </if>
+      <if test="rksjc != null">
+        RKSJC,
+      </if>
+      <if test="gxsjc != null">
+        GXSJC,
+      </if>
+      <if test="lyfw != null">
+        LYFW,
+      </if>
+      <if test="ssxt != null">
+        SSXT,
+      </if>
+      <if test="hckRksj != null">
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null">
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lybh != null">
+        #{lybh,jdbcType=VARCHAR},
+      </if>
+      <if test="dhlx != null">
+        #{dhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="dhhm != null">
+        #{dhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zxh != null">
+        #{zxh,jdbcType=VARCHAR},
+      </if>
+      <if test="czybh != null">
+        #{czybh,jdbcType=VARCHAR},
+      </if>
+      <if test="lykssj != null">
+        #{lykssj,jdbcType=DATE},
+      </if>
+      <if test="lyjssj != null">
+        #{lyjssj,jdbcType=DATE},
+      </if>
+      <if test="jjdbh != null">
+        #{jjdbh,jdbcType=VARCHAR},
+      </if>
+      <if test="bcdhhm != null">
+        #{bcdhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjhm != null">
+        #{bjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqhdm != null">
+        #{xzqhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="rksjc != null">
+        #{rksjc,jdbcType=DATE},
+      </if>
+      <if test="gxsjc != null">
+        #{gxsjc,jdbcType=DATE},
+      </if>
+      <if test="lyfw != null">
+        #{lyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="ssxt != null">
+        #{ssxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null">
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null">
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

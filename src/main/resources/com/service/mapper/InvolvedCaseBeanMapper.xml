@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.InvolvedCaseBeanMapper">
+	<resultMap id="BaseResultMap" type="com.model.bean.InvolvedCaseBean"
+               extends="com.model.mapper.InvolvedCaseMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.InvolvedCaseMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM EA_INVOLVED_CASE sa
+    </sql>
+    <!-- 分页查询sql -->
+    <sql id="queryPagesql">
+        <if test="entity.caseId != null and entity.caseId != ''">
+            AND sa.CASEID LIKE '%'|| #{entity.caseId, jdbcType=VARCHAR}|| '%'
+        </if>
+        <if test="entity.involvedId != null and entity.involvedId != ''">
+            AND sa.INVOLVEDID LIKE '%'||#{entity.involvedId, jdbcType=VARCHAR})|| '%'
+        </if>
+        <if test="entity.boxId != null and entity.boxId != ''">
+            AND sa.BOXID LIKE '%'|| #{entity.boxId, jdbcType=VARCHAR})|| '%'
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno, sa.* FROM EA_INVOLVED_CASE sa
+        <where>
+            <include refid="queryPagesql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+	
+    <select id="selectTotal" resultType="java.lang.Integer">
+		select COUNT(*) FROM EA_INVOLVED_CASE sa
+		<where>
+			<include refid="queryPagesql"/>
+		</where>
+	</select>
+
+    <select id="selectByInvolvedId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from EA_INVOLVED_CASE
+        where INVOLVEDID = #{involvedId,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByBoxId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from EA_INVOLVED_CASE
+        where BOXID = #{boxId,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CodeBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CodeBean"
+               extends="com.model.mapper.CodeMapper.BaseResultMap">
+    </resultMap>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.id, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.field != null and entity.field != ''">
+            AND sa.FIELD LIKE CONCAT('%', CONCAT(#{entity.field, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.fieldname != null and entity.fieldname != ''">
+            AND sa.FIELDNAME LIKE CONCAT('%', CONCAT(#{entity.fieldname, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.code != null and entity.code != ''">
+            AND sa.CODE LIKE CONCAT('%', CONCAT(#{entity.code, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.codedesc != null and entity.codedesc != ''">
+            AND sa.CODEDESC LIKE CONCAT('%', CONCAT(#{entity.codedesc, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.enabled != null and entity.enabled != ''">
+            AND sa.ENABLED LIKE CONCAT('%', CONCAT(#{entity.enabled, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.editmode != null and entity.editmode != ''">
+            AND sa.EDITMODE LIKE CONCAT('%', CONCAT(#{entity.editmode, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.sortno != null and entity.sortno != ''">
+            AND sa.SORTNO LIKE CONCAT('%', CONCAT(#{entity.sortno, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.remark != null and entity.remark != ''">
+            AND sa.REMARK LIKE CONCAT('%', CONCAT(#{entity.remark, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EACODE sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EACODE sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CodeMapper.Base_Column_List"/>
+    </sql>
+
+	<sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+         FROM EACODE a
+    </sql>
+
+    <select id="findBeanListByField" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="field != null and field != ''">
+                AND a.FIELD = #{field}
+            </if>
+        </where>
+    </select>
+<!--查询所有-->
+    <select id="findAll" resultMap="BaseResultMap">
+       SELECT * FROM EACODE
+    </select>
+</mapper>

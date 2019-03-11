@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.InvolvedTypesBeanMapper">
+	<resultMap id="BaseResultMap" type="com.model.bean.InvolvedTypesBean"
+               extends="com.model.mapper.InvolvedTypesMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.InvolvedTypesMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM EA_INVOLVED_TYPES sa
+    </sql>
+    <!-- 分页查询sql -->
+    <sql id="queryPagesql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE '%'||#{entity.id, jdbcType=VARCHAR}|| '%'
+        </if>
+        <if test="entity.name != null and entity.name != ''">
+            AND sa.NAME LIKE '%'||#{entity.name, jdbcType=VARCHAR}|| '%'
+        </if>
+        <if test="entity.code != null and entity.code != ''">
+            AND sa.CODE LIKE '%'||CONCAT(#{entity.code, jdbcType=VARCHAR}|| '%'
+        </if>
+    </sql>
+
+    <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            AND PARENTID = #{parentId,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            AND CODE = #{code,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <!--分页查询-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno, sa.* FROM (SELECT * FROM EA_INVOLVED_TYPES ORDER BY CODE) sa
+        <where>
+            <include refid="queryPagesql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+    </select>
+	
+    <select id="selectTotal" resultType="java.lang.Integer">
+		select COUNT(*) FROM EA_INVOLVED_TYPES sa
+		<where>
+			<include refid="queryPagesql"/>
+		</where>
+	</select>
+</mapper>

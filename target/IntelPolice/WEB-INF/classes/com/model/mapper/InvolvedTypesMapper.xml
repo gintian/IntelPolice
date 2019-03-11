@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvolvedTypesMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvolvedTypes" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="SORTCODE" property="sortcode" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentid" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="ISINVOLVED" property="isinvolved" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="MAXMONEY" property="maxmoney" jdbcType="DECIMAL" />
+    <result column="ISSUPEREXAMINE" property="issuperexamine" jdbcType="VARCHAR" />
+    <result column="ISPROCESSDIRECT" property="isprocessdirect" jdbcType="VARCHAR" />
+    <result column="KEEPUNIT" property="keepunit" jdbcType="VARCHAR" />
+    <result column="ISPROCESSBYKEEPUNIT" property="isprocessbykeepunit" jdbcType="VARCHAR" />
+    <result column="ISAPPOINTKEEPUNIT" property="isappointkeepunit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, CODE, SORTCODE, PARENTID, REMARK, CREATETIME, USERID, ISINVOLVED, STATE, 
+    MAXMONEY, ISSUPEREXAMINE, ISPROCESSDIRECT, KEEPUNIT, ISPROCESSBYKEEPUNIT, ISAPPOINTKEEPUNIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVOLVED_TYPES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVOLVED_TYPES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvolvedTypes" >
+    insert into EA_INVOLVED_TYPES (ID, NAME, CODE, 
+      SORTCODE, PARENTID, REMARK, 
+      CREATETIME, USERID, ISINVOLVED, 
+      STATE, MAXMONEY, ISSUPEREXAMINE, 
+      ISPROCESSDIRECT, KEEPUNIT, ISPROCESSBYKEEPUNIT, 
+      ISAPPOINTKEEPUNIT)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{sortcode,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, #{isinvolved,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{maxmoney,jdbcType=DECIMAL}, #{issuperexamine,jdbcType=VARCHAR}, 
+      #{isprocessdirect,jdbcType=VARCHAR}, #{keepunit,jdbcType=VARCHAR}, #{isprocessbykeepunit,jdbcType=VARCHAR}, 
+      #{isappointkeepunit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvolvedTypes" >
+    insert into EA_INVOLVED_TYPES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="sortcode != null" >
+        SORTCODE,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="isinvolved != null" >
+        ISINVOLVED,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="maxmoney != null" >
+        MAXMONEY,
+      </if>
+      <if test="issuperexamine != null" >
+        ISSUPEREXAMINE,
+      </if>
+      <if test="isprocessdirect != null" >
+        ISPROCESSDIRECT,
+      </if>
+      <if test="keepunit != null" >
+        KEEPUNIT,
+      </if>
+      <if test="isprocessbykeepunit != null" >
+        ISPROCESSBYKEEPUNIT,
+      </if>
+      <if test="isappointkeepunit != null" >
+        ISAPPOINTKEEPUNIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sortcode != null" >
+        #{sortcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvolved != null" >
+        #{isinvolved,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="maxmoney != null" >
+        #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="issuperexamine != null" >
+        #{issuperexamine,jdbcType=VARCHAR},
+      </if>
+      <if test="isprocessdirect != null" >
+        #{isprocessdirect,jdbcType=VARCHAR},
+      </if>
+      <if test="keepunit != null" >
+        #{keepunit,jdbcType=VARCHAR},
+      </if>
+      <if test="isprocessbykeepunit != null" >
+        #{isprocessbykeepunit,jdbcType=VARCHAR},
+      </if>
+      <if test="isappointkeepunit != null" >
+        #{isappointkeepunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvolvedTypes" >
+    update EA_INVOLVED_TYPES
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sortcode != null" >
+        SORTCODE = #{sortcode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="isinvolved != null" >
+        ISINVOLVED = #{isinvolved,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="maxmoney != null" >
+        MAXMONEY = #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="issuperexamine != null" >
+        ISSUPEREXAMINE = #{issuperexamine,jdbcType=VARCHAR},
+      </if>
+      <if test="isprocessdirect != null" >
+        ISPROCESSDIRECT = #{isprocessdirect,jdbcType=VARCHAR},
+      </if>
+      <if test="keepunit != null" >
+        KEEPUNIT = #{keepunit,jdbcType=VARCHAR},
+      </if>
+      <if test="isprocessbykeepunit != null" >
+        ISPROCESSBYKEEPUNIT = #{isprocessbykeepunit,jdbcType=VARCHAR},
+      </if>
+      <if test="isappointkeepunit != null" >
+        ISAPPOINTKEEPUNIT = #{isappointkeepunit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvolvedTypes" >
+    update EA_INVOLVED_TYPES
+    set NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      SORTCODE = #{sortcode,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      USERID = #{userid,jdbcType=VARCHAR},
+      ISINVOLVED = #{isinvolved,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      MAXMONEY = #{maxmoney,jdbcType=DECIMAL},
+      ISSUPEREXAMINE = #{issuperexamine,jdbcType=VARCHAR},
+      ISPROCESSDIRECT = #{isprocessdirect,jdbcType=VARCHAR},
+      KEEPUNIT = #{keepunit,jdbcType=VARCHAR},
+      ISPROCESSBYKEEPUNIT = #{isprocessbykeepunit,jdbcType=VARCHAR},
+      ISAPPOINTKEEPUNIT = #{isappointkeepunit,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

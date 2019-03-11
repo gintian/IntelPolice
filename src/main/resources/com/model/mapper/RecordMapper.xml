@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.RecordMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Record" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptId" jdbcType="VARCHAR" />
+    <result column="XWRID" property="xwrId" jdbcType="VARCHAR" />
+    <result column="XWSJ" property="xwsj" jdbcType="TIMESTAMP" />
+    <result column="BLRYID" property="blryId" jdbcType="VARCHAR" />
+    <result column="BLSJ" property="blsj" jdbcType="TIMESTAMP" />
+    <result column="RECORDTYPE" property="recordType" jdbcType="VARCHAR" />
+    <result column="BXWR" property="bxwr" jdbcType="VARCHAR" />
+    <result column="BXWR1" property="bxwr1" jdbcType="VARCHAR" />
+    <result column="BRR" property="brr" jdbcType="VARCHAR" />
+    <result column="BBRR1" property="bbrr1" jdbcType="VARCHAR" />
+    <result column="BBRR2" property="bbrr2" jdbcType="VARCHAR" />
+    <result column="BBRR3" property="bbrr3" jdbcType="VARCHAR" />
+    <result column="BBRR4" property="bbrr4" jdbcType="VARCHAR" />
+    <result column="BBRR5" property="bbrr5" jdbcType="VARCHAR" />
+    <result column="BBRR6" property="bbrr6" jdbcType="VARCHAR" />
+    <result column="BBRR7" property="bbrr7" jdbcType="VARCHAR" />
+    <result column="BBRR8" property="bbrr8" jdbcType="VARCHAR" />
+    <result column="MODIFYTIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFYUSER" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.model.Record" extends="BaseResultMap" >
+    <result column="RECORDCONTENT" property="recordContent" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DEPTID, XWRID, XWSJ, BLRYID, BLSJ, RECORDTYPE, BXWR, BXWR1, BRR, BBRR1, BBRR2, 
+    BBRR3, BBRR4, BBRR5, BBRR6, BBRR7, BBRR8, MODIFYTIME, MODIFYUSER, CODE
+  </sql>
+  <sql id="Blob_Column_List" >
+    RECORDCONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from EA_RECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_RECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Record" >
+    insert into EA_RECORD (ID, DEPTID, XWRID, 
+      XWSJ, BLRYID, BLSJ, 
+      RECORDTYPE, BXWR, BXWR1, 
+      BRR, BBRR1, BBRR2, 
+      BBRR3, BBRR4, BBRR5, 
+      BBRR6, BBRR7, BBRR8, 
+      MODIFYTIME, MODIFYUSER, RECORDCONTENT, CODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{xwrId,jdbcType=VARCHAR},
+      #{xwsj,jdbcType=TIMESTAMP}, #{blryId,jdbcType=VARCHAR}, #{blsj,jdbcType=TIMESTAMP},
+      #{recordType,jdbcType=VARCHAR}, #{bxwr,jdbcType=VARCHAR}, #{bxwr1,jdbcType=VARCHAR},
+      #{brr,jdbcType=VARCHAR}, #{bbrr1,jdbcType=VARCHAR}, #{bbrr2,jdbcType=VARCHAR}, 
+      #{bbrr3,jdbcType=VARCHAR}, #{bbrr4,jdbcType=VARCHAR}, #{bbrr5,jdbcType=VARCHAR}, 
+      #{bbrr6,jdbcType=VARCHAR}, #{bbrr7,jdbcType=VARCHAR}, #{bbrr8,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{recordContent,jdbcType=CLOB},#{code,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Record" >
+    insert into EA_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="deptId != null" >
+        DEPTID,
+      </if>
+      <if test="xwrId != null" >
+        XWRID,
+      </if>
+      <if test="xwsj != null" >
+        XWSJ,
+      </if>
+      <if test="blryId != null" >
+        BLRYID,
+      </if>
+      <if test="blsj != null" >
+        BLSJ,
+      </if>
+      <if test="recordType != null" >
+        RECORDTYPE,
+      </if>
+      <if test="bxwr != null" >
+        BXWR,
+      </if>
+      <if test="bxwr1 != null" >
+        BXWR1,
+      </if>
+      <if test="brr != null" >
+        BRR,
+      </if>
+      <if test="bbrr1 != null" >
+        BBRR1,
+      </if>
+      <if test="bbrr2 != null" >
+        BBRR2,
+      </if>
+      <if test="bbrr3 != null" >
+        BBRR3,
+      </if>
+      <if test="bbrr4 != null" >
+        BBRR4,
+      </if>
+      <if test="bbrr5 != null" >
+        BBRR5,
+      </if>
+      <if test="bbrr6 != null" >
+        BBRR6,
+      </if>
+      <if test="bbrr7 != null" >
+        BBRR7,
+      </if>
+      <if test="bbrr8 != null" >
+        BBRR8,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFYTIME,
+      </if>
+      <if test="modifyUser != null" >
+        MODIFYUSER,
+      </if>
+      <if test="recordContent != null" >
+        RECORDCONTENT,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="xwrId != null" >
+        #{xwrId,jdbcType=VARCHAR},
+      </if>
+      <if test="xwsj != null" >
+        #{xwsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blryId != null" >
+        #{blryId,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null" >
+        #{blsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordType != null" >
+          #{recordType,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwr != null" >
+        #{bxwr,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwr1 != null" >
+        #{bxwr1,jdbcType=VARCHAR},
+      </if>
+      <if test="brr != null" >
+        #{brr,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr1 != null" >
+        #{bbrr1,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr2 != null" >
+        #{bbrr2,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr3 != null" >
+        #{bbrr3,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr4 != null" >
+        #{bbrr4,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr5 != null" >
+        #{bbrr5,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr6 != null" >
+        #{bbrr6,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr7 != null" >
+        #{bbrr7,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr8 != null" >
+        #{bbrr8,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyuser,jdbcType=VARCHAR},
+      </if>
+      <if test="recordContent != null" >
+        #{recordContent,jdbcType=CLOB},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Record" >
+    update EA_RECORD
+    <set >
+      <if test="deptId != null" >
+        DEPTID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="xwrId != null" >
+        XWRID = #{xwrId,jdbcType=VARCHAR},
+      </if>
+      <if test="xwsj != null" >
+        XWSJ = #{xwsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blryId != null" >
+        BLRYID = #{blryId,jdbcType=VARCHAR},
+      </if>
+      <if test="blsj != null" >
+        BLSJ = #{blsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordType != null" >
+        RECORDTYPE = #{recordType,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwr != null" >
+        BXWR = #{bxwr,jdbcType=VARCHAR},
+      </if>
+      <if test="bxwr1 != null" >
+        BXWR1 = #{bxwr1,jdbcType=VARCHAR},
+      </if>
+      <if test="brr != null" >
+        BRR = #{brr,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr1 != null" >
+        BBRR1 = #{bbrr1,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr2 != null" >
+        BBRR2 = #{bbrr2,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr3 != null" >
+        BBRR3 = #{bbrr3,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr4 != null" >
+        BBRR4 = #{bbrr4,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr5 != null" >
+        BBRR5 = #{bbrr5,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr6 != null" >
+        BBRR6 = #{bbrr6,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr7 != null" >
+        BBRR7 = #{bbrr7,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrr8 != null" >
+        BBRR8 = #{bbrr8,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        MODIFYUSER = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="recordContent != null" >
+        RECORDCONTENT = #{recordContent,jdbcType=CLOB},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.Record" >
+    update EA_RECORD
+    set DEPTID = #{deptId,jdbcType=VARCHAR},
+      XWRID = #{xwrId,jdbcType=VARCHAR},
+      XWSJ = #{xwsj,jdbcType=TIMESTAMP},
+      BLRYID = #{blryId,jdbcType=VARCHAR},
+      BLSJ = #{blsj,jdbcType=TIMESTAMP},
+      RECORDTYPE = #{recordType,jdbcType=VARCHAR},
+      BXWR = #{bxwr,jdbcType=VARCHAR},
+      BXWR1 = #{bxwr1,jdbcType=VARCHAR},
+      BRR = #{brr,jdbcType=VARCHAR},
+      BBRR1 = #{bbrr1,jdbcType=VARCHAR},
+      BBRR2 = #{bbrr2,jdbcType=VARCHAR},
+      BBRR3 = #{bbrr3,jdbcType=VARCHAR},
+      BBRR4 = #{bbrr4,jdbcType=VARCHAR},
+      BBRR5 = #{bbrr5,jdbcType=VARCHAR},
+      BBRR6 = #{bbrr6,jdbcType=VARCHAR},
+      BBRR7 = #{bbrr7,jdbcType=VARCHAR},
+      BBRR8 = #{bbrr8,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyUser,jdbcType=VARCHAR},
+      RECORDCONTENT = #{recordContent,jdbcType=CLOB},
+      CODE = #{code,jdbcType=VARCHAR},
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Record" >
+    update EA_RECORD
+    set DEPTID = #{deptId,jdbcType=VARCHAR},
+      XWRID = #{xwrId,jdbcType=VARCHAR},
+      XWSJ = #{xwsj,jdbcType=TIMESTAMP},
+      BLRYID = #{blryId,jdbcType=VARCHAR},
+      BLSJ = #{blsj,jdbcType=TIMESTAMP},
+      RECORDTYPE = #{recordType,jdbcType=VARCHAR},
+      BXWR = #{bxwr,jdbcType=VARCHAR},
+      BXWR1 = #{bxwr1,jdbcType=VARCHAR},
+      BRR = #{brr,jdbcType=VARCHAR},
+      BBRR1 = #{bbrr1,jdbcType=VARCHAR},
+      BBRR2 = #{bbrr2,jdbcType=VARCHAR},
+      BBRR3 = #{bbrr3,jdbcType=VARCHAR},
+      BBRR4 = #{bbrr4,jdbcType=VARCHAR},
+      BBRR5 = #{bbrr5,jdbcType=VARCHAR},
+      BBRR6 = #{bbrr6,jdbcType=VARCHAR},
+      BBRR7 = #{bbrr7,jdbcType=VARCHAR},
+      BBRR8 = #{bbrr8,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifyTime,jdbcType=TIMESTAMP},
+      MODIFYUSER = #{modifyUser,jdbcType=VARCHAR},
+      RECORDCONTENT = #{recordContent,jdbcType=CLOB},
+      CODE = #{code,jdbcType=VARCHAR},
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

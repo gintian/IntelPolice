@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.CriminalMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Criminal" >
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+    <result column="CASENAME" property="casename" jdbcType="VARCHAR" />
+    <result column="CASEWHID" property="casewhid" jdbcType="VARCHAR" />
+    <result column="CASECLASS" property="caseclass" jdbcType="VARCHAR" />
+    <result column="CASESORT" property="casesort" jdbcType="VARCHAR" />
+    <result column="SUPERINTENDLEVEL" property="superintendlevel" jdbcType="VARCHAR" />
+    <result column="SECRECYLEVEL" property="secrecylevel" jdbcType="VARCHAR" />
+    <result column="CASESTATE" property="casestate" jdbcType="VARCHAR" />
+    <result column="DISCOVERTIMESTART" property="discovertimestart" jdbcType="DATE" />
+    <result column="DISCOVERTIMEEND" property="discovertimeend" jdbcType="DATE" />
+    <result column="CASETIMESTART" property="casetimestart" jdbcType="DATE" />
+    <result column="CASETIMEEND" property="casetimeend" jdbcType="DATE" />
+    <result column="COUNTRIES" property="countries" jdbcType="VARCHAR" />
+    <result column="DISTRICTCODE" property="districtcode" jdbcType="VARCHAR" />
+    <result column="COMMUNITY" property="community" jdbcType="VARCHAR" />
+    <result column="CASEADDRESS" property="caseaddress" jdbcType="VARCHAR" />
+    <result column="LONGITUDE" property="longitude" jdbcType="VARCHAR" />
+    <result column="LATITUDE" property="latitude" jdbcType="VARCHAR" />
+    <result column="DIENUM" property="dienum" jdbcType="DECIMAL" />
+    <result column="LNJURENUM" property="lnjurenum" jdbcType="DECIMAL" />
+    <result column="LOSSVALUE" property="lossvalue" jdbcType="DECIMAL" />
+    <result column="IFFREMDNESS" property="iffremdness" jdbcType="VARCHAR" />
+    <result column="DETAILS" property="details" jdbcType="VARCHAR" />
+    <result column="IFARCHIVE" property="ifarchive" jdbcType="VARCHAR" />
+    <result column="UNIONFLAG" property="unionflag" jdbcType="VARCHAR" />
+    <result column="MAINCASEID" property="maincaseid" jdbcType="VARCHAR" />
+    <result column="INPUTUNIT" property="inputunit" jdbcType="VARCHAR" />
+    <result column="ISAGAINST" property="isagainst" jdbcType="VARCHAR" />
+    <result column="ISMURDER" property="ismurder" jdbcType="VARCHAR" />
+    <result column="ISGUN" property="isgun" jdbcType="VARCHAR" />
+    <result column="INPUTPSN" property="inputpsn" jdbcType="VARCHAR" />
+    <result column="INPUTTIME" property="inputtime" jdbcType="DATE" />
+    <result column="MODIFIEDPSN" property="modifiedpsn" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTIME" property="modifiedtime" jdbcType="DATE" />
+    <result column="DISTRICTTIME" property="districttime" jdbcType="DATE" />
+    <result column="PROVINCETIME" property="provincetime" jdbcType="DATE" />
+    <result column="TAG" property="tag" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTAG" property="modifiedtag" jdbcType="VARCHAR" />
+    <result column="DELETAG" property="deletag" jdbcType="VARCHAR" />
+    <result column="CASEKEYWORD" property="casekeyword" jdbcType="VARCHAR" />
+    <result column="MARKEDRATE" property="markedrate" jdbcType="DECIMAL" />
+    <result column="CASEREASON" property="casereason" jdbcType="VARCHAR" />
+    <result column="IFDETENTION" property="ifdetention" jdbcType="VARCHAR" />
+    <result column="BUSINESSTYPE" property="businesstype" jdbcType="VARCHAR" />
+    <result column="IFUPTRAFFICK" property="ifuptraffick" jdbcType="VARCHAR" />
+    <result column="IFUPGUN" property="ifupgun" jdbcType="VARCHAR" />
+    <result column="IFUPBLACKMAIL" property="ifupblackmail" jdbcType="VARCHAR" />
+    <result column="IFUPMURDER" property="ifupmurder" jdbcType="VARCHAR" />
+    <result column="MAKUPREASON" property="makupreason" jdbcType="VARCHAR" />
+    <result column="MAKEUPCODE" property="makeupcode" jdbcType="VARCHAR" />
+    <result column="DISPOSEUNIT" property="disposeunit" jdbcType="VARCHAR" />
+    <result column="REPORTIME" property="reportime" jdbcType="DATE" />
+    <result column="REPORTMODE" property="reportmode" jdbcType="VARCHAR" />
+    <result column="RECEIVEPSN" property="receivepsn" jdbcType="VARCHAR" />
+    <result column="RECEIVEUNIT" property="receiveunit" jdbcType="VARCHAR" />
+    <result column="ALARMTYPE" property="alarmtype" jdbcType="VARCHAR" />
+    <result column="ARRIVETIME" property="arrivetime" jdbcType="DATE" />
+    <result column="POLICENUM" property="policenum" jdbcType="DECIMAL" />
+    <result column="POLICEASSNUM" property="policeassnum" jdbcType="DECIMAL" />
+    <result column="VOITURENUM" property="voiturenum" jdbcType="DECIMAL" />
+    <result column="BOATNUM" property="boatnum" jdbcType="DECIMAL" />
+    <result column="SALVATIONPEO" property="salvationpeo" jdbcType="DECIMAL" />
+    <result column="SALVATIONWOU" property="salvationwou" jdbcType="DECIMAL" />
+    <result column="RESCUEHNUM" property="rescuehnum" jdbcType="DECIMAL" />
+    <result column="RESCUEWNUM" property="rescuewnum" jdbcType="DECIMAL" />
+    <result column="RESCUEYNUM" property="rescueynum" jdbcType="DECIMAL" />
+    <result column="CENSORNUM" property="censornum" jdbcType="DECIMAL" />
+    <result column="DISPOSEPSN" property="disposepsn" jdbcType="VARCHAR" />
+    <result column="DISPOSEPSN2" property="disposepsn2" jdbcType="VARCHAR" />
+    <result column="DISPOSEDETAILS" property="disposedetails" jdbcType="VARCHAR" />
+    <result column="DISPOSERESULT" property="disposeresult" jdbcType="VARCHAR" />
+    <result column="DISPOSEOPINION" property="disposeopinion" jdbcType="VARCHAR" />
+    <result column="IFSPOTFINE" property="ifspotfine" jdbcType="VARCHAR" />
+    <result column="IFSPOTRECONCILE" property="ifspotreconcile" jdbcType="VARCHAR" />
+    <result column="REPORTDETAILS" property="reportdetails" jdbcType="VARCHAR" />
+    <result column="IFAPPDEL" property="ifappdel" jdbcType="VARCHAR" />
+    <result column="IFCLASSIFIED" property="ifclassified" jdbcType="VARCHAR" />
+    <result column="CASEKIND" property="casekind" jdbcType="VARCHAR" />
+    <result column="RVCALLNO" property="rvcallno" jdbcType="VARCHAR" />
+    <result column="XQ" property="xq" jdbcType="VARCHAR" />
+    <result column="CROSSREGIONNO" property="crossregionno" jdbcType="VARCHAR" />
+    <result column="DQBLDW" property="dqbldw" jdbcType="VARCHAR" />
+    <result column="IS_XK_XX" property="isXkXx" jdbcType="VARCHAR" />
+    <result column="IS_XK_SCXT" property="isXkScxt" jdbcType="VARCHAR" />
+    <result column="IS_BSWS_PACK" property="isBswsPack" jdbcType="VARCHAR" />
+    <result column="ISUPDURG" property="isupdurg" jdbcType="VARCHAR" />
+    <result column="UPDURGTIME" property="updurgtime" jdbcType="DATE" />
+    <result column="TOTALVALUE" property="totalvalue" jdbcType="DECIMAL" />
+    <result column="KNO" property="kno" jdbcType="VARCHAR" />
+    <result column="LYDS" property="lyds" jdbcType="VARCHAR" />
+    <result column="HCK_RKSJ" property="hckRksj" jdbcType="DATE" />
+    <result column="HCK_GXSJ" property="hckGxsj" jdbcType="DATE" />
+    <result column="CANHF_PDBZ" property="canhfPdbz" jdbcType="VARCHAR" />
+    <result column="CSJJYY" property="csjjyy" jdbcType="VARCHAR" />
+    <result column="SFZC_PDBZ" property="sfzcPdbz" jdbcType="VARCHAR" />
+    <result column="ZJSL_PDBZ" property="zjslPdbz" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.model.Criminal" >
+    insert into CASE_M_CRIMINAL (CASEID, CASENAME, CASEWHID, 
+      CASECLASS, CASESORT, SUPERINTENDLEVEL, 
+      SECRECYLEVEL, CASESTATE, DISCOVERTIMESTART, 
+      DISCOVERTIMEEND, CASETIMESTART, CASETIMEEND, 
+      COUNTRIES, DISTRICTCODE, COMMUNITY, 
+      CASEADDRESS, LONGITUDE, LATITUDE, 
+      DIENUM, LNJURENUM, LOSSVALUE, 
+      IFFREMDNESS, DETAILS, IFARCHIVE, 
+      UNIONFLAG, MAINCASEID, INPUTUNIT, 
+      ISAGAINST, ISMURDER, ISGUN, 
+      INPUTPSN, INPUTTIME, MODIFIEDPSN, 
+      MODIFIEDTIME, DISTRICTTIME, PROVINCETIME, 
+      TAG, MODIFIEDTAG, DELETAG, 
+      CASEKEYWORD, MARKEDRATE, CASEREASON, 
+      IFDETENTION, BUSINESSTYPE, IFUPTRAFFICK, 
+      IFUPGUN, IFUPBLACKMAIL, IFUPMURDER, 
+      MAKUPREASON, MAKEUPCODE, DISPOSEUNIT, 
+      REPORTIME, REPORTMODE, RECEIVEPSN, 
+      RECEIVEUNIT, ALARMTYPE, ARRIVETIME, 
+      POLICENUM, POLICEASSNUM, VOITURENUM, 
+      BOATNUM, SALVATIONPEO, SALVATIONWOU, 
+      RESCUEHNUM, RESCUEWNUM, RESCUEYNUM, 
+      CENSORNUM, DISPOSEPSN, DISPOSEPSN2, 
+      DISPOSEDETAILS, DISPOSERESULT, DISPOSEOPINION, 
+      IFSPOTFINE, IFSPOTRECONCILE, REPORTDETAILS, 
+      IFAPPDEL, IFCLASSIFIED, CASEKIND, 
+      RVCALLNO, XQ, CROSSREGIONNO, 
+      DQBLDW, IS_XK_XX, IS_XK_SCXT, 
+      IS_BSWS_PACK, ISUPDURG, UPDURGTIME, 
+      TOTALVALUE, KNO, LYDS, 
+      HCK_RKSJ, HCK_GXSJ, CANHF_PDBZ, 
+      CSJJYY, SFZC_PDBZ, ZJSL_PDBZ
+      )
+    values (#{caseid,jdbcType=VARCHAR}, #{casename,jdbcType=VARCHAR}, #{casewhid,jdbcType=VARCHAR}, 
+      #{caseclass,jdbcType=VARCHAR}, #{casesort,jdbcType=VARCHAR}, #{superintendlevel,jdbcType=VARCHAR}, 
+      #{secrecylevel,jdbcType=VARCHAR}, #{casestate,jdbcType=VARCHAR}, #{discovertimestart,jdbcType=DATE}, 
+      #{discovertimeend,jdbcType=DATE}, #{casetimestart,jdbcType=DATE}, #{casetimeend,jdbcType=DATE}, 
+      #{countries,jdbcType=VARCHAR}, #{districtcode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, 
+      #{caseaddress,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{dienum,jdbcType=DECIMAL}, #{lnjurenum,jdbcType=DECIMAL}, #{lossvalue,jdbcType=DECIMAL}, 
+      #{iffremdness,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}, #{ifarchive,jdbcType=VARCHAR}, 
+      #{unionflag,jdbcType=VARCHAR}, #{maincaseid,jdbcType=VARCHAR}, #{inputunit,jdbcType=VARCHAR}, 
+      #{isagainst,jdbcType=VARCHAR}, #{ismurder,jdbcType=VARCHAR}, #{isgun,jdbcType=VARCHAR}, 
+      #{inputpsn,jdbcType=VARCHAR}, #{inputtime,jdbcType=DATE}, #{modifiedpsn,jdbcType=VARCHAR}, 
+      #{modifiedtime,jdbcType=DATE}, #{districttime,jdbcType=DATE}, #{provincetime,jdbcType=DATE}, 
+      #{tag,jdbcType=VARCHAR}, #{modifiedtag,jdbcType=VARCHAR}, #{deletag,jdbcType=VARCHAR}, 
+      #{casekeyword,jdbcType=VARCHAR}, #{markedrate,jdbcType=DECIMAL}, #{casereason,jdbcType=VARCHAR}, 
+      #{ifdetention,jdbcType=VARCHAR}, #{businesstype,jdbcType=VARCHAR}, #{ifuptraffick,jdbcType=VARCHAR}, 
+      #{ifupgun,jdbcType=VARCHAR}, #{ifupblackmail,jdbcType=VARCHAR}, #{ifupmurder,jdbcType=VARCHAR}, 
+      #{makupreason,jdbcType=VARCHAR}, #{makeupcode,jdbcType=VARCHAR}, #{disposeunit,jdbcType=VARCHAR}, 
+      #{reportime,jdbcType=DATE}, #{reportmode,jdbcType=VARCHAR}, #{receivepsn,jdbcType=VARCHAR}, 
+      #{receiveunit,jdbcType=VARCHAR}, #{alarmtype,jdbcType=VARCHAR}, #{arrivetime,jdbcType=DATE}, 
+      #{policenum,jdbcType=DECIMAL}, #{policeassnum,jdbcType=DECIMAL}, #{voiturenum,jdbcType=DECIMAL}, 
+      #{boatnum,jdbcType=DECIMAL}, #{salvationpeo,jdbcType=DECIMAL}, #{salvationwou,jdbcType=DECIMAL}, 
+      #{rescuehnum,jdbcType=DECIMAL}, #{rescuewnum,jdbcType=DECIMAL}, #{rescueynum,jdbcType=DECIMAL}, 
+      #{censornum,jdbcType=DECIMAL}, #{disposepsn,jdbcType=VARCHAR}, #{disposepsn2,jdbcType=VARCHAR}, 
+      #{disposedetails,jdbcType=VARCHAR}, #{disposeresult,jdbcType=VARCHAR}, #{disposeopinion,jdbcType=VARCHAR}, 
+      #{ifspotfine,jdbcType=VARCHAR}, #{ifspotreconcile,jdbcType=VARCHAR}, #{reportdetails,jdbcType=VARCHAR}, 
+      #{ifappdel,jdbcType=VARCHAR}, #{ifclassified,jdbcType=VARCHAR}, #{casekind,jdbcType=VARCHAR}, 
+      #{rvcallno,jdbcType=VARCHAR}, #{xq,jdbcType=VARCHAR}, #{crossregionno,jdbcType=VARCHAR}, 
+      #{dqbldw,jdbcType=VARCHAR}, #{isXkXx,jdbcType=VARCHAR}, #{isXkScxt,jdbcType=VARCHAR}, 
+      #{isBswsPack,jdbcType=VARCHAR}, #{isupdurg,jdbcType=VARCHAR}, #{updurgtime,jdbcType=DATE}, 
+      #{totalvalue,jdbcType=DECIMAL}, #{kno,jdbcType=VARCHAR}, #{lyds,jdbcType=VARCHAR}, 
+      #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE}, #{canhfPdbz,jdbcType=VARCHAR}, 
+      #{csjjyy,jdbcType=VARCHAR}, #{sfzcPdbz,jdbcType=VARCHAR}, #{zjslPdbz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Criminal" >
+    insert into CASE_M_CRIMINAL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+      <if test="casename != null" >
+        CASENAME,
+      </if>
+      <if test="casewhid != null" >
+        CASEWHID,
+      </if>
+      <if test="caseclass != null" >
+        CASECLASS,
+      </if>
+      <if test="casesort != null" >
+        CASESORT,
+      </if>
+      <if test="superintendlevel != null" >
+        SUPERINTENDLEVEL,
+      </if>
+      <if test="secrecylevel != null" >
+        SECRECYLEVEL,
+      </if>
+      <if test="casestate != null" >
+        CASESTATE,
+      </if>
+      <if test="discovertimestart != null" >
+        DISCOVERTIMESTART,
+      </if>
+      <if test="discovertimeend != null" >
+        DISCOVERTIMEEND,
+      </if>
+      <if test="casetimestart != null" >
+        CASETIMESTART,
+      </if>
+      <if test="casetimeend != null" >
+        CASETIMEEND,
+      </if>
+      <if test="countries != null" >
+        COUNTRIES,
+      </if>
+      <if test="districtcode != null" >
+        DISTRICTCODE,
+      </if>
+      <if test="community != null" >
+        COMMUNITY,
+      </if>
+      <if test="caseaddress != null" >
+        CASEADDRESS,
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE,
+      </if>
+      <if test="latitude != null" >
+        LATITUDE,
+      </if>
+      <if test="dienum != null" >
+        DIENUM,
+      </if>
+      <if test="lnjurenum != null" >
+        LNJURENUM,
+      </if>
+      <if test="lossvalue != null" >
+        LOSSVALUE,
+      </if>
+      <if test="iffremdness != null" >
+        IFFREMDNESS,
+      </if>
+      <if test="details != null" >
+        DETAILS,
+      </if>
+      <if test="ifarchive != null" >
+        IFARCHIVE,
+      </if>
+      <if test="unionflag != null" >
+        UNIONFLAG,
+      </if>
+      <if test="maincaseid != null" >
+        MAINCASEID,
+      </if>
+      <if test="inputunit != null" >
+        INPUTUNIT,
+      </if>
+      <if test="isagainst != null" >
+        ISAGAINST,
+      </if>
+      <if test="ismurder != null" >
+        ISMURDER,
+      </if>
+      <if test="isgun != null" >
+        ISGUN,
+      </if>
+      <if test="inputpsn != null" >
+        INPUTPSN,
+      </if>
+      <if test="inputtime != null" >
+        INPUTTIME,
+      </if>
+      <if test="modifiedpsn != null" >
+        MODIFIEDPSN,
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME,
+      </if>
+      <if test="districttime != null" >
+        DISTRICTTIME,
+      </if>
+      <if test="provincetime != null" >
+        PROVINCETIME,
+      </if>
+      <if test="tag != null" >
+        TAG,
+      </if>
+      <if test="modifiedtag != null" >
+        MODIFIEDTAG,
+      </if>
+      <if test="deletag != null" >
+        DELETAG,
+      </if>
+      <if test="casekeyword != null" >
+        CASEKEYWORD,
+      </if>
+      <if test="markedrate != null" >
+        MARKEDRATE,
+      </if>
+      <if test="casereason != null" >
+        CASEREASON,
+      </if>
+      <if test="ifdetention != null" >
+        IFDETENTION,
+      </if>
+      <if test="businesstype != null" >
+        BUSINESSTYPE,
+      </if>
+      <if test="ifuptraffick != null" >
+        IFUPTRAFFICK,
+      </if>
+      <if test="ifupgun != null" >
+        IFUPGUN,
+      </if>
+      <if test="ifupblackmail != null" >
+        IFUPBLACKMAIL,
+      </if>
+      <if test="ifupmurder != null" >
+        IFUPMURDER,
+      </if>
+      <if test="makupreason != null" >
+        MAKUPREASON,
+      </if>
+      <if test="makeupcode != null" >
+        MAKEUPCODE,
+      </if>
+      <if test="disposeunit != null" >
+        DISPOSEUNIT,
+      </if>
+      <if test="reportime != null" >
+        REPORTIME,
+      </if>
+      <if test="reportmode != null" >
+        REPORTMODE,
+      </if>
+      <if test="receivepsn != null" >
+        RECEIVEPSN,
+      </if>
+      <if test="receiveunit != null" >
+        RECEIVEUNIT,
+      </if>
+      <if test="alarmtype != null" >
+        ALARMTYPE,
+      </if>
+      <if test="arrivetime != null" >
+        ARRIVETIME,
+      </if>
+      <if test="policenum != null" >
+        POLICENUM,
+      </if>
+      <if test="policeassnum != null" >
+        POLICEASSNUM,
+      </if>
+      <if test="voiturenum != null" >
+        VOITURENUM,
+      </if>
+      <if test="boatnum != null" >
+        BOATNUM,
+      </if>
+      <if test="salvationpeo != null" >
+        SALVATIONPEO,
+      </if>
+      <if test="salvationwou != null" >
+        SALVATIONWOU,
+      </if>
+      <if test="rescuehnum != null" >
+        RESCUEHNUM,
+      </if>
+      <if test="rescuewnum != null" >
+        RESCUEWNUM,
+      </if>
+      <if test="rescueynum != null" >
+        RESCUEYNUM,
+      </if>
+      <if test="censornum != null" >
+        CENSORNUM,
+      </if>
+      <if test="disposepsn != null" >
+        DISPOSEPSN,
+      </if>
+      <if test="disposepsn2 != null" >
+        DISPOSEPSN2,
+      </if>
+      <if test="disposedetails != null" >
+        DISPOSEDETAILS,
+      </if>
+      <if test="disposeresult != null" >
+        DISPOSERESULT,
+      </if>
+      <if test="disposeopinion != null" >
+        DISPOSEOPINION,
+      </if>
+      <if test="ifspotfine != null" >
+        IFSPOTFINE,
+      </if>
+      <if test="ifspotreconcile != null" >
+        IFSPOTRECONCILE,
+      </if>
+      <if test="reportdetails != null" >
+        REPORTDETAILS,
+      </if>
+      <if test="ifappdel != null" >
+        IFAPPDEL,
+      </if>
+      <if test="ifclassified != null" >
+        IFCLASSIFIED,
+      </if>
+      <if test="casekind != null" >
+        CASEKIND,
+      </if>
+      <if test="rvcallno != null" >
+        RVCALLNO,
+      </if>
+      <if test="xq != null" >
+        XQ,
+      </if>
+      <if test="crossregionno != null" >
+        CROSSREGIONNO,
+      </if>
+      <if test="dqbldw != null" >
+        DQBLDW,
+      </if>
+      <if test="isXkXx != null" >
+        IS_XK_XX,
+      </if>
+      <if test="isXkScxt != null" >
+        IS_XK_SCXT,
+      </if>
+      <if test="isBswsPack != null" >
+        IS_BSWS_PACK,
+      </if>
+      <if test="isupdurg != null" >
+        ISUPDURG,
+      </if>
+      <if test="updurgtime != null" >
+        UPDURGTIME,
+      </if>
+      <if test="totalvalue != null" >
+        TOTALVALUE,
+      </if>
+      <if test="kno != null" >
+        KNO,
+      </if>
+      <if test="lyds != null" >
+        LYDS,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+      <if test="canhfPdbz != null" >
+        CANHF_PDBZ,
+      </if>
+      <if test="csjjyy != null" >
+        CSJJYY,
+      </if>
+      <if test="sfzcPdbz != null" >
+        SFZC_PDBZ,
+      </if>
+      <if test="zjslPdbz != null" >
+        ZJSL_PDBZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="caseid != null" >
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="casename != null" >
+        #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="casewhid != null" >
+        #{casewhid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseclass != null" >
+        #{caseclass,jdbcType=VARCHAR},
+      </if>
+      <if test="casesort != null" >
+        #{casesort,jdbcType=VARCHAR},
+      </if>
+      <if test="superintendlevel != null" >
+        #{superintendlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="secrecylevel != null" >
+        #{secrecylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="casestate != null" >
+        #{casestate,jdbcType=VARCHAR},
+      </if>
+      <if test="discovertimestart != null" >
+        #{discovertimestart,jdbcType=DATE},
+      </if>
+      <if test="discovertimeend != null" >
+        #{discovertimeend,jdbcType=DATE},
+      </if>
+      <if test="casetimestart != null" >
+        #{casetimestart,jdbcType=DATE},
+      </if>
+      <if test="casetimeend != null" >
+        #{casetimeend,jdbcType=DATE},
+      </if>
+      <if test="countries != null" >
+        #{countries,jdbcType=VARCHAR},
+      </if>
+      <if test="districtcode != null" >
+        #{districtcode,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="caseaddress != null" >
+        #{caseaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="dienum != null" >
+        #{dienum,jdbcType=DECIMAL},
+      </if>
+      <if test="lnjurenum != null" >
+        #{lnjurenum,jdbcType=DECIMAL},
+      </if>
+      <if test="lossvalue != null" >
+        #{lossvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="iffremdness != null" >
+        #{iffremdness,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="ifarchive != null" >
+        #{ifarchive,jdbcType=VARCHAR},
+      </if>
+      <if test="unionflag != null" >
+        #{unionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="maincaseid != null" >
+        #{maincaseid,jdbcType=VARCHAR},
+      </if>
+      <if test="inputunit != null" >
+        #{inputunit,jdbcType=VARCHAR},
+      </if>
+      <if test="isagainst != null" >
+        #{isagainst,jdbcType=VARCHAR},
+      </if>
+      <if test="ismurder != null" >
+        #{ismurder,jdbcType=VARCHAR},
+      </if>
+      <if test="isgun != null" >
+        #{isgun,jdbcType=VARCHAR},
+      </if>
+      <if test="inputpsn != null" >
+        #{inputpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtime != null" >
+        #{inputtime,jdbcType=DATE},
+      </if>
+      <if test="modifiedpsn != null" >
+        #{modifiedpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null" >
+        #{modifiedtime,jdbcType=DATE},
+      </if>
+      <if test="districttime != null" >
+        #{districttime,jdbcType=DATE},
+      </if>
+      <if test="provincetime != null" >
+        #{provincetime,jdbcType=DATE},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtag != null" >
+        #{modifiedtag,jdbcType=VARCHAR},
+      </if>
+      <if test="deletag != null" >
+        #{deletag,jdbcType=VARCHAR},
+      </if>
+      <if test="casekeyword != null" >
+        #{casekeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="markedrate != null" >
+        #{markedrate,jdbcType=DECIMAL},
+      </if>
+      <if test="casereason != null" >
+        #{casereason,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdetention != null" >
+        #{ifdetention,jdbcType=VARCHAR},
+      </if>
+      <if test="businesstype != null" >
+        #{businesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="ifuptraffick != null" >
+        #{ifuptraffick,jdbcType=VARCHAR},
+      </if>
+      <if test="ifupgun != null" >
+        #{ifupgun,jdbcType=VARCHAR},
+      </if>
+      <if test="ifupblackmail != null" >
+        #{ifupblackmail,jdbcType=VARCHAR},
+      </if>
+      <if test="ifupmurder != null" >
+        #{ifupmurder,jdbcType=VARCHAR},
+      </if>
+      <if test="makupreason != null" >
+        #{makupreason,jdbcType=VARCHAR},
+      </if>
+      <if test="makeupcode != null" >
+        #{makeupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="disposeunit != null" >
+        #{disposeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="reportime != null" >
+        #{reportime,jdbcType=DATE},
+      </if>
+      <if test="reportmode != null" >
+        #{reportmode,jdbcType=VARCHAR},
+      </if>
+      <if test="receivepsn != null" >
+        #{receivepsn,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveunit != null" >
+        #{receiveunit,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmtype != null" >
+        #{alarmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        #{arrivetime,jdbcType=DATE},
+      </if>
+      <if test="policenum != null" >
+        #{policenum,jdbcType=DECIMAL},
+      </if>
+      <if test="policeassnum != null" >
+        #{policeassnum,jdbcType=DECIMAL},
+      </if>
+      <if test="voiturenum != null" >
+        #{voiturenum,jdbcType=DECIMAL},
+      </if>
+      <if test="boatnum != null" >
+        #{boatnum,jdbcType=DECIMAL},
+      </if>
+      <if test="salvationpeo != null" >
+        #{salvationpeo,jdbcType=DECIMAL},
+      </if>
+      <if test="salvationwou != null" >
+        #{salvationwou,jdbcType=DECIMAL},
+      </if>
+      <if test="rescuehnum != null" >
+        #{rescuehnum,jdbcType=DECIMAL},
+      </if>
+      <if test="rescuewnum != null" >
+        #{rescuewnum,jdbcType=DECIMAL},
+      </if>
+      <if test="rescueynum != null" >
+        #{rescueynum,jdbcType=DECIMAL},
+      </if>
+      <if test="censornum != null" >
+        #{censornum,jdbcType=DECIMAL},
+      </if>
+      <if test="disposepsn != null" >
+        #{disposepsn,jdbcType=VARCHAR},
+      </if>
+      <if test="disposepsn2 != null" >
+        #{disposepsn2,jdbcType=VARCHAR},
+      </if>
+      <if test="disposedetails != null" >
+        #{disposedetails,jdbcType=VARCHAR},
+      </if>
+      <if test="disposeresult != null" >
+        #{disposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="disposeopinion != null" >
+        #{disposeopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="ifspotfine != null" >
+        #{ifspotfine,jdbcType=VARCHAR},
+      </if>
+      <if test="ifspotreconcile != null" >
+        #{ifspotreconcile,jdbcType=VARCHAR},
+      </if>
+      <if test="reportdetails != null" >
+        #{reportdetails,jdbcType=VARCHAR},
+      </if>
+      <if test="ifappdel != null" >
+        #{ifappdel,jdbcType=VARCHAR},
+      </if>
+      <if test="ifclassified != null" >
+        #{ifclassified,jdbcType=VARCHAR},
+      </if>
+      <if test="casekind != null" >
+        #{casekind,jdbcType=VARCHAR},
+      </if>
+      <if test="rvcallno != null" >
+        #{rvcallno,jdbcType=VARCHAR},
+      </if>
+      <if test="xq != null" >
+        #{xq,jdbcType=VARCHAR},
+      </if>
+      <if test="crossregionno != null" >
+        #{crossregionno,jdbcType=VARCHAR},
+      </if>
+      <if test="dqbldw != null" >
+        #{dqbldw,jdbcType=VARCHAR},
+      </if>
+      <if test="isXkXx != null" >
+        #{isXkXx,jdbcType=VARCHAR},
+      </if>
+      <if test="isXkScxt != null" >
+        #{isXkScxt,jdbcType=VARCHAR},
+      </if>
+      <if test="isBswsPack != null" >
+        #{isBswsPack,jdbcType=VARCHAR},
+      </if>
+      <if test="isupdurg != null" >
+        #{isupdurg,jdbcType=VARCHAR},
+      </if>
+      <if test="updurgtime != null" >
+        #{updurgtime,jdbcType=DATE},
+      </if>
+      <if test="totalvalue != null" >
+        #{totalvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="kno != null" >
+        #{kno,jdbcType=VARCHAR},
+      </if>
+      <if test="lyds != null" >
+        #{lyds,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null" >
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null" >
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+      <if test="canhfPdbz != null" >
+        #{canhfPdbz,jdbcType=VARCHAR},
+      </if>
+      <if test="csjjyy != null" >
+        #{csjjyy,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzcPdbz != null" >
+        #{sfzcPdbz,jdbcType=VARCHAR},
+      </if>
+      <if test="zjslPdbz != null" >
+        #{zjslPdbz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

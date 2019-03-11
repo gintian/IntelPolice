@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.InvolvedTaskBeanMapper">
+	<resultMap id="BaseResultMap" type="com.model.bean.InvolvedTaskBean"
+               extends="com.model.mapper.InvolvedTaskMapper.BaseResultMap">
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.InvolvedTaskMapper.Base_Column_List"/>
+    </sql>
+    
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM EA_INVOLVED_TASK sa
+    </sql>
+
+    <select id="findInvolvedTaskByIdentityCard" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from EA_INVOLVED_TASK
+        where IDENTITYCARD = #{identityCard,jdbcType=VARCHAR}
+    </select>
+    
+    <!--分页查询-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno, sa.* FROM EA_INVOLVED_TASK sa
+        <where>
+            <include refid="queryPagesql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+	
+    <select id="selectTotal" resultType="java.lang.Integer">
+		select COUNT(*) FROM EA_INVOLVED_TASK sa
+		<where>
+			<include refid="queryPagesql"/>
+		</where>
+	</select>
+	
+	<!-- 分页查询sql -->
+	<sql id="queryPagesql">
+		<if test="entity.identityCard != null and entity.identityCard != ''">
+			AND sa.IDENTITYCARD = #{entity.identityCard, jdbcType=VARCHAR}
+		</if>
+	</sql>
+</mapper>

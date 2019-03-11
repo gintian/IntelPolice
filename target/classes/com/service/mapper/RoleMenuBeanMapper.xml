@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.RoleMenuBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.RoleMenuBean"
+               extends="com.model.mapper.RoleMenuMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.RoleMenuMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sa.ID, sa.MENUID, sa.ROLEID
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EAROLE_MENU sa
+    </sql>
+    <insert id="insertBatchData">
+        INSERT ALL
+        <foreach collection ="list" item="item">
+            INTO EAROLE_MENU (ID, MENUID, ROLEID) VALUES(#{item.id}, #{item.menuId}, #{item.roleId})
+        </foreach >
+        select 1 from dual
+    </insert>
+
+    <select id="getModelByRoleID" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.ROLEID = #{roleId}
+        </where>
+    </select>
+    <delete id="deleteModelByRoleId">
+        delete from EAROLE_MENU
+        where ROLEID = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    <select id="getModelListByRoleIds" resultType="java.lang.String">
+        select b.MENUID FROM EAROLE a LEFT JOIN EAROLE_MENU b ON a.ID = b.ROLEID
+        <where>
+            b.ROLEID IN
+            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+</mapper>

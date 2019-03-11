@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Menu" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentId" jdbcType="VARCHAR" />
+    <result column="ICONCLS" property="iconCls" jdbcType="VARCHAR" />
+    <result column="EXPANDED" property="expanded" jdbcType="VARCHAR" />
+    <result column="REQUEST" property="request" jdbcType="VARCHAR" />
+    <result column="LEAF" property="leaf" jdbcType="VARCHAR" />
+    <result column="SORTNO" property="sortNo" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="CATGID" property="catgId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, PARENTID, ICONCLS, EXPANDED, REQUEST, LEAF, SORTNO, REMARK, ICON, TYPE, 
+    CATGID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EAMENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EAMENU
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Menu" >
+    insert into EAMENU (ID, NAME, PARENTID, 
+      ICONCLS, EXPANDED, REQUEST, 
+      LEAF, SORTNO, REMARK, 
+      ICON, TYPE, CATGID)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{iconCls,jdbcType=VARCHAR}, #{expanded,jdbcType=VARCHAR}, #{request,jdbcType=VARCHAR}, 
+      #{leaf,jdbcType=VARCHAR}, #{sortNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{catgId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Menu" >
+    insert into EAMENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENTID,
+      </if>
+      <if test="iconCls != null" >
+        ICONCLS,
+      </if>
+      <if test="expanded != null" >
+        EXPANDED,
+      </if>
+      <if test="request != null" >
+        REQUEST,
+      </if>
+      <if test="leaf != null" >
+        LEAF,
+      </if>
+      <if test="sortNo != null" >
+        SORTNO,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="catgId != null" >
+        CATGID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="iconCls != null" >
+        #{iconCls,jdbcType=VARCHAR},
+      </if>
+      <if test="expanded != null" >
+        #{expanded,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null" >
+        #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="catgId != null" >
+        #{catgId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Menu" >
+    update EAMENU
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENTID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="iconCls != null" >
+        ICONCLS = #{iconCls,jdbcType=VARCHAR},
+      </if>
+      <if test="expanded != null" >
+        EXPANDED = #{expanded,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null" >
+        REQUEST = #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        LEAF = #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORTNO = #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="catgId != null" >
+        CATGID = #{catgId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Menu" >
+    update EAMENU
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARENTID = #{parentId,jdbcType=VARCHAR},
+      ICONCLS = #{iconCls,jdbcType=VARCHAR},
+      EXPANDED = #{expanded,jdbcType=VARCHAR},
+      REQUEST = #{request,jdbcType=VARCHAR},
+      LEAF = #{leaf,jdbcType=VARCHAR},
+      SORTNO = #{sortNo,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      CATGID = #{catgId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

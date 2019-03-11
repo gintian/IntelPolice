@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.ArchiveStoresLockersMapper" >
+  <resultMap id="BaseResultMap" type="com.model.ArchiveStoresLockers" >
+    <id column="ID" property="lockersId" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptId" jdbcType="VARCHAR" />
+    <result column="STOREID" property="storeId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="LOCKERNAME" property="lockersName" jdbcType="VARCHAR" />
+    <result column="LOCKERROW" property="lockerRow" jdbcType="VARCHAR" />
+    <result column="LOCKERGATE" property="lockerGate" jdbcType="VARCHAR" />
+    <result column="POSTPATH" property="postPath" jdbcType="VARCHAR" />
+    <result column="HOST" property="host" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ISDELETE" property="isDelete" jdbcType="VARCHAR" />
+    <result column="INTEGRATION" property="integration" jdbcType="VARCHAR" />
+    <result column="EDITTIME" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="CREATEUSERID" property="createUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DEPTID, STOREID, TYPE, LOCKERNAME, LOCKERROW, LOCKERGATE, POSTPATH, HOST, USERID,
+    CREATETIME, CREATEUSERID, EDITTIME, ISDELETE, INTEGRATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from EA_ARCHIVE_STORES_LOCKERS
+    where ID = #{lockersId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EA_ARCHIVE_STORES_LOCKERS
+    where ID = #{lockersId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ArchiveStoresLockers">
+    insert into EA_ARCHIVE_STORES_LOCKERS (ID, DEPTID, STOREID, 
+      TYPE, LOCKERNAME, LOCKERROW,
+      LOCKERGATE, POSTPATH, HOST, 
+      USERID, CREATETIME, CREATEUSERID, EDITTIME,ISDELETE,
+      INTEGRATION)
+    values (#{lockersId,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR},
+      #{type,jdbcType=VARCHAR}, #{lockersName,jdbcType=VARCHAR}, #{lockerRow,jdbcType=VARCHAR},
+      #{lockerGate,jdbcType=VARCHAR}, #{postPath,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR},#{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{editTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR}, #{integration,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ArchiveStoresLockers">
+    insert into EA_ARCHIVE_STORES_LOCKERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lockersId != null">
+        ID,
+      </if>
+      <if test="deptId != null">
+        DEPTID,
+      </if>
+      <if test="storeId != null">
+        STOREID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="lockersName != null">
+        LOCKERNAME,
+      </if>
+      <if test="lockerRow != null">
+        LOCKERROW,
+      </if>
+      <if test="lockerGate != null">
+        LOCKERGATE,
+      </if>
+      <if test="postPath != null">
+        POSTPATH,
+      </if>
+      <if test="host != null">
+        HOST,
+      </if>
+      <if test="userId != null">
+        USERID,
+      </if>
+      <if test="createTime != null">
+        CREATETIME,
+      </if>
+      <if test="createUserId != null">
+        CREATEUSERID,
+      </if>
+      <if test="editTime != null">
+        EDITTIME,
+      </if>
+      <if test="isDelete != null">
+        ISDELETE,
+      </if>
+      <if test="integration != null">
+        INTEGRATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lockersId != null">
+        #{lockersId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lockersName != null">
+        #{lockersName,jdbcType=VARCHAR},
+      </if>
+      <if test="lockerRow != null">
+        #{lockerRow,jdbcType=VARCHAR},
+      </if>
+      <if test="lockerGate != null">
+        #{lockerGate,jdbcType=VARCHAR},
+      </if>
+      <if test="postPath != null">
+        #{postPath,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="integration != null">
+        #{integration,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ArchiveStoresLockers">
+    update EA_ARCHIVE_STORES_LOCKERS
+    <set>
+      <if test="deptId != null">
+        DEPTID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        STOREID = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lockersName != null">
+        LOCKERNAME = #{lockersName,jdbcType=VARCHAR},
+      </if>
+      <if test="lockerRow != null">
+        LOCKERROW = #{lockerRow,jdbcType=VARCHAR},
+      </if>
+      <if test="lockerGate != null">
+        LOCKERGATE = #{lockerGate,jdbcType=VARCHAR},
+      </if>
+      <if test="postPath != null">
+        POSTPATH = #{postPath,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        HOST = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        ISDELETE = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="integration != null">
+        INTEGRATION = #{integration,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{lockersId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ArchiveStoresLockers">
+    update EA_ARCHIVE_STORES_LOCKERS
+    set DEPTID = #{deptId,jdbcType=VARCHAR},
+      STOREID = #{storeId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      LOCKERNAME = #{lockersName,jdbcType=VARCHAR},
+      LOCKERROW = #{lockerRow,jdbcType=VARCHAR},
+      LOCKERGATE = #{lockerGate,jdbcType=VARCHAR},
+      POSTPATH = #{postPath,jdbcType=VARCHAR},
+      HOST = #{host,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+      ISDELETE = #{isDelete,jdbcType=VARCHAR},
+      INTEGRATION = #{integration,jdbcType=VARCHAR}
+    where ID = #{lockersId,jdbcType=VARCHAR}
+  </update>
+</mapper>

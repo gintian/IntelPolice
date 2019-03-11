@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script language="JavaScript">
+	var zTreeObj;
+	var node;
+	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+	var setting = {
+			callback: {
+				onClick: zTreeOnClick
+			}
+// 			check: {
+// 				enable: true,
+// 				chkStyle: "radio",
+// 				radioType: "all"
+// 			}
+		};
+	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+	var zNodes = [
+	    {id:"001",name:"总部门", click:"alert('test');",children:[
+	   		{id:"00101",name:"一级部门1",children:[
+	    		{id:"0010101",name:"二级部门1",children:[
+				    {id:"001010101",name:"三级部门1"},
+				    {id:"001010102",name:"三级部门2"},
+				    {id:"001010103",name:"三级部门3"}
+				]},
+			    {id:"0010102",name:"二级部门2"},
+			    {id:"0010103",name:"二级部门3"}
+			]},
+		    {id:"00102",name:"一级部门2",children:[
+			    {id:"0010201",name:"二级部门4"},
+			    {id:"0010202",name:"二级部门5"},
+			    {id:"0010203",name:"二级部门6"}
+			]},
+		    {id:"00103",name:"一级部门3"},
+		    {id:"00104",name:"一级部门4"},
+		    {id:"00105",name:"一级部门5"}
+		    ]}
+	];
+	$(document).ready(function() {
+		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+	});
+	function zTreeOnClick(event, treeId, treeNode) {
+	    node = treeNode.id;
+	    sendNode();
+	};
+	function sendNode() {
+		$("#user_deptId").val(node);
+		//相应的js代码实现点击关闭
+		BJUI.dialog('close', 'deptTree');
+	}
+</script>
+</head>
+<body>
+	<div>
+	 <ul id="treeDemo" class="ztree"></ul>
+<!-- 	 <button type="button" class="btn-blue" onclick="sendNode()">确定</button> -->
+</div>
+</body>
+
+</html>

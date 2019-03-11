@@ -1,0 +1,160 @@
+package com.action;
+
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.utils.*;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.convention.annotation.Action;
+
+import com.alibaba.fastjson.JSONObject;
+import com.constant.CommonConstant;
+import com.constant.Url;
+import com.model.bean.FileBean;
+import com.opensymphony.xwork2.ModelDriven;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * Created by Administrator on 2018/4/18 0018.
+ */
+public class UploadAction extends BaseAction<FileBean> implements ModelDriven<FileBean> {
+    private FileBean bean = new FileBean();
+
+    @Override
+    public FileBean getModel() {
+        return bean;
+    }
+
+    //根路径，到时可以换成ftp 路径
+    private String basePath = CommonConstant.FILE_UPLOAD_PATH;
+    //分割字符串
+    private String regex = CommonConstant.FILE_UPLOAD_REGEX;
+
+    /**
+     * 文件上传
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.FILE_UPLOAD)
+    public void fileUpload() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("utf-8");
+        JSONObject jsonObject = null;
+        try {
+            for (int i = 0; i < bean.getFile().size(); i++) {
+                //文件名称
+                String fileName = ServiceUtils.generatePrimaryKey() + bean.getFileFileName().get(i);
+                //文件路径
+                String filePath = DateUtils.dateToString(new Date(), "/yyyy/MM/dd/HH");
+                //目标文件
+                File diestFile = new File(basePath + filePath, fileName);
+                System.out.println(filePath + fileName);
+                System.out.println(diestFile.getPath());
+                FileUploadUtils.upload(bean.getFile().get(i), diestFile);
+                jsonObject = new JSONObject();
+                jsonObject.put("statusCode", 200);
+                double fileSize = bean.getFile().get(i).length();
+                String size = "";
+                if (fileSize < 1000) {
+                    size = fileSize + "B";
+                };
+                if (fileSize >= 1000) {
+                    fileSize = fileSize / 1000;
+                    size = fileSize + "KB";
+                };
+                if (fileSize >= 1000) {
+                    fileSize = fileSize / 1000;
+                    size = fileSize + "MB";
+                };
+                jsonObject.put("name", bean.getFileFileName().get(i));
+                jsonObject.put("size", size);
+                jsonObject.put("path", filePath + "/" + fileName);
+                jsonObject.put("message", "上传成功");
+                break;
+            }
+        } catch (Exception e) {
+            jsonObject = ExecuteResult.jsonReturnCallOnAppException(ExecuteResult.ERROR_STATUS, e.getMessage());
+        }
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+        response.getWriter().write(jsonObject.toJSONString());
+        request.getSession().setAttribute("file", jsonObject);
+    }
+
+    /**
+     * 文件下载
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.FILE_DOWNLOAD)
+    public void fileDownload() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("utf-8");
+        //文件路径
+        String filePath = CommonConstant.FILE_UPLOAD_PATH + request.getParameter("path");
+//        文件名称
+        String fileName = request.getParameter("name") + "";
+
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+        response.setHeader("Connection", "close");
+        response.setHeader("Content-Type", "application/octet-stream");
+
+        OutputStream ops = null;
+        FileInputStream fis = null;
+        byte[] buffer = new byte[8192];
+        int bytesRead = 0;
+
+        try {
+            ops = response.getOutputStream();
+            fis = new FileInputStream(filePath);
+            while ((bytesRead = fis.read(buffer, 0, 8192)) != -1) {
+                ops.write(buffer, 0, bytesRead);
+            }
+            ops.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (ops != null) {
+                    ops.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 添加
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.ACTIVITI_ADD_SUBMIT)
+    public void addActiviti() throws Exception {
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("utf-8");
+        JSONObject jsonObject = null;
+        try {
+            for (int i = 0; i < bean.getFile().size(); i++) {
+                //目标文件
+                FileInputStream fls = new FileInputStream(bean.getFile().get(i));
+                ActivitiUtils.saveDeploye(fls, bean.getFileFileName().get(i));
+
+                jsonObject = new JSONObject();
+                jsonObject.put("statusCode", 200);
+                jsonObject.put("message", "上传成功");
+                break;
+            }
+
+        } catch (Exception e) {
+            jsonObject = ExecuteResult.jsonReturnCallOnAppException(ExecuteResult.ERROR_STATUS, e.getMessage());
+        }
+        response.getWriter().write(jsonObject.toJSONString());
+    }
+}

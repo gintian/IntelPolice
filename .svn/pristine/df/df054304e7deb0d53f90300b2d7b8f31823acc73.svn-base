@@ -1,0 +1,9 @@
+package com.model.mapper;
+
+import com.model.Criminal;
+
+public interface CriminalMapper {
+    int insert(Criminal record);
+
+    int insertSelective(Criminal record);
+}

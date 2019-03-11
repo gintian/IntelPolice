@@ -1,0 +1,50 @@
+
+ea_investigation_exp_alarm.selectSql=exceptionid,jjdbh,cjdbh,fkdbh,caseid,stateid,cityid,countyid,jgdm,deptid,deptname,username,userid,keywords,exceptiontype,exceptionname,exceptionchildtype,exceptionchildname,typeremark,registertime,sourceid,informtime,informoperateid,processtime,processtimes,upperid,upperprocesstime,upperprocesstimes,processstatus,caseclass,ispatrol,alarmtype,zwzcjqly,fhry,fhsj,qrclyxly,shry,shsj
+ea_investigation_exp_alarm.insertSql=exceptionid,jjdbh,cjdbh,fkdbh,caseid,stateid,cityid,countyid,jgdm,deptid,deptname,username,userid,keywords,exceptiontype,exceptionname,exceptionchildtype,exceptionchildname,typeremark,registertime,sourceid,informtime,informoperateid,processtime,processtimes,upperid,upperprocesstime,upperprocesstimes,processstatus,caseclass,ispatrol,alarmtype,zwzcjqly,fhry,fhsj,qrclyxly,shry,shsj
+ea_investigation_exp_alarm.principalFileName=exceptionid
+ea_investigation_exp_alarm.tableName=ea_investigation_exp_alarm
+ea_investigation_exp_alarm.domain=registertime
+ea_investigation_exp_alarm.areaId=jgdm like '${areaId}%'
+
+ea_investigation_exp_inform.selectSql=sa.informid,sa.exceptionid,sa.informtime,sa.fromuerid,sa.fromusername,sa.informinfo,sa.touserid,sa.tousername,sa.iscancel,sa.canceltime,sa.type,sa.state
+ea_investigation_exp_inform.insertSql=informid,exceptionid,informtime,fromuerid,fromusername,informinfo,touserid,tousername,iscancel,canceltime,type,state
+ea_investigation_exp_inform.principalFileName=informid
+ea_investigation_exp_inform.tableName=ea_investigation_exp_inform
+ea_investigation_exp_inform.domain=informtime
+ea_investigation_exp_inform.areaId=0
+ea_investigation_exp_inform.where=sa,ea_investigation_exp_alarm sb where sb.jgdm like '${areaId}%' and sa.exceptionid=sb.exceptionid
+
+ea_investigation_exptype.selectSql=id,name,sortcode,parentid,isautosend,isprocess,iscorrect,ischeck,pinyin,description,remark,createtime,userid,state,definition,cause,systemprocess,legalprocess,legalreview,notifytemplate
+ea_investigation_exptype.insertSql=id,name,sortcode,parentid,isautosend,isprocess,iscorrect,ischeck,pinyin,description,remark,createtime,userid,state,definition,cause,systemprocess,legalprocess,legalreview,notifytemplate
+ea_investigation_exptype.principalFileName=id
+ea_investigation_exptype.tableName=ea_investigation_exptype
+ea_investigation_exptype.domain=0
+ea_investigation_exptype.areaId=0
+
+ea_investigation_juc_dept.selectSql=id,userid,deptid
+ea_investigation_juc_dept.insertSql=id,userid,deptid
+ea_investigation_juc_dept.principalFileName=id
+ea_investigation_juc_dept.tableName=ea_investigation_juc_dept
+ea_investigation_juc_dept.domain=0
+ea_investigation_juc_dept.areaId=0
+
+ea_investigation_keywords.selectSql=keywordsid,keywords,type,remark,userid,addtime,isdelete
+ea_investigation_keywords.insertSql=keywordsid,keywords,type,remark,userid,addtime,isdelete
+ea_investigation_keywords.principalFileName=keywordsid
+ea_investigation_keywords.tableName=ea_investigation_keywords
+ea_investigation_keywords.domain=0
+ea_investigation_keywords.areaId=0
+
+ea_investigation_related.selectSql=withbreakid,jjdbh,cjdbh,fkdbh,alarminfo,caseid,caseinfo,cityid,countyid,jgdm,deptid,deptname,userid,username,keywords,suspictype,suspictypename,registertime,processtime,processid,processstatus,remark
+ea_investigation_related.insertSql=withbreakid,jjdbh,cjdbh,fkdbh,alarminfo,caseid,caseinfo,cityid,countyid,jgdm,deptid,deptname,userid,username,keywords,suspictype,suspictypename,registertime,processtime,processid,processstatus,remark
+ea_investigation_related.principalFileName=withbreakid
+ea_investigation_related.tableName=ea_investigation_related
+ea_investigation_related.domain=0
+ea_investigation_related.areaId=jjdbh like '${areaId}%'
+
+ea_investigation_sup_alarm.selectSql=suspicid,jjdbh,cjdbh,fkdbh,alarminfo,caseid,caseinfo,cityid,countyid,jgdm,deptid,deptname,userid,username,keywords,suspictype,suspictypename,registertime,processtime,processid,processstatus,remark
+ea_investigation_sup_alarm.insertSql=suspicid,jjdbh,cjdbh,fkdbh,alarminfo,caseid,caseinfo,cityid,countyid,jgdm,deptid,deptname,userid,username,keywords,suspictype,suspictypename,registertime,processtime,processid,processstatus,remark
+ea_investigation_sup_alarm.principalFileName=suspicid
+ea_investigation_sup_alarm.tableName=ea_investigation_sup_alarm
+ea_investigation_sup_alarm.domain=0
+ea_investigation_sup_alarm.areaId=jjdbh like '${areaId}%'

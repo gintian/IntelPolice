@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.DataSyncTaskBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.DataSyncTaskBean"
+               extends="com.model.mapper.DataSyncTaskMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.DataSyncTaskMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EA_DATA_SYNCTASK sa
+    </sql>
+
+    <!--分页开始  start-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        (SELECT ROWNUM AS rowno, sb.* FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_DATA_SYNCTASK sa
+        <where>
+            <include refid="queryPageSql"/>
+            ORDER BY sa.EXECUTIONDATE DESC
+        </where>
+        ) sb
+        <where>
+             ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ) table_alias WHERE table_alias.rowno > #{pageBean.pageNum}
+    </select>
+
+    <select id="countTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_DATA_SYNCTASK sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <sql id="queryPageSql">
+            sa.EXECUTIONDATE is NOT NULL
+            AND sa.SYNCSTATUS is NOT NULL
+            AND sa.SYNCNUM is NOT null
+            <if test="entity.syncvalue != null and entity.syncvalue != ''">
+                AND sa.SYNCVALUE = #{entity.syncvalue}
+            </if>
+    </sql>
+    <!--分页开始  end-->
+
+    <!--分页开始  start-->
+    <select id="selectBeanPageForNextTask" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        (SELECT ROWNUM AS rowno, sb.* FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_DATA_SYNCTASK sa
+        <where>
+            <include refid="queryPageSqlNextTask"/>
+            ORDER BY sa.SYNCDATE DESC
+        </where>
+        ) sb
+        <where>
+            ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ) table_alias WHERE table_alias.rowno > #{pageBean.pageNum}
+    </select>
+    <select id="countTotalForNextTask" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_DATA_SYNCTASK sa
+        <where>
+            <include refid="queryPageSqlNextTask"/>
+        </where>
+    </select>
+    <sql id="queryPageSqlNextTask">
+            sa.EXECUTIONDATE is NULL
+            AND sa.SYNCSTATUS is NULL
+            AND sa.SYNCNUM is null
+    </sql>
+    <!--分页开始  end-->
+
+    <select id="findListByType" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.EXECUTIONDATE is NULL
+            AND sa.SYNCSTATUS is NULL
+            AND sa.SYNCNUM is null
+            <if test="syncvalue != '' and syncvalue != null">
+              AND  sa.SYNCVALUE = #{syncvalue}
+            </if>
+        </where>
+    </select>
+</mapper>

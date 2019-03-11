@@ -1,0 +1,54 @@
+package com.action;
+
+import com.constant.Url;
+import com.utils.ReportUtils;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Action(value = Url.REPORT)
+@ParentPackage("jasperreports-default")
+public class ReportAction {
+    private HttpServletRequest request = ServletActionContext.getRequest();    //获取httpServletRequest对象
+    private HttpServletResponse response = ServletActionContext.getResponse();    //获取httpServletRequest对象
+
+    /**
+     * 展示-分页
+     *
+     * @return
+     */
+    @Action(value = Url.REPORT_DATA,
+            results = {@Result(name = "SUCCESS", location = Url.VIEWS + "others/print/show.jsp") })
+    public String reportData() throws Exception{
+        Map<String, Object> map = new HashMap<String, Object>();
+        List list = new ArrayList();
+        map.put("reportTitle", "xxx报表");
+        map.put("printTime", "2018-07-25 14:56:30");
+        Map<String, Object> maps = new HashMap<String, Object>();
+        for (int i = 1; i <= 10; i++) {
+            maps = new HashMap<String, Object>();
+            maps.put("index", i);
+            maps.put("cwmc", "财物名称" + i);
+            maps.put("cwsl", i);
+            maps.put("cwtz", "CWTZ" + i);
+            maps.put("ivalue", "IVALUE" + i);
+            maps.put("bz", "备注" + i);
+            maps.put("clspyj", "clspyj" + i);
+            maps.put("clspryxm", "clspryxm" + i);
+            maps.put("cwbm", "财物编码" + i);
+            list.add(maps);
+        }
+        //这里调用
+//        ReportUtils.compileReportToFile("/report/test.jrxml");
+        String filePath = ReportUtils.runReportToHtmlFile("/report/test.jrxml",list,map,"testReport");
+        return "SUCCESS";
+    }
+}

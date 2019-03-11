@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<!-- <classPathEntry location="D:\software\lib\mysql-connector-java-5.1.21.jar" /> -->
+	<!--	<classPathEntry location="F:\mysql\mysql-connector-java-5.1.25-bin.jar" /> -->
+
+	 <classPathEntry location="ojdbc14.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库链接URL、用户名、密码 -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/sy" userId="sypro" password="sypro"> -->
+<!--
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/db_easyui" userId="root" password="root">
+		</jdbcConnection>-->
+
+			<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@120.78.67.109:1521:orcl"
+			userId="intel"
+			password="85521533" >
+			</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.model" targetProject="D:\Java\WorkSpace-idea\IntelPolice\generator\src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		<!-- 生成的映射文件包名和位置 -->
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.model.xmlMapper" targetProject="D:\Java\WorkSpace-idea\IntelPolice\generator\src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.model.mapper" targetProject="D:\Java\WorkSpace-idea\IntelPolice\generator\src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+		<!--<table tableName="CASE_S_CASEINFO"-->
+		<!--domainObjectName="CaseInfo"-->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="CJDB"-->
+		<!--domainObjectName="CJ"-->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="CASE_M_110CMD"-->
+		<!--domainObjectName="CMD"-->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="CASE_M_CRIMINAL"-->
+		<!--domainObjectName="Criminal"-->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false" >-->
+		<!--<columnOverride column="caseaddress" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="details" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="casekeyword" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="makupreason" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="disposedetails" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="reportdetails" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="csjjyy" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="reportdetails" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="csjjyy" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--</table>-->
+		<!--<table tableName="EADEPT" -->
+		<!--domainObjectName="Dept" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EADICTORY" -->
+		<!--domainObjectName="Dictory" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_PLATFORM_FEEDBACK" -->
+		<!--domainObjectName="Feedback" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" >-->
+		<!--<columnOverride column="title" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--</table>-->
+		<!--<table tableName="EA_INVOLVED" -->
+		<!--domainObjectName="Involved" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_INVOLVED_BOX" -->
+		<!--domainObjectName="InvolvedBox" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_INVOLVED_STORES" -->
+		<!--domainObjectName="InvolvedStores" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_INVOLVED_STORES_BOX" -->
+		<!--domainObjectName="InvolvedStoresBox" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_INVOLVED_STORES_LOCKERS" -->
+		<!--domainObjectName="InvolvedStoresLockers" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="JJDB" -->
+		<!--domainObjectName="JJ" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_MEDIA" -->
+		<!--domainObjectName="Media" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_MEDIA_CASE" -->
+		<!--domainObjectName="MediaCase" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_MEDIA_FILES" -->
+		<!--domainObjectName="MediaFiles" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAMENU" -->
+		<!--domainObjectName="Menu" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_PLATFORM_MESSAGE" -->
+		<!--domainObjectName="Message" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_PLATFORM_NOTICE" -->
+		<!--domainObjectName="Notice" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" >-->
+		<!--<columnOverride column="title" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR2" />-->
+		<!--</table>-->
+		<!--<table tableName="EAPERMISSION" -->
+		<!--domainObjectName="Permission" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_RECORD" -->
+		<!--domainObjectName="Record" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_RECORD_CASE" -->
+		<!--domainObjectName="RecordCase" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAROLE" -->
+		<!--domainObjectName="Role" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAROLE_MENU" -->
+		<!--domainObjectName="RoleMenu" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAPERMISSION_ROLE" -->
+		<!--domainObjectName="RolePermission" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAUSER" -->
+		<!--domainObjectName="User" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EAUSER_ROLE" -->
+		<!--domainObjectName="UserRole" -->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false" -->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_PLATFORM_FILES"-->
+		<!--domainObjectName="Files"-->
+		<!--enableCountByExample="false" enableUpdateByExample="false"-->
+		<!--enableDeleteByExample="false" enableSelectByExample="false"-->
+		<!--selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_ARCHIVE"
+			   domainObjectName="Archive"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="EA_ARCHIVE_STORES_BOX"
+			   domainObjectName="ArchiveStoresBox"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="EA_ARCHIVE_CASE"
+			   domainObjectName="ArchiveCase"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="EA_ARCHIVE_STORES"
+			   domainObjectName="ArchiveStores"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />-->
+		<!--<table tableName="EA_INVOLVED_TYPES"-->
+			   <!--domainObjectName="InvolvedTypes"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+			   <!--selectByExampleQueryId="false" />-->
+		<table tableName="FKDB"
+		domainObjectName="FK"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" />
+		<table tableName="HFDB"
+		domainObjectName="HF"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" />
+		<table tableName="LYDB"
+		domainObjectName="LY"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" />
+
+</context>
+</generatorConfiguration>

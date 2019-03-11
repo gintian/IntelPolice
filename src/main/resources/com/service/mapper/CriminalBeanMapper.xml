@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CriminalBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CriminalBean"
+               extends="com.model.mapper.CriminalMapper.BaseResultMap">
+    </resultMap>
+    <resultMap id="BaseResultMap1" type="com.model.bean.CriminalBean"
+               extends="com.model.mapper.CriminalMapper.BaseResultMap">
+        <association property="smsLogBean" javaType="com.model.bean.SmsLogBean">
+            <id column="PERSONID" property="personId" jdbcType="VARCHAR"/>
+            <result column="CASEID" property="caseId" jdbcType="VARCHAR"/>
+            <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR"/>
+            <result column="SEQID" property="seqId" jdbcType="VARCHAR"/>
+            <result column="REQTIME" property="reqTime" jdbcType="TIMESTAMP"/>
+            <result column="REQIFCG" property="reqifcg" jdbcType="VARCHAR"/>
+            <result column="DXFSZT" property="dxfszt" jdbcType="VARCHAR"/>
+            <result column="LYDS" property="lyds" jdbcType="VARCHAR"/>
+            <result column="HCK_RKSJ" property="rksj" jdbcType="TIMESTAMP"/>
+            <result column="HCK_GXSJ" property="gxsj" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CriminalMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM CASE_M_CRIMINAL cr
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cr.* FROM CASE_M_CRIMINAL cr
+        <where>
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cr.CASEID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CASE_M_CRIMINAL cr
+        <where>
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBeanEqCaseId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="caseid != null and caseid != ''">
+                AND CASEID = #{caseid}
+            </if>
+        </where>
+        ORDER BY CASEID ASC
+    </select>
+
+    <select id="selectBeanLikeCaseName" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="casename != null and casename != ''">
+                AND CASENAME LIKE CONCAT(CONCAT('%', #{casename}), '%')
+            </if>
+        </where>
+        ORDER BY CASENAME ASC
+    </select>
+
+    <!--查询相关条件的的案件信息-->
+    <select id="findBeanPageForModule" resultMap="BaseResultMap">
+        SELECT
+        CASEID,CASENAME,CASECLASS,CODEDESC,/*PROCESSPERSONNAME,UNITNAME,*/DQBLDW,DISPOSEDETAILS,INPUTTIME,MODIFIEDTIME
+        FROM
+        (SELECT ROWNUM AS rowno,
+        a.CASEID,a.CASENAME,a.CASECLASS,b.CODEDESC,/*a.PROCESSPERSONNAME,a.UNITNAME,*/a.DQBLDW,a.DISPOSEDETAILS,a.INPUTTIME,a.MODIFIEDTIME
+        FROM CASE_M_CRIMINAL a,EACODE b
+        -- SELECT * FROM (SELECT ROWNUM AS rowno,a.*,b.CODEDESC FROM CASE_M_CRIMINAL a,EACODE b
+        <where>
+            AND b.FIELD = 'CASE_TYPE'
+            AND a.CASECLASS = b.CODE
+
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND a.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND a.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.caseclass != null and entity.caseclass != ''">
+                AND b.CODE LIKE CONCAT(CONCAT('%', #{entity.caseclass, jdbcType=VARCHAR}), '%')
+            </if>
+            <!--<if test="entity.processpersonname != null and entity.processpersonname != ''">
+                AND a.PROCESSPERSONNAME LIKE CONCAT(CONCAT('%', #{entity.processpersonname, jdbcType=VARCHAR}), '%')
+            </if>-->
+            <!--<if test="entity.unitname != null and entity.unitname != ''">
+                AND a.UNITNAME LIKE CONCAT(CONCAT('%', #{entity.unitname, jdbcType=VARCHAR}), '%')
+            </if>-->
+            <if test="entity.dqbldw != null and entity.dqbldw != ''">
+                AND a.DQBLDW LIKE CONCAT(CONCAT('%', #{entity.dqbldw, jdbcType=VARCHAR}), '%')
+            </if>
+            <!--未录入笔录的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'record_no_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_RECORD_CASE)
+            </if>
+            <!--已录入笔录的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'record_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_RECORD_CASE)
+            </if>
+            <!--未录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_no_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--已录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--无需录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_not_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--未录入卷宗的案件信息-->
+            <if test="moduleFunction == 'archive_no_input'">
+                AND a.CASEID NOT IN (select CASEID FROM EA_ARCHIVE_CASE)
+            </if>
+            <!--已录入卷宗的案件信息-->
+            <if test="moduleFunction == 'archive_input'">
+                AND a.CASEID IN (select CASEID FROM EA_ARCHIVE_CASE)
+            </if>
+            <!--无需录入卷宗的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'archive_not_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_ARCHIVE_CASE)
+            </if>
+
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY MODIFIEDTIME DESC
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <!--查询相关条件的的案件信息的总条数-->
+    <select id="findBeanPageForModuleTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM CASE_M_CRIMINAL a
+        <where>
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND a.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND a.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.caseclass != null and entity.caseclass != ''">
+                AND b.CODE LIKE CONCAT(CONCAT('%', #{entity.caseclass, jdbcType=VARCHAR}), '%')
+            </if>
+            <!--<if test="entity.processpersonname != null and entity.processpersonname != ''">
+                AND a.PROCESSPERSONNAME LIKE CONCAT(CONCAT('%', #{entity.processpersonname, jdbcType=VARCHAR}), '%')
+            </if>-->
+            <!--<if test="entity.unitname != null and entity.unitname != ''">
+                AND a.UNITNAME LIKE CONCAT(CONCAT('%', #{entity.unitname, jdbcType=VARCHAR}), '%')
+            </if>-->
+            <if test="entity.dqbldw != null and entity.dqbldw != ''">
+                AND a.DQBLDW LIKE CONCAT(CONCAT('%', #{entity.dqbldw, jdbcType=VARCHAR}), '%')
+            </if>
+            <!--未录入笔录的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'record_no_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_RECORD_CASE)
+            </if>
+            <!--已录入笔录的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'record_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_RECORD_CASE)
+            </if>
+            <!--未录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_no_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--已录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--无需录入财务的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'involved_not_input'">
+                AND CASEID IN (SELECT CASEID FROM EA_INVOLVED_CASE)
+            </if>
+            <!--未录入卷宗的案件信息-->
+            <if test="moduleFunction == 'archive_no_input'">
+                AND a.CASEID NOT IN (select CASEID FROM EA_ARCHIVE_CASE)
+
+            </if>
+            <!--已录入卷宗的案件信息-->
+            <if test="moduleFunction == 'archive_input'">
+                AND a.CASEID IN (select CASEID FROM EA_ARCHIVE_CASE)
+            </if>
+            <!--无需录入卷宗的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'archive_not_input'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_ARCHIVE_CASE)
+            </if>
+            <!--未关联执法音视频的案件信息-->
+            <if test="moduleFunction != null and moduleFunction == 'media_no_relation'">
+                AND CASEID NOT IN (SELECT CASEID FROM EA_MEDIA_CASE)
+            </if>
+        </where>
+    </select>
+
+    <!--根据CaseStatus查询相关条的案件信息-->
+    <select id="findBeanPageForCaseStatus" resultMap="BaseResultMap">
+        SELECT CASEID,CASENAME,CASECLASS,/*PROCESSPERSONNAME,UNITNAME,*/DISPOSEDETAILS,INPUTTIME,MODIFIEDTIME FROM
+        (SELECT ROWNUM AS rowno,
+        a.CASEID,a.CASENAME,a.CASECLASS,/*a.PROCESSPERSONNAME,a.UNITNAME,*/a.DISPOSEDETAILS,a.INPUTTIME,a.MODIFIEDTIME
+        FROM CASE_M_CRIMINAL a,EA_CASE_STATUS b
+        <where>
+            <include refid="findBeanPageForForCaseStatusSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY MODIFIEDTIME DESC
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <sql id="findBeanPageForForCaseStatusSql">
+        AND a.CASEID = b.CASEID
+        <if test="caseStatusBean.mediasyncstatus != null and caseStatusBean.mediasyncstatus != ''">
+            AND b.MEDIASYNCSTATUS = #{caseStatusBean.mediasyncstatus, jdbcType=VARCHAR}
+        </if>
+        <if test="caseStatusBean.recordsyncstatus != null and caseStatusBean.recordsyncstatus != ''">
+            AND b.RECORDSYNCSTATUS = #{caseStatusBean.recordsyncstatus, jdbcType=VARCHAR}
+        </if>
+        <if test="caseStatusBean.involvedsyncstatus != null and caseStatusBean.involvedsyncstatus != ''">
+            AND b.INVOLVEDSYNCSTATUS = #{caseStatusBean.involvedsyncstatus, jdbcType=VARCHAR}
+        </if>
+        <if test="caseStatusBean.archivesyncstatus != null and caseStatusBean.archivesyncstatus != ''">
+            AND b.ARCHIVESYNCSTATUS = #{caseStatusBean.archivesyncstatus, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.caseid != null and entity.caseid != ''">
+            AND a.CASEID = #{entity.caseid, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.caseclass != null and entity.caseclass != ''">
+            AND a.CASECLASS =#{entity.caseclass, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.casename != null and entity.casename != ''">
+            AND a.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+        </if>
+        <!--<if test="entity.processpersonname != null and entity.processpersonname != ''">
+            AND a.PROCESSPERSONNAME LIKE CONCAT(CONCAT('%', #{entity.processpersonname, jdbcType=VARCHAR}), '%')
+        </if>-->
+        <!--<if test="entity.unitname != null and entity.unitname != ''">
+            AND a.UNITNAME LIKE CONCAT(CONCAT('%', #{entity.unitname, jdbcType=VARCHAR}), '%')
+        </if>-->
+    </sql>
+
+    <!--根据casestatus 查询相关条件的案件信息的总条数-->
+    <select id="findBeanPageForForCaseStatusTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM CASE_M_CRIMINAL a, EA_CASE_STATUS b
+        <where>
+            <include refid="findBeanPageForForCaseStatusSql"/>
+        </where>
+    </select>
+    <!--根据卷宗箱子查询相关条件的案件信息-->
+    <select id="selectDataAllEqBoxId" resultMap="BaseResultMap">
+        SELECT sa.* FROM CASE_M_CRIMINAL sa
+        <where>
+            <!--案件ID号不能为空-->
+            <if test="boxId != null and boxId != ''">
+                sa.CASEID IN (SELECT e.CASEID FROM EA_ARCHIVE_CASE e WHERE e.BOXID=#{boxId})
+            </if>
+        </where>
+    </select>
+    <!--根据财物箱子查询相关条件的案件信息-->
+    <select id="selectDataAllEqInvolvedBoxId" resultMap="BaseResultMap">
+        SELECT sa.* FROM CASE_M_CRIMINAL sa
+        <where>
+            <!--案件ID号不能为空-->
+            <if test="boxId != null and boxId != ''">
+                sa.CASEID IN (SELECT e.CASEID FROM EA_INVOLVED_CASE e WHERE e.BOXID=#{boxId})
+            </if>
+        </where>
+    </select>
+    <!--根据办案人员id-->
+    <select id="selectByOrganizerId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from CASE_M_CRIMINAL
+        where ORGANIZERID = #{OrganizerId,jdbcType=VARCHAR}
+    </select>
+    <!--回告未成功-->
+    <select id="selectSmsNotFsData" resultMap="BaseResultMap1">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cr.* FROM CASE_M_CRIMINAL cr
+        <where>
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+            <if test="stuts == 'fs'">
+                AND CASEID IN (SELECT CASEID FROM SMS_LOG)
+            </if>
+            <if test="stuts == 'wfs'">
+                AND CASEID NOT IN (SELECT CASEID FROM SMS_LOG)
+            </if>
+            <if test="stuts == 'cf'">
+                AND CASEID IN (SELECT CASEID FROM SMS_LOG group by CASEID having count(*) > 1)
+            </if>
+        </where>
+        ORDER BY cr.CASEID
+        ) table_alias
+        <if test="stuts == 'fs'">
+            inner join SMS_LOG sl
+            on table_alias.CASEID = sl.CASEID
+        </if>
+        <if test="stuts == 'cf'">
+            inner join SMS_LOG sl
+            on table_alias.CASEID = sl.CASEID
+        </if>
+        WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectSmsNotFsTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CASE_M_CRIMINAL cr
+        <where>
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="stuts == 'fs'">
+                AND cr.CASEID IN (SELECT CASEID FROM SMS_LOG)
+            </if>
+            <if test="stuts == 'wfs'">
+                AND cr.CASEID NOT IN (SELECT CASEID FROM SMS_LOG)
+            </if>
+            <if test="stuts == 'cf'">
+                AND CASEID IN (SELECT CASEID FROM SMS_LOG group by CASEID having count(*) > 1)
+            </if>
+        </where>
+    </select>
+
+    <!--查询分页数据(无接处警异常)-->
+    <select id="selectNotjcjData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cr.* FROM CASE_M_CRIMINAL cr
+        <where>
+            cr.CASEID IN (select CASEID from CASE_M_110CMD where SJBH is null)
+            AND cr.ZJSL_PDBZ = '0'
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cr.CASEID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectNotjcjTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CASE_M_CRIMINAL cr
+        <where>
+            cr.CASEID IN (select CASEID from CASE_M_110CMD where SJBH is null )
+            AND cr.ZJSL_PDBZ = '0'
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectZjslData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cr.* FROM CASE_M_CRIMINAL cr
+        <where>
+            cr.ZJSL_PDBZ = '1'
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cr.CASEID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectZjslTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CASE_M_CRIMINAL cr
+        <where>
+            cr.ZJSL_PDBZ = '1'
+            <if test="entity.caseid != null and entity.caseid != ''">
+                AND cr.CASEID LIKE CONCAT(CONCAT('%', #{entity.caseid, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.casename != null and entity.casename != ''">
+                AND cr.CASENAME LIKE CONCAT(CONCAT('%', #{entity.casename, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.alarmtype != null and entity.alarmtype != ''">
+                AND cr.ALARMTYPE LIKE CONCAT(CONCAT('%', #{entity.alarmtype, jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+    </select>
+    <select id="selectCriminalBeanByjjdbh" resultMap="BaseResultMap">
+        SELECT distinct SJBH,CMC.* FROM CASE_M_CRIMINAL CMC
+        INNER JOIN CASE_M_110CMD CM110C
+        ON CMC.caseid = CM110C.caseid
+        <where>
+            <if test="jjdbh != null and jjdbh != ''">
+                AND CM110C.SJBH = #{jjdbh}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectNotViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM CASE_M_CRIMINAL t1
+        WHERE NOT EXISTS
+			(SELECT CASEID
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.CASEID=t2.CASEID)
+    </select>
+
+    <select id="selectNotView" resultType="com.model.Criminal">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM CASE_M_CRIMINAL t1
+            WHERE NOT EXISTS
+                    (SELECT CJDBH
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.CASEID=	t2.CASEID))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+    <select id="selectCorrelateViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM CASE_M_CRIMINAL t1
+        WHERE  EXISTS
+			(SELECT CASEID
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.CASEID=	t2.CASEID)
+    </select>
+
+    <select id="selectCorrelateView" resultType="com.model.Criminal">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM CASE_M_CRIMINAL t1
+            WHERE  EXISTS
+                    (SELECT CASEID
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.CASEID=	t2.CASEID))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+
+</mapper>

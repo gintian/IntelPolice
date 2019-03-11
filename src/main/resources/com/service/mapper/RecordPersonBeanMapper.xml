@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.RecordPersonBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.RecordPersonBean"
+               extends="com.model.mapper.RecordPersonMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.RecordPersonMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_RECORD_PERSON
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.name != null" >
+            AND NAME LIKE CONCAT('%', CONCAT(#{entity.name,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.idcard != null" >
+            AND IDCARD LIKE CONCAT('%', CONCAT(#{entity.idcard,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.pic != null" >
+            AND PIC LIKE CONCAT('%', CONCAT(#{entity.pic,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.isrddb != null" >
+            AND ISRDDB LIKE CONCAT('%', CONCAT(#{entity.isrddb,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.bxwrAddr != null" >
+            AND BXWRADDR LIKE CONCAT('%', CONCAT(#{entity.bxwrAddr,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.bxwrPhone != null" >
+            AND BXWRPHONE LIKE CONCAT('%', CONCAT(#{entity.bxwrPhone,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.addUser != null" >
+            AND ADDUSER LIKE CONCAT('%', CONCAT(#{entity.addUser,jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.addUser != null" >
+            AND MODIFYUSER LIKE CONCAT('%', CONCAT(#{entity.MODIFYUSER,jdbcType=VARCHAR}, '%'))
+        </if>
+        <!--<if test="modifyTime != null" >
+            AND MODIFYTIME LIKE CONCAT('%', CONCAT(#{modifyTime,jdbcType=TIMESTAMP}, '%'))
+        </if>-->
+    </sql>
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_RECORD_PERSON sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.PERSONID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_RECORD_PERSON sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+</mapper>

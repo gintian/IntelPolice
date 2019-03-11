@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.CJMapper">
+    <resultMap id="BaseResultMap" type="com.model.CJ">
+        <result column="XZQHDM" property="xzqhdm" jdbcType="VARCHAR"/>
+        <result column="CJDBH" property="cjdbh" jdbcType="VARCHAR"/>
+        <result column="JJDBH" property="jjdbh" jdbcType="VARCHAR"/>
+        <result column="CJDWDM" property="cjdwdm" jdbcType="VARCHAR"/>
+        <result column="CJYBH" property="cjybh" jdbcType="VARCHAR"/>
+        <result column="CJYXM" property="cjyxm" jdbcType="VARCHAR"/>
+        <result column="CJLYH" property="cjlyh" jdbcType="VARCHAR"/>
+        <result column="CJYJ" property="cjyj" jdbcType="VARCHAR"/>
+        <result column="CDDWDM" property="cddwdm" jdbcType="VARCHAR"/>
+        <result column="CDJYBH" property="cdjybh" jdbcType="VARCHAR"/>
+        <result column="CDJYXM" property="cdjyxm" jdbcType="VARCHAR"/>
+        <result column="RKSJC" property="rksjc" jdbcType="DATE"/>
+        <result column="CJSJ" property="cjsj" jdbcType="DATE"/>
+        <result column="PDDDSJ" property="pdddsj" jdbcType="DATE"/>
+        <result column="PDJSSJ" property="pdjssj" jdbcType="DATE"/>
+        <result column="TDBZ" property="tdbz" jdbcType="DECIMAL"/>
+        <result column="QSCSBZ" property="qscsbz" jdbcType="DECIMAL"/>
+        <result column="CDRY" property="cdry" jdbcType="VARCHAR"/>
+        <result column="CDCL" property="cdcl" jdbcType="VARCHAR"/>
+        <result column="JQZTDM" property="jqztdm" jdbcType="VARCHAR"/>
+        <result column="GXSJC" property="gxsjc" jdbcType="DATE"/>
+        <result column="SFZDDW" property="sfzddw" jdbcType="DECIMAL"/>
+        <result column="ZDDWMC" property="zddwmc" jdbcType="VARCHAR"/>
+        <result column="SSXT" property="ssxt" jdbcType="VARCHAR"/>
+        <result column="HCK_RKSJ" property="hckRksj" jdbcType="DATE"/>
+        <result column="HCK_GXSJ" property="hckGxsj" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    XZQHDM, CJDBH, JJDBH,
+      CJDWDM, CJYBH, CJYXM,
+      CJLYH, CJYJ, CDDWDM,
+      CDJYBH, CDJYXM, RKSJC,
+      CJSJ, PDDDSJ, PDJSSJ, TDBZ,
+      QSCSBZ, CDRY, CDCL,
+      JQZTDM, GXSJC, SFZDDW,
+      ZDDWMC, SSXT, HCK_RKSJ,
+      HCK_GXSJ
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from CJDB
+        where CJDBH = #{cjdbh,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CJDB
+    where CJDBH = #{cjdbh,jdbcType=VARCHAR}
+  </delete>
+    <update id="updateByPrimaryKeySelective" parameterType="com.model.CJ">
+        update CJDB
+        <set>
+            <if test="xzqhdm != null">
+                XZQHDM,
+            </if>
+            <if test="cjdbh != null">
+                CJDBH,
+            </if>
+            <if test="jjdbh != null">
+                JJDBH,
+            </if>
+            <if test="cjdwdm != null">
+                CJDWDM,
+            </if>
+            <if test="cjybh != null">
+                CJYBH,
+            </if>
+            <if test="cjyxm != null">
+                CJYXM,
+            </if>
+            <if test="cjlyh != null">
+                CJLYH,
+            </if>
+            <if test="cjyj != null">
+                CJYJ,
+            </if>
+            <if test="cddwdm != null">
+                CDDWDM,
+            </if>
+            <if test="cdjybh != null">
+                CDJYBH,
+            </if>
+            <if test="cdjyxm != null">
+                CDJYXM,
+            </if>
+            <if test="rksjc != null">
+                RKSJC,
+            </if>
+            <if test="cjsj != null">
+                CJSJ,
+            </if>
+            <if test="pdddsj != null">
+                PDDDSJ,
+            </if>
+            <if test="pdjssj != null">
+                PDJSSJ,
+            </if>
+            <if test="tdbz != null">
+                TDBZ,
+            </if>
+            <if test="qscsbz != null">
+                QSCSBZ,
+            </if>
+            <if test="cdry != null">
+                CDRY,
+            </if>
+            <if test="cdcl != null">
+                CDCL,
+            </if>
+            <if test="jqztdm != null">
+                JQZTDM,
+            </if>
+            <if test="gxsjc != null">
+                GXSJC,
+            </if>
+            <if test="sfzddw != null">
+                SFZDDW,
+            </if>
+            <if test="zddwmc != null">
+                ZDDWMC,
+            </if>
+            <if test="ssxt != null">
+                SSXT,
+            </if>
+            <if test="hckRksj != null">
+                HCK_RKSJ,
+            </if>
+            <if test="hckGxsj != null">
+                HCK_GXSJ,
+            </if>
+        </set>
+        where CJDBH = #{cjdbh,jdbcType=VARCHAR}
+    </update>
+    <insert id="insert" parameterType="com.model.CJ">
+    insert into CJDB (XZQHDM, CJDBH, JJDBH, 
+      CJDWDM, CJYBH, CJYXM, 
+      CJLYH, CJYJ, CDDWDM, 
+      CDJYBH, CDJYXM, RKSJC, 
+      CJSJ, PDDDSJ, PDJSSJ, TDBZ, 
+      QSCSBZ, CDRY, CDCL, 
+      JQZTDM, GXSJC, SFZDDW, 
+      ZDDWMC, SSXT, HCK_RKSJ, 
+      HCK_GXSJ)
+    values (#{xzqhdm,jdbcType=VARCHAR}, #{cjdbh,jdbcType=VARCHAR}, #{jjdbh,jdbcType=VARCHAR}, 
+      #{cjdwdm,jdbcType=VARCHAR}, #{cjybh,jdbcType=VARCHAR}, #{cjyxm,jdbcType=VARCHAR}, 
+      #{cjlyh,jdbcType=VARCHAR}, #{cjyj,jdbcType=VARCHAR}, #{cddwdm,jdbcType=VARCHAR}, 
+      #{cdjybh,jdbcType=VARCHAR}, #{cdjyxm,jdbcType=VARCHAR}, #{rksjc,jdbcType=DATE}, 
+      #{cjsj,jdbcType=DATE}, #{pdddsj,jdbcType=DATE}, #{pdjssj,jdbcType=DATE}, #{tdbz,jdbcType=DECIMAL}, 
+      #{qscsbz,jdbcType=DECIMAL}, #{cdry,jdbcType=VARCHAR}, #{cdcl,jdbcType=VARCHAR}, 
+      #{jqztdm,jdbcType=VARCHAR}, #{gxsjc,jdbcType=DATE}, #{sfzddw,jdbcType=DECIMAL}, 
+      #{zddwmc,jdbcType=VARCHAR}, #{ssxt,jdbcType=VARCHAR}, #{hckRksj,jdbcType=DATE}, 
+      #{hckGxsj,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.model.CJ">
+        insert into CJDB
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="xzqhdm != null">
+                XZQHDM,
+            </if>
+            <if test="cjdbh != null">
+                CJDBH,
+            </if>
+            <if test="jjdbh != null">
+                JJDBH,
+            </if>
+            <if test="cjdwdm != null">
+                CJDWDM,
+            </if>
+            <if test="cjybh != null">
+                CJYBH,
+            </if>
+            <if test="cjyxm != null">
+                CJYXM,
+            </if>
+            <if test="cjlyh != null">
+                CJLYH,
+            </if>
+            <if test="cjyj != null">
+                CJYJ,
+            </if>
+            <if test="cddwdm != null">
+                CDDWDM,
+            </if>
+            <if test="cdjybh != null">
+                CDJYBH,
+            </if>
+            <if test="cdjyxm != null">
+                CDJYXM,
+            </if>
+            <if test="rksjc != null">
+                RKSJC,
+            </if>
+            <if test="cjsj != null">
+                CJSJ,
+            </if>
+            <if test="pdddsj != null">
+                PDDDSJ,
+            </if>
+            <if test="pdjssj != null">
+                PDJSSJ,
+            </if>
+            <if test="tdbz != null">
+                TDBZ,
+            </if>
+            <if test="qscsbz != null">
+                QSCSBZ,
+            </if>
+            <if test="cdry != null">
+                CDRY,
+            </if>
+            <if test="cdcl != null">
+                CDCL,
+            </if>
+            <if test="jqztdm != null">
+                JQZTDM,
+            </if>
+            <if test="gxsjc != null">
+                GXSJC,
+            </if>
+            <if test="sfzddw != null">
+                SFZDDW,
+            </if>
+            <if test="zddwmc != null">
+                ZDDWMC,
+            </if>
+            <if test="ssxt != null">
+                SSXT,
+            </if>
+            <if test="hckRksj != null">
+                HCK_RKSJ,
+            </if>
+            <if test="hckGxsj != null">
+                HCK_GXSJ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="xzqhdm != null">
+                #{xzqhdm,jdbcType=VARCHAR},
+            </if>
+            <if test="cjdbh != null">
+                #{cjdbh,jdbcType=VARCHAR},
+            </if>
+            <if test="jjdbh != null">
+                #{jjdbh,jdbcType=VARCHAR},
+            </if>
+            <if test="cjdwdm != null">
+                #{cjdwdm,jdbcType=VARCHAR},
+            </if>
+            <if test="cjybh != null">
+                #{cjybh,jdbcType=VARCHAR},
+            </if>
+            <if test="cjyxm != null">
+                #{cjyxm,jdbcType=VARCHAR},
+            </if>
+            <if test="cjlyh != null">
+                #{cjlyh,jdbcType=VARCHAR},
+            </if>
+            <if test="cjyj != null">
+                #{cjyj,jdbcType=VARCHAR},
+            </if>
+            <if test="cddwdm != null">
+                #{cddwdm,jdbcType=VARCHAR},
+            </if>
+            <if test="cdjybh != null">
+                #{cdjybh,jdbcType=VARCHAR},
+            </if>
+            <if test="cdjyxm != null">
+                #{cdjyxm,jdbcType=VARCHAR},
+            </if>
+            <if test="rksjc != null">
+                #{rksjc,jdbcType=DATE},
+            </if>
+            <if test="cjsj != null">
+                #{cjsj,jdbcType=DATE},
+            </if>
+            <if test="pdddsj != null">
+                #{pdddsj,jdbcType=DATE},
+            </if>
+            <if test="pdjssj != null">
+                #{pdjssj,jdbcType=DATE},
+            </if>
+            <if test="tdbz != null">
+                #{tdbz,jdbcType=DECIMAL},
+            </if>
+            <if test="qscsbz != null">
+                #{qscsbz,jdbcType=DECIMAL},
+            </if>
+            <if test="cdry != null">
+                #{cdry,jdbcType=VARCHAR},
+            </if>
+            <if test="cdcl != null">
+                #{cdcl,jdbcType=VARCHAR},
+            </if>
+            <if test="jqztdm != null">
+                #{jqztdm,jdbcType=VARCHAR},
+            </if>
+            <if test="gxsjc != null">
+                #{gxsjc,jdbcType=DATE},
+            </if>
+            <if test="sfzddw != null">
+                #{sfzddw,jdbcType=DECIMAL},
+            </if>
+            <if test="zddwmc != null">
+                #{zddwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="ssxt != null">
+                #{ssxt,jdbcType=VARCHAR},
+            </if>
+            <if test="hckRksj != null">
+                #{hckRksj,jdbcType=DATE},
+            </if>
+            <if test="hckGxsj != null">
+                #{hckGxsj,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+</mapper>

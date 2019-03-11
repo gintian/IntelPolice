@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.MediaFilesMapper" >
+  <resultMap id="BaseResultMap" type="com.model.MediaFiles" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MEDIAID" property="mediaid" jdbcType="VARCHAR" />
+    <result column="FILESIZE" property="filesize" jdbcType="VARCHAR" />
+    <result column="FILETYPE" property="filetype" jdbcType="VARCHAR" />
+    <result column="FILEPATH" property="filepath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MEDIAID, FILESIZE, FILETYPE, FILEPATH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_MEDIA_FILES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_MEDIA_FILES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.MediaFiles" >
+    insert into EA_MEDIA_FILES (ID, MEDIAID, FILESIZE, 
+      FILETYPE, FILEPATH)
+    values (#{id,jdbcType=VARCHAR}, #{mediaid,jdbcType=VARCHAR}, #{filesize,jdbcType=VARCHAR}, 
+      #{filetype,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.MediaFiles" >
+    insert into EA_MEDIA_FILES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mediaid != null" >
+        MEDIAID,
+      </if>
+      <if test="filesize != null" >
+        FILESIZE,
+      </if>
+      <if test="filetype != null" >
+        FILETYPE,
+      </if>
+      <if test="filepath != null" >
+        FILEPATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaid != null" >
+        #{mediaid,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.MediaFiles" >
+    update EA_MEDIA_FILES
+    <set >
+      <if test="mediaid != null" >
+        MEDIAID = #{mediaid,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        FILESIZE = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        FILETYPE = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.MediaFiles" >
+    update EA_MEDIA_FILES
+    set MEDIAID = #{mediaid,jdbcType=VARCHAR},
+      FILESIZE = #{filesize,jdbcType=VARCHAR},
+      FILETYPE = #{filetype,jdbcType=VARCHAR},
+      FILEPATH = #{filepath,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.JJBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.JJBean"
+               extends="com.model.mapper.JJMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.JJMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM JJDB jj
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.xzqhdm != null and entity.xzqhdm != ''">
+            AND jj.XZQHDM LIKE CONCAT(CONCAT('%', #{entity.xzqhdm, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.jjdbh != null and entity.jjdbh != ''">
+            AND jj.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,jj.* FROM JJDB jj
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY jj.jjdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM JJDB jj
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <select id="selectJJEqXzqhdm" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="xzqhdm != null and xzqhdm != ''">
+                AND XZQHDM = #{xzqhdm}
+            </if>
+        </where>
+        ORDER BY XZQHDM ASC
+    </select>
+
+    <select id="selectJJEqJjdbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="jjdbh != null and jjdbh != ''">
+                AND JJDBH = #{jjdbh}
+            </if>
+        </where>
+        ORDER BY JJDBH ASC
+    </select>
+
+    <!-- 查询接处警未关联案件 -->
+    <select id="selectDataUnrelated" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,jj.* FROM JJDB jj left join CJDB cj on jj.JJDBH=cj.JJDBH
+        <where>
+            AND cj.JJDBH is null
+            <if test="entity.xzqhdm != null and entity.xzqhdm != ''">
+                AND jj.XZQHDM LIKE CONCAT(CONCAT('%', #{entity.xzqhdm, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.jjdbh != null and entity.jjdbh != ''">
+                AND jj.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+            </if>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY jj.jjdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotalUnrelated" resultType="java.lang.Integer">
+        SELECT count(*) FROM JJDB jj left join CJDB cj on jj.JJDBH=cj.JJDBH
+        <where>
+            AND cj.JJDBH is null
+            <if test="entity.xzqhdm != null and entity.xzqhdm != ''">
+                AND jj.XZQHDM LIKE CONCAT(CONCAT('%', #{entity.xzqhdm, jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="entity.jjdbh != null and entity.jjdbh != ''">
+                AND jj.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 查询未录音 -->
+    <select id="selectDataNotRecordings" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,jj.* FROM JJDB jj
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+            AND jj.JJLYH IS NULL
+        </where>
+        ORDER BY jj.jjdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotalNotRecordings" resultType="java.lang.Integer">
+        select COUNT(*) FROM JJDB jj
+        <where>
+            <include refid="queryPageSql"/>
+            AND jj.JJLYH IS NULL
+        </where>
+    </select>
+    <select id="selectByCaseId" resultMap="BaseResultMap">
+        SELECT * FROM JJDB jj
+        WHERE
+            jj.jjdbh IN (SELECT sjbh FROM INTEL.CASE_M_110CMD WHERE caseid = #{caseid})
+    </select>
+
+    <!--
+        <resultMap id="BaseResultMap2" type="com.model.bean.JJBean"
+                   extends="com.model.mapper.JJMapper.BaseResultMap">
+            <association property="viewDocBean" javaType="com.model.bean.ViewDocBean">
+                <id property="doc_id" column="DOC_ID"></id>
+                <result property="doc_name" column="DOC_NAME"></result>
+                <result property="doc_size" column="DOC_SIZE"></result>
+                <result property="doc_url" column="DOC_URL"></result>
+                <result property="cate" column="CATE"></result>
+                <result property="explry_time" column="EXPLRY_TIME"></result>
+                <result property="imp_levl" column="IMP_LEVL"></result>
+                <result property="remark" column="REMARK"></result>
+                <result property="site_no" column="SITE_NO"></result>
+                <result property="http" column="HTTP"></result>
+                <result property="upload_time" column="UPLOAD_TIME"></result>
+                <result property="create_time" column="CREATE_TIME"></result>
+                <result property="police_id" column="POLICE_ID"></result>
+                <result property="id" column="ID"></result>
+                <result property="name" column="NAME"></result>
+                <result property="idNum" column="IDNUM"></result>
+                <result property="workNumber" column="workNumber"></result>
+                <result property="organizationId" column="organizationId"></result>
+                <result property="mobile" column="mobile"></result>
+                <result property="orgCode" column="orgCode"></result>
+                <result property="orgName" column="orgName"></result>
+                <result property="parentId" column="parentId"></result>
+            </association>
+        </resultMap>-->
+
+    <select id="selectNotViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM JJDB t1
+        WHERE NOT EXISTS
+			(SELECT JJDBH
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.JJDBH=	t2.JJDBH)
+    </select>
+    <select id="selectNotView" resultType="com.model.bean.JJBean">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM JJDB t1
+            WHERE NOT EXISTS
+                    (SELECT JJDBH
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.JJDBH=	t2.JJDBH))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+
+    <select id="selectCorrelateViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM JJDB t1
+        WHERE  EXISTS
+			(SELECT JJDBH
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.JJDBH=	t2.JJDBH)
+    </select>
+
+    <select id="selectCorrelateView" resultType="com.model.bean.JJBean">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM JJDB t1
+            WHERE  EXISTS
+                    (SELECT JJDBH
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.JJDBH=	t2.JJDBH))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+
+
+</mapper>

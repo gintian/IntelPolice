@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.ArchiveStoresBoxLogMapper" >
+  <resultMap id="BaseResultMap" type="com.model.ArchiveStoresBoxLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseId" jdbcType="VARCHAR" />
+    <result column="ACHIVEID" property="achiveId" jdbcType="VARCHAR" />
+    <result column="BOXID" property="boxId" jdbcType="VARCHAR" />
+    <result column="LOGTIME" property="logTime" jdbcType="TIMESTAMP" />
+    <result column="STUTS" property="stuts" jdbcType="VARCHAR" />
+    <result column="OERATIONUSER" property="operationUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CASEID, ACHIVEID, BOXID, LOGTIME, STUTS, OERATIONUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_ARCHIVE_STORES_BOX_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_ARCHIVE_STORES_BOX_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ArchiveStoresBoxLog" >
+    insert into EA_ARCHIVE_STORES_BOX_LOG (ID, CASEID, ACHIVEID, BOXID, LOGTIME, STUTS, OERATIONUSER)
+    values (#{id,jdbcType=VARCHAR}, #{caseId,jdbcType=VARCHAR}, #{achiveId,jdbcType=VARCHAR},
+      #{boxId,jdbcType=VARCHAR}, #{logTime,jdbcType=TIMESTAMP}, #{stuts,jdbcType=VARCHAR}), #{operationUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ArchiveStoresBoxLog" >
+    insert into EA_ARCHIVE_STORES_BOX_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="caseId != null" >
+        CASEID,
+      </if>
+      <if test="achiveId != null" >
+        ACHIVEID,
+      </if>
+      <if test="boxId != null" >
+        BOXID,
+      </if>
+      <if test="logTime != null" >
+        LOGTIME,
+      </if>
+      <if test="stuts != null" >
+        STUTS,
+      </if>
+      <if test="operationUser != null" >
+        OERATIONUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="achiveId != null" >
+        #{achiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        #{logTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stuts != null" >
+        #{stuts,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUser != null" >
+        #{operationUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ArchiveStoresBoxLog" >
+    update EA_ARCHIVE_STORES_BOX_LOG
+    <set >
+      <if test="caseId != null" >
+        CASEID = #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="achiveId != null" >
+        ACHIVEID =  #{achiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        BOXID = #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        LOGTIME = #{logTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stuts != null" >
+        STUTS = #{stuts,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUser != null" >
+        OERATIONUSER = #{operationUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ArchiveStoresBoxLog" >
+    update EA_ARCHIVE_STORES_BOX_LOG
+    set
+      CASEID = #{caseId,jdbcType=VARCHAR},
+      ACHIVEID =  #{achiveId,jdbcType=VARCHAR},
+      BOXID = #{boxId,jdbcType=VARCHAR},
+      LOGTIME = #{logTime,jdbcType=TIMESTAMP},
+      STUTS = #{stuts,jdbcType=VARCHAR},
+      OERATIONUSER = #{operationUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

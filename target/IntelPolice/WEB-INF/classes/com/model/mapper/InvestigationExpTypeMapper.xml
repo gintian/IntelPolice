@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvestigationExpTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvestigationExpType" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SORTCODE" property="sortCode" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="parentId" jdbcType="VARCHAR" />
+    <result column="ISAUTOSEND" property="isAutoSend" jdbcType="VARCHAR" />
+    <result column="ISPROCESS" property="isProcess" jdbcType="VARCHAR" />
+    <result column="ISCORRECT" property="isCorrect" jdbcType="VARCHAR" />
+    <result column="ISCHECK" property="isCheck" jdbcType="VARCHAR" />
+    <result column="PINYIN" property="pinyin" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createTime" jdbcType="DATE" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="DEFINITION" property="definition" jdbcType="VARCHAR" />
+    <result column="CAUSE" property="cause" jdbcType="VARCHAR" />
+    <result column="SYSTEMPROCESS" property="systemProcess" jdbcType="VARCHAR" />
+    <result column="LEGALPROCESS" property="legalProcess" jdbcType="VARCHAR" />
+    <result column="LEGALREVIEW" property="legalReview" jdbcType="VARCHAR" />
+    <result column="NOTIFYTEMPLATE" property="notifyTemplate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, SORTCODE, PARENTID, ISAUTOSEND, ISPROCESS, ISCORRECT, ISCHECK, PINYIN,
+    DESCRIPTION, REMARK, CREATETIME, USERID, STATE, DEFINITION, CAUSE, SYSTEMPROCESS,
+    LEGALPROCESS, LEGALREVIEW, NOTIFYTEMPLATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_INVESTIGATION_EXPTYPE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVESTIGATION_EXPTYPE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvestigationExpType" >
+    insert into EA_INVESTIGATION_EXPTYPE (ID, NAME, SORTCODE,
+      PARENTID, ISAUTOSEND, ISPROCESS,
+      ISCORRECT, ISCHECK, PINYIN,
+      DESCRIPTION, REMARK, CREATETIME,
+      USERID, STATE, DEFINITION,
+      CAUSE, SYSTEMPROCESS, LEGALPROCESS,
+      LEGALREVIEW, NOTIFYTEMPLATE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sortCode,jdbcType=VARCHAR},
+      #{parentId,jdbcType=VARCHAR}, #{isAutoSend,jdbcType=VARCHAR}, #{isProcess,jdbcType=VARCHAR},
+      #{isCorrect,jdbcType=VARCHAR}, #{isCheck,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+      #{userId,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{definition,jdbcType=VARCHAR},
+      #{cause,jdbcType=VARCHAR}, #{systemProcess,jdbcType=VARCHAR}, #{legalProcess,jdbcType=VARCHAR},
+      #{legalReview,jdbcType=VARCHAR}, #{notifyTemplate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvestigationExpType" >
+    insert into EA_INVESTIGATION_EXPTYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sortCode != null" >
+        SORTCODE,
+      </if>
+      <if test="parentId != null" >
+        PARENTID,
+      </if>
+      <if test="isAutoSend != null" >
+        ISAUTOSEND,
+      </if>
+      <if test="isProcess != null" >
+        ISPROCESS,
+      </if>
+      <if test="isCorrect != null" >
+        ISCORRECT,
+      </if>
+      <if test="isCheck != null" >
+        ISCHECK,
+      </if>
+      <if test="pinyin != null" >
+        PINYIN,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATETIME,
+      </if>
+      <if test="userId != null" >
+        USERID,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="definition != null" >
+        DEFINITION,
+      </if>
+      <if test="cause != null" >
+        CAUSE,
+      </if>
+      <if test="systemProcess != null" >
+        SYSTEMPROCESS,
+      </if>
+      <if test="legalProcess != null" >
+        LEGALPROCESS,
+      </if>
+      <if test="legalReview != null" >
+        LEGALREVIEW,
+      </if>
+      <if test="notifyTemplate != null" >
+        NOTIFYTEMPLATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sortCode != null" >
+        #{sortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutoSend != null" >
+        #{isAutoSend,jdbcType=VARCHAR},
+      </if>
+      <if test="isProcess != null" >
+        #{isProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="isCorrect != null" >
+        #{isCorrect,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="systemProcess != null" >
+        #{systemProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="legalProcess != null" >
+        #{legalProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="legalReview != null" >
+        #{legalReview,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTemplate != null" >
+        #{notifyTemplate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvestigationExpType" >
+    update EA_INVESTIGATION_EXPTYPE
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sortCode != null" >
+        SORTCODE = #{sortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENTID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutoSend != null" >
+        ISAUTOSEND = #{isAutoSend,jdbcType=VARCHAR},
+      </if>
+      <if test="isProcess != null" >
+        ISPROCESS = #{isProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="isCorrect != null" >
+        ISCORRECT = #{isCorrect,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null" >
+        ISCHECK = #{isCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        PINYIN = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATETIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        DEFINITION = #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        CAUSE = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="systemProcess != null" >
+        SYSTEMPROCESS = #{systemProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="legalProcess != null" >
+        LEGALPROCESS = #{legalProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="legalReview != null" >
+        LEGALREVIEW = #{legalReview,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTemplate != null" >
+        NOTIFYTEMPLATE = #{notifyTemplate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvestigationExpType" >
+    update EA_INVESTIGATION_EXPTYPE
+    set NAME = #{name,jdbcType=VARCHAR},
+      SORTCODE = #{sortCode,jdbcType=VARCHAR},
+      PARENTID = #{parentId,jdbcType=VARCHAR},
+      ISAUTOSEND = #{isAutoSend,jdbcType=VARCHAR},
+      ISPROCESS = #{isProcess,jdbcType=VARCHAR},
+      ISCORRECT = #{isCorrect,jdbcType=VARCHAR},
+      ISCHECK = #{isCheck,jdbcType=VARCHAR},
+      PINYIN = #{pinyin,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=DATE},
+      USERID = #{userId,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      DEFINITION = #{definition,jdbcType=VARCHAR},
+      CAUSE = #{cause,jdbcType=VARCHAR},
+      SYSTEMPROCESS = #{systemProcess,jdbcType=VARCHAR},
+      LEGALPROCESS = #{legalProcess,jdbcType=VARCHAR},
+      LEGALREVIEW = #{legalReview,jdbcType=VARCHAR},
+      NOTIFYTEMPLATE = #{notifyTemplate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

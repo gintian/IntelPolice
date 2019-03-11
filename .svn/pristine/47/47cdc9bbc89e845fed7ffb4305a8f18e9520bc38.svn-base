@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvestigationKeywordsMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvestigationKeywords" >
+    <id column="KEYWORDSID" property="keywordsId" jdbcType="VARCHAR" />
+    <result column="KEYWORDS" property="keywords" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="ADDTIME" property="addTime" jdbcType="DATE" />
+    <result column="ISDELETE" property="isDelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    KEYWORDSID, KEYWORDS, TYPE, REMARK, USERID, ADDTIME, ISDELETE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVESTIGATION_KEYWORDS
+    where KEYWORDSID = #{keywordsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVESTIGATION_KEYWORDS
+    where KEYWORDSID = #{keywordsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvestigationKeywords" >
+    insert into EA_INVESTIGATION_KEYWORDS (KEYWORDSID, KEYWORDS, TYPE, 
+      REMARK, USERID, ADDTIME, 
+      ISDELETE)
+    values (#{keywordsId,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, 
+      #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvestigationKeywords" >
+    insert into EA_INVESTIGATION_KEYWORDS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keywordsId != null" >
+        KEYWORDSID,
+      </if>
+      <if test="keywords != null" >
+        KEYWORDS,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="userId != null" >
+        USERID,
+      </if>
+      <if test="addTime != null" >
+        ADDTIME,
+      </if>
+      <if test="isDelete != null" >
+        ISDELETE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keywordsId != null" >
+        #{keywordsId,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvestigationKeywords" >
+    update EA_INVESTIGATION_KEYWORDS
+    <set >
+      <if test="keywords != null" >
+        KEYWORDS = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        ADDTIME = #{addTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        ISDELETE = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where KEYWORDSID = #{keywordsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvestigationKeywords" >
+    update EA_INVESTIGATION_KEYWORDS
+    set KEYWORDS = #{keywords,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      ADDTIME = #{addTime,jdbcType=DATE},
+      ISDELETE = #{isDelete,jdbcType=VARCHAR}
+    where KEYWORDSID = #{keywordsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

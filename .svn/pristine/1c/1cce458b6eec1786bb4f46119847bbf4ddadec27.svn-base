@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.ArchiveCaseMapper" >
+  <resultMap id="BaseResultMap" type="com.model.ArchiveCase" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ARCHIVEID" property="archiveId" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseId" jdbcType="VARCHAR" />
+    <result column="BOXID" property="boxId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ARCHIVEID, CASEID, BOXID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_ARCHIVE_CASE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_ARCHIVE_CASE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByArchiveKey" parameterType="java.lang.String" >
+    delete from EA_ARCHIVE_CASE
+    where ARCHIVEID = #{archiveId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ArchiveCase" >
+    insert into EA_ARCHIVE_CASE (ID, ARCHIVEID, CASEID, BOXID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{archiveId,jdbcType=VARCHAR}, #{caseId,jdbcType=VARCHAR}, #{boxId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ArchiveCase" >
+    insert into EA_ARCHIVE_CASE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="archiveId != null" >
+        ARCHIVEID,
+      </if>
+      <if test="caseId != null" >
+        CASEID,
+      </if>
+      <if test="boxId != null" >
+        BOXID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveId != null" >
+        #{archiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        #{boxId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ArchiveCase" >
+    update EA_ARCHIVE_CASE
+    <set >
+      <if test="archiveId != null" >
+        ARCHIVEID = #{archiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        CASEID = #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        BOXID = #{boxId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ArchiveCase" >
+    update EA_ARCHIVE_CASE
+    set ARCHIVEID = #{archiveId,jdbcType=VARCHAR},
+      CASEID = #{caseId,jdbcType=VARCHAR},
+      BOXID = #{boxId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByArchiveIdByCaseId" parameterType="com.model.ArchiveCase" >
+    update EA_ARCHIVE_CASE
+    set
+      BOXID = #{boxId,jdbcType=VARCHAR}
+    where ARCHIVEID = #{archiveId,jdbcType=VARCHAR} AND CASEID = #{caseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

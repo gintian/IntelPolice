@@ -1,0 +1,30 @@
+package com.service;
+
+import com.exception.WebMessageException;
+import com.model.CJ;
+import com.model.bean.CJBean;
+import com.page.PageBean;
+
+/**
+ * 类名称：CJService 类描述：处警单逻辑接口
+ */
+public interface CJService{
+	//添加
+    void addBean(CJBean cjBean) throws WebMessageException;
+    //修改
+    void updateBean(String cjdbh,CJBean cjBean) throws WebMessageException;
+	//删除
+	void deleteBean(String cjdbh) throws WebMessageException;
+	/**
+	 * 通过cjdbh查询Bean
+	 */
+	CJBean findCJByCjdbh(String cjdbh) throws WebMessageException;
+	/**
+	 * 条件查询：分页条件
+	 * @param pageBean
+	 * @param bean
+	 * @return
+	 */
+	void pageQuery(PageBean<CJ> pageBean, CJBean bean);
+
+}

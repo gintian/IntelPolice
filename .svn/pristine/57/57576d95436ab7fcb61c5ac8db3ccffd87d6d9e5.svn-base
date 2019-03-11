@@ -1,0 +1,17 @@
+package com.model.bean;
+
+import com.model.Archive;
+
+import java.util.Date;
+
+public class ArchiveBean extends Archive {
+    private String caseid;
+
+    public String getCaseid() {
+        return caseid;
+    }
+
+    public void setCaseid(String caseid) {
+        this.caseid = caseid;
+    }
+}

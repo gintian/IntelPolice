@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CodeBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CodeBean"
+               extends="com.model.mapper.CodeMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CodeMapper.Base_Column_List"/>
+    </sql>
+
+	<sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+         FROM EACODE a
+    </sql>
+
+    <select id="findBeanListByField" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="field != null and field != ''">
+                AND a.FIELD = #{field}
+            </if>
+        </where>
+    </select>
+</mapper>

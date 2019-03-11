@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.MediaMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Media" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TJRBH" property="tjrbh" jdbcType="VARCHAR" />
+    <result column="TJRXM" property="tjrxm" jdbcType="VARCHAR" />
+    <result column="JLYBH" property="jlybh" jdbcType="VARCHAR" />
+    <result column="JLSJ" property="jlsj" jdbcType="TIMESTAMP" />
+    <result column="JLDD" property="jldd" jdbcType="VARCHAR" />
+    <result column="JLDDZB" property="jlddzb" jdbcType="VARCHAR" />
+    <result column="DQSJ" property="dqsj" jdbcType="TIMESTAMP" />
+    <result column="DEPTID" property="deptId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, TJRBH, TJRXM, JLYBH, JLSJ, JLDD, JLDDZB, DQSJ, DEPTID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_MEDIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_MEDIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Media" >
+    insert into EA_MEDIA (ID, NAME, TJRBH, 
+      TJRXM, JLYBH, JLSJ, 
+      JLDD, JLDDZB, DQSJ, DEPTID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{tjrbh,jdbcType=VARCHAR}, 
+      #{tjrxm,jdbcType=VARCHAR}, #{jlybh,jdbcType=VARCHAR}, #{jlsj,jdbcType=TIMESTAMP}, 
+      #{jldd,jdbcType=VARCHAR}, #{jlddzb,jdbcType=VARCHAR}, #{dqsj,jdbcType=TIMESTAMP}, #{deptId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Media" >
+    insert into EA_MEDIA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="tjrbh != null" >
+        TJRBH,
+      </if>
+      <if test="tjrxm != null" >
+        TJRXM,
+      </if>
+      <if test="jlybh != null" >
+        JLYBH,
+      </if>
+      <if test="jlsj != null" >
+        JLSJ,
+      </if>
+      <if test="jldd != null" >
+        JLDD,
+      </if>
+      <if test="jlddzb != null" >
+        JLDDZB,
+      </if>
+      <if test="dqsj != null" >
+        DQSJ,
+      </if>
+      <if test="deptId != null" >
+        DEPTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrbh != null" >
+        #{tjrbh,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrxm != null" >
+        #{tjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jlybh != null" >
+        #{jlybh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlsj != null" >
+        #{jlsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jldd != null" >
+        #{jldd,jdbcType=VARCHAR},
+      </if>
+      <if test="jlddzb != null" >
+        #{jlddzb,jdbcType=VARCHAR},
+      </if>
+      <if test="dqsj != null" >
+        #{dqsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Media" >
+    update EA_MEDIA
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrbh != null" >
+        TJRBH = #{tjrbh,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrxm != null" >
+        TJRXM = #{tjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jlybh != null" >
+        JLYBH = #{jlybh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlsj != null" >
+        JLSJ = #{jlsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jldd != null" >
+        JLDD = #{jldd,jdbcType=VARCHAR},
+      </if>
+      <if test="jlddzb != null" >
+        JLDDZB = #{jlddzb,jdbcType=VARCHAR},
+      </if>
+      <if test="dqsj != null" >
+        DQSJ = #{dqsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null" >
+        DEPTID = #{deptId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Media" >
+    update EA_MEDIA
+    set NAME = #{name,jdbcType=VARCHAR},
+      TJRBH = #{tjrbh,jdbcType=VARCHAR},
+      TJRXM = #{tjrxm,jdbcType=VARCHAR},
+      JLYBH = #{jlybh,jdbcType=VARCHAR},
+      JLSJ = #{jlsj,jdbcType=TIMESTAMP},
+      JLDD = #{jldd,jdbcType=VARCHAR},
+      JLDDZB = #{jlddzb,jdbcType=VARCHAR},
+      DQSJ = #{dqsj,jdbcType=TIMESTAMP},
+      DEPTID = #{deptId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

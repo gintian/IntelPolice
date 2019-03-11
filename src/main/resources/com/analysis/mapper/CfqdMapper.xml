@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.analysis.mapper.CfqdMapper" >
+  <resultMap id="BaseResultMap" type="com.analysis.model.Cfqd" >
+    <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+    <result column="CSSFONT" property="cssfont" jdbcType="VARCHAR" />
+    <result column="PERSONID" property="personid" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="MULTIID" property="multiid" jdbcType="VARCHAR" />
+    <result column="INPUTPSN" property="inputpsn" jdbcType="VARCHAR" />
+    <result column="INPUTTIME" property="inputtime" jdbcType="DATE" />
+    <result column="MODIFIEDPSN" property="modifiedpsn" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTIME" property="modifiedtime" jdbcType="DATE" />
+    <result column="DISTRICTTIME" property="districttime" jdbcType="DATE" />
+    <result column="PROVINCETIME" property="provincetime" jdbcType="DATE" />
+    <result column="TAG" property="tag" jdbcType="VARCHAR" />
+    <result column="MODIFIEDTAG" property="modifiedtag" jdbcType="VARCHAR" />
+    <result column="DELETAG" property="deletag" jdbcType="VARCHAR" />
+    <result column="A1" property="a1" jdbcType="VARCHAR" />
+    <result column="A1_1" property="a11" jdbcType="VARCHAR" />
+    <result column="A2_1" property="a21" jdbcType="VARCHAR" />
+    <result column="A3_1" property="a31" jdbcType="VARCHAR" />
+    <result column="A4_1" property="a41" jdbcType="VARCHAR" />
+    <result column="A6_1" property="a61" jdbcType="VARCHAR" />
+    <result column="A7_1" property="a71" jdbcType="VARCHAR" />
+    <result column="A5_1" property="a51" jdbcType="VARCHAR" />
+    <result column="A1_2" property="a12" jdbcType="VARCHAR" />
+    <result column="A2_2" property="a22" jdbcType="VARCHAR" />
+    <result column="A3_2" property="a32" jdbcType="VARCHAR" />
+    <result column="A4_2" property="a42" jdbcType="VARCHAR" />
+    <result column="A6_2" property="a62" jdbcType="VARCHAR" />
+    <result column="A7_2" property="a72" jdbcType="VARCHAR" />
+    <result column="A5_2" property="a52" jdbcType="VARCHAR" />
+    <result column="A1_3" property="a13" jdbcType="VARCHAR" />
+    <result column="A2_3" property="a23" jdbcType="VARCHAR" />
+    <result column="A3_3" property="a33" jdbcType="VARCHAR" />
+    <result column="A4_3" property="a43" jdbcType="VARCHAR" />
+    <result column="A6_3" property="a63" jdbcType="VARCHAR" />
+    <result column="A7_3" property="a73" jdbcType="VARCHAR" />
+    <result column="A5_3" property="a53" jdbcType="VARCHAR" />
+    <result column="A1_4" property="a14" jdbcType="VARCHAR" />
+    <result column="A2_4" property="a24" jdbcType="VARCHAR" />
+    <result column="A3_4" property="a34" jdbcType="VARCHAR" />
+    <result column="A4_4" property="a44" jdbcType="VARCHAR" />
+    <result column="A6_4" property="a64" jdbcType="VARCHAR" />
+    <result column="A7_4" property="a74" jdbcType="VARCHAR" />
+    <result column="A5_4" property="a54" jdbcType="VARCHAR" />
+    <result column="A1_5" property="a15" jdbcType="VARCHAR" />
+    <result column="A2_5" property="a25" jdbcType="VARCHAR" />
+    <result column="A3_5" property="a35" jdbcType="VARCHAR" />
+    <result column="A4_5" property="a45" jdbcType="VARCHAR" />
+    <result column="A6_5" property="a65" jdbcType="VARCHAR" />
+    <result column="A7_5" property="a75" jdbcType="VARCHAR" />
+    <result column="A5_5" property="a55" jdbcType="VARCHAR" />
+    <result column="A1_6" property="a16" jdbcType="VARCHAR" />
+    <result column="A2_6" property="a26" jdbcType="VARCHAR" />
+    <result column="A3_6" property="a36" jdbcType="VARCHAR" />
+    <result column="A4_6" property="a46" jdbcType="VARCHAR" />
+    <result column="A6_6" property="a66" jdbcType="VARCHAR" />
+    <result column="A7_6" property="a76" jdbcType="VARCHAR" />
+    <result column="A5_6" property="a56" jdbcType="VARCHAR" />
+    <result column="A1_7" property="a17" jdbcType="VARCHAR" />
+    <result column="A2_7" property="a27" jdbcType="VARCHAR" />
+    <result column="A3_7" property="a37" jdbcType="VARCHAR" />
+    <result column="A4_7" property="a47" jdbcType="VARCHAR" />
+    <result column="A6_7" property="a67" jdbcType="VARCHAR" />
+    <result column="A7_7" property="a77" jdbcType="VARCHAR" />
+    <result column="A5_7" property="a57" jdbcType="VARCHAR" />
+    <result column="A1_8" property="a18" jdbcType="VARCHAR" />
+    <result column="A2_8" property="a28" jdbcType="VARCHAR" />
+    <result column="A3_8" property="a38" jdbcType="VARCHAR" />
+    <result column="A4_8" property="a48" jdbcType="VARCHAR" />
+    <result column="A6_8" property="a68" jdbcType="VARCHAR" />
+    <result column="A7_8" property="a78" jdbcType="VARCHAR" />
+    <result column="A5_8" property="a58" jdbcType="VARCHAR" />
+    <result column="A1_9" property="a19" jdbcType="VARCHAR" />
+    <result column="A2_9" property="a29" jdbcType="VARCHAR" />
+    <result column="A3_9" property="a39" jdbcType="VARCHAR" />
+    <result column="A4_9" property="a49" jdbcType="VARCHAR" />
+    <result column="A6_9" property="a69" jdbcType="VARCHAR" />
+    <result column="A7_9" property="a79" jdbcType="VARCHAR" />
+    <result column="A5_9" property="a59" jdbcType="VARCHAR" />
+    <result column="A1_10" property="a110" jdbcType="VARCHAR" />
+    <result column="A2_10" property="a210" jdbcType="VARCHAR" />
+    <result column="A3_10" property="a310" jdbcType="VARCHAR" />
+    <result column="A4_10" property="a410" jdbcType="VARCHAR" />
+    <result column="A6_10" property="a610" jdbcType="VARCHAR" />
+    <result column="A7_10" property="a710" jdbcType="VARCHAR" />
+    <result column="A5_10" property="a510" jdbcType="VARCHAR" />
+    <result column="A8_1" property="a81" jdbcType="VARCHAR" />
+    <result column="A9_1" property="a91" jdbcType="VARCHAR" />
+    <result column="A10_1" property="a101" jdbcType="VARCHAR" />
+    <result column="A11_1" property="a111" jdbcType="VARCHAR" />
+    <result column="A8_2" property="a82" jdbcType="DATE" />
+    <result column="A9_2" property="a92" jdbcType="DATE" />
+    <result column="A10_2" property="a102" jdbcType="DATE" />
+    <result column="A11_2" property="a112" jdbcType="DATE" />
+    <result column="LYDS" property="lyds" jdbcType="VARCHAR" />
+    <result column="HCK_RKSJ" property="hckRksj" jdbcType="DATE" />
+    <result column="HCK_GXSJ" property="hckGxsj" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.analysis.model.Cfqd" >
+    insert into DOC_CFQD_NEW (DOCID, CSSFONT, PERSONID, 
+      UNITID, CASEID, REMARK, 
+      MULTIID, INPUTPSN, INPUTTIME, 
+      MODIFIEDPSN, MODIFIEDTIME, DISTRICTTIME, 
+      PROVINCETIME, TAG, MODIFIEDTAG, 
+      DELETAG, A1, A1_1, A2_1, 
+      A3_1, A4_1, A6_1, A7_1, 
+      A5_1, A1_2, A2_2, A3_2, 
+      A4_2, A6_2, A7_2, A5_2, 
+      A1_3, A2_3, A3_3, A4_3, 
+      A6_3, A7_3, A5_3, A1_4, 
+      A2_4, A3_4, A4_4, A6_4, 
+      A7_4, A5_4, A1_5, A2_5, 
+      A3_5, A4_5, A6_5, A7_5, 
+      A5_5, A1_6, A2_6, A3_6, 
+      A4_6, A6_6, A7_6, A5_6, 
+      A1_7, A2_7, A3_7, A4_7, 
+      A6_7, A7_7, A5_7, A1_8, 
+      A2_8, A3_8, A4_8, A6_8, 
+      A7_8, A5_8, A1_9, A2_9, 
+      A3_9, A4_9, A6_9, A7_9, 
+      A5_9, A1_10, A2_10, A3_10, 
+      A4_10, A6_10, A7_10, A5_10, 
+      A8_1, A9_1, A10_1, A11_1, 
+      A8_2, A9_2, A10_2, A11_2, 
+      LYDS, HCK_RKSJ, HCK_GXSJ)
+    values (#{docid,jdbcType=VARCHAR}, #{cssfont,jdbcType=VARCHAR}, #{personid,jdbcType=VARCHAR}, 
+      #{unitid,jdbcType=VARCHAR}, #{caseid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{multiid,jdbcType=VARCHAR}, #{inputpsn,jdbcType=VARCHAR}, #{inputtime,jdbcType=DATE}, 
+      #{modifiedpsn,jdbcType=VARCHAR}, #{modifiedtime,jdbcType=DATE}, #{districttime,jdbcType=DATE}, 
+      #{provincetime,jdbcType=DATE}, #{tag,jdbcType=VARCHAR}, #{modifiedtag,jdbcType=VARCHAR}, 
+      #{deletag,jdbcType=VARCHAR}, #{a1,jdbcType=VARCHAR}, #{a11,jdbcType=VARCHAR}, #{a21,jdbcType=VARCHAR}, 
+      #{a31,jdbcType=VARCHAR}, #{a41,jdbcType=VARCHAR}, #{a61,jdbcType=VARCHAR}, #{a71,jdbcType=VARCHAR}, 
+      #{a51,jdbcType=VARCHAR}, #{a12,jdbcType=VARCHAR}, #{a22,jdbcType=VARCHAR}, #{a32,jdbcType=VARCHAR}, 
+      #{a42,jdbcType=VARCHAR}, #{a62,jdbcType=VARCHAR}, #{a72,jdbcType=VARCHAR}, #{a52,jdbcType=VARCHAR}, 
+      #{a13,jdbcType=VARCHAR}, #{a23,jdbcType=VARCHAR}, #{a33,jdbcType=VARCHAR}, #{a43,jdbcType=VARCHAR}, 
+      #{a63,jdbcType=VARCHAR}, #{a73,jdbcType=VARCHAR}, #{a53,jdbcType=VARCHAR}, #{a14,jdbcType=VARCHAR}, 
+      #{a24,jdbcType=VARCHAR}, #{a34,jdbcType=VARCHAR}, #{a44,jdbcType=VARCHAR}, #{a64,jdbcType=VARCHAR}, 
+      #{a74,jdbcType=VARCHAR}, #{a54,jdbcType=VARCHAR}, #{a15,jdbcType=VARCHAR}, #{a25,jdbcType=VARCHAR}, 
+      #{a35,jdbcType=VARCHAR}, #{a45,jdbcType=VARCHAR}, #{a65,jdbcType=VARCHAR}, #{a75,jdbcType=VARCHAR}, 
+      #{a55,jdbcType=VARCHAR}, #{a16,jdbcType=VARCHAR}, #{a26,jdbcType=VARCHAR}, #{a36,jdbcType=VARCHAR}, 
+      #{a46,jdbcType=VARCHAR}, #{a66,jdbcType=VARCHAR}, #{a76,jdbcType=VARCHAR}, #{a56,jdbcType=VARCHAR}, 
+      #{a17,jdbcType=VARCHAR}, #{a27,jdbcType=VARCHAR}, #{a37,jdbcType=VARCHAR}, #{a47,jdbcType=VARCHAR}, 
+      #{a67,jdbcType=VARCHAR}, #{a77,jdbcType=VARCHAR}, #{a57,jdbcType=VARCHAR}, #{a18,jdbcType=VARCHAR}, 
+      #{a28,jdbcType=VARCHAR}, #{a38,jdbcType=VARCHAR}, #{a48,jdbcType=VARCHAR}, #{a68,jdbcType=VARCHAR}, 
+      #{a78,jdbcType=VARCHAR}, #{a58,jdbcType=VARCHAR}, #{a19,jdbcType=VARCHAR}, #{a29,jdbcType=VARCHAR}, 
+      #{a39,jdbcType=VARCHAR}, #{a49,jdbcType=VARCHAR}, #{a69,jdbcType=VARCHAR}, #{a79,jdbcType=VARCHAR}, 
+      #{a59,jdbcType=VARCHAR}, #{a110,jdbcType=VARCHAR}, #{a210,jdbcType=VARCHAR}, #{a310,jdbcType=VARCHAR}, 
+      #{a410,jdbcType=VARCHAR}, #{a610,jdbcType=VARCHAR}, #{a710,jdbcType=VARCHAR}, #{a510,jdbcType=VARCHAR}, 
+      #{a81,jdbcType=VARCHAR}, #{a91,jdbcType=VARCHAR}, #{a101,jdbcType=VARCHAR}, #{a111,jdbcType=VARCHAR}, 
+      #{a82,jdbcType=DATE}, #{a92,jdbcType=DATE}, #{a102,jdbcType=DATE}, #{a112,jdbcType=DATE}, 
+      #{lyds,jdbcType=VARCHAR}, #{hckRksj,jdbcType=DATE}, #{hckGxsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.analysis.model.Cfqd" >
+    insert into DOC_CFQD_NEW
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="docid != null" >
+        DOCID,
+      </if>
+      <if test="cssfont != null" >
+        CSSFONT,
+      </if>
+      <if test="personid != null" >
+        PERSONID,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="multiid != null" >
+        MULTIID,
+      </if>
+      <if test="inputpsn != null" >
+        INPUTPSN,
+      </if>
+      <if test="inputtime != null" >
+        INPUTTIME,
+      </if>
+      <if test="modifiedpsn != null" >
+        MODIFIEDPSN,
+      </if>
+      <if test="modifiedtime != null" >
+        MODIFIEDTIME,
+      </if>
+      <if test="districttime != null" >
+        DISTRICTTIME,
+      </if>
+      <if test="provincetime != null" >
+        PROVINCETIME,
+      </if>
+      <if test="tag != null" >
+        TAG,
+      </if>
+      <if test="modifiedtag != null" >
+        MODIFIEDTAG,
+      </if>
+      <if test="deletag != null" >
+        DELETAG,
+      </if>
+      <if test="a1 != null" >
+        A1,
+      </if>
+      <if test="a11 != null" >
+        A1_1,
+      </if>
+      <if test="a21 != null" >
+        A2_1,
+      </if>
+      <if test="a31 != null" >
+        A3_1,
+      </if>
+      <if test="a41 != null" >
+        A4_1,
+      </if>
+      <if test="a61 != null" >
+        A6_1,
+      </if>
+      <if test="a71 != null" >
+        A7_1,
+      </if>
+      <if test="a51 != null" >
+        A5_1,
+      </if>
+      <if test="a12 != null" >
+        A1_2,
+      </if>
+      <if test="a22 != null" >
+        A2_2,
+      </if>
+      <if test="a32 != null" >
+        A3_2,
+      </if>
+      <if test="a42 != null" >
+        A4_2,
+      </if>
+      <if test="a62 != null" >
+        A6_2,
+      </if>
+      <if test="a72 != null" >
+        A7_2,
+      </if>
+      <if test="a52 != null" >
+        A5_2,
+      </if>
+      <if test="a13 != null" >
+        A1_3,
+      </if>
+      <if test="a23 != null" >
+        A2_3,
+      </if>
+      <if test="a33 != null" >
+        A3_3,
+      </if>
+      <if test="a43 != null" >
+        A4_3,
+      </if>
+      <if test="a63 != null" >
+        A6_3,
+      </if>
+      <if test="a73 != null" >
+        A7_3,
+      </if>
+      <if test="a53 != null" >
+        A5_3,
+      </if>
+      <if test="a14 != null" >
+        A1_4,
+      </if>
+      <if test="a24 != null" >
+        A2_4,
+      </if>
+      <if test="a34 != null" >
+        A3_4,
+      </if>
+      <if test="a44 != null" >
+        A4_4,
+      </if>
+      <if test="a64 != null" >
+        A6_4,
+      </if>
+      <if test="a74 != null" >
+        A7_4,
+      </if>
+      <if test="a54 != null" >
+        A5_4,
+      </if>
+      <if test="a15 != null" >
+        A1_5,
+      </if>
+      <if test="a25 != null" >
+        A2_5,
+      </if>
+      <if test="a35 != null" >
+        A3_5,
+      </if>
+      <if test="a45 != null" >
+        A4_5,
+      </if>
+      <if test="a65 != null" >
+        A6_5,
+      </if>
+      <if test="a75 != null" >
+        A7_5,
+      </if>
+      <if test="a55 != null" >
+        A5_5,
+      </if>
+      <if test="a16 != null" >
+        A1_6,
+      </if>
+      <if test="a26 != null" >
+        A2_6,
+      </if>
+      <if test="a36 != null" >
+        A3_6,
+      </if>
+      <if test="a46 != null" >
+        A4_6,
+      </if>
+      <if test="a66 != null" >
+        A6_6,
+      </if>
+      <if test="a76 != null" >
+        A7_6,
+      </if>
+      <if test="a56 != null" >
+        A5_6,
+      </if>
+      <if test="a17 != null" >
+        A1_7,
+      </if>
+      <if test="a27 != null" >
+        A2_7,
+      </if>
+      <if test="a37 != null" >
+        A3_7,
+      </if>
+      <if test="a47 != null" >
+        A4_7,
+      </if>
+      <if test="a67 != null" >
+        A6_7,
+      </if>
+      <if test="a77 != null" >
+        A7_7,
+      </if>
+      <if test="a57 != null" >
+        A5_7,
+      </if>
+      <if test="a18 != null" >
+        A1_8,
+      </if>
+      <if test="a28 != null" >
+        A2_8,
+      </if>
+      <if test="a38 != null" >
+        A3_8,
+      </if>
+      <if test="a48 != null" >
+        A4_8,
+      </if>
+      <if test="a68 != null" >
+        A6_8,
+      </if>
+      <if test="a78 != null" >
+        A7_8,
+      </if>
+      <if test="a58 != null" >
+        A5_8,
+      </if>
+      <if test="a19 != null" >
+        A1_9,
+      </if>
+      <if test="a29 != null" >
+        A2_9,
+      </if>
+      <if test="a39 != null" >
+        A3_9,
+      </if>
+      <if test="a49 != null" >
+        A4_9,
+      </if>
+      <if test="a69 != null" >
+        A6_9,
+      </if>
+      <if test="a79 != null" >
+        A7_9,
+      </if>
+      <if test="a59 != null" >
+        A5_9,
+      </if>
+      <if test="a110 != null" >
+        A1_10,
+      </if>
+      <if test="a210 != null" >
+        A2_10,
+      </if>
+      <if test="a310 != null" >
+        A3_10,
+      </if>
+      <if test="a410 != null" >
+        A4_10,
+      </if>
+      <if test="a610 != null" >
+        A6_10,
+      </if>
+      <if test="a710 != null" >
+        A7_10,
+      </if>
+      <if test="a510 != null" >
+        A5_10,
+      </if>
+      <if test="a81 != null" >
+        A8_1,
+      </if>
+      <if test="a91 != null" >
+        A9_1,
+      </if>
+      <if test="a101 != null" >
+        A10_1,
+      </if>
+      <if test="a111 != null" >
+        A11_1,
+      </if>
+      <if test="a82 != null" >
+        A8_2,
+      </if>
+      <if test="a92 != null" >
+        A9_2,
+      </if>
+      <if test="a102 != null" >
+        A10_2,
+      </if>
+      <if test="a112 != null" >
+        A11_2,
+      </if>
+      <if test="lyds != null" >
+        LYDS,
+      </if>
+      <if test="hckRksj != null" >
+        HCK_RKSJ,
+      </if>
+      <if test="hckGxsj != null" >
+        HCK_GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="docid != null" >
+        #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="cssfont != null" >
+        #{cssfont,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null" >
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseid != null" >
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="multiid != null" >
+        #{multiid,jdbcType=VARCHAR},
+      </if>
+      <if test="inputpsn != null" >
+        #{inputpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="inputtime != null" >
+        #{inputtime,jdbcType=DATE},
+      </if>
+      <if test="modifiedpsn != null" >
+        #{modifiedpsn,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null" >
+        #{modifiedtime,jdbcType=DATE},
+      </if>
+      <if test="districttime != null" >
+        #{districttime,jdbcType=DATE},
+      </if>
+      <if test="provincetime != null" >
+        #{provincetime,jdbcType=DATE},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtag != null" >
+        #{modifiedtag,jdbcType=VARCHAR},
+      </if>
+      <if test="deletag != null" >
+        #{deletag,jdbcType=VARCHAR},
+      </if>
+      <if test="a1 != null" >
+        #{a1,jdbcType=VARCHAR},
+      </if>
+      <if test="a11 != null" >
+        #{a11,jdbcType=VARCHAR},
+      </if>
+      <if test="a21 != null" >
+        #{a21,jdbcType=VARCHAR},
+      </if>
+      <if test="a31 != null" >
+        #{a31,jdbcType=VARCHAR},
+      </if>
+      <if test="a41 != null" >
+        #{a41,jdbcType=VARCHAR},
+      </if>
+      <if test="a61 != null" >
+        #{a61,jdbcType=VARCHAR},
+      </if>
+      <if test="a71 != null" >
+        #{a71,jdbcType=VARCHAR},
+      </if>
+      <if test="a51 != null" >
+        #{a51,jdbcType=VARCHAR},
+      </if>
+      <if test="a12 != null" >
+        #{a12,jdbcType=VARCHAR},
+      </if>
+      <if test="a22 != null" >
+        #{a22,jdbcType=VARCHAR},
+      </if>
+      <if test="a32 != null" >
+        #{a32,jdbcType=VARCHAR},
+      </if>
+      <if test="a42 != null" >
+        #{a42,jdbcType=VARCHAR},
+      </if>
+      <if test="a62 != null" >
+        #{a62,jdbcType=VARCHAR},
+      </if>
+      <if test="a72 != null" >
+        #{a72,jdbcType=VARCHAR},
+      </if>
+      <if test="a52 != null" >
+        #{a52,jdbcType=VARCHAR},
+      </if>
+      <if test="a13 != null" >
+        #{a13,jdbcType=VARCHAR},
+      </if>
+      <if test="a23 != null" >
+        #{a23,jdbcType=VARCHAR},
+      </if>
+      <if test="a33 != null" >
+        #{a33,jdbcType=VARCHAR},
+      </if>
+      <if test="a43 != null" >
+        #{a43,jdbcType=VARCHAR},
+      </if>
+      <if test="a63 != null" >
+        #{a63,jdbcType=VARCHAR},
+      </if>
+      <if test="a73 != null" >
+        #{a73,jdbcType=VARCHAR},
+      </if>
+      <if test="a53 != null" >
+        #{a53,jdbcType=VARCHAR},
+      </if>
+      <if test="a14 != null" >
+        #{a14,jdbcType=VARCHAR},
+      </if>
+      <if test="a24 != null" >
+        #{a24,jdbcType=VARCHAR},
+      </if>
+      <if test="a34 != null" >
+        #{a34,jdbcType=VARCHAR},
+      </if>
+      <if test="a44 != null" >
+        #{a44,jdbcType=VARCHAR},
+      </if>
+      <if test="a64 != null" >
+        #{a64,jdbcType=VARCHAR},
+      </if>
+      <if test="a74 != null" >
+        #{a74,jdbcType=VARCHAR},
+      </if>
+      <if test="a54 != null" >
+        #{a54,jdbcType=VARCHAR},
+      </if>
+      <if test="a15 != null" >
+        #{a15,jdbcType=VARCHAR},
+      </if>
+      <if test="a25 != null" >
+        #{a25,jdbcType=VARCHAR},
+      </if>
+      <if test="a35 != null" >
+        #{a35,jdbcType=VARCHAR},
+      </if>
+      <if test="a45 != null" >
+        #{a45,jdbcType=VARCHAR},
+      </if>
+      <if test="a65 != null" >
+        #{a65,jdbcType=VARCHAR},
+      </if>
+      <if test="a75 != null" >
+        #{a75,jdbcType=VARCHAR},
+      </if>
+      <if test="a55 != null" >
+        #{a55,jdbcType=VARCHAR},
+      </if>
+      <if test="a16 != null" >
+        #{a16,jdbcType=VARCHAR},
+      </if>
+      <if test="a26 != null" >
+        #{a26,jdbcType=VARCHAR},
+      </if>
+      <if test="a36 != null" >
+        #{a36,jdbcType=VARCHAR},
+      </if>
+      <if test="a46 != null" >
+        #{a46,jdbcType=VARCHAR},
+      </if>
+      <if test="a66 != null" >
+        #{a66,jdbcType=VARCHAR},
+      </if>
+      <if test="a76 != null" >
+        #{a76,jdbcType=VARCHAR},
+      </if>
+      <if test="a56 != null" >
+        #{a56,jdbcType=VARCHAR},
+      </if>
+      <if test="a17 != null" >
+        #{a17,jdbcType=VARCHAR},
+      </if>
+      <if test="a27 != null" >
+        #{a27,jdbcType=VARCHAR},
+      </if>
+      <if test="a37 != null" >
+        #{a37,jdbcType=VARCHAR},
+      </if>
+      <if test="a47 != null" >
+        #{a47,jdbcType=VARCHAR},
+      </if>
+      <if test="a67 != null" >
+        #{a67,jdbcType=VARCHAR},
+      </if>
+      <if test="a77 != null" >
+        #{a77,jdbcType=VARCHAR},
+      </if>
+      <if test="a57 != null" >
+        #{a57,jdbcType=VARCHAR},
+      </if>
+      <if test="a18 != null" >
+        #{a18,jdbcType=VARCHAR},
+      </if>
+      <if test="a28 != null" >
+        #{a28,jdbcType=VARCHAR},
+      </if>
+      <if test="a38 != null" >
+        #{a38,jdbcType=VARCHAR},
+      </if>
+      <if test="a48 != null" >
+        #{a48,jdbcType=VARCHAR},
+      </if>
+      <if test="a68 != null" >
+        #{a68,jdbcType=VARCHAR},
+      </if>
+      <if test="a78 != null" >
+        #{a78,jdbcType=VARCHAR},
+      </if>
+      <if test="a58 != null" >
+        #{a58,jdbcType=VARCHAR},
+      </if>
+      <if test="a19 != null" >
+        #{a19,jdbcType=VARCHAR},
+      </if>
+      <if test="a29 != null" >
+        #{a29,jdbcType=VARCHAR},
+      </if>
+      <if test="a39 != null" >
+        #{a39,jdbcType=VARCHAR},
+      </if>
+      <if test="a49 != null" >
+        #{a49,jdbcType=VARCHAR},
+      </if>
+      <if test="a69 != null" >
+        #{a69,jdbcType=VARCHAR},
+      </if>
+      <if test="a79 != null" >
+        #{a79,jdbcType=VARCHAR},
+      </if>
+      <if test="a59 != null" >
+        #{a59,jdbcType=VARCHAR},
+      </if>
+      <if test="a110 != null" >
+        #{a110,jdbcType=VARCHAR},
+      </if>
+      <if test="a210 != null" >
+        #{a210,jdbcType=VARCHAR},
+      </if>
+      <if test="a310 != null" >
+        #{a310,jdbcType=VARCHAR},
+      </if>
+      <if test="a410 != null" >
+        #{a410,jdbcType=VARCHAR},
+      </if>
+      <if test="a610 != null" >
+        #{a610,jdbcType=VARCHAR},
+      </if>
+      <if test="a710 != null" >
+        #{a710,jdbcType=VARCHAR},
+      </if>
+      <if test="a510 != null" >
+        #{a510,jdbcType=VARCHAR},
+      </if>
+      <if test="a81 != null" >
+        #{a81,jdbcType=VARCHAR},
+      </if>
+      <if test="a91 != null" >
+        #{a91,jdbcType=VARCHAR},
+      </if>
+      <if test="a101 != null" >
+        #{a101,jdbcType=VARCHAR},
+      </if>
+      <if test="a111 != null" >
+        #{a111,jdbcType=VARCHAR},
+      </if>
+      <if test="a82 != null" >
+        #{a82,jdbcType=DATE},
+      </if>
+      <if test="a92 != null" >
+        #{a92,jdbcType=DATE},
+      </if>
+      <if test="a102 != null" >
+        #{a102,jdbcType=DATE},
+      </if>
+      <if test="a112 != null" >
+        #{a112,jdbcType=DATE},
+      </if>
+      <if test="lyds != null" >
+        #{lyds,jdbcType=VARCHAR},
+      </if>
+      <if test="hckRksj != null" >
+        #{hckRksj,jdbcType=DATE},
+      </if>
+      <if test="hckGxsj != null" >
+        #{hckGxsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+
+    <sql id="Base_Column_List">
+        DOCID, CSSFONT, PERSONID,
+        UNITID, CASEID, REMARK,
+        MULTIID, INPUTPSN, INPUTTIME,
+        MODIFIEDPSN, MODIFIEDTIME, DISTRICTTIME,
+        PROVINCETIME, TAG, MODIFIEDTAG,
+        DELETAG, A1, A1_1, A2_1,
+        A3_1, A4_1, A6_1, A7_1,
+        A5_1, A1_2, A2_2, A3_2,
+        A4_2, A6_2, A7_2, A5_2,
+        A1_3, A2_3, A3_3, A4_3,
+        A6_3, A7_3, A5_3, A1_4,
+        A2_4, A3_4, A4_4, A6_4,
+        A7_4, A5_4, A1_5, A2_5,
+        A3_5, A4_5, A6_5, A7_5,
+        A5_5, A1_6, A2_6, A3_6,
+        A4_6, A6_6, A7_6, A5_6,
+        A1_7, A2_7, A3_7, A4_7,
+        A6_7, A7_7, A5_7, A1_8,
+        A2_8, A3_8, A4_8, A6_8,
+        A7_8, A5_8, A1_9, A2_9,
+        A3_9, A4_9, A6_9, A7_9,
+        A5_9, A1_10, A2_10, A3_10,
+        A4_10, A6_10, A7_10, A5_10,
+        A8_1, A9_1, A10_1, A11_1,
+        A8_2, A9_2, A10_2, A11_2,
+        LYDS, HCK_RKSJ, HCK_GXSJ
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM DOC_CFQD_NEW
+    </select>
+
+    <select id="selectByDate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from DOC_CFQD_NEW
+
+        <where>
+            <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+                AND HCK_GXSJ BETWEEN TO_DATE(#{startDate},'yyyy-MM-dd HH24:mi:ss') and TO_DATE(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+            </if>
+        </where>
+
+    </select>
+</mapper>

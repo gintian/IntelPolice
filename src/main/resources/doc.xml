@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+
+    <!--
+        规则解释
+        规则一:A1-A5(编号),A6-A10(名称),...,A21-A25(备注)
+        规则二:A1_1(编号),A1_1(名称),...,A1_5(备注)
+              A2_1(编号),A2_2(名称),...,A2_5(备注)
+        规则三:A1(编号),A2(名称),...,A5(备注)
+              A6(编号),A7(名称),...,A10(备注)
+        规则四:与规则三相似每段会跳过一个数字,不连续
+    -->
+
+    <!--
+        involvedTemp属性可查看数据库了解
+    -->
+
+    <!--
+        规则一配置文件解释
+        table:          表名
+        rule:           规则代码
+        objectNums:     每行文书数据所包含的财物数
+        prefix:         字段名前缀
+        startNum:       字段名后缀起始数值
+        attrNums:       文书表中财物的属性数,如编号,名称,特征,描述,备注
+        involvedcols:   文书中财物属性对应的involvedTemp对象
+        involvedColumn: involvedTemp字段名,与docColumn相互映射
+        docColumn:      文书表字段名,与involvedColumn相互映射
+    -->
+
+    <!-- ======================================================================= 第一种规则 ======================================================================= -->
+    <!-- ======================================================================= 第一种规则 ======================================================================= -->
+    <doc table="DOC_JSJQD_NEW" rule="one" objNums="15" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_JSJQD_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="接受证据清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS_XZ_002_NEW" rule="one" objNums="12" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS_XZ_002_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="接受证据材料清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS050_NEW" rule="one" objNums="12" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Spec,Amounts,Characteristic">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS050_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="查封/扣押清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS052_NEW" rule="one" objNums="12" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Spec,Amounts,Characteristic">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS052_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="发还清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS054" rule="one" objNums="8" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS054" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="(刑事)公安局发还物品、文件清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS055_NEW" rule="one" objNums="10" prefix="A" startNum="1" attrNums="6" involvedcols="Objectname,Amounts,Characteristic,Annex,Description">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS055_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="侦查终结财物、文件处理清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XS059_NEW" rule="one" objNums="10" prefix="A" startNum="1" attrNums="6" involvedcols="Objectname,Amounts,Characteristic,Description,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XS059_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="没收违法所得意见书" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XZ016" rule="one" objNums="7" prefix="A" startNum="6" attrNums="6" involvedcols="Objectname,Spec,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A2" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="A52" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ016" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="(行政)扣押物品清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XZ045_NEW" rule="one" objNums="15" prefix="A" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ045_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="调取证据清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_ZJBQJDS_NEW" rule="one" objNums="15" prefix="B" startNum="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_ZJBQJDS_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="证据保全决定书" type="java.lang.String"/>
+    </doc>
+
+
+    <!--
+        规则二配置文件解释
+        table:          表名
+        rule:           规则代码
+        objectNums:     每行文书数据所包含的财物数
+        prefix:         字段名前缀
+        prefixStartNums:字段名后缀前一位起始值
+        suffixStartNums:字段名后缀后一位起始值
+        attrNums:       文书表中财物的属性数,如编号,名称,特征,描述,备注
+        involvedcols:   文书中财物属性对应的involvedTemp对象
+    -->
+
+    <!-- ======================================================================= 第二种规则 ======================================================================= -->
+    <!-- ======================================================================= 第二种规则 ======================================================================= -->
+    <doc table="DOC_CFQD_NEW" rule="two" objNums="10" prefix="A" prefixStartNums="1" suffixStartNums="1" attrNums="6" involvedcols="Objectname,Amounts,Characteristic,Annex,Description">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A81" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_CFQD_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="查封清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_DJBCQD_NEW" rule="two" objNums="8" prefix="A" prefixStartNums="1" suffixStartNums="1" attrNums="6" involvedcols="Objectname,Amounts,Characteristic,Annex,Description">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A71" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_DJBCQD_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="登记保存清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_KYJDS_NEW" rule="two" objNums="5" prefix="B" prefixStartNums="16" suffixStartNums="1" attrNums="4" involvedcols="Objectname,Amounts,Spec">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="B7" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="B10" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_KYJDS_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="扣押决定书" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_KYQD_NEW" rule="two" objNums="15" prefix="A" prefixStartNums="1" suffixStartNums="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A61" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_KYQD_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="扣押清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XZ0021_NEW" rule="two" objNums="15" prefix="C" prefixStartNums="1" suffixStartNums="1" attrNums="5" involvedcols="Objectname,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ0021_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="行政处罚决定书" type="java.lang.String"/>
+    </doc>
+
+
+    <!--
+       规则三配置文件解释
+       table:          表名
+       rule:           规则代码
+       objectNums:     每行文书数据所包含的财物数
+       prefix:         字段名前缀
+       startNum:       字段名后缀起始数值
+       attrNums:       文书表中财物的属性数,如编号,名称,特征,描述,备注
+       involvedcols:   文书中财物属性对应的involvedTemp对象
+   -->
+
+    <!-- ======================================================================= 第三种规则 ======================================================================= -->
+    <!-- ======================================================================= 第三种规则 ======================================================================= -->
+    <doc table="DOC_XZ0013_NEW" rule="three" objNums="6" prefix="A" startNum="13" attrNums="6" involvedcols="Objectname,Amounts,Spec,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A4" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="A7" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ0013_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="登记/先行登记保存证据清单" type="java.lang.String"/>
+    </doc>
+
+    <doc table="DOC_XZ0014_NEW" rule="three" objNums="5" prefix="A" startNum="18" attrNums="6" involvedcols="Objectname,Spec,Amounts,Characteristic,Annex">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A6" type="java.lang.String"/>
+        <map involvedColumn="Personinfo" docColumn="A10" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ0014_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="登记/先行登记保存证据清单" type="java.lang.String"/>
+    </doc>
+
+    <!--
+      规则三配置文件解释
+      table:          表名
+      rule:           规则代码
+      objectNums:     每行文书数据所包含的财物数
+      prefix:         字段名前缀
+      startNum:       字段名后缀起始数值
+      attrNums:       文书表中财物的属性数,如编号,名称,特征,描述,备注
+      involvedcols:   文书中财物属性对应的involvedTemp对象
+    -->
+
+    <!-- ======================================================================= 第四种规则 ======================================================================= -->
+    <!-- ======================================================================= 第四种规则 ======================================================================= -->
+    <doc table="DOC_XZ0024_NEW" rule="four" objNums="7" prefix="A" startNum="13" attrNums="5" involvedcols="Objectname,Spec,Amounts,Characteristic">
+        <map involvedColumn="Objid" docColumn="Docid" type="java.lang.String"/>
+        <map involvedColumn="Caseid" docColumn="Caseid" type="java.lang.String"/>
+        <map involvedColumn="Createtime" docColumn="Inputtime" type="java.util.Date"/>
+        <map involvedColumn="Personname" docColumn="A91" type="java.lang.String"/>
+        <map involvedColumn="Sourceid" value="DOC_XZ0024_NEW" type="java.lang.String"/>
+        <map involvedColumn="Sourcename" value="扣押物品决定书" type="java.lang.String"/>
+    </doc>
+
+</docs>

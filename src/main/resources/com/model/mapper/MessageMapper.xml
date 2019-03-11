@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.MessageMapper">
+    <resultMap id="BaseResultMap" type="com.model.Message">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="RECEIVEUSERNAME" property="receiveUserName" jdbcType="VARCHAR"/>
+        <result column="RECEIVEUSERID" property="receiveUserId" jdbcType="VARCHAR"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
+        <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="CREATEUSERID" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="CREATEUSERNAME" property="createUserName" jdbcType="VARCHAR"/>
+        <result column="ISVISIT" property="isVisit" jdbcType="VARCHAR"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
+        <result column="VISITTIME" property="visitTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ID, STATUS, RECEIVEUSERNAME, RECEIVEUSERID, CONTENT, CREATETIME, CREATEUSERID, CREATEUSERNAME, ISVISIT, TITLE,
+    VISITTIME
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from EA_PLATFORM_MESSAGE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EA_PLATFORM_MESSAGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.model.Message">
+    insert into EA_PLATFORM_MESSAGE (ID, STATUS, RECEIVEUSERNAME,
+      RECEIVEUSERID, CONTENT, CREATETIME,
+      CREATEUSERID, ISVISIT, TITLE, 
+      VISITTIME, CREATEUSERNAME)
+    values (#{id,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{receiveUserName,jdbcType=VARCHAR},
+      #{receiveUserId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{createUserId,jdbcType=VARCHAR},#{createUserName,jdbcType=VARCHAR}, #{isVisit,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{visitTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.model.Message">
+        insert into EA_PLATFORM_MESSAGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="receiveUserName != null">
+                RECEIVEUSERNAME,
+            </if>
+            <if test="receiveUserId != null">
+                RECEIVEUSERID,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="createTime != null">
+                CREATETIME,
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID,
+            </if>
+            <if test="createUserName != null">
+                CREATEUSERNAME ,
+            </if>
+            <if test="isVisit != null">
+                ISVISIT,
+            </if>
+            <if test="title != null">
+                TITLE,
+            </if>
+            <if test="visitTime != null">
+                VISITTIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveUserName != null">
+                #{receiveUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveUserId != null">
+                #{receiveUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserName != null">
+                #{createUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="isVisit != null">
+                #{isVisit,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTime != null">
+                #{visitTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.model.Message">
+        update EA_PLATFORM_MESSAGE
+        <set>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveUserName != null">
+                RECEIVEUSERNAME = #{receiveUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveUserId != null">
+                RECEIVEUSERID = #{receiveUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUserId != null">
+                CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="isVisit != null">
+                ISVISIT = #{isVisit,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                TITLE = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTime != null">
+                VISITTIME = #{visitTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.model.Message">
+    update EA_PLATFORM_MESSAGE
+    set STATUS = #{status,jdbcType=VARCHAR},
+      RECEIVEUSERNAME = #{receiveUserName,jdbcType=VARCHAR},
+      RECEIVEUSERID = #{receiveUserId,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      ISVISIT = #{isVisit,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      VISITTIME = #{visitTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

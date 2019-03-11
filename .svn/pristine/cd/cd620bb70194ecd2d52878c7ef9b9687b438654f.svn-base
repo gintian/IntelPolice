@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.CaseStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.model.CaseStatus" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+    <result column="MEDIASYNCSTATUS" property="mediasyncstatus" jdbcType="VARCHAR" />
+    <result column="RECORDSYNCSTATUS" property="recordsyncstatus" jdbcType="VARCHAR" />
+    <result column="INVOLVEDSYNCSTATUS" property="involvedsyncstatus" jdbcType="VARCHAR" />
+    <result column="ARCHIVESYNCSTATUS" property="archivesyncstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CASEID, MEDIASYNCSTATUS, RECORDSYNCSTATUS, INVOLVEDSYNCSTATUS, ARCHIVESYNCSTATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_CASE_STATUS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_CASE_STATUS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.CaseStatus" >
+    insert into EA_CASE_STATUS (ID, CASEID, MEDIASYNCSTATUS, 
+      RECORDSYNCSTATUS, INVOLVEDSYNCSTATUS, ARCHIVESYNCSTATUS
+      )
+    values (#{id,jdbcType=VARCHAR}, #{caseid,jdbcType=VARCHAR}, #{mediasyncstatus,jdbcType=VARCHAR}, 
+      #{recordsyncstatus,jdbcType=VARCHAR}, #{involvedsyncstatus,jdbcType=VARCHAR}, #{archivesyncstatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.CaseStatus" >
+    insert into EA_CASE_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+      <if test="mediasyncstatus != null" >
+        MEDIASYNCSTATUS,
+      </if>
+      <if test="recordsyncstatus != null" >
+        RECORDSYNCSTATUS,
+      </if>
+      <if test="involvedsyncstatus != null" >
+        INVOLVEDSYNCSTATUS,
+      </if>
+      <if test="archivesyncstatus != null" >
+        ARCHIVESYNCSTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="caseid != null" >
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="mediasyncstatus != null" >
+        #{mediasyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsyncstatus != null" >
+        #{recordsyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="involvedsyncstatus != null" >
+        #{involvedsyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="archivesyncstatus != null" >
+        #{archivesyncstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.CaseStatus" >
+    update EA_CASE_STATUS
+    <set >
+      <if test="caseid != null" >
+        CASEID = #{caseid,jdbcType=VARCHAR},
+      </if>
+      <if test="mediasyncstatus != null" >
+        MEDIASYNCSTATUS = #{mediasyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsyncstatus != null" >
+        RECORDSYNCSTATUS = #{recordsyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="involvedsyncstatus != null" >
+        INVOLVEDSYNCSTATUS = #{involvedsyncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="archivesyncstatus != null" >
+        ARCHIVESYNCSTATUS = #{archivesyncstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.CaseStatus" >
+    update EA_CASE_STATUS
+    set CASEID = #{caseid,jdbcType=VARCHAR},
+      MEDIASYNCSTATUS = #{mediasyncstatus,jdbcType=VARCHAR},
+      RECORDSYNCSTATUS = #{recordsyncstatus,jdbcType=VARCHAR},
+      INVOLVEDSYNCSTATUS = #{involvedsyncstatus,jdbcType=VARCHAR},
+      ARCHIVESYNCSTATUS = #{archivesyncstatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,10 @@
+
+dbUnit.selectSql=unitid,unitname,longname,shortname,unittype,address,phone,fax,postalcode,state,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,longitude,latitude,lyds,hck_rksj,hck_gxsj
+dbUnit.insertSql=unitid,unitname,longname,shortname,unittype,address,phone,fax,postalcode,state,inputpsn,inputtime,modifiedpsn,modifiedtime,districttime,provincetime,tag,modifiedtag,deletag,longitude,latitude,lyds,hck_rksj,hck_gxsj
+dbUnit.principalFileName=unitid
+dbUnit.tableName=bpip_unit
+
+dbUnitZj.selectSql=unitid,unitname,zjid,zhid,zjname,lyds,hck_rksj,hck_gxsj
+dbUnitZj.insertSql=unitid,unitname,zjid,zhid,zjname,lyds,hck_rksj,hck_gxsj
+dbUnitZj.principalFileName=zhid
+dbUnitZj.tableName=bpip_unit_zj

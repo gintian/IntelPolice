@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.MenuBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.MenuBean"
+               extends="com.model.mapper.MenuMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.MenuMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sa.ID, sa.NAME, sa.PARENTID, sa.ICONCLS, sa.EXPANDED, sa.REQUEST, sa.LEAF, sa.SORTNO, sa.REMARK, sa.ICON, sa.TYPE, sa.CATGID
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List_1"/>
+        FROM EAMENU sa
+    </sql>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List_1"/>
+        FROM EAMENU sa
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+    
+    <select id="findAllJilian" resultMap="BaseResultMap">
+        SELECT
+        sa.*
+        FROM EAMENU sa LEFT JOIN EAMENU sa2.PARENTID = sa.ID
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+
+    <select id="findMenuByParentId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.PARENTID LIKE CONCAT(#{parentId, jdbcType=VARCHAR}, '%')
+        </where>
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+
+    <select id="findOneLevelMenuByParentId" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.PARENTID = #{parentId, jdbcType=VARCHAR}
+        </where>
+        ORDER BY cast( sa.SORTNO as int ) ASC
+    </select>
+</mapper>

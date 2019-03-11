@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.FKBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.FKBean"
+               extends="com.model.mapper.FKMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.FKMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM FKDB
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.xzqhdm != null and entity.xzqhdm != ''">
+            AND fk.XZQHDM LIKE CONCAT(CONCAT('%', #{entity.xzqhdm, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.fkdbh != null and entity.fkdbh != ''">
+            AND fk.FKDBH LIKE CONCAT(CONCAT('%', #{entity.fkdbh, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.jjdbh != null and entity.jjdbh != ''">
+            AND fk.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.cjdbh != null and entity.cjdbh != ''">
+            AND fk.CJDBH LIKE CONCAT(CONCAT('%', #{entity.cjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,fk.* FROM FKDB fk
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY fk.fkdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM FKDB fk
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <select id="selectFKEqXzqhdm" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="xzqhdm != null and xzqhdm != ''">
+                AND XZQHDM = #{xzqhdm}
+            </if>
+        </where>
+        ORDER BY XZQHDM ASC
+    </select>
+    <select id="selectFKEqFkdbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="fkdbh != null and fkdbh != ''">
+                AND FKDBH = #{fkdbh}
+            </if>
+        </where>
+        ORDER BY FKDBH ASC
+    </select>
+    <select id="selectFKEqCj" resultMap="BaseResultMap">
+        SELECT
+          *
+        FROM
+          FKDB
+        <where>
+            CJDBH = #{cj}
+         </where>
+    </select>
+</mapper>

@@ -1,0 +1,9 @@
+package com.model.mapper;
+
+import com.model.CMD;
+
+public interface CMDMapper {
+    int insert(CMD record);
+
+    int insertSelective(CMD record);
+}

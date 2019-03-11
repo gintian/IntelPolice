@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.MediaCaseMapper" >
+  <resultMap id="BaseResultMap" type="com.model.MediaCase" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MEDIAID" property="mediaid" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MEDIAID, CASEID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_MEDIA_CASE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_MEDIA_CASE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.MediaCase" >
+    insert into EA_MEDIA_CASE (ID, MEDIAID, CASEID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{mediaid,jdbcType=VARCHAR}, #{caseid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.MediaCase" >
+    insert into EA_MEDIA_CASE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mediaid != null" >
+        MEDIAID,
+      </if>
+      <if test="caseid != null" >
+        CASEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaid != null" >
+        #{mediaid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseid != null" >
+        #{caseid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.MediaCase" >
+    update EA_MEDIA_CASE
+    <set >
+      <if test="mediaid != null" >
+        MEDIAID = #{mediaid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseid != null" >
+        CASEID = #{caseid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.MediaCase" >
+    update EA_MEDIA_CASE
+    set MEDIAID = #{mediaid,jdbcType=VARCHAR},
+      CASEID = #{caseid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

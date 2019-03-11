@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvolvedMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Involved" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CWBM" property="cwbm" jdbcType="VARCHAR" />
+    <result column="CWMC" property="cwmc" jdbcType="VARCHAR" />
+    <result column="DJSJ" property="djsj" jdbcType="TIMESTAMP" />
+    <result column="DJRYID" property="djryId" jdbcType="VARCHAR" />
+    <result column="DJRYZH" property="djryzh" jdbcType="VARCHAR" />
+    <result column="LRRY" property="lrry" jdbcType="VARCHAR" />
+    <result column="DJRYDWID" property="djrydwId" jdbcType="VARCHAR" />
+    <result column="DJRYDW" property="djrydw" jdbcType="VARCHAR" />
+    <result column="CWFLCODE" property="cwflCode" jdbcType="VARCHAR" />
+    <result column="KYYY" property="kyyy" jdbcType="VARCHAR" />
+    <result column="CWWZ" property="cwwz" jdbcType="VARCHAR" />
+    <result column="WZXX" property="wzxx" jdbcType="VARCHAR" />
+    <result column="CWSL" property="cwsl" jdbcType="VARCHAR" />
+    <result column="CWJZ" property="cwjz" jdbcType="VARCHAR" />
+    <result column="CWTZ" property="cwtz" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="ISBGSP" property="isBgsp" jdbcType="VARCHAR" />
+    <result column="CLBHCS" property="clbhcs" jdbcType="DECIMAL" />
+    <result column="BGBHCS" property="bgbhcs" jdbcType="DECIMAL" />
+    <result column="BGDQSJ" property="bgdqsj" jdbcType="TIMESTAMP" />
+    <result column="BGKSSJ" property="bgkssj" jdbcType="TIMESTAMP" />
+    <result column="ISSA" property="isSa" jdbcType="VARCHAR" />
+    <result column="ISDELETE" property="isDelete" jdbcType="VARCHAR" />
+    <result column="ISEDIT" property="isEdit" jdbcType="VARCHAR" />
+    <result column="ISEDIT_IN_FILE" property="isEditInFile" jdbcType="VARCHAR" />
+    <result column="ISEDIT_OUT_FILE" property="isEditOutFile" jdbcType="VARCHAR" />
+    <result column="ISEDIT_FINISH_FILE" property="isEditFinishFile" jdbcType="VARCHAR" />
+    <result column="LEADERPROCESSID" property="leaderProcessId" jdbcType="VARCHAR" />
+    <result column="LAWERPROCESSID" property="lawerProcessId" jdbcType="VARCHAR" />
+    <result column="OFFICEPROCESSID" property="officeProcessId" jdbcType="VARCHAR" />
+    <result column="OBJID" property="objId" jdbcType="VARCHAR" />
+    <result column="PROCESSMODE" property="processMode" jdbcType="VARCHAR" />
+    <result column="APPROVESTATE" property="approveState" jdbcType="VARCHAR" />
+    <result column="DISPOSESTATE" property="disposeState" jdbcType="VARCHAR" />
+    <result column="STORESTATE" property="storeState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CWBM, CWMC, DJSJ, DJRYID, DJRYZH, LRRY, DJRYDWID, DJRYDW, CWFLCODE, KYYY, CWWZ, 
+    WZXX, CWSL, CWJZ, CWTZ, BZ, ISBGSP, CLBHCS, BGBHCS, BGDQSJ, BGKSSJ, ISSA, ISDELETE, ISEDIT,
+    ISEDIT_IN_FILE, ISEDIT_OUT_FILE, ISEDIT_FINISH_FILE, LEADERPROCESSID, LAWERPROCESSID, 
+    OFFICEPROCESSID, OBJID, PROCESSMODE, APPROVESTATE, DISPOSESTATE, STORESTATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVOLVED
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVOLVED
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Involved" >
+    insert into EA_INVOLVED (ID, CWBM, CWMC, 
+      DJSJ, DJRYID, DJRYZH, 
+      LRRY, DJRYDWID, DJRYDW, 
+      CWFLCODE, KYYY, CWWZ, 
+      WZXX, CWSL, CWJZ, CWTZ, 
+      BZ, ISBGSP, CLBHCS,
+      BGBHCS, BGDQSJ, BGKSSJ, ISSA,
+      ISDELETE, ISEDIT, ISEDIT_IN_FILE, 
+      ISEDIT_OUT_FILE, ISEDIT_FINISH_FILE, LEADERPROCESSID, 
+      LAWERPROCESSID, OFFICEPROCESSID, OBJID, 
+      PROCESSMODE, APPROVESTATE, DISPOSESTATE, STORESTATE)
+    values (#{id,jdbcType=VARCHAR}, #{cwbm,jdbcType=VARCHAR}, #{cwmc,jdbcType=VARCHAR},
+      #{djsj,jdbcType=TIMESTAMP}, #{djryId,jdbcType=VARCHAR}, #{djryzh,jdbcType=VARCHAR},
+      #{lrry,jdbcType=VARCHAR}, #{djrydwId,jdbcType=VARCHAR}, #{djrydw,jdbcType=VARCHAR},
+      #{cwflCode,jdbcType=VARCHAR}, #{kyyy,jdbcType=VARCHAR}, #{cwwz,jdbcType=VARCHAR},
+      #{wzxx,jdbcType=VARCHAR}, #{cwsl,jdbcType=VARCHAR}, #{cwjz,jdbcType=VARCHAR}, #{cwtz,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{isBgsp,jdbcType=VARCHAR}, #{clbhcs,jdbcType=DECIMAL},
+      #{bgbhcs,jdbcType=DECIMAL}, #{bgdqsj,jdbcType=TIMESTAMP}, #{bgkssj,jdbcType=TIMESTAMP},#{isSa,jdbcType=VARCHAR},
+      #{isDelete,jdbcType=VARCHAR}, #{isEdit,jdbcType=VARCHAR}, #{isEditInFile,jdbcType=VARCHAR},
+      #{isEditOutFile,jdbcType=VARCHAR}, #{isEditFinishFile,jdbcType=VARCHAR}, #{leaderProcessId,jdbcType=VARCHAR},
+      #{lawerProcessId,jdbcType=VARCHAR}, #{officeProcessId,jdbcType=VARCHAR}, #{objId,jdbcType=VARCHAR},
+      #{processMode,jdbcType=VARCHAR},#{approveState,jdbcType=VARCHAR},#{disposeState,jdbcType=VARCHAR},#{storeState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Involved" >
+    insert into EA_INVOLVED
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="cwbm != null" >
+        CWBM,
+      </if>
+      <if test="cwmc != null" >
+        CWMC,
+      </if>
+      <if test="djsj != null" >
+        DJSJ,
+      </if>
+      <if test="djryId != null" >
+        DJRYID,
+      </if>
+      <if test="djryzh != null" >
+        DJRYZH,
+      </if>
+      <if test="lrry != null" >
+        LRRY,
+      </if>
+      <if test="djrydwId != null" >
+        DJRYDWID,
+      </if>
+      <if test="djrydw != null" >
+        DJRYDW,
+      </if>
+      <if test="cwflCode != null" >
+        CWFLCODE,
+      </if>
+      <if test="kyyy != null" >
+        KYYY,
+      </if>
+      <if test="cwwz != null" >
+        CWWZ,
+      </if>
+      <if test="wzxx != null" >
+        WZXX,
+      </if>
+      <if test="cwsl != null" >
+        CWSL,
+      </if>
+      <if test="cwjz != null" >
+        CWJZ,
+      </if>
+      <if test="cwtz != null" >
+        CWTZ,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="isBgsp != null" >
+        ISBGSP,
+      </if>
+      <if test="clbhcs != null" >
+        CLBHCS,
+      </if>
+      <if test="bgbhcs != null" >
+        BGBHCS,
+      </if>
+      <if test="bgdqsj != null" >
+        BGDQSJ,
+      </if>
+      <if test="bgkssj != null" >
+        BGKSSJ,
+      </if>
+      <if test="isSa != null" >
+        ISSA,
+      </if>
+      <if test="isDelete != null" >
+        ISDELETE,
+      </if>
+      <if test="isEdit != null" >
+        ISEDIT,
+      </if>
+      <if test="isEditInFile != null" >
+        ISEDIT_IN_FILE,
+      </if>
+      <if test="isEditOutFile != null" >
+        ISEDIT_OUT_FILE,
+      </if>
+      <if test="isEditFinishFile != null" >
+        ISEDIT_FINISH_FILE,
+      </if>
+      <if test="leaderProcessId != null" >
+        LEADERPROCESSID,
+      </if>
+      <if test="lawerProcessId != null" >
+        LAWERPROCESSID,
+      </if>
+      <if test="officeProcessId != null" >
+        OFFICEPROCESSID,
+      </if>
+      <if test="objId != null" >
+        OBJID,
+      </if>
+      <if test="processMode != null" >
+        PROCESSMODE,
+      </if>
+      <if test="approveState != null" >
+        APPROVESTATE,
+      </if>
+      <if test="disposeState != null" >
+        DISPOSESTATE,
+      </if>
+      <if test="storeState != null" >
+        STORESTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cwbm != null" >
+        #{cwbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cwmc != null" >
+        #{cwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null" >
+        #{djsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="djryId != null" >
+        #{djryId,jdbcType=VARCHAR},
+      </if>
+      <if test="djryzh != null" >
+        #{djryzh,jdbcType=VARCHAR},
+      </if>
+      <if test="lrry != null" >
+        #{lrry,jdbcType=VARCHAR},
+      </if>
+      <if test="djrydwId != null" >
+        #{djrydwId,jdbcType=VARCHAR},
+      </if>
+      <if test="djrydw != null" >
+        #{djrydw,jdbcType=VARCHAR},
+      </if>
+      <if test="cwflCode != null" >
+        #{cwflCode,jdbcType=VARCHAR},
+      </if>
+      <if test="kyyy != null" >
+        #{kyyy,jdbcType=VARCHAR},
+      </if>
+      <if test="cwwz != null" >
+        #{cwwz,jdbcType=VARCHAR},
+      </if>
+      <if test="wzxx != null" >
+        #{wzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="cwsl != null" >
+        #{cwsl,jdbcType=VARCHAR},
+      </if>
+      <if test="cwjz != null" >
+        #{cwjz,jdbcType=VARCHAR},
+      </if>
+      <if test="cwtz != null" >
+        #{cwtz,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="isBgsp != null" >
+        #{isBgsp,jdbcType=VARCHAR},
+      </if>
+      <if test="clbhcs != null" >
+        #{clbhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bgbhcs != null" >
+        #{bgbhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bgdqsj != null" >
+        #{bgdqsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgkssj != null" >
+        #{bgkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSa != null" >
+        #{isSa,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="isEdit != null" >
+        #{isEdit,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditInFile != null" >
+        #{isEditInFile,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditOutFile != null" >
+        #{isEditOutFile,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditFinishFile != null" >
+        #{isEditFinishFile,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderProcessId != null" >
+        #{leaderProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="lawerProcessId != null" >
+        #{lawerProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="officeProcessId != null" >
+        #{officeProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=VARCHAR},
+      </if>
+      <if test="processMode != null" >
+        #{processMode,jdbcType=VARCHAR},
+      </if>
+      <if test="approveState != null" >
+        #{approveState,jdbcType=VARCHAR},
+      </if>
+      <if test="disposeState != null" >
+        #{disposeState,jdbcType=VARCHAR},
+      </if>
+      <if test="storeState != null" >
+        #{storeState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Involved" >
+    update EA_INVOLVED
+    <set >
+      <if test="cwbm != null" >
+        CWBM = #{cwbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cwmc != null" >
+        CWMC = #{cwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null" >
+        DJSJ = #{djsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="djryId != null" >
+        DJRYID = #{djryId,jdbcType=VARCHAR},
+      </if>
+      <if test="djryzh != null" >
+        DJRYZH = #{djryzh,jdbcType=VARCHAR},
+      </if>
+      <if test="lrry != null" >
+        LRRY = #{lrry,jdbcType=VARCHAR},
+      </if>
+      <if test="djrydwId != null" >
+        DJRYDWID = #{djrydwId,jdbcType=VARCHAR},
+      </if>
+      <if test="djrydw != null" >
+        DJRYDW = #{djrydw,jdbcType=VARCHAR},
+      </if>
+      <if test="cwflCode != null" >
+        CWFLCODE = #{cwflCode,jdbcType=VARCHAR},
+      </if>
+      <if test="kyyy != null" >
+        KYYY = #{kyyy,jdbcType=VARCHAR},
+      </if>
+      <if test="cwwz != null" >
+        CWWZ = #{cwwz,jdbcType=VARCHAR},
+      </if>
+      <if test="wzxx != null" >
+        WZXX = #{wzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="cwsl != null" >
+        CWSL = #{cwsl,jdbcType=VARCHAR},
+      </if>
+      <if test="cwjz != null" >
+        CWJZ = #{cwjz,jdbcType=VARCHAR},
+      </if>
+      <if test="cwtz != null" >
+        CWTZ = #{cwtz,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="isBgsp != null" >
+        ISBGSP = #{isBgsp,jdbcType=VARCHAR},
+      </if>
+      <if test="clbhcs != null" >
+        CLBHCS = #{clbhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bgbhcs != null" >
+        BGBHCS = #{bgbhcs,jdbcType=DECIMAL},
+      </if>
+      <if test="bgdqsj != null" >
+        BGDQSJ = #{bgdqsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgkssj != null" >
+        BGKSSJ = #{bgkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSa != null" >
+        ISSA = #{isSa,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        ISDELETE = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="isEdit != null" >
+        ISEDIT = #{isEdit,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditInFile != null" >
+        ISEDIT_IN_FILE = #{isEditInFile,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditOutFile != null" >
+        ISEDIT_OUT_FILE = #{isEditOutFile,jdbcType=VARCHAR},
+      </if>
+      <if test="isEditFinishFile != null" >
+        ISEDIT_FINISH_FILE = #{isEditFinishFile,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderProcessId != null" >
+        LEADERPROCESSID = #{leaderProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="lawerProcessId != null" >
+        LAWERPROCESSID = #{lawerProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="officeProcessId != null" >
+        OFFICEPROCESSID = #{officeProcessId,jdbcType=VARCHAR},
+      </if>
+      <if test="objId != null" >
+        OBJID = #{objId,jdbcType=VARCHAR},
+      </if>
+      <if test="processMode != null" >
+        PROCESSMODE = #{processMode,jdbcType=VARCHAR},
+      </if>
+      <if test="approveState != null" >
+        APPROVESTATE = #{approveState,jdbcType=VARCHAR},
+      </if>
+      <if test="disposeState != null" >
+        DISPOSESTATE = #{disposeState,jdbcType=VARCHAR},
+      </if>
+      <if test="storeState != null" >
+        STORESTATE = #{storeState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Involved" >
+    update EA_INVOLVED
+    set CWBM = #{cwbm,jdbcType=VARCHAR},
+      CWMC = #{cwmc,jdbcType=VARCHAR},
+      DJSJ = #{djsj,jdbcType=TIMESTAMP},
+      DJRYID = #{djryId,jdbcType=VARCHAR},
+      DJRYZH = #{djryzh,jdbcType=VARCHAR},
+      LRRY = #{lrry,jdbcType=VARCHAR},
+      DJRYDWID = #{djrydwId,jdbcType=VARCHAR},
+      DJRYDW = #{djrydw,jdbcType=VARCHAR},
+      CWFLCODE = #{cwflCode,jdbcType=VARCHAR},
+      KYYY = #{kyyy,jdbcType=VARCHAR},
+      CWWZ = #{cwwz,jdbcType=VARCHAR},
+      WZXX = #{wzxx,jdbcType=VARCHAR},
+      CWSL = #{cwsl,jdbcType=VARCHAR},
+      CWJZ = #{cwjz,jdbcType=VARCHAR},
+      CWTZ = #{cwtz,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      ISBGSP = #{isBgsp,jdbcType=VARCHAR},
+      CLBHCS = #{clbhcs,jdbcType=DECIMAL},
+      BGBHCS = #{bgbhcs,jdbcType=DECIMAL},
+      BGDQSJ = #{bgdqsj,jdbcType=TIMESTAMP},
+      BGKSSJ = #{bgkssj,jdbcType=TIMESTAMP},
+      ISSA = #{isSa,jdbcType=VARCHAR},
+      ISDELETE = #{isDelete,jdbcType=VARCHAR},
+      ISEDIT = #{isEdit,jdbcType=VARCHAR},
+      ISEDIT_IN_FILE = #{isEditInFile,jdbcType=VARCHAR},
+      ISEDIT_OUT_FILE = #{isEditOutFile,jdbcType=VARCHAR},
+      ISEDIT_FINISH_FILE = #{isEditFinishFile,jdbcType=VARCHAR},
+      LEADERPROCESSID = #{leaderProcessId,jdbcType=VARCHAR},
+      LAWERPROCESSID = #{lawerProcessId,jdbcType=VARCHAR},
+      OFFICEPROCESSID = #{officeProcessId,jdbcType=VARCHAR},
+      OBJID = #{objId,jdbcType=VARCHAR},
+      PROCESSMODE = #{processMode,jdbcType=VARCHAR},
+      APPROVESTATE = #{approveState,jdbcType=VARCHAR},
+      DISPOSESTATE = #{disposeState,jdbcType=VARCHAR},
+      STORESTATE = #{storeState,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

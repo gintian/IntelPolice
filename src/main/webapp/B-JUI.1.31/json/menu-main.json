@@ -1,0 +1,574 @@
+[
+  {
+    "id": "0103",
+    "name": "案事件管理",
+    "children": [
+      {
+        "id": "010301",
+        "name": "案事件信息管理",
+        "children": [
+          {
+            "id": "01030103",
+            "name": "110指令表",
+            "target": "navtab",
+            "url": "cmd/page_show.action"
+          },
+          {
+            "id": "01030102",
+            "name": "案事件信息统计",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01030101",
+            "name": "案事件信息查询",
+            "target": "navtab",
+            "url": "criminal/page_show.action"
+          }
+        ]
+      },
+      {
+        "id": "010302",
+        "name": "案事件信息监督",
+        "children": [
+          {
+            "id": "01030201",
+            "name": "未关联警情案件",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0105",
+    "name": "执法音视频管理",
+    "children": [
+      {
+        "id": "010502",
+        "name": "执法音视频信息监督",
+        "children": [
+          {
+            "id": "01050201",
+            "name": "是否关联警情、案件",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      },
+      {
+        "id": "010503",
+        "name": "执法音视频数据管理",
+        "children": [
+          {
+            "id": "01050303",
+            "name": "执法音视频关联案件",
+            "target": "navtab",
+            "url": "mediaCase/page_show.action"
+          },
+          {
+            "id": "01050301",
+            "name": "执法音视频数据",
+            "target": "navtab",
+            "url": "media/page_show.action"
+          },
+          {
+            "id": "01050302",
+            "name": "执法音视频关联文件",
+            "target": "navtab",
+            "url": "mediaFiles/page_show.action"
+          }
+        ]
+      },
+      {
+        "id": "010501",
+        "name": "执法音视频信息",
+        "children": [
+          {
+            "id": "01050101",
+            "name": "执法音视频信息查询",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01050102",
+            "name": "执法音视频统计",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01050103",
+            "name": "执法音视频保管期限设置",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0102",
+    "name": "接处警管理",
+    "children": [
+      {
+        "id": "010201",
+        "name": "接处警信息管理",
+        "children": [
+          {
+            "id": "01020101",
+            "name": "接警信息查询",
+            "target": "navtab",
+            "url": "jj/page_show.action"
+          },
+          {
+            "id": "01020102",
+            "name": "处警信息查询",
+            "target": "navtab",
+            "url": "cj/page_show.action"
+          }
+        ]
+      },
+      {
+        "id": "010202",
+        "name": "接处警信息监督",
+        "children": [
+          {
+            "id": "01020203",
+            "name": "受立案预警",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01020201",
+            "name": "未关联案件信息",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01020202",
+            "name": "未立案信息",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0104",
+    "name": "受立案监督管理",
+    "children": [
+      {
+        "id": "010402",
+        "name": "受立案监督",
+        "children": [
+          {
+            "id": "01040203",
+            "name": "待复核异常",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040206",
+            "name": "正常警情",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040202",
+            "name": "已告知异常",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040201",
+            "name": "未处理异常",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040204",
+            "name": "已处理异常",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040205",
+            "name": "无需处理异常",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      },
+      {
+        "id": "010401",
+        "name": "受立案监督信息",
+        "children": [
+          {
+            "id": "01040104",
+            "name": "受立案监督运行质态报表",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040101",
+            "name": "接警受立案对比",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040102",
+            "name": "异常警情占比",
+            "target": "navtab",
+            "url": "jd.jsp"
+          },
+          {
+            "id": "01040103",
+            "name": "各异常警情占比",
+            "target": "navtab",
+            "url": "jd.jsp"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0107",
+    "name": "涉案财物及扣押物品管理",
+    "children": [
+      {
+        "id": "010703",
+        "name": "保管财物",
+        "children": [
+          {
+            "id": "01070303",
+            "name": "已出库财物"
+          },
+          {
+            "id": "01070301",
+            "name": "未上交财物"
+          },
+          {
+            "id": "01070302",
+            "name": "已保管财物"
+          },
+          {
+            "id": "01070304",
+            "name": "保管即将到期财物"
+          }
+        ]
+      },
+      {
+        "id": "010704",
+        "name": "申请保管财物",
+        "children": [
+          {
+            "id": "01070403",
+            "name": "已通过申请保管财物"
+          },
+          {
+            "id": "01070402",
+            "name": "已提交申请保管财物"
+          },
+          {
+            "id": "01070404",
+            "name": "未通过申请保管财物"
+          },
+          {
+            "id": "01070401",
+            "name": "未提交保管/处置财物"
+          }
+        ]
+      },
+      {
+        "id": "010706",
+        "name": "综合查询财物",
+        "children": [
+          {
+            "id": "01070601",
+            "name": "综合查询财物"
+          }
+        ]
+      },
+      {
+        "id": "010710",
+        "name": "涉案财物管理",
+        "children": [
+          {
+            "id": "01071001",
+            "name": "涉案财物信息管理",
+            "target": "navtab",
+            "url": "involvedInfos/page_show.action"
+          },
+          {
+            "id": "01071004",
+            "name": "仓库储物柜管理",
+            "target": "navtab",
+            "url": "involvedStoresLockers/page_show.action"
+          },
+          {
+            "id": "01071005",
+            "name": "储物柜箱子管理",
+            "target": "navtab",
+            "url": "involvedStoresBox/page_show.action"
+          },
+          {
+            "id": "01071003",
+            "name": "仓库管理",
+            "target": "navtab",
+            "url": "involvedStores/page_show.action"
+          },
+          {
+            "id": "01071002",
+            "name": "储物箱与财务关联管理",
+            "target": "navtab",
+            "url": "involvedBox/page_show.action"
+          }
+        ]
+      },
+      {
+        "id": "010708",
+        "name": "监督查询财物",
+        "children": [
+          {
+            "id": "01070804",
+            "name": "已处置财物"
+          },
+          {
+            "id": "01070803",
+            "name": "保管即将到期财物"
+          },
+          {
+            "id": "01070802",
+            "name": "未处置财物"
+          },
+          {
+            "id": "01070801",
+            "name": "未上交财物"
+          },
+          {
+            "id": "01070805",
+            "name": "已保管财物"
+          }
+        ]
+      },
+      {
+        "id": "010705",
+        "name": "审批保管财物",
+        "children": [
+          {
+            "id": "01070505",
+            "name": "未通过上级审核"
+          },
+          {
+            "id": "01070501",
+            "name": "未审批申请保管财物"
+          },
+          {
+            "id": "01070502",
+            "name": "已驳回申请保管财物"
+          },
+          {
+            "id": "01070506",
+            "name": "已通过上级审核"
+          },
+          {
+            "id": "01070504",
+            "name": "已提交上级审核"
+          },
+          {
+            "id": "01070503",
+            "name": "已批准申请保管财物"
+          }
+        ]
+      },
+      {
+        "id": "010709",
+        "name": "涉案财物监督"
+      },
+      {
+        "id": "010707",
+        "name": "统计财物",
+        "children": [
+          {
+            "id": "01070701",
+            "name": "台账统计财物"
+          }
+        ]
+      },
+      {
+        "id": "010702",
+        "name": "管理已审批财物",
+        "children": [
+          {
+            "id": "01070201\r",
+            "name": "已审批财物"
+          }
+        ]
+      },
+      {
+        "id": "010701",
+        "name": "管理案事件信息",
+        "children": [
+          {
+            "id": "01070101",
+            "name": "案事件信息录入"
+          },
+          {
+            "id": "01070102",
+            "name": "案事件信息查询"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0108",
+    "name": "笔录管理",
+    "children": [
+      {
+        "id": "010801",
+        "name": "笔录信息监督",
+        "target": "navtab",
+        "url": "record/page_show.action"
+      },
+      {
+        "id": "010802",
+        "name": "笔录信息管理",
+        "target": "navtab",
+        "url": "record/page_show.action"
+      }
+    ]
+  },
+  {
+    "id": "0106",
+    "name": "系统信息管理",
+    "children": [
+      {
+        "id": "010601",
+        "name": "版本详情",
+        "target": "navtab",
+        "url": "banbenxiangqing.html"
+      },
+      {
+        "id": "010604",
+        "name": "留言信息",
+        "children": [
+          {
+            "id": "01060402",
+            "name": "留言管理",
+            "target": "navtab",
+            "url": "feedback/page_show.action"
+          },
+          {
+            "id": "01060401",
+            "name": "留言列表"
+          }
+        ]
+      },
+      {
+        "id": "010603",
+        "name": "系统公告",
+        "children": [
+          {
+            "id": "01060301",
+            "name": "公告列表"
+          },
+          {
+            "id": "01060302",
+            "name": "公告管理",
+            "target": "navtab",
+            "url": "notice/page_show.action"
+          }
+        ]
+      },
+      {
+        "id": "010605",
+        "name": "文件信息",
+        "children": [
+          {
+            "id": "01060501",
+            "name": "文件列表",
+            "target": "navtab",
+            "url": "html/notice/noticeAddDialog.jsp"
+          },
+          {
+            "id": "01060502",
+            "name": "文件管理",
+            "target": "navtab",
+            "url": "umeditor/demo.jsp"
+          }
+        ]
+      },
+      {
+        "id": "010602",
+        "name": "待办事项",
+        "children": [
+          {
+            "id": "01060201",
+            "name": "我的消息",
+            "target": "navtab",
+            "url": "message/page_show.action"
+          },
+          {
+            "id": "01060202",
+            "name": "消息回收站"
+          }
+        ]
+      },
+      {
+        "id": "010606",
+        "name": "短信消息",
+        "children": [
+          {
+            "id": "01060601",
+            "name": "短信发送管理"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0101",
+    "name": "系统管理",
+    "children": [
+      {
+        "id": "010102",
+        "name": "权限管理",
+        "children": [
+          {
+            "id": "01010205",
+            "name": "菜单管理",
+            "target": "navtab",
+            "url": "menu/menuListTree.action"
+          },
+          {
+            "id": "01010203",
+            "name": "角色管理与授权",
+            "target": "navtab",
+            "url": "role.jsp"
+          },
+          {
+            "id": "01010202",
+            "name": "人员管理与授权",
+            "target": "navtab",
+            "url": "user/page_show.action"
+          },
+          {
+            "id": "01010201",
+            "name": "组织机构管理",
+            "target": "navtab",
+            "url": "dept/page_show.action"
+          },
+          {
+            "id": "01010204",
+            "name": "菜单资源管理与授权",
+            "target": "navtab",
+            "url": "role.jsp"
+          }
+        ]
+      }
+    ]
+  }
+]

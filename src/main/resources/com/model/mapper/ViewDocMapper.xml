@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.ViewDocMapper">
+
+    <sql id="Base_Column_List">
+        DOC_ID,DOC_NAME,DOC_SIZE,DOC_URL,CATE,EXPLRY_TIME,IMP_LEVL,REMARK,SITE_NO,HTTP,UPLOAD_TIME,CREATE_TIME,POLICE_ID
+    </sql>
+
+
+
+
+
+    <select id="showAllView" resultType="com.model.ViewDoc">
+        select
+        <include refid="Base_Column_List"/>
+        from jsdz_view_doc
+    </select>
+
+
+    <select id="findViewDocByModel" resultType="com.model.ViewDoc" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"></include>
+        from jsdz_view_doc
+        where DOC_ID=#{DOC_ID}
+    </select>
+
+
+</mapper>

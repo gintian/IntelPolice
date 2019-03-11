@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.InvestigationExpInformMapper" >
+  <resultMap id="BaseResultMap" type="com.model.InvestigationExpInform" >
+    <id column="INFORMID" property="informId" jdbcType="VARCHAR" />
+    <result column="EXCEPTIONID" property="exceptionId" jdbcType="VARCHAR" />
+    <result column="INFORMTIME" property="informTime" jdbcType="DATE" />
+    <result column="FROMUERID" property="fromUerId" jdbcType="VARCHAR" />
+    <result column="FROMUSERNAME" property="fromUserName" jdbcType="VARCHAR" />
+    <result column="INFORMINFO" property="informInfo" jdbcType="VARCHAR" />
+    <result column="TOUSERID" property="toUserId" jdbcType="VARCHAR" />
+    <result column="TOUSERNAME" property="toUserName" jdbcType="VARCHAR" />
+    <result column="ISCANCEL" property="isCancel" jdbcType="VARCHAR" />
+    <result column="CANCELTIME" property="cancelTime" jdbcType="DATE" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INFORMID, EXCEPTIONID, INFORMTIME, FROMUERID, FROMUSERNAME, INFORMINFO, TOUSERID, 
+    TOUSERNAME, ISCANCEL, CANCELTIME, TYPE, STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_INVESTIGATION_EXP_INFORM
+    where INFORMID = #{informId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_INVESTIGATION_EXP_INFORM
+    where INFORMID = #{informId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.InvestigationExpInform" >
+    insert into EA_INVESTIGATION_EXP_INFORM (INFORMID, EXCEPTIONID, INFORMTIME, 
+      FROMUERID, FROMUSERNAME, INFORMINFO, 
+      TOUSERID, TOUSERNAME, ISCANCEL, 
+      CANCELTIME, TYPE, STATE
+      )
+    values (#{informId,jdbcType=VARCHAR}, #{exceptionId,jdbcType=VARCHAR}, #{informTime,jdbcType=DATE},
+      #{fromUerId,jdbcType=VARCHAR}, #{fromUserName,jdbcType=VARCHAR}, #{informInfo,jdbcType=VARCHAR},
+      #{toUserId,jdbcType=VARCHAR}, #{toUserName,jdbcType=VARCHAR}, #{isCancel,jdbcType=VARCHAR},
+      #{cancelTime,jdbcType=DATE}, #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.InvestigationExpInform" >
+    insert into EA_INVESTIGATION_EXP_INFORM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="informId != null" >
+        INFORMID,
+      </if>
+      <if test="exceptionId != null" >
+        EXCEPTIONID,
+      </if>
+      <if test="informTime != null" >
+        INFORMTIME,
+      </if>
+      <if test="fromUerId != null" >
+        FROMUERID,
+      </if>
+      <if test="fromUserName != null" >
+        FROMUSERNAME,
+      </if>
+      <if test="informInfo != null" >
+        INFORMINFO,
+      </if>
+      <if test="toUserId != null" >
+        TOUSERID,
+      </if>
+      <if test="toUserName != null" >
+        TOUSERNAME,
+      </if>
+      <if test="isCancel != null" >
+        ISCANCEL,
+      </if>
+      <if test="cancelTime != null" >
+        CANCELTIME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="informId != null" >
+        #{informId,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionId != null" >
+        #{exceptionId,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        #{informTime,jdbcType=DATE},
+      </if>
+      <if test="fromUerId != null" >
+        #{fromUerId,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUserName != null" >
+        #{fromUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="informInfo != null" >
+        #{informInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="toUserName != null" >
+        #{toUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCancel != null" >
+        #{isCancel,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=DATE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.InvestigationExpInform" >
+    update EA_INVESTIGATION_EXP_INFORM
+    <set >
+      <if test="exceptionId != null" >
+        EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR},
+      </if>
+      <if test="informTime != null" >
+        INFORMTIME = #{informTime,jdbcType=DATE},
+      </if>
+      <if test="fromUerId != null" >
+        FROMUERID = #{fromUerId,jdbcType=VARCHAR},
+      </if>
+      <if test="fromUserName != null" >
+        FROMUSERNAME = #{fromUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="informInfo != null" >
+        INFORMINFO = #{informInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="toUserId != null" >
+        TOUSERID = #{toUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="toUserName != null" >
+        TOUSERNAME = #{toUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCancel != null" >
+        ISCANCEL = #{isCancel,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null" >
+        CANCELTIME = #{cancelTime,jdbcType=DATE},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INFORMID = #{informId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.InvestigationExpInform" >
+    update EA_INVESTIGATION_EXP_INFORM
+    set EXCEPTIONID = #{exceptionId,jdbcType=VARCHAR},
+      INFORMTIME = #{informTime,jdbcType=DATE},
+      FROMUERID = #{fromUerId,jdbcType=VARCHAR},
+      FROMUSERNAME = #{fromUserName,jdbcType=VARCHAR},
+      INFORMINFO = #{informInfo,jdbcType=VARCHAR},
+      TOUSERID = #{toUserId,jdbcType=VARCHAR},
+      TOUSERNAME = #{toUserName,jdbcType=VARCHAR},
+      ISCANCEL = #{isCancel,jdbcType=VARCHAR},
+      CANCELTIME = #{cancelTime,jdbcType=DATE},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR}
+    where INFORMID = #{informId,jdbcType=VARCHAR}
+  </update>
+</mapper>

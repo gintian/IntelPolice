@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Dept" >
+      <id column="ID" property="id" jdbcType="VARCHAR" />
+      <result column="NAME" property="name" jdbcType="VARCHAR" />
+      <result column="PARENTID" property="parentId" jdbcType="VARCHAR" />
+      <result column="CUSTOMID" property="customId" jdbcType="VARCHAR" />
+      <result column="STATUS" property="status" jdbcType="VARCHAR" />
+      <result column="SORTNO" property="sortNo" jdbcType="VARCHAR" />
+      <result column="LEAF" property="leaf" jdbcType="VARCHAR" />
+      <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+      <result column="ISCASEUNIT" property="isCaseUnit" jdbcType="VARCHAR" />
+      <result column="LONGNAME" property="longName" jdbcType="VARCHAR" />
+      <result column="SHORTNAME" property="shortName" jdbcType="VARCHAR" />
+      <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+      <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+      <result column="ZJID" property="zjId" jdbcType="VARCHAR" />
+      <result column="ZHID" property="zhId" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, PARENTID, CUSTOMID, STATUS, SORTNO, LEAF, REMARK, ISCASEUNIT,LONGNAME,SHORTNAME,ADDRESS,PHONE,ZJID,ZHID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EADEPT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EADEPT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Dept" >
+    insert into EADEPT (ID, NAME, PARENTID, 
+      CUSTOMID, STATUS, SORTNO, 
+      LEAF, REMARK, ISCASEUNIT,LONGNAME,SHORTNAME,ADDRESS,PHONE,ZJID,ZHID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{customId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{sortNo,jdbcType=VARCHAR}, 
+      #{leaf,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isCaseUnit,jdbcType=VARCHAR},
+      #{longName,jdbcType=VARCHAR},#{shortName,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR},#{zjId,jdbcType=VARCHAR},#{zhId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Dept" >
+    insert into EADEPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENTID,
+      </if>
+      <if test="customId != null" >
+        CUSTOMID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="sortNo != null" >
+        SORTNO,
+      </if>
+      <if test="leaf != null" >
+        LEAF,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="isCaseUnit != null" >
+        ISCASEUNIT,
+      </if>
+        <if test="longName != null" >
+            LONGNAME,
+        </if>
+        <if test="shortName != null" >
+            SHORTNAME,
+        </if>
+        <if test="address != null" >
+            ADDRESS,
+        </if>
+        <if test="phone != null" >
+            PHONE,
+        </if>
+        <if test="zjId != null" >
+            ZJID,
+        </if>
+        <if test="zhId != null" >
+            ZHID,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="customId != null" >
+        #{customId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isCaseUnit != null" >
+        #{isCaseUnit,jdbcType=VARCHAR},
+      </if>
+        <if test="longName != null" >
+            #{longName,jdbcType=VARCHAR},
+        </if>
+        <if test="shortName != null" >
+            #{shortName,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null" >
+            #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="phone != null" >
+            #{phone,jdbcType=VARCHAR},
+        </if>
+        <if test="zjId != null" >
+            #{zjId,jdbcType=VARCHAR},
+        </if>
+        <if test="zhId != null" >
+            #{zhId,jdbcType=VARCHAR},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Dept" >
+    update EADEPT
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENTID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="customId != null" >
+        CUSTOMID = #{customId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORTNO = #{sortNo,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        LEAF = #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isCaseUnit != null" >
+        ISCASEUNIT = #{isCaseUnit,jdbcType=VARCHAR},
+      </if>
+        <if test="longName != null" >
+            LONGNAME = #{longName,jdbcType=VARCHAR},
+        </if>
+        <if test="shortName != null" >
+            SHORTNAME = #{shortName,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null" >
+            ADDRESS = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="phone != null" >
+            PHONE = #{phone,jdbcType=VARCHAR},
+        </if>
+        <if test="zjId != null" >
+            ZJID = #{zjId,jdbcType=VARCHAR},
+        </if>
+        <if test="zhId != null" >
+            ZHID = #{zhId,jdbcType=VARCHAR},
+        </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Dept" >
+    update EADEPT
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARENTID = #{parentId,jdbcType=VARCHAR},
+      CUSTOMID = #{customId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      SORTNO = #{sortNo,jdbcType=VARCHAR},
+      LEAF = #{leaf,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ISCASEUNIT = #{isCaseUnit,jdbcType=VARCHAR},
+      LONGNAME = #{longName,jdbcType=VARCHAR},
+      SHORTNAME = #{shortName,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ZJID = #{zjId,jdbcType=VARCHAR},
+      ZHID = #{zhId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.ArchiveStoresBoxMapper" >
+  <resultMap id="BaseResultMap" type="com.model.ArchiveStoresBox" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ARCHIVESTORESID" property="archiveStoresId" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="ADDTIME" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="EDITTIME" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="BOXUSER" property="boxUser" jdbcType="VARCHAR" />
+    <result column="BOXCODE" property="boxCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ARCHIVESTORESID, CODE, USERID, REMARK, ADDTIME, EDITTIME, BOXUSER, BOXCODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from EA_ARCHIVE_STORES_BOX
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_ARCHIVE_STORES_BOX
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ArchiveStoresBox" >
+    insert into EA_ARCHIVE_STORES_BOX (ID, ARCHIVESTORESID, CODE, 
+      USERID, REMARK, ADDTIME, 
+      EDITTIME,BOXUSER,BOXCODE)
+    values (#{id,jdbcType=VARCHAR}, #{archiveStoresId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{editTime,jdbcType=TIMESTAMP},#{boxUser,jdbcType=TIMESTAMP},#{boxCode,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ArchiveStoresBox" >
+    insert into EA_ARCHIVE_STORES_BOX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="archiveStoresId != null" >
+        ARCHIVESTORESID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="userId != null" >
+        USERID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="addTime != null" >
+        ADDTIME,
+      </if>
+      <if test="editTime != null" >
+        EDITTIME,
+      </if>
+      <if test="boxUser != null" >
+        BOXUSER,
+      </if>
+      <if test="boxCode != null" >
+        BOXCODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveStoresId != null" >
+        #{archiveStoresId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="boxUser != null" >
+        #{boxUser,jdbcType=VARCHAR},
+      </if>
+      <if test="boxCode != null" >
+        #{boxCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <sql id="eadeptId">
+    select DEPTID from EAUSER WHERE ID = #{userId,jdbcType=VARCHAR}
+  </sql>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ArchiveStoresBox" >
+    update EA_ARCHIVE_STORES_BOX
+    <set >
+      <if test="archiveStoresId != null" >
+        ARCHIVESTORESID = #{archiveStoresId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USERID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        EDITTIME = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="boxUser != null" >
+        BOXUSER =  #{boxUser,jdbcType=VARCHAR},
+      </if>
+      <if test="boxCode != null" >
+        BOXCODE = #{boxCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ArchiveStoresBox" >
+    update EA_ARCHIVE_STORES_BOX
+    set ARCHIVESTORESID = #{archiveStoresId,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      USERID = #{userId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ADDTIME = #{addTime,jdbcType=TIMESTAMP},
+      EDITTIME = #{editTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

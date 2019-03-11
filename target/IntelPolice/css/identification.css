@@ -1,0 +1,26 @@
+#info_left{padding-right: 0;padding-left: 0;}
+/* 右侧信息 start */
+#info_right{border: 1px solid #c5c4c4;height: 600px;padding-left: 0;padding-right: 0;}
+#info_image_top{height: 260px;}
+#info_image_top legend{text-align: center;background-color: #dee1e57a;}
+#info_image_top li{float: left;list-style: none;padding-left: 10px;}
+#info_image_top ul{padding-left: 20px;}
+#info_image_top li>div{width: 120px;height: 200px;}
+#info_image_top li>div img{width: 120px;height: 200px;}
+#info_image_down{height: 340px;overflow: auto;}
+#info_image_down legend{text-align: center;background-color: #dee1e57a;}
+#info_image_down textarea{font-size: 20px;max-width: 100%;min-width: 100%;min-height: 240px;}
+/* 右侧信息 end */
+
+/* 八等分 start */
+.col-xs-1-8,.col-sm-1-8,.col-md-1-8,.col-lg-1-8 {min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}
+.col-xs-1-8 {width: 12.5%;float: left;}
+@media (min-width: 768px) {
+    .col-sm-1-8 {width: 12.5%;float: left;}
+}
+@media (min-width: 992px) {
+    .col-md-1-8 {width: 12.5%;float: left;}
+}
+@media (min-width: 1200px) {
+    .col-lg-1-8 {width: 12.5%;float: left;}
+}

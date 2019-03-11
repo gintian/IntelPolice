@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.RolePermissionBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.RolePermissionBean"
+               extends="com.model.mapper.RolePermissionMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.RolePermissionMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sa.ID, sa.PERMISSIONID, sa.ROLEID
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EAPERMISSION_ROLE sa
+    </sql>
+    <insert id="insertBatchData">
+        INSERT ALL
+        <foreach collection ="list" item="item">
+            INTO EAPERMISSION_ROLE (ID, PERMISSIONID, ROLEID) VALUES(#{item.id}, #{item.permissionId}, #{item.roleId})
+        </foreach >
+        select 1 from dual
+    </insert>
+
+    <select id="getModelByRoleID" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.ROLEID = #{roleId}
+        </where>
+    </select>
+
+    <select id="getModelListByRoleIds" resultType="java.lang.String">
+        select a.URL FROM EAPERMISSION a LEFT JOIN EAPERMISSION_ROLE b ON a.ID = b.PERMISSIONID
+        <where>
+            b.ROLEID IN
+            <foreach collection="list" item="item" open="(" separator="," close=")">
+                    #{item}
+             </foreach>
+        </where>
+    </select>
+    <delete id="deleteModelByRoleId">
+        delete from EAPERMISSION_ROLE
+        where ROLEID = #{roleId,jdbcType=VARCHAR}
+    </delete>
+</mapper>

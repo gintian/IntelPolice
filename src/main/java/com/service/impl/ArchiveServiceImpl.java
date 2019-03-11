@@ -1,0 +1,159 @@
+package com.service.impl;
+
+import com.constant.CommonConstant;
+import com.constant.WebExceptionConstant;
+import com.exception.WebMessageException;
+import com.model.Archive;
+import com.model.bean.ArchiveBean;
+import com.model.bean.InvolvedBean;
+import com.model.bean.InvolvedStoresBean;
+import com.page.PageBean;
+import com.service.ArchiveService;
+import com.service.CaseStatusService;
+import com.service.mapper.ArchiveBeanMapper;
+import com.utils.CommonValidate;
+import com.utils.ServiceUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 类名称：ArchiveServiceImpl 类描述：接警单操作业务逻辑接口实现
+ */
+@Service("archiveService") // 声明是业务层的组件
+// @Transactional//对类中所有方法采用默认的事务管理
+public class ArchiveServiceImpl implements ArchiveService {
+    @Autowired
+    private ArchiveBeanMapper archiveBeanMapper;
+    @Autowired
+    private CaseStatusService caseStatusService;
+
+    @Override
+    public void addBean(ArchiveBean archiveBean) throws WebMessageException {
+        if (archiveBean == null) {
+            throw new WebMessageException(WebExceptionConstant.OBJ_NONE);
+        }
+        // 添加主键值,, 临时使用uuid,截取20 位
+//        archiveBean.setId(ServiceUtils.generatePrimaryKey());
+        // 校验Bean
+        validateBean(archiveBean);
+        Archive archive = new Archive();
+        // 复制Bean 到model
+        try {
+            ServiceUtils.copyProperties(archive, archiveBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new WebMessageException(WebExceptionConstant.PARAMES_COPY_ERROR);
+        }
+        archiveBeanMapper.insertSelective(archiveBean);
+    }
+
+    @Override
+    public void updateBean(String archivedbh, ArchiveBean archiveBean) throws WebMessageException {
+        if (archiveBean == null) {
+            throw new WebMessageException(WebExceptionConstant.OBJ_NONE);
+        }
+        //校验bean
+        validateBean(archiveBean);
+        Archive archive = new Archive();
+        try {
+            ServiceUtils.copyProperties(archive, archiveBean);
+        } catch (Exception e) {
+            throw new WebMessageException(WebExceptionConstant.PARAMES_COPY_ERROR);
+        }
+        archiveBeanMapper.updateByPrimaryKeySelective(archive);
+    }
+
+    @Override
+    public void deleteBean(String id) throws WebMessageException {
+        if (StringUtils.isEmpty(id)) {
+            throw new WebMessageException(WebExceptionConstant.ID_IS_NONE);
+        }
+        archiveBeanMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public ArchiveBean findArchiveById(String id) throws WebMessageException {
+        if (StringUtils.isEmpty(id)) {
+            throw new WebMessageException(WebExceptionConstant.ID_IS_NONE);
+        }
+        //查询对象
+        Archive archive = archiveBeanMapper.selectByPrimaryKey(id);
+        if (archive != null) {
+            ArchiveBean archiveBean = new ArchiveBean();
+            try {
+                ServiceUtils.copyProperties(archiveBean, archive);
+            } catch (Exception e) {
+                throw new WebMessageException(WebExceptionConstant.PARAMES_COPY_ERROR);
+            }
+            return archiveBean;
+        }
+        return null;
+    }
+
+    public void pageQueryEqCaseId(PageBean<Archive> pageBean, ArchiveBean bean, String userId, String caseid) {
+        int total = archiveBeanMapper.selectTotalEqCaseId(bean, caseid);
+        List<ArchiveBean> archiveBeanList = new ArrayList<ArchiveBean>();
+        if (total > 0) {
+            archiveBeanList = archiveBeanMapper.selectDataEqCaseId(bean, pageBean, caseid);
+        }
+        pageBean.setTotal(total);
+        pageBean.setRows(archiveBeanList);
+    }
+
+    @Override
+    public void pageQuery(PageBean<Archive> pageBean, ArchiveBean bean) {
+        int total = archiveBeanMapper.selectTotal(bean);
+        List<ArchiveBean> archiveBeanList = new ArrayList<ArchiveBean>();
+        if (total > 0) {
+            archiveBeanList = archiveBeanMapper.selectData(bean, pageBean);
+        }
+        pageBean.setTotal(total);
+        pageBean.setRows(archiveBeanList);
+    }
+
+    @Override
+    public void noRequireDispose(String caseid) throws WebMessageException {
+        if (CommonValidate.isEmpty(caseid)){
+            throw new WebMessageException(WebExceptionConstant.SYSTEM_ERROR);
+        }
+        caseStatusService.updateCaseStatus(caseid, "archivesyncstatus", CommonConstant.CASE_NO_REQUIRE_SYNCHRONIZE);
+    }
+
+    /**
+     * 校验  bean 对象
+     *
+     * @param bean
+     * @throws Exception 校验异常
+     */
+    private void validateBean(ArchiveBean bean) throws WebMessageException {
+        if (StringUtils.isEmpty(bean.getId())) {
+            throw new WebMessageException(WebExceptionConstant.ID_IS_NONE);
+        }
+    }
+
+   public List<ArchiveBean> selectDataAllEqCaseId(String caseid){
+       List<ArchiveBean> list = null;
+       try{
+           list = archiveBeanMapper.selectDataAllEqCaseId(caseid);
+       }catch (Exception e){e.printStackTrace();}
+        return list;
+   }
+
+    @Override
+    public void pageCruDayQuery(PageBean<Archive> pageBean, ArchiveBean bean) {
+        int total = archiveBeanMapper.selectTotal(bean);
+        List<ArchiveBean> archiveBeanList = new ArrayList<ArchiveBean>();
+        if (total > 0) {
+            archiveBeanList = archiveBeanMapper.selectCruDayData(bean, pageBean);
+        }
+        pageBean.setTotal(total);
+        pageBean.setRows(archiveBeanList);
+    }
+
+    ;
+}

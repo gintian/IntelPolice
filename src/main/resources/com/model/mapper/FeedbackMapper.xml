@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.model.mapper.FeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.model.Feedback">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="CREATEUSERNAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="LOOKTIMES" jdbcType="DECIMAL" property="lookTimes" />
+    <result column="PROCESSTIMES" jdbcType="DECIMAL" property="processTimes" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="BUSINESSTYPE" jdbcType="VARCHAR" property="businessType" />
+    <result column="CREATEUSERID" jdbcType="VARCHAR" property="createUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TITLE, CONTENT, CREATEUSERNAME, TELEPHONE, ADDRESS, STATUS, LOOKTIMES, PROCESSTIMES, 
+    CREATETIME, BUSINESSTYPE, CREATEUSERID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EA_PLATFORM_FEEDBACK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EA_PLATFORM_FEEDBACK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Feedback">
+    insert into EA_PLATFORM_FEEDBACK (ID, TITLE, CONTENT, 
+      CREATEUSERNAME, TELEPHONE, ADDRESS, 
+      STATUS, LOOKTIMES, PROCESSTIMES, 
+      CREATETIME, BUSINESSTYPE, CREATEUSERID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{lookTimes,jdbcType=DECIMAL}, #{processTimes,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{businessType,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Feedback">
+    insert into EA_PLATFORM_FEEDBACK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="createUserName != null">
+        CREATEUSERNAME,
+      </if>
+      <if test="telephone != null">
+        TELEPHONE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="lookTimes != null">
+        LOOKTIMES,
+      </if>
+      <if test="processTimes != null">
+        PROCESSTIMES,
+      </if>
+      <if test="createTime != null">
+        CREATETIME,
+      </if>
+      <if test="businessType != null">
+        BUSINESSTYPE,
+      </if>
+      <if test="createUserId != null">
+        CREATEUSERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lookTimes != null">
+        #{lookTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="processTimes != null">
+        #{processTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Feedback">
+    update EA_PLATFORM_FEEDBACK
+    <set>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        CREATEUSERNAME = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lookTimes != null">
+        LOOKTIMES = #{lookTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="processTimes != null">
+        PROCESSTIMES = #{processTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessType != null">
+        BUSINESSTYPE = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Feedback">
+    update EA_PLATFORM_FEEDBACK
+    set TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{createUserName,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      LOOKTIMES = #{lookTimes,jdbcType=DECIMAL},
+      PROCESSTIMES = #{processTimes,jdbcType=DECIMAL},
+      CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+      BUSINESSTYPE = #{businessType,jdbcType=VARCHAR},
+      CREATEUSERID = #{createUserId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

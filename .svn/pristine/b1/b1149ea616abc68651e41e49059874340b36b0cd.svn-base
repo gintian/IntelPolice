@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.ArchiveBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.ArchiveBean"
+               extends="com.model.mapper.ArchiveMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.ArchiveMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_ARCHIVE sa
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE CONCAT('%', CONCAT(#{entity.id, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.name != null and entity.name != ''">
+            AND sa.NAME LIKE CONCAT('%', CONCAT(#{entity.name, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.code != null and entity.code != ''">
+            AND sa.CODE LIKE CONCAT('%', CONCAT(#{entity.code, jdbcType=VARCHAR}, '%'))
+        </if>
+        <if test="entity.userId != null and entity.userId != ''">
+            AND sa.USERID LIKE CONCAT('%', CONCAT(#{entity.userId, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_ARCHIVE sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_ARCHIVE sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+
+    <!--根据案件ID分页查询-->
+    <select id="selectDataEqCaseId" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_ARCHIVE sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+            <!--案件ID号不能为空-->
+            <if test="caseid != null and caseid != ''">
+                AND ID IN (SELECT ARCHIVEID FROM EA_ARCHIVE_CASE WHERE CASEID=#{caseid})
+            </if>
+        </where>
+        ORDER BY sa.ID
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+    <!--根据案件ID所有查询-->
+    <select id="selectDataAllEqCaseId" resultMap="BaseResultMap">
+      SELECT sa.* FROM EA_ARCHIVE sa
+        <where>
+            <!--案件ID号不能为空-->
+            <if test="caseid != null and caseid != ''">
+                ID IN (SELECT ARCHIVEID FROM EA_ARCHIVE_CASE WHERE CASEID=#{caseid})
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTotalEqCaseId" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_ARCHIVE sa
+        <where>
+            <include refid="queryPageSql"/>
+            <!--案件ID号不能为空-->
+            <if test="caseid != null and caseid != ''">
+                AND ID IN (SELECT ARCHIVEID FROM EA_ARCHIVE_CASE WHERE CASEID=#{caseid})
+            </if>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+
+</mapper>

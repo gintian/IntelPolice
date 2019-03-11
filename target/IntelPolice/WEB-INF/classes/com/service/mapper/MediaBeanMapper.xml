@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.MediaBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.MediaBean"
+               extends="com.model.mapper.MediaMapper.BaseResultMap">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.MediaMapper.Base_Column_List"/>
+    </sql>
+
+    <sql id="Base_Column_List_1">
+      sa.ID, sa.NAME, sa.TJRBH, sa.TJRXM, sa.JLYBH, sa.JLSJ, sa.JLDD, sa.JLDDZB, sa.DQSJ, DEPTID
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        sa.*
+        FROM EA_MEDIA sa
+    </sql>
+
+    <!--分页相关 start-->
+    <select id="selectBeanPage" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno, sa.* FROM EA_MEDIA sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.JLSJ ASC
+        ) table_alias WHERE table_alias.rowno > #{pageBean.pageNum}
+    </select>
+    <!--查询总条数-->
+    <select id="countTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_MEDIA sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页条件-->
+    <sql id="queryPageSql">
+        <if test="entity.name != null and entity.name != ''">
+            AND sa.NAME LIKE CONCAT('%' , CONCAT(#{entity.name, jdbcType=VARCHAR}, '%'))
+        </if>
+    </sql>
+    <!--分页相关 end-->
+
+    <select id="selectBeanEqName">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            sa.NAME = #{name};
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,427 @@
+package com.action;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.alibaba.fastjson.JSONObject;
+import com.constant.CommonConstant;
+import com.exception.WebMessageException;
+import com.model.BpipUser;
+import com.model.CaseStatus;
+import com.model.bean.BpipUserBean;
+import com.model.Involved;
+import com.model.bean.CaseStatusBean;
+import com.model.bean.CodeBean;
+import com.model.bean.InvolvedBean;
+import com.page.PageBean;
+import com.service.BpipUserService;
+import com.service.CodeService;
+import com.service.InvolvedService;
+import com.utils.ExecuteResult;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.constant.Url;
+import com.model.Criminal;
+import com.model.User;
+import com.model.bean.CriminalBean;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ModelDriven;
+import com.service.CriminalService;
+
+/**
+ * 类名称：CriminalAction 类描述：案事件的实现
+ */
+// @ParentPackage("json-default")
+@Action(value = Url.CRIMINAL)
+// 使用 convention-plugin 插件提供的@Action 注解将一个普通 java 类标注为一个可以处理用户请求的 Action，Action的名字为 struts2Test
+// @Results({ @Result(name = "jsonmenu",params={"root","list"}, type = "json") })
+// @Namespace("/")//使用 convention-plugin 插件提供的@Namespace 注解为这个 Action 指定一个命名空间
+public class CriminalAction extends BaseAction<Criminal> implements ModelDriven<Criminal> {
+    private CriminalBean bean = new CriminalBean();
+    @Override
+    public CriminalBean getModel() {
+        return bean;
+    }
+
+    @Autowired
+    private CriminalService criminalService;
+
+    @Autowired
+    private CodeService codeService;
+
+    @Autowired
+    private BpipUserService bpipUserService;
+
+    @Autowired
+    private InvolvedService involvedService;
+
+    ActionContext context = ActionContext.getContext();
+    private HttpServletRequest request = ServletActionContext.getRequest();
+
+    /**
+     * 展示页面
+     *
+     * @return
+     * @throws Exception
+     */
+    @Action(value = Url.CRIMINAL_PAGE_SHOW, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "case/criminal/show.jsp")})
+    public String index() throws Exception {
+        // 获取当前登录的用户
+        User user = this.getUser(request);
+        // 查询数据
+        criminalService.pageQuery(getPageBean(), bean);
+        // 获取分页数据
+        List entityList = pageBean.getRows();
+        // 填充查询对象
+        request.setAttribute("searchObj", bean);
+        // 填充分页对象
+        this.handlePageData(entityList, pageBean, request);
+        return "SUCCESS";
+    }
+
+    /**
+     * 详情展示
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.CRIMINAL_DETAIL_SHOW,
+            results = {@Result(name = "SUCCESS", location = Url.VIEWS + "case/criminal/detail.jsp")})
+    public String getDetails() throws Exception {
+        try {
+            CriminalBean bean2 = criminalService.findCriminalById(bean.getCaseid());
+            request.setAttribute("entity", bean2);
+        } catch (Exception e) {
+            String resultMessage = e.getMessage();
+            request.setAttribute("message", resultMessage);
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询未录入笔录的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.RECORD_PAGE_SHOW_NO_INPUT, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "record/show_archive.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showRecordNoInputPage() {
+        try {
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_RECORD_NOINPUT);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            BpipUserBean bpipUserBean = null;
+            for (CriminalBean criminal : entityList) {//processPersonName
+                bpipUserBean = bpipUserService.findBpipUserById(criminal.getCaseid());
+                if(bpipUserBean != null){
+                    criminal.setProcessPersonName(bpipUserBean.getName());
+                } else{
+                    criminal.setProcessPersonName("--");
+                }
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询未录入涉案财物的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.INVOLVED_CASE_NO_INPUT, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "involved/case/show_no_input.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showInvolvedNoInputPage() {
+        try {
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_INVOLVED_NO_INPUT);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            for (CriminalBean criminal : entityList) {
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询已录入涉案财物的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.INVOLVED_CASE_INPUT, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "involved/case/show_input.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showInvolvedInputPage() {
+        try {
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_INVOLVED_INPUT);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            for (CriminalBean criminal : entityList) {
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询无需同步涉案财物的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.INVOLVED_CASE_NOT_INPUT, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "involved/case/show_not_input.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showInvolvedNotInputPage() {
+        try {
+            CaseStatusBean caseStatusBean = new CaseStatusBean();
+            caseStatusBean.setInvolvedsyncstatus(CommonConstant.CASE_NO_REQUIRE_SYNCHRONIZE);
+            criminalService.findBeanPageForCaseStatus(getPageBean(), bean, caseStatusBean);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            List<CodeBean> codeBeanList = codeService.findBeanListByField(CommonConstant.CODE_FIELD_CASE_TYPE);
+
+            request.setAttribute("codeBeanList", codeBeanList);
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 需要同步财务操作
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.INVOLVED_CASE_REQUIRE_SYNC)
+    public void requireSync() throws Exception {
+        JSONObject jsonObject = null;
+        try {
+            criminalService.sync(bean.getCaseid());
+            jsonObject = ExecuteResult.jsonReturn(ExecuteResult.SUCCESS_STATUS, false);
+        } catch (Exception e) {
+            jsonObject = ExecuteResult.jsonReturnCallOnAppException(ExecuteResult.ERROR_STATUS, e.getMessage());
+        }
+        response.getWriter().write(jsonObject.toJSONString());
+    }
+
+    /**
+     * 无需同步财务操作
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.INVOLVED_CASE_NO_REQUIRE_SYNC)
+    public void noRequireSync() throws Exception {
+        JSONObject jsonObject = null;
+        try {
+            criminalService.noRequireSync(bean.getCaseid());
+            jsonObject = ExecuteResult.jsonReturn(ExecuteResult.SUCCESS_STATUS, false);
+        } catch (Exception e) {
+            jsonObject = ExecuteResult.jsonReturnCallOnAppException(ExecuteResult.ERROR_STATUS, e.getMessage());
+        }
+        response.getWriter().write(jsonObject.toJSONString());
+    }
+
+    /**
+     * 同步财务
+     *
+     * @throws Exception
+     */
+    @Action(value = Url.INVOLVED_CASE_SYNC_SHOW,results = {@Result(name = "SUCCESS", location = Url.VIEWS + "/involved/case/case_show.jsp")})
+    public String sync() throws Exception {
+        //获取案件编号
+        String caseid = request.getParameter("caseid");
+        //获取案件信息
+        CriminalBean criminalBean = new CriminalBean();
+        try {
+            criminalBean = criminalService.findCriminalById(caseid);
+            //查询对应号所以数据
+            List<InvolvedBean> list = involvedService.findByCaseId(criminalBean.getCaseid());
+            request.setAttribute("criminalBean",criminalBean);
+            request.setAttribute("list",list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询未录入卷宗的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.ARCHIVE_NO_INPUT_SHOW, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "archive/show_archive.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showArchiveNoInputPage() {
+        try {
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_ARCHIVE_NO_INPUT);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            for (CriminalBean criminal : entityList) {
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+            request.setAttribute("status", "needInput");
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询已录入卷宗的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.ARCHIVE_INPUT_SHOW, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "archive/show_archive.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showArchiveInputPage() {
+        try {
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_ARCHIVE_INPUT);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            for (CriminalBean criminal : entityList) {
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+            request.setAttribute("status", "alreadyInput");
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+
+    /**
+     * 查询无需录入卷宗的案件信息
+     *
+     * @return
+     */
+    @Action(value = Url.ARCHIVE_NOT_INPUT_SHOW, results = {
+            @Result(name = "SUCCESS", location = Url.VIEWS + "archive/show_archive.jsp"),
+            @Result(name = "ERROR", location = "../sys_error.jsp")})
+    public String showArchiveNotInputPage() {
+        try {
+            CaseStatusBean caseStatusBean = new CaseStatusBean();
+            caseStatusBean.setArchivesyncstatus(CommonConstant.CASE_NO_REQUIRE_SYNCHRONIZE);
+            criminalService.findBeanPageForCaseStatus(getPageBean(), bean, caseStatusBean);
+            List<CriminalBean> entityList = pageBean.getRows();
+
+            //搜索项
+            request.setAttribute("searchObj", bean);
+            handlePageData(entityList, pageBean, request);
+
+            //案件类型显示到下拉框
+            Map<String, String> map = new HashMap<>();
+            for (CriminalBean criminal : entityList) {
+                map.put(criminal.getCaseclass(), criminal.getCodedesc());
+            }
+            request.setAttribute("caseclassmap", map);
+            request.setAttribute("status", "needNotInput");
+
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+    /**
+     * 视频案件关联视图
+     *
+     * @return
+     */
+    @Action(value = Url.MEDIA_CASE_SHOW,
+            results = {@Result(name = "SUCCESS", location = "/WEB-INF/views/media/media_case_show.jsp")})
+    public String showMediaCase() {
+        try {
+            // 获取当前登录的用户
+            User user = this.getUser(request);
+            // 查询数据
+            // criminalService.pageQuery(getPageBean(), bean);
+            criminalService.findBeanPageForModule(getPageBean(), bean, CommonConstant.MODULE_MEDIA_NO_RELATION);
+            // 获取分页数据
+            List entityList = pageBean.getRows();
+            // 填充查询对象
+            request.setAttribute("searchObj", bean);
+            // 填充分页对象
+            this.handlePageData(entityList, pageBean, request);
+        } catch (WebMessageException e) {
+            e.printStackTrace();
+            request.setAttribute("message", e.getMessage());
+            return "ERROR";
+        }
+        return "SUCCESS";
+    }
+}

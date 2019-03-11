@@ -1,0 +1,23 @@
+package com.service.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.exception.WebMessageException;
+import com.model.CJ;
+import com.model.bean.CJBean;
+import com.model.mapper.CJMapper;
+import com.page.PageBean;
+
+public interface CJBeanMapper extends CJMapper {
+	//查询分页数据
+	List<CJBean> selectData(@Param("entity") CJBean bean, @Param("pageBean")PageBean<CJ> pageBean);
+	//查询分页数据量
+	int selectTotal(@Param("entity") CJBean bean);
+	//通过xzqhdm查询
+	List<CJBean> selectCJEqXzqhdm(@Param("xzqhdm") String xzqhdm) throws WebMessageException;
+	//通过cjdbh查询
+	CJBean selectCJEqCjdbh(@Param("cjdbh") String cjdbh) throws WebMessageException;
+	
+}

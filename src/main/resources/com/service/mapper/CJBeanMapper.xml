@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.CJBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.CJBean"
+               extends="com.model.mapper.CJMapper.BaseResultMap">
+        <association column="CJDBH" property="jJBean" javaType="com.model.bean.JJBean"
+                     resultMap="com.service.mapper.JJBeanMapper.BaseResultMap">
+            <id column="CJDBH" property="jjdbh"/>
+        </association>
+    </resultMap>
+    <resultMap id="BaseResultMap1" type="com.model.bean.CJBean"
+               extends="com.model.mapper.CJMapper.BaseResultMap">
+        <result column="ATIME" property="atime"/>
+        <result column="CAESETYPE" property="caseType"/>
+        <association column="CJDBH" property="jJBean" javaType="com.model.bean.JJBean"
+                     resultMap="com.service.mapper.JJBeanMapper.BaseResultMap">
+            <id column="CJDBH" property="jjdbh"/>
+        </association>
+    </resultMap>
+    <resultMap id="BaseResultMap2" type="com.model.bean.CJBean"
+               extends="com.model.mapper.CJMapper.BaseResultMap">
+        <result column="ATIME" property="atime"/>
+        <result column="CAESETYPE" property="caseType"/>
+        <result column="CASEID" property="caseId"/>
+        <association column="CJDBH" property="jJBean" javaType="com.model.bean.JJBean"
+                     resultMap="com.service.mapper.JJBeanMapper.BaseResultMap">
+            <id column="CJDBH" property="jjdbh"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.CJMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT * FROM CJDB
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.xzqhdm != null and entity.xzqhdm != ''">
+            AND cj.XZQHDM LIKE CONCAT(CONCAT('%', #{entity.xzqhdm, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.cjdbh != null and entity.cjdbh != ''">
+            AND cj.CJDBH LIKE CONCAT(CONCAT('%', #{entity.cjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+        <if test="entity.jjdbh != null and entity.jjdbh != ''">
+            AND cj.JJDBH LIKE CONCAT(CONCAT('%', #{entity.jjdbh, jdbcType=VARCHAR}), '%')
+        </if>
+    </sql>
+
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,cj.* FROM CJDB cj
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cj.cjdbh
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CJDB cj
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <select id="selectCJEqXzqhdm" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="xzqhdm != null and xzqhdm != ''">
+                AND XZQHDM = #{xzqhdm}
+            </if>
+        </where>
+        ORDER BY XZQHDM ASC
+    </select>
+    <select id="selectCJEqCjdbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="cjdbh != null and cjdbh != ''">
+                AND CJDBH = #{cjdbh}
+            </if>
+        </where>
+        ORDER BY CJDBH ASC
+    </select>
+    <!--超时未反馈-->
+    <select id="selectTimeoutData" resultMap="BaseResultMap">
+        SELECT table_alias.* ,jj.* FROM
+        (
+        SELECT ROWNUM AS rowno,cj.* FROM CJDB cj
+        <where>
+            (SYSDATE - cj.CJSJ <![CDATA[>]]> 1) AND cj.CJDBH not in (select CJDBH from FKDB)
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cj.cjdbh
+        ) table_alias
+        INNER JOIN JJDB jj
+        ON table_alias.JJDBH = jj.JJDBH
+        WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTimeoutTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CJDB cj
+        <where>
+            (SYSDATE - cj.CJSJ <![CDATA[>]]> 1) AND cj.CJDBH not in (select CJDBH from FKDB)
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--selectCJAndJJById-->
+    <select id="selectCJAndJJById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select cj.*, jj.* from CJDB cj
+        INNER JOIN JJDB jj
+        ON cj.JJDBH = jj.JJDBH
+        where cj.CJDBH = #{cjdbh,jdbcType=VARCHAR}
+    </select>
+    <!--多条反馈-->
+    <select id="selectFeedbacksData" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT table_alias.* ,jj.* FROM
+        (
+        SELECT ROWNUM AS rowno,cj.* FROM CJDB cj
+        <where>
+            CJDBH in (select CJDBH from FKDB group by CJDBH having count(*) > 1)
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY cj.cjdbh
+        ) table_alias
+        INNER JOIN JJDB jj
+        ON table_alias.JJDBH = jj.JJDBH
+        WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+    <select id="selectFeedbacksTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CJDB cj
+        <where>
+            CJDBH in (select CJDBH from FKDB group by CJDBH having count(*) > 1)
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+
+    <!--超时未立案-->
+    <select id="selectTimeoutWlaData" resultMap="BaseResultMap1">
+        SELECT table_alias.* ,jj.* FROM
+        (
+        SELECT ROWNUM AS rowno,cj.* ,trunc(sysdate-FKDB.FKSJ, 2) ATIME,FKDB.JQLBDM CAESETYPE FROM CJDB cj
+        inner join FKDB
+        on cj.CJDBH = FKDB.CJDBH
+        where
+        (FKDB.JJDBH NOT IN (select SJBH from CASE_M_110CMD) OR FKDB.JJDBH IN (select SJBH from CASE_M_110CMD WHERE
+        CASEID IS NULL))
+        AND ((FKDB.CLJGDM = '01'AND (sysdate-FKDB.FKSJ > 1)) OR (FKDB.CLJGDM = '02'AND (sysdate-FKDB.FKSJ > 3 ))
+        OR (FKDB.CLJGDM = '2'aND (sysdate-FKDB.FKSJ > 3 )) OR (FKDB.CLJGDM = '1'AND (sysdate-FKDB.FKSJ > 1)))
+        <include refid="queryPageSql"/>
+        AND ROWNUM &lt;= #{pageBean.pageCount}
+        ORDER BY cj.cjdbh
+        ) table_alias
+        left JOIN JJDB jj
+        ON table_alias.JJDBH = jj.JJDBH
+        WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTimeoutWlaTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CJDB cj
+        <where>
+            cj.CJDBH in (
+            select CJDBH from FKDB WHERE
+            (FKDB.JJDBH NOT IN (select SJBH from CASE_M_110CMD) OR FKDB.JJDBH IN (select SJBH from CASE_M_110CMD WHERE
+            CASEID IS NULL))
+            AND ((FKDB.CLJGDM = '01'AND (sysdate-FKDB.FKSJ > 1)) OR (FKDB.CLJGDM = '02'AND (sysdate-FKDB.FKSJ > 3 ))
+            OR (FKDB.CLJGDM = '2'aND (sysdate-FKDB.FKSJ > 3 )) OR (FKDB.CLJGDM = '1'AND (sysdate-FKDB.FKSJ > 1)))
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--超时立案-->
+    <select id="selectTimeoutLaData" resultMap="BaseResultMap2">
+        SELECT table_alias.* ,jj.* , cm.CASEID FROM
+        (
+        SELECT ROWNUM AS rowno,cj.* ,trunc(sysdate-FKDB.FKSJ, 2) ATIME,FKDB.JQLBDM CAESETYPE FROM CJDB cj
+        inner join FKDB
+        on cj.CJDBH = FKDB.CJDBH
+        where
+        FKDB.JJDBH IN (select SJBH from CASE_M_110CMD where CASEID IS not NULL)
+        AND ((FKDB.CLJGDM = '01'AND (sysdate-FKDB.FKSJ > 1)) OR (FKDB.CLJGDM = '02'AND (sysdate-FKDB.FKSJ > 3 ))
+        OR (FKDB.CLJGDM = '2'aND (sysdate-FKDB.FKSJ > 3 )) OR (FKDB.CLJGDM = '1'AND (sysdate-FKDB.FKSJ > 1)))
+        <include refid="queryPageSql"/>
+        AND ROWNUM &lt;= #{pageBean.pageCount}
+        ORDER BY cj.cjdbh
+        ) table_alias
+        left JOIN JJDB jj ON table_alias.JJDBH = jj.JJDBH
+        left join CASE_M_110CMD cm ON cm.SJBH = jj.JJDBH
+        WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTimeoutLaTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM CJDB cj
+        <where>
+            cj.CJDBH in (
+            select CJDBH from FKDB WHERE
+            (JQLBDM LIKE CONCAT('01','%')/*刑事案件*/ OR JQLBDM LIKE CONCAT('02','%')/*行政*/)
+            AND JJDBH IN (select SJBH from CASE_M_110CMD where CASEID IS NOT NULL)
+            AND (CLJGDM = '01' OR CLJGDM = '02' OR CLJGDM = '2' OR CLJGDM = '1'))
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <select id="selectCJEqjjdbh" resultMap="BaseResultMap">
+        <include refid="selectBeanForPageOrAllSql"/>
+        <where>
+            <if test="jjdbh != null and jjdbh != ''">
+                AND JJDBH = #{jjdbh}
+            </if>
+        </where>
+        ORDER BY JJDBH ASC
+    </select>
+
+
+    <select id="selectNotViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM CJDB t1
+        WHERE NOT EXISTS
+			(SELECT CJDBH
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.CJDBH=	t2.CJDBH)
+    </select>
+
+    <select id="selectNotView" resultType="com.model.CJ">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM CJDB t1
+            WHERE NOT EXISTS
+                    (SELECT CJDBH
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.CJDBH=	t2.CJDBH))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+    <select id="selectCorrelateViewTotal" resultType="java.lang.Integer">
+        SELECT count (1)
+        FROM CJDB t1
+        WHERE  EXISTS
+			(SELECT CJDBH
+			FROM EA_MEDIA_CASE t2
+			WHERE t1.CJDBH=	t2.CJDBH)
+    </select>
+
+    <select id="selectCorrelateView" resultType="com.model.CJ">
+        SELECT *
+        FROM
+            (SELECT t1.*,ROWNUM  rn
+            FROM CJDB t1
+            WHERE  EXISTS
+                    (SELECT CJDBH
+                    FROM EA_MEDIA_CASE t2
+                    WHERE t1.CJDBH=	t2.CJDBH))
+        WHERE rn between #{pageBean.pageNum} and #{pageBean.pageCount}
+    </select>
+
+
+</mapper>

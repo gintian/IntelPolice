@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.service.mapper.MessageBeanMapper">
+    <resultMap id="BaseResultMap" type="com.model.bean.MessageBean"
+               extends="com.model.mapper.MessageMapper.BaseResultMap">
+    </resultMap>
+    <sql id="Base_Column_List">
+        <include refid="com.model.mapper.MessageMapper.Base_Column_List"/>
+    </sql>
+    <sql id="selectBeanForPageOrAllSql">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM EA_PLATFORM_MESSAGE
+    </sql>
+    <sql id="queryPageSql">
+        <if test="entity.id != null and entity.id != ''">
+            AND sa.ID LIKE '%'|| #{entity.id, jdbcType=VARCHAR}|| '%'
+        </if>
+        <if test="entity.title != null and entity.title != ''">
+            AND sa.TITLE LIKE  '%'||#{entity.title, jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="entity.createUserId != null and entity.createUserId == 'notSelf'">
+            AND sa.CREATEUSERID != RECEIVEUSERID
+        </if>
+        <if test="entity.createUserId != null and entity.createUserId != '' and entity.createUserId != 'notSelf'">
+            AND sa.CREATEUSERID = #{entity.createUserId, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.createUserName != null and entity.createUserName != ''">
+            AND sa.CREATEUSERNAME LIKE '%'|| #{entity.createUserName, jdbcType=VARCHAR}|| '%'
+        </if>
+        <if test="entity.isVisit != null and entity.isVisit != ''">
+            AND sa.ISVISIT = #{entity.isVisit, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.receiveUserId != null and entity.receiveUserId != ''">
+            AND sa.RECEIVEUSERID = #{entity.receiveUserId, jdbcType=VARCHAR}
+        </if>
+        <if test="entity.status != null and entity.status != ''">
+            AND sa.STATUS = #{entity.status, jdbcType=VARCHAR}
+            <!--<choose>
+                <when test="entity.status == 0">
+                    AND sa.STATUS = #{entity.status, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    AND sa.STATUS = '1' or sa.STATUS = '2'
+                </otherwise>
+            </choose>-->
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="selectData" resultMap="BaseResultMap">
+        SELECT * FROM
+        (SELECT ROWNUM AS rowno,sa.* FROM EA_PLATFORM_MESSAGE sa
+        <where>
+            <include refid="queryPageSql"/>
+            AND ROWNUM &lt;= #{pageBean.pageCount}
+        </where>
+        ORDER BY sa.id
+        ) table_alias WHERE table_alias.rowno >= #{pageBean.pageNum}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select COUNT(*) FROM EA_PLATFORM_MESSAGE sa
+        <where>
+            <include refid="queryPageSql"/>
+        </where>
+    </select>
+    <!--分页SQL  end-->
+
+</mapper>

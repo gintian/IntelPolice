@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.model.mapper.DataSyncTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.model.DataSyncTask" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SYNCDATE" property="syncdate" jdbcType="TIMESTAMP" />
+    <result column="SYNCNUM" property="syncnum" jdbcType="VARCHAR" />
+    <result column="SYNCSTATUS" property="syncstatus" jdbcType="VARCHAR" />
+    <result column="SYNCTYPE" property="synctype" jdbcType="VARCHAR" />
+    <result column="SYNCLABLE" property="synclable" jdbcType="VARCHAR" />
+    <result column="SYNCVALUE" property="syncvalue" jdbcType="VARCHAR" />
+    <result column="EXECUTIONDATE" property="executiondate" jdbcType="TIMESTAMP" />
+    <result column="EXECUTIONVALUE" property="executionvalue" jdbcType="VARCHAR" />
+    <result column="DATESTARTTIME" property="datestarttime" jdbcType="TIMESTAMP" />
+    <result column="DATAENDTIME" property="dataendtime" jdbcType="TIMESTAMP" />
+    <result column="EXECUTIONSTARTDATE" property="executionstartdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SYNCDATE, SYNCNUM, SYNCSTATUS, SYNCTYPE, SYNCLABLE, SYNCVALUE, EXECUTIONDATE, 
+    EXECUTIONVALUE, DATESTARTTIME, DATAENDTIME, EXECUTIONSTARTDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EA_DATA_SYNCTASK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EA_DATA_SYNCTASK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.DataSyncTask" >
+    insert into EA_DATA_SYNCTASK (ID, SYNCDATE, SYNCNUM, 
+      SYNCSTATUS, SYNCTYPE, SYNCLABLE, 
+      SYNCVALUE, EXECUTIONDATE, EXECUTIONVALUE, 
+      DATESTARTTIME, DATAENDTIME, EXECUTIONSTARTDATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{syncdate,jdbcType=TIMESTAMP}, #{syncnum,jdbcType=VARCHAR}, 
+      #{syncstatus,jdbcType=VARCHAR}, #{synctype,jdbcType=VARCHAR}, #{synclable,jdbcType=VARCHAR}, 
+      #{syncvalue,jdbcType=VARCHAR}, #{executiondate,jdbcType=TIMESTAMP}, #{executionvalue,jdbcType=VARCHAR}, 
+      #{datestarttime,jdbcType=TIMESTAMP}, #{dataendtime,jdbcType=TIMESTAMP}, #{executionstartdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.DataSyncTask" >
+    insert into EA_DATA_SYNCTASK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="syncdate != null" >
+        SYNCDATE,
+      </if>
+      <if test="syncnum != null" >
+        SYNCNUM,
+      </if>
+      <if test="syncstatus != null" >
+        SYNCSTATUS,
+      </if>
+      <if test="synctype != null" >
+        SYNCTYPE,
+      </if>
+      <if test="synclable != null" >
+        SYNCLABLE,
+      </if>
+      <if test="syncvalue != null" >
+        SYNCVALUE,
+      </if>
+      <if test="executiondate != null" >
+        EXECUTIONDATE,
+      </if>
+      <if test="executionvalue != null" >
+        EXECUTIONVALUE,
+      </if>
+      <if test="datestarttime != null" >
+        DATESTARTTIME,
+      </if>
+      <if test="dataendtime != null" >
+        DATAENDTIME,
+      </if>
+      <if test="executionstartdate != null" >
+        EXECUTIONSTARTDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="syncdate != null" >
+        #{syncdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncnum != null" >
+        #{syncnum,jdbcType=VARCHAR},
+      </if>
+      <if test="syncstatus != null" >
+        #{syncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="synctype != null" >
+        #{synctype,jdbcType=VARCHAR},
+      </if>
+      <if test="synclable != null" >
+        #{synclable,jdbcType=VARCHAR},
+      </if>
+      <if test="syncvalue != null" >
+        #{syncvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="executiondate != null" >
+        #{executiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionvalue != null" >
+        #{executionvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="datestarttime != null" >
+        #{datestarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataendtime != null" >
+        #{dataendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionstartdate != null" >
+        #{executionstartdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.DataSyncTask" >
+    update EA_DATA_SYNCTASK
+    <set >
+      <if test="syncdate != null" >
+        SYNCDATE = #{syncdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncnum != null" >
+        SYNCNUM = #{syncnum,jdbcType=VARCHAR},
+      </if>
+      <if test="syncstatus != null" >
+        SYNCSTATUS = #{syncstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="synctype != null" >
+        SYNCTYPE = #{synctype,jdbcType=VARCHAR},
+      </if>
+      <if test="synclable != null" >
+        SYNCLABLE = #{synclable,jdbcType=VARCHAR},
+      </if>
+      <if test="syncvalue != null" >
+        SYNCVALUE = #{syncvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="executiondate != null" >
+        EXECUTIONDATE = #{executiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionvalue != null" >
+        EXECUTIONVALUE = #{executionvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="datestarttime != null" >
+        DATESTARTTIME = #{datestarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataendtime != null" >
+        DATAENDTIME = #{dataendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionstartdate != null" >
+        EXECUTIONSTARTDATE = #{executionstartdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.DataSyncTask" >
+    update EA_DATA_SYNCTASK
+    set SYNCDATE = #{syncdate,jdbcType=TIMESTAMP},
+      SYNCNUM = #{syncnum,jdbcType=VARCHAR},
+      SYNCSTATUS = #{syncstatus,jdbcType=VARCHAR},
+      SYNCTYPE = #{synctype,jdbcType=VARCHAR},
+      SYNCLABLE = #{synclable,jdbcType=VARCHAR},
+      SYNCVALUE = #{syncvalue,jdbcType=VARCHAR},
+      EXECUTIONDATE = #{executiondate,jdbcType=TIMESTAMP},
+      EXECUTIONVALUE = #{executionvalue,jdbcType=VARCHAR},
+      DATESTARTTIME = #{datestarttime,jdbcType=TIMESTAMP},
+      DATAENDTIME = #{dataendtime,jdbcType=TIMESTAMP},
+      EXECUTIONSTARTDATE = #{executionstartdate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
